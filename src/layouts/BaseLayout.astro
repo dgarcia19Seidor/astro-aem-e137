@@ -1,0 +1,18 @@
+---
+const { title = "AEM Quiz" } = Astro.props;
+---
+
+<html lang="en" class="h-full bg-slate-900">
+  <head>
+    <meta charset="utf-8" />
+    <title>{title}</title>
+    <!-- Si usas Tailwind con npx astro add tailwind, normalmente no hace falta este link.
+         Si ya lo tienes funcionando así, puedes dejarlo. -->
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+  <body class="min-h-full text-slate-100">
+    <main class="max-w-4xl mx-auto px-4 py-8">
+      <slot />
+    </main>
+  </body>
+</html>

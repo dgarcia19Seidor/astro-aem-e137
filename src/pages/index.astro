@@ -1,0 +1,157 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import questionsRaw from "../data/questions.json";
+
+type Question = {
+  id: number;
+  question: string;
+  answers: string[];
+  correct: string | string[];
+  reason: string;
+};
+
+const questions = (questionsRaw as Question[]).map((q) => ({
+  ...q,
+  isMulti: Array.isArray(q.correct),
+}));
+---
+
+<BaseLayout title="AEM Certification Quiz">
+  <h1 class="text-3xl font-bold mb-6 text-center">
+    AEM Quiz – Preguntas
+  </h1>
+
+  <p class="mb-6 text-sm text-slate-300 text-center">
+    Marca la(s) respuesta(s) y pulsa <span class="font-semibold">Check</span>.
+    Las preguntas que sean de “(Choose two)” permiten marcar varias opciones.  
+    Puedes usar <span class="font-semibold">Show reason</span> para ver la explicación.
+  </p>
+
+  <section class="space-y-6">
+    {questions.map((q, idx) => (
+      <article
+        class="bg-slate-800/70 border border-slate-700 rounded-xl p-4 md:p-5 shadow-sm"
+        data-question-index={idx}
+      >
+        <header class="flex items-start gap-2 mb-3">
+          <span class="text-sm font-mono px-2 py-0.5 rounded bg-slate-700">
+            #{q.id}
+          </span>
+          <h2 class="font-semibold leading-snug">{q.question}</h2>
+        </header>
+
+        <ul class="space-y-2 mb-4">
+          {q.answers.map((answer) => (
+            <li>
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <input
+                  class="peer h-4 w-4 text-emerald-500 focus:ring-emerald-500"
+                  type={q.isMulti ? "checkbox" : "radio"}
+                  name={`q-${idx}`}
+                  value={answer}
+                />
+                <span
+                  class="flex-1 text-sm group-hover:text-emerald-200 peer-checked:font-semibold"
+                >
+                  {answer}
+                </span>
+              </label>
+            </li>
+          ))}
+        </ul>
+
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="flex gap-2">
+            <button
+              class="check-btn inline-flex items-center justify-center px-3 py-1.5 text-sm font-medium rounded-lg bg-emerald-600 hover:bg-emerald-500 transition-colors"
+              data-correct={JSON.stringify(q.correct)}
+            >
+              Check
+            </button>
+
+            <button
+              type="button"
+              class="reason-btn inline-flex items-center justify-center px-3 py-1.5 text-sm font-medium rounded-lg border border-slate-600 hover:border-emerald-400 hover:text-emerald-200 transition-colors"
+            >
+              Show reason
+            </button>
+          </div>
+
+          <span class="result text-sm font-medium hidden"></span>
+        </div>
+
+        <p class="reason mt-3 text-xs text-slate-300 hidden">
+          {q.reason}
+        </p>
+      </article>
+    ))}
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const cards = document.querySelectorAll("[data-question-index]");
+
+      cards.forEach((card) => {
+        const button = card.querySelector(".check-btn");
+        const result = card.querySelector(".result");
+        const reasonBtn = card.querySelector(".reason-btn");
+        const reasonEl = card.querySelector(".reason");
+
+        if (!button || !result) return;
+
+        // 👉 Lógica del botón Check (corregir respuesta)
+        button.addEventListener("click", () => {
+          const correctRaw = button.dataset.correct || "null";
+          let correct;
+          try {
+            correct = JSON.parse(correctRaw);
+          } catch {
+            correct = correctRaw;
+          }
+
+          const inputs = card.querySelectorAll("input");
+          const checked = Array.from(inputs).filter((i) => i.checked);
+          const selectedValues = checked.map((i) => i.value);
+
+          let isCorrect = false;
+
+          if (Array.isArray(correct)) {
+            isCorrect =
+              selectedValues.length === correct.length &&
+              correct.every((v) => selectedValues.includes(v));
+          } else {
+            isCorrect =
+              selectedValues.length === 1 && selectedValues[0] === correct;
+          }
+
+          result.classList.remove("hidden");
+          result.classList.remove("text-emerald-400", "text-rose-400");
+
+          if (isCorrect) {
+            result.textContent = "✅ Correct!";
+            result.classList.add("text-emerald-400");
+          } else {
+            result.textContent = Array.isArray(correct)
+              ? "❌ Incorrect. Correct answers: " + correct.join(", ")
+              : "❌ Incorrect. Correct answer: " + correct;
+            result.classList.add("text-rose-400");
+          }
+        });
+
+        // 👉 Botón Show reason (mostrar/ocultar explicación)
+        if (reasonBtn && reasonEl) {
+          reasonBtn.addEventListener("click", () => {
+            const isHidden = reasonEl.classList.contains("hidden");
+            if (isHidden) {
+              reasonEl.classList.remove("hidden");
+              reasonBtn.textContent = "Hide reason";
+            } else {
+              reasonEl.classList.add("hidden");
+              reasonBtn.textContent = "Show reason";
+            }
+          });
+        }
+      });
+    });
+  </script>
+</BaseLayout>

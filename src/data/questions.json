@@ -1,0 +1,634 @@
+[
+  {
+    "id": 1,
+    "question": "What is the prefix for the property names of config files within Dispatcher?",
+    "answers": ["Forward slash", "Braces", "Comma", "Backward slash"],
+    "correct": "Forward slash",
+    "reason": "En los ficheros de configuración del Dispatcher, todas las propiedades empiezan por '/', por eso el prefijo correcto es 'Forward slash'."
+  },
+  {
+    "id": 2,
+    "question": "A customer has a requirement stating that the styling of the site can change at any time. Which approach is recommended in this scenario?",
+    "answers": ["Static templates with page components, including the client libraries", "Updating the style system with the latest rules", "Using editable templates", "Using template policies"],
+    "correct": "Using editable templates",
+    "reason": "Las editable templates permiten cambiar estructura, componentes y estilos aplicados a muchas páginas sin redeploy, ideal cuando el diseño puede cambiar en cualquier momento."
+  },
+  {
+    "id": 3,
+    "question": "An engineer needs to apply a configuration to preview a service in AEM as a Cloud Service development environment. What would the engineer do?",
+    "answers": ["/apps/example/config.author.dev", "/apps/cxample/config.preview.dev", "/apps/example/config.publish.dev"],
+    "correct": "/apps/example/config.publish.dev",
+    "reason": "En AEM as a Cloud Service se usan carpetas de configuración específicas por runmode; para previsualizar en el entorno de desarrollo se aplica la configuración en publish.dev."
+  },
+  {
+    "id": 4,
+    "question": "A Developer needs to specify a unique name for a Dispatcher instance. Which property should the Developer use?",
+    "answers": ["/uniquename", "/name", "/hostname"],
+    "correct": "/name",
+    "reason": "/name es la propiedad estándar del Dispatcher para definir un nombre único de instancia."
+  },
+  {
+    "id": 5,
+    "question": "How does Dispatcher select a render when the request contains no renderid cookie?",
+    "answers": [
+      "It selects the render with the highest response score for the requested category.",
+      "It selects the render with the lowest response score for the requested category.",
+      "It selects the first render in the list for the requested category."
+    ],
+    "correct": "It selects the render with the lowest response score for the requested category.",
+    "reason": "Dispatcher elige el render con la puntuación de respuesta más baja (mejor rendimiento) cuando no hay renderid cookie."
+  },
+
+  {
+    "id": 6,
+    "question": "An organization has multiple AEM teams working on a single product. How does multi-tenancy improve the architecture?",
+    "answers": [
+      "Allows dynamic scaling of AEM instances based on user traffic.",
+      "Supports isolation of content, configuration, and user management.",
+      "Enables integrating external databases for enhanced storage."
+    ],
+    "correct": "Supports isolation of content, configuration, and user management.",
+    "reason": "La multi-tenencia aísla contenido, configuraciones y usuarios evitando conflictos entre equipos y manteniendo branding consistente."
+  },
+
+  {
+    "id": 7,
+    "question": "To enable a SAML 2.0 authentication handler in AEM, which property is mandatory?",
+    "answers": ["Service Ranking", "Path", "IDP Certificate Alias", "Identity Provider URL"],
+    "correct": "Identity Provider URL",
+    "reason": "Es obligatorio indicar la URL del Identity Provider, ya que AEM necesita saber contra qué IdP autenticar."
+  },
+
+  {
+    "id": 8,
+    "question": "What is the default servlet in Publish that receives replicated content?",
+    "answers": [
+      "http://localhost:4503/default/bin/receive",
+      "https://localhost:4503/bin/receive",
+      "https://localhost:4503/default/receive"
+    ],
+    "correct": "https://localhost:4503/bin/receive",
+    "reason": "El servlet estándar para recibir replicaciones es /bin/receive sobre HTTPS."
+  },
+
+  {
+    "id": 9,
+    "question": "Which components should be locked in editable templates to ensure consistency?",
+    "answers": ["Structure Components", "Experience Fragments", "Style System Configurations", "Text Components"],
+    "correct": "Structure Components",
+    "reason": "Los Structure Components son la base de todas las páginas; bloquearlos garantiza coherencia entre páginas creadas."
+  },
+
+  {
+    "id": 10,
+    "question": "Which two services must be configured for LDAP integration?",
+    "answers": ["External Login Module", "CRSF Token Filter", "Sync Handler", "Authentication Handler"],
+    "correct": ["External Login Module", "Sync Handler"],
+    "reason": "El External Login Module autentica contra LDAP y el Sync Handler sincroniza usuarios/grupos."
+  },
+
+  {
+    "id": 11,
+    "question": "How is reverse distribution configured on the target instance?",
+    "answers": [
+      "ReverseDistributionAgentFactory-target.json (name=\"target\", exporter=\"target\")",
+      "ReverseDistributionAgentFactory-target.json (name=\"reverse\", exporter=\"reverse\")",
+      "ReverseDistributionAgentFactory-reverse.json (name=\"reverse\", exporter=\"reverse\")",
+      "ReverseDistributionAgentFactory-reverse.json (name=\"target\", exporter=\"reverse\")"
+    ],
+    "correct": "ReverseDistributionAgentFactory-reverse.json (name=\"reverse\", exporter=\"reverse\")",
+    "reason": "Reverse distribution requiere un agente 'reverse' tanto en nombre como en exporter."
+  },
+
+  {
+    "id": 12,
+    "question": "Which two steps are required so authors can choose components and themes in editable templates?",
+    "answers": [
+      "Apply style system",
+      "Create structured content",
+      "Assign policies",
+      "Configure metadata schema",
+      "Configure initial content"
+    ],
+    "correct": ["Apply style system", "Assign policies"],
+    "reason": "Las policies controlan qué componentes se permiten y el style system permite escoger estilos/temas."
+  },
+
+  {
+    "id": 13,
+    "question": "A customer wants to share member information with a third-party site. What should be recommended?",
+    "answers": [
+      "Share token via servlet.",
+      "Use authorization code to generate token at third-party.",
+      "Send token + data via query params.",
+      "Use redirect and cookie sharing."
+    ],
+    "correct": "Use authorization code to generate token at third-party.",
+    "reason": "El authorization code flow es el único seguro para emitir tokens sin exponer datos sensibles."
+  },
+
+  {
+    "id": 14,
+    "question": "Which annotation declares an OSGi service?",
+    "answers": ["@Configuration", "@Reference", "@Component", "@Services"],
+    "correct": "@Component",
+    "reason": "@Component registra el servicio en OSGi y permite definir propiedades."
+  },
+
+  {
+    "id": 15,
+    "question": "What may cause a 'PersistenceException: Failed to commit changes'?",
+    "answers": [
+      "Repository full",
+      "ResourceResolver not closed",
+      "Network issues",
+      "Resource locked"
+    ],
+    "correct": "Resource locked",
+    "reason": "Los cambios no se pueden guardar si el nodo está bloqueado por otro usuario/proceso."
+  },
+
+  {
+    "id": 16,
+    "question": "How to simulate AEM runtime for unit tests?",
+    "answers": [
+      "Use wcm.io mocks",
+      "Implement custom JVM",
+      "Instantiate AEM services manually"
+    ],
+    "correct": "Use wcm.io mocks",
+    "reason": "wcm.io AEM Mocks recrea un entorno AEM simulado para tests sin necesitar instancia real."
+  },
+
+  {
+    "id": 17,
+    "question": "Which two tools move components to Publish?",
+    "answers": ["Activate Tree", "Dispatcher configuration", "Package Manager", "Template Editor"],
+    "correct": ["Activate Tree", "Package Manager"],
+    "reason": "La replicación (Activate Tree) y los paquetes (Package Manager) son los métodos oficiales."
+  },
+
+  {
+    "id": 18,
+    "question": "How are OSGi configs managed in AEM as a Cloud Service?",
+    "answers": [
+      "Editing configMgr",
+      "Managing configs in /apps or /conf",
+      "Using CRXDE"
+    ],
+    "correct": "Managing configs in /apps or /conf",
+    "reason": "En Cloud, las configs son 'config as code', no se tocan en consola web."
+  },
+
+  {
+    "id": 19,
+    "question": "What to consider when modifying a template structure?",
+    "answers": [
+      "Need for publishing changes",
+      "Impact on clientlibs",
+      "Immediate application to pages"
+    ],
+    "correct": "Immediate application to pages",
+    "reason": "Cambios en la estructura de templates se aplican automáticamente a todas las páginas basadas."
+  },
+
+  {
+    "id": 20,
+    "question": "Which feature allows design-time style configuration?",
+    "answers": ["Editable Templates", "Design Dialog", "ClientLibs"],
+    "correct": "Design Dialog",
+    "reason": "El Design Dialog permite opciones de estilo configurables por autor."
+  },
+
+  {
+    "id": 21,
+    "question": "AemContext provides access to mock implementations of:",
+    "answers": [
+      "Felix Event Admin, Sling Settings",
+      "Bundle Tracker, Auth Handler",
+      "OSGi Component Context, Bundle Context"
+    ],
+    "correct": "OSGi Component Context, Bundle Context",
+    "reason": "AemContext simula el entorno OSGi necesario para tests realistas."
+  },
+
+  {
+    "id": 22,
+    "question": "Recommended practice for optimizing Oak queries?",
+    "answers": [
+      "Enable debug logs",
+      "Increase parameters",
+      "Break complex queries into smaller ones"
+    ],
+    "correct": "Break complex queries into smaller ones",
+    "reason": "Queries más pequeñas permiten mejor uso de índices y menos carga."
+  },
+
+  {
+    "id": 23,
+    "question": "Authoring vs Rendering components in AEM:",
+    "answers": [
+      "Rendering auto-replicates",
+      "Rendering must be on author and publish",
+      "Authoring only needed on author",
+      "Authoring optional"
+    ],
+    "correct": "Rendering must be on author and publish",
+    "reason": "Los componentes deben existir en Publish para renderizar para usuarios."
+  },
+
+  {
+    "id": 24,
+    "question": "Why activate components on Publish?",
+    "answers": [
+      "Better authoring",
+      "Consistency across environments",
+      "Affects workflow only"
+    ],
+    "correct": "Consistency across environments",
+    "reason": "Publish debe tener el mismo código que Author para evitar inconsistencias."
+  },
+
+  {
+    "id": 25,
+    "question": "Optimizing Oak queries recommended practice?",
+    "answers": [
+      "Increase params",
+      "Break query",
+      "Enable debug logs"
+    ],
+    "correct": "Break query",
+    "reason": "Fragmentar consultas complejas mejora la optimización del motor de búsqueda."
+  },
+
+  {
+    "id": 26,
+    "question": "Why logs may not appear in Splunk?",
+    "answers": [
+      "Sandbox environment",
+      "Wrong index",
+      "Missing SSL",
+      "Only prod supported"
+    ],
+    "correct": "Sandbox environment",
+    "reason": "Los sandbox no siempre envían logs a Splunk configurado por Adobe."
+  },
+
+  {
+    "id": 27,
+    "question": "Which two files to modify to create a clientlib?",
+    "answers": ["webpack.common.js", "tsconfig.json", "clientlib.config.js", "package.json"],
+    "correct": ["webpack.common.js", "clientlib.config.js"],
+    "reason": "webpack genera el bundle y clientlib.config.js lo publica como clientlib en AEM."
+  },
+
+  {
+    "id": 28,
+    "question": "Proper HTL syntax to access Sling Model title?",
+    "answers": ["${properties.title}", "${model.title}", "${title}"],
+    "correct": "${model.title}",
+    "reason": "HTL expone el Sling Model como 'model'."
+  },
+
+  {
+    "id": 29,
+    "question": "Missing word in createElement() snippet?",
+    "answers": ["script", "meta", "element", "head"],
+    "correct": "script",
+    "reason": "El snippet crea dinámicamente un <script>."
+  },
+
+  {
+    "id": 30,
+    "question": "Correct OSGi config for Next Gen Dynamic Media?",
+    "answers": [
+      "imsOrg='AdobeOrg'",
+      "enabled='B\"true\"'",
+      "imsOrg='<org>@AdobeOrg' repositoryId='<repo>.adobeaemcloud.com'",
+      "imsOrg='<org>@AdobeOrg'"
+    ],
+    "correct": "imsOrg='<org>@AdobeOrg' repositoryId='<repo>.adobeaemcloud.com'",
+    "reason": "La configuración válida requiere @AdobeOrg y repositorio *.adobeaemcloud.com."
+  },
+
+  {
+    "id": 31,
+    "question": "Sling Model can't access CUG page. Why?",
+    "answers": [
+      "Check user mapper",
+      "Remove CUG",
+      "Check exceptions",
+      "Check resourceResolver creation"
+    ],
+    "correct": "Check resourceResolver creation",
+    "reason": "El resourceResolver debe ser de un service user con permisos sobre la CUG."
+  },
+
+  {
+    "id": 32,
+    "question": "How to inject business logic in HTL component?",
+    "answers": ["JS only", "Sling Models", "Scriptlets"],
+    "correct": "Sling Models",
+    "reason": "Los Sling Models desacoplan lógica y presentación."
+  },
+
+  {
+    "id": 33,
+    "question": "Where to store secrets in OSGi?",
+    "answers": ["Secret env-specific", "Inline", "Non-secret env-specific"],
+    "correct": "Secret env-specific",
+    "reason": "Los secretos nunca deben versionarse; deben vivir como variables seguras de entorno."
+  },
+
+  {
+    "id": 34,
+    "question": "Purpose of default child node under analyzer?",
+    "answers": [
+      "Configure index properties",
+      "Custom filters",
+      "Specify default analyzer"
+    ],
+    "correct": "Specify default analyzer",
+    "reason": "El nodo 'default' define el analizador principal del índice."
+  },
+
+  {
+    "id": 35,
+    "question": "Why servlet can't retrieve configuration?",
+    "answers": [
+      "No runmode config",
+      "No default value",
+      "Non-existing config added",
+      "Created as .xml"
+    ],
+    "correct": "Non-existing config added",
+    "reason": "Una propiedad inválida en runmode invalida la configuración completa."
+  },
+
+  {
+    "id": 36,
+    "question": "Disadvantages of TarMK Cold Standby?",
+    "answers": [
+      "Not scalable",
+      "Maintenance",
+      "Failover capability",
+      "Idle server"
+    ],
+    "correct": ["Not scalable", "Idle server"],
+    "reason": "Cold Standby no escala y mantiene un servidor prácticamente inactivo."
+  },
+
+  {
+    "id": 37,
+    "question": "What breaks MSM link permanently?",
+    "answers": ["Rollout", "Detach", "Cancel inheritance"],
+    "correct": "Detach",
+    "reason": "Detach rompe definitivamente el vínculo con el blueprint."
+  },
+
+  {
+    "id": 38,
+    "question": "Two main workflow categories?",
+    "answers": ["Standard/transient", "Programmatic/human-driven", "Sequential/parallel"],
+    "correct": "Programmatic/human-driven",
+    "reason": "Los workflows pueden ser automáticos o requerir intervención humana."
+  },
+
+  {
+    "id": 39,
+    "question": "Recommended parameters when creating project?",
+    "answers": [
+      "Don't set aemVersion",
+      "includeDispatcherConfig='y'",
+      "aemVersion='6.5.21'",
+      "includeDispatcherConfig='n'"
+    ],
+    "correct": ["includeDispatcherConfig='y'", "aemVersion='6.5.21'"],
+    "reason": "Es recomendable incluir configuración de dispatcher y fijar la versión usada."
+  },
+
+  {
+    "id": 40,
+    "question": "How to configure analyzers in Oak?",
+    "answers": [
+      "Use analyzer node in oak:index",
+      "Set props on index",
+      "Separate file"
+    ],
+    "correct": "Use analyzer node in oak:index",
+    "reason": "Los analizadores se definen dentro del nodo del índice."
+  },
+
+  {
+    "id": 41,
+    "question": "Purpose of 'Create' button in Inbox?",
+    "answers": ["Delete tasks", "Create tasks", "Filter tasks"],
+    "correct": "Create tasks",
+    "reason": "El botón crea nuevas tareas manuales."
+  },
+
+  {
+    "id": 42,
+    "question": "Purpose of core module?",
+    "answers": [
+      "Contains main functionalities including OSGi services",
+      "Defines runmode configs",
+      "Contains sample content"
+    ],
+    "correct": "Contains main functionalities including OSGi services",
+    "reason": "El core contiene lógica de negocio: servlets, servicios, modelos."
+  },
+
+  {
+    "id": 43,
+    "question": "Key consideration in branching strategy?",
+    "answers": [
+      "Versioning repository",
+      "Managing dependencies",
+      "Parallel development isolation"
+    ],
+    "correct": "Parallel development isolation",
+    "reason": "Las ramas deben permitir trabajo paralelo sin bloquear equipos."
+  },
+
+  {
+    "id": 44,
+    "question": "Where define Repo Init scripts?",
+    "answers": ["Inline", "Internal", "Outline", "External"],
+    "correct": "Inline",
+    "reason": "Repo Init debe definirse inline para ejecutarse en Cloud Manager."
+  },
+
+  {
+    "id": 45,
+    "question": "Which environment types exist in Cloud Service?",
+    "answers": [
+      "Prod + Dev",
+      "Prod + Stage + Dev",
+      "Prod + PreProd",
+      "Prod + Dev + Stage"
+    ],
+    "correct": "Prod + Stage + Dev",
+    "reason": "Los entornos estándar de Cloud Service son Production, Stage y Development."
+  },
+
+  {
+    "id": 46,
+    "question": "How to flush Dispatcher cache after activation?",
+    "answers": [
+      "Create dispatcher flush agent",
+      "Create new replication agent",
+      "Create reverse replication agent"
+    ],
+    "correct": "Create dispatcher flush agent",
+    "reason": "El dispatcher flush agent invalida la caché cuando se activa contenido."
+  },
+
+  {
+    "id": 47,
+    "question": "Which tool captures memory snapshot?",
+    "answers": [
+      "Maintenance tasks",
+      "System overview",
+      "Thread dump",
+      "Heap dump"
+    ],
+    "correct": "Heap dump",
+    "reason": "El heap dump captura completamente el estado de la memoria para analizar leaks."
+  },
+
+  {
+    "id": 48,
+    "question": "Which tool aggregates health checks?",
+    "answers": [
+      "Diagnosis tools",
+      "Single health check",
+      "Composite health check",
+      "Maintenance tasks"
+    ],
+    "correct": "Composite health check",
+    "reason": "Un composite health check agrupa múltiples comprobaciones."
+  },
+
+  {
+    "id": 49,
+    "question": "Which feature registers namespaces, creates folders, users, ACLs?",
+    "answers": ["Ensure Authorizable", "Repoinit", "OnDeploy Scripts"],
+    "correct": "OnDeploy Scripts",
+    "reason": "Permiten definir namespaces, carpetas y ACLs en un solo archivo ejecutado al desplegar."
+  },
+
+  {
+    "id": 50,
+    "question": "User must access only /content/foo, not children. How?",
+    "answers": ["rep:glob = ''", "rep:globs = '**'", "rep:glob = 'child'"],
+    "correct": "rep:glob = ''",
+    "reason": "rep:glob = '' aplica el ACE solo al nodo actual sin heredar a hijos."
+  },
+
+  {
+    "id": 51,
+    "question": "Which mistake causes performance degradation?",
+    "answers": [
+      "Recursive calls",
+      "Static variables",
+      "Missing indexing",
+      "Overusing synchronized"
+    ],
+    "correct": "Missing indexing",
+    "reason": "Las consultas sin índice fuerzan recorridos completos y degradan rendimiento."
+  },
+
+  {
+    "id": 52,
+    "question": "Which weekly maintenance reduces segment store size?",
+    "answers": [
+      "Datastore GC",
+      "Clientlib dumps",
+      "Version Purge",
+      "Online Revision Cleanup"
+    ],
+    "correct": ["Datastore GC", "Online Revision Cleanup"],
+    "reason": "GC elimina binarios huérfanos y Revision Cleanup borra revisiones antiguas."
+  },
+
+  {
+    "id": 53,
+    "question": "Correct ZIP name for package?",
+    "answers": [
+      "aem-package-aem_group-1.0.zip",
+      "aem_group-aem-site-aem-package.zip",
+      "aem-package-1.0.zip"
+    ],
+    "correct": "aem-package-aem_group-1.0.zip",
+    "reason": "Formato: <name>-<group>-<version>.zip."
+  },
+
+  {
+    "id": 54,
+    "question": "Which config denies XML/JSON for /path2 and /path3?",
+    "answers": [
+      "/0001 {/type 'deny' extension '(XML|JSON)' /path '(/path2|JSON/*)' }",
+      "/0001 {/type 'deny' extension [XML|JSON] /path [/path2|/path3/*] }",
+      "/0001 {/type 'deny' extension '[XML|JSON]' /path'[/path2|/path3/*]' }"
+    ],
+    "correct": "/0001 {/type 'deny' extension [XML|JSON] /path [/path2|/path3/*] }",
+    "reason": "Es la sintaxis correcta del Dispatcher para múltiples extensiones y rutas."
+  },
+
+  {
+    "id": 55,
+    "question": "Which daily task reduces segment store size?",
+    "answers": [
+      "Audit Log Purge",
+      "Lucene Cleanup",
+      "Version Purge"
+    ],
+    "correct": "Version Purge",
+    "reason": "Elimina versiones antiguas diariamente."
+  },
+
+  {
+    "id": 56,
+    "question": "From which environment can content be copied to Stage using Content Sets?",
+    "answers": ["Development", "Integration", "Production"],
+    "correct": "Production",
+    "reason": "Content Sets replica contenido real de Production a Stage."
+  },
+
+  {
+    "id": 57,
+    "question": "New module not installed via autoInstallSinglePackage. What check?",
+    "answers": [
+      "Embed in bundle plugin",
+      "Embed in ui.content",
+      "Embeddeds in filevault plugin"
+    ],
+    "correct": "Embeddeds in filevault plugin",
+    "reason": "Debe incluirse en 'embeddeds' del módulo 'all' para empaquetarse."
+  },
+
+  {
+    "id": 58,
+    "question": "When use binary text pre-extraction for Lucene?",
+    "answers": [
+      "Reindex existing index with binary extraction",
+      "Repositories with few binaries",
+      "Repositories with many images"
+    ],
+    "correct": "Reindex existing index with binary extraction",
+    "reason": "Evita recalcular extracción binaria durante el reindex."
+  },
+
+  {
+    "id": 59,
+    "question": "Best practice for metadata-dependent asset workflows?",
+    "answers": [
+      "OOTB steps with conditions",
+      "Custom steps with branching and integrations",
+      "Use content fragments"
+    ],
+    "correct": "Custom steps with branching and integrations",
+    "reason": "Flujos complejos requieren pasos custom con lógica de branching y llamadas externas."
+  }
+]
