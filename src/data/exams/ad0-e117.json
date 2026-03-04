@@ -1,1 +1,887 @@
-[]
+[
+    {
+        "id":  1,
+        "question":  "Which tools are essential for diagnosing issues during implementation?\n(Choose two)",
+        "answers":  [
+                        "Adobe Cloud Manager",
+                        "AEM Workflow Launcher",
+                        "AEM Content Fragment Editor",
+                        "Dispatcher Tools"
+                    ],
+        "correct":  [
+                        "Adobe Cloud Manager",
+                        "Dispatcher Tools"
+                    ],
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  2,
+        "question":  "An Architect is performing infrastructure and capacity planning for Author servers for a customer using AEM 6.5. Which two factors would lead the Architect to pick a multi-author instance architecture setup?\n(Choose two.)",
+        "answers":  [
+                        "Number of Parallel Authors",
+                        "Website Traffic handled by servers",
+                        "Cache Efficiency on the dispatcher",
+                        "Fail safeness of the servers",
+                        "Types of actions performed by Authors"
+                    ],
+        "correct":  [
+                        "Number of Parallel Authors",
+                        "Types of actions performed by Authors"
+                    ],
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  3,
+        "question":  "Which AEM features optimize multi-region content delivery?\n(Choose three)",
+        "answers":  [
+                        "Asynchronous replication",
+                        "Geo-targeted content configurations",
+                        "Integration with Adobe Analytics",
+                        "Content delivery networks (CDN)",
+                        "Multi-cloud deployments"
+                    ],
+        "correct":  [
+                        "Geo-targeted content configurations",
+                        "Content delivery networks (CDN)",
+                        "Multi-cloud deployments"
+                    ],
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  4,
+        "question":  "Which methods should be employed to plan for AEM maintenance activities?\n(Choose three)",
+        "answers":  [
+                        "Regularly update JCR Data Store configurations",
+                        "Ensure proper version control for updates",
+                        "Schedule maintenance during off-peak hours",
+                        "Automate dispatcher cache invalidation"
+                    ],
+        "correct":  [
+                        "Ensure proper version control for updates",
+                        "Schedule maintenance during off-peak hours",
+                        "Automate dispatcher cache invalidation"
+                    ],
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  5,
+        "question":  "A client recently purchased the Smart Content Service and is considering using the Enhanced Smart Tagging feature. As part of the process, the client recently created a new tagging taxonomy that has not been applied to any assets yet. An Architect needs to demonstrate the feature on a subset of the client\u0027s assets before using on all assets.\nHow should the Architect proceed?",
+        "answers":  [
+                        "Enable Smart Tagging via the folder properties for a single folder of assets, then run the Smart Tags Training workflow",
+                        "Enable Smart Tagging via the folder properties for a single folder of assets",
+                        "Add sample assets to a new folder, tag assets in folder, then run the Smart Tags Training workflow",
+                        "Add sample assets to a new folder, tag assets in folder, then enable Smart Tagging via the folder properties"
+                    ],
+        "correct":  "Add sample assets to a new folder, tag assets in folder, then enable Smart Tagging via the folder properties",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  6,
+        "question":  "A financial services client is planning to migrate their on-premise AEM solution to the cloud. What discovery task is most critical to this process?",
+        "answers":  [
+                        "Reviewing existing content workflows",
+                        "Identifying integration points with third-party systems",
+                        "Analyzing user feedback on current website design",
+                        "Setting up staging environments"
+                    ],
+        "correct":  "Identifying integration points with third-party systems",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  7,
+        "question":  "A client is using fragmented systems to manage their digital assets with the following parameters:\n- File servers, cloud hosting, etc. to store close to 30 TB worth of assets and a year-over-year increase of 3TB asset ingestion\n- A tool developed in-house to create 50 resized versions of an asset while maintaining color accuracy for use in their various channels\n- Amazon S3 for content delivery of the resized versions of the asset\nWhich solution should an Architect use to meet these requirements to migrate their existing platform to AEM 6.5?",
+        "answers":  [
+                        "AEM Assets with Asset share commons implemented to handle assets delivery",
+                        "AEM Assets connected to Dynamic media cloud services in Scene7 mode",
+                        "AEM Assets with an offloading server configured for renditions",
+                        "AEM Assets with the image server enabled using the dynamicmedia run-mode for renditions"
+                    ],
+        "correct":  "AEM Assets connected to Dynamic media cloud services in Scene7 mode",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  8,
+        "question":  "Which approach is best for diagnosing and resolving issues encountered in the production environment?",
+        "answers":  [
+                        "Immediately restart all AEM services",
+                        "Isolate and replicate the issue in a staging environment",
+                        "Disable all workflows temporarily",
+                        "Delete the problematic content"
+                    ],
+        "correct":  "Isolate and replicate the issue in a staging environment",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  9,
+        "question":  "A client wants to change how they publish their content. Refer to the following client business requirements:\n- The client has a seasonal business that has significant content changes across their site that need to be rolled out at once based on the season change over date.\n- The content authors need to be able to work one season in advance of publish dates to ensure that all changes can be completed on time.\n- The content authors need a way to indicate that all the seasonal changes are ready. If the content changes are not completed, then the pages should not get published.\n- The content authors need the ability to modify the current live pages without rolling back changes for a future content rollout.\nWhat approach should the Architect recommend?",
+        "answers":  [
+                        "Use Launches inside of AEM for each new season and use the production ready flag to show changes are completed.",
+                        "Use the Manage Publication with scheduling value set to the season change over date when changes are completed.",
+                        "Create a Project inside of AEM for each new season and create a task for notifying that changes are completed.",
+                        "Use the Versioning feature when editing a page to toggle and publish changes when ready."
+                    ],
+        "correct":  "Use Launches inside of AEM for each new season and use the production ready flag to show changes are completed.",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  10,
+        "question":  "What is the primary advantage of using AEM as a Cloud Service for solution design?",
+        "answers":  [
+                        "On-premise control",
+                        "Manual scaling options",
+                        "Auto-scaling for traffic fluctuations",
+                        "Reduced flexibility for custom workflows"
+                    ],
+        "correct":  "Auto-scaling for traffic fluctuations",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  11,
+        "question":  "Which AEM features enhance reusability and efficiency in solution design?\n(Choose two)",
+        "answers":  [
+                        "Content fragments",
+                        "Data obfuscation",
+                        "Workflow launcher",
+                        "Editable templates"
+                    ],
+        "correct":  [
+                        "Content fragments",
+                        "Editable templates"
+                    ],
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  12,
+        "question":  "During discovery, you identify that the client\u0027s website has frequent downtime due to high traffic spikes. What would you recommend as a priority?",
+        "answers":  [
+                        "Implement auto-scaling solutions",
+                        "Optimize existing workflows",
+                        "Redesign the user interface",
+                        "Conduct end-user training"
+                    ],
+        "correct":  "Implement auto-scaling solutions",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  13,
+        "question":  "An existing AEM 6.5 client has confidentiality agreements with business partners and uses AEM DAM to share documents with its partners. Through a Custom portal hosted in AEM, partners have access to a folder, named after the partners, where these files reside.\nSome documents are shared with more than one partner, but the partners must not know with whom the documents are shared. The client struggles with maintainability because they copy files and keep track manually. Modifications and updates to documents should be done only once.\nHow should the Architect meet these requirements?",
+        "answers":  [
+                        "Save the copy reference in the first file uploaded and run a workflow to propagate changes.",
+                        "Use ALLOW, DENY rules at the user level to manage granular access control on files.",
+                        "Utilize MSM for Assets and create asset live copies across the partner folders.",
+                        "Create a generic name folder for files that are shared with more than one partner and apply ACL rules."
+                    ],
+        "correct":  "Utilize MSM for Assets and create asset live copies across the partner folders.",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  14,
+        "question":  "During implementation, the development team encounters integration issues with a third-party CRM. What should be the first step?",
+        "answers":  [
+                        "Rewrite the integration logic from scratch",
+                        "Validate API compatibility and authentication methods",
+                        "Restart the AEM server to resolve potential conflicts",
+                        "Use an AEM workflow to bypass the CRM integration temporarily"
+                    ],
+        "correct":  "Validate API compatibility and authentication methods",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  15,
+        "question":  "During implementation, you discover that a large number of workflows are causing system performance degradation. What action should you take?",
+        "answers":  [
+                        "Disable all non-essential workflows temporarily",
+                        "Upgrade the server hardware",
+                        "Redesign workflows for better performance",
+                        "Remove workflows with high resource usage"
+                    ],
+        "correct":  "Redesign workflows for better performance",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  16,
+        "question":  "Which tools are commonly used to gather architecture-related requirements?\n(Choose three)",
+        "answers":  [
+                        "Network monitoring tools",
+                        "Adobe Analytics",
+                        "Stakeholder surveys",
+                        "AEM Content Transfer Tool"
+                    ],
+        "correct":  [
+                        "Network monitoring tools",
+                        "Adobe Analytics",
+                        "Stakeholder surveys"
+                    ],
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  17,
+        "question":  "When documenting non-functional requirements, which factors should be prioritized?\n(Choose two)",
+        "answers":  [
+                        "Data security protocols",
+                        "Project management methodology",
+                        "System scalability",
+                        "User interface design"
+                    ],
+        "correct":  [
+                        "Data security protocols",
+                        "System scalability"
+                    ],
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  18,
+        "question":  "Which integration methods are recommended for third-party tools in AEM?\n(Choose two)",
+        "answers":  [
+                        "RESTful APIs",
+                        "SOAP APIs",
+                        "Sling models",
+                        "Workflow processes"
+                    ],
+        "correct":  [
+                        "RESTful APIs",
+                        "Workflow processes"
+                    ],
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  19,
+        "question":  "A client needs a high-performance website to support global users with low latency. They also have strict compliance requirements for data localization. Which architecture design would best suit their needs?",
+        "answers":  [
+                        "On-premise AEM deployment",
+                        "AEM as a Cloud Service with multi-region deployment",
+                        "Hybrid architecture with data stored on-premise and content delivered via CDN",
+                        "Single-region deployment with manual backups"
+                    ],
+        "correct":  "AEM as a Cloud Service with multi-region deployment",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  20,
+        "question":  "Which strategies should be employed to ensure a successful feature upgrade process?\n(Choose two)",
+        "answers":  [
+                        "Notify end-users after deployment",
+                        "Review system logs post-upgrade",
+                        "Develop a rollback plan",
+                        "Skip testing in staging environments"
+                    ],
+        "correct":  [
+                        "Review system logs post-upgrade",
+                        "Develop a rollback plan"
+                    ],
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  21,
+        "question":  "What data is critical to assessing current architecture performance?\n(Choose two)",
+        "answers":  [
+                        "User session logs",
+                        "API response times",
+                        "Integration timelines",
+                        "Data transfer protocols"
+                    ],
+        "correct":  [
+                        "User session logs",
+                        "API response times"
+                    ],
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  22,
+        "question":  "A global retailer is designing a new AEM website to support multi-language content. They also want to implement geo-targeting for promotions. What combination of features should be included in the solution design?",
+        "answers":  [
+                        "AEM Live Copy and Content Fragments",
+                        "Editable Templates and Dispatcher Configuration",
+                        "Content Delivery Network (CDN) and Multi-Site Manager (MSM)",
+                        "Geo-targeted Content Configurations and API-based integration"
+                    ],
+        "correct":  "Geo-targeted Content Configurations and API-based integration",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  23,
+        "question":  "An Architect wants to use a web application firewall such as mod_security for Apache to provide cross-site scripting protection for their AEM Single Page application. Which technology should the Architect use to create XSS safe AEM components?",
+        "answers":  [
+                        "Handlebar JS",
+                        "NodeJS",
+                        "ReactJS",
+                        "HTL"
+                    ],
+        "correct":  "ReactJS",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  24,
+        "question":  "While implementing a solution, the team identifies recurring failures in the dispatcher cache invalidation process. What action should be taken first?",
+        "answers":  [
+                        "Reconfigure the dispatcher flush agent",
+                        "Migrate cache rules to a new instance",
+                        "Conduct a full cache purge",
+                        "Update dispatcher logs for better visibility"
+                    ],
+        "correct":  "Reconfigure the dispatcher flush agent",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  25,
+        "question":  "What are the benefits of conducting regression testing during implementation?\n(Choose two)",
+        "answers":  [
+                        "Improving website performance",
+                        "Ensuring legacy functionality remains intact",
+                        "Validating compliance with design standards",
+                        "Identifying integration issues"
+                    ],
+        "correct":  [
+                        "Ensuring legacy functionality remains intact",
+                        "Validating compliance with design standards"
+                    ],
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  26,
+        "question":  "A customer has an international presence and a strong brand image. The customer considers the exceptional quality images used for both print and on the website to be essential for its business. The customer uses AEM 6.5 managed services with a configuration of 2 dispatchers, 2 publishers, and 1 author. The original images can weigh up to 500Mb with videos weighing even more.\nRenditions are generated after files are uploaded to AEM DAM by the Design team so the Authoring team can use them on the website. The teams report issues with platform stability and slowness. Visitors report that images look pixelated on some screens and pages are very slow to load.\nWhich two actions should the Architect take to resolve these issues?\n(Choose two.)",
+        "answers":  [
+                        "Train the design team to upload smaller assets and save the originals elsewhere",
+                        "Optimize renditions for the different viewports used by the visitors",
+                        "Add more dispatchers and publishers to the AEM configuration",
+                        "Allocate more memory to ImageMagick and FFmpeg",
+                        "Split AEM Assets and Sites in two different stacks and use Connected Assets"
+                    ],
+        "correct":  [
+                        "Optimize renditions for the different viewports used by the visitors",
+                        "Split AEM Assets and Sites in two different stacks and use Connected Assets"
+                    ],
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  27,
+        "question":  "A client is preparing to launch its new website on AEM. The Architect must check the platform prior to launch to identify system weaknesses and ways to exploit the applications.\nWhich two types of testing should the Architect perform on the system?\n(Choose two.)",
+        "answers":  [
+                        "Penetration Testing",
+                        "Regression Testing",
+                        "Load Testing",
+                        "Unit Testing",
+                        "Functional Testing"
+                    ],
+        "correct":  [
+                        "Penetration Testing",
+                        "Load Testing"
+                    ],
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  28,
+        "question":  "Which testing requirements should be included in a solution design for a global website?\n(Choose two)",
+        "answers":  [
+                        "Usability testing",
+                        "Regression testing",
+                        "Load testing",
+                        "Localization testing"
+                    ],
+        "correct":  [
+                        "Load testing",
+                        "Localization testing"
+                    ],
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  29,
+        "question":  "Which component of AEM architecture ensures efficient delivery of static assets to end-users?",
+        "answers":  [
+                        "AEM Dispatcher",
+                        "JCR Repository",
+                        "Sling Framework",
+                        "CRXDE Lite"
+                    ],
+        "correct":  "AEM Dispatcher",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  30,
+        "question":  "A fashion retailer uses AEM with four publish servers to serve customers across the globe. The external users are kept in sync across the publish servers using Sling Content Distribution.\nDuring a new product launch, the authoring team publishes hundreds of product pages. Numerous users who registered during that day notice that their profile information (preferences, photo) is not available when they log in.\nAfter debugging, the Architect notices the following variables:\n- Certain profiles are not synced with all publishers\n- The heap dump shows no memory leaks\n- The thread dumps and top command outputs show long-running replication threads and normal CPU utilization\n- The Sling Content Distribution logs show no errors\nWhat is preventing users from accessing their profile information?",
+        "answers":  [
+                        "The truststore certificate has expired.",
+                        "The default thread pool is full.",
+                        "Sling Content Distribution is not configured properly.",
+                        "The publishers do not have unique Sling IDs."
+                    ],
+        "correct":  "The default thread pool is full.",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  31,
+        "question":  "A multinational beauty company uses AEM to host websites for all of its brands. Each brand runs new campaigns on a regular basis and often in parallel.\nThe campaigns begin with targeted advertisements on online channels to bring the users back to the website. The success of each campaign is measured through conversion ratings in Adobe Analytics. Recently users report that the website performance is degrading.\nWhile investigating the issue, an Architect determines the following:\n- Campaign tracking is done through a different URL query parameter\n- Another URL query parameter is used for critical dynamic application functionality like searches\n- Log analysis shows that the performance starts to degrade when many requests from the campaigns land on AEM\nWhat should the Architect do to resolve this issue?",
+        "answers":  [
+                        "Allow a wildcard but deny the dynamic query parameters in the /ignoreUrlParams section on the Dispatcher",
+                        "Rewrite the query parameters to selectors to leverage Dispatcher caching",
+                        "Deny a wildcard but allow the dynamic query parameters in the /filter section on the Dispatcher",
+                        "Deny a wildcard but allow the campaign query parameters in the /filter section on the Dispatcher"
+                    ],
+        "correct":  "Allow a wildcard but deny the dynamic query parameters in the /ignoreUrlParams section on the Dispatcher",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  32,
+        "question":  "During maintenance, you identify that outdated content is being served due to caching issues. What is the best course of action?",
+        "answers":  [
+                        "Rebuild the entire dispatcher cache",
+                        "Adjust cache invalidation rules",
+                        "Clear all browser caches for end-users",
+                        "Increase dispatcher flush agent intervals"
+                    ],
+        "correct":  "Adjust cache invalidation rules",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  33,
+        "question":  "A client enables SSO in the AEM Authoring instance using SAML for the content authors. The client plans to cross skill their marketing team to use AEM.\nHowever, the marketing team uses their personal Adobe ID to login to the Marketing cloud products such as Analytics and Target on Admin Console. The client wants to enable the usage of company credentials for all their solutions to enforce standardized security policies.\nWhat should the Architect propose to meet these requirements?",
+        "answers":  [
+                        "Create a new SAML profile in the client IDP to integrate to the Marketing Suite products",
+                        "Configure Adobe IMS to forward sign in for Adobe ID to the client IDP",
+                        "Onboard all users to Adobe IMS using Enterprise ID",
+                        "Onboard all users to Adobe IMS using Federated ID"
+                    ],
+        "correct":  "Onboard all users to Adobe IMS using Federated ID",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  34,
+        "question":  "Which AEM feature is most useful for optimizing non-functional requirements in a live environment?",
+        "answers":  [
+                        "AEM Content Fragments",
+                        "Dispatcher caching",
+                        "Editable templates",
+                        "JCR Data Store"
+                    ],
+        "correct":  "Dispatcher caching",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  35,
+        "question":  "What actions should be taken to prototype new components during implementation?\n(Choose three)",
+        "answers":  [
+                        "Develop in staging environments",
+                        "Conduct usability tests",
+                        "Use reusable editable templates",
+                        "Skip performance testing for prototypes",
+                        "Test directly in production"
+                    ],
+        "correct":  [
+                        "Develop in staging environments",
+                        "Conduct usability tests",
+                        "Use reusable editable templates"
+                    ],
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  36,
+        "question":  "What is the most important consideration when defining non-functional requirements for a global website?",
+        "answers":  [
+                        "User interface design",
+                        "Geographical performance optimization",
+                        "Marketing automation tools",
+                        "Personalization strategies"
+                    ],
+        "correct":  "Geographical performance optimization",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  37,
+        "question":  "Which non-functional requirement is most relevant when designing a globally distributed website?",
+        "answers":  [
+                        "Accessibility compliance",
+                        "Multi-region content delivery",
+                        "Search engine optimization (SEO)",
+                        "Marketing campaign automation"
+                    ],
+        "correct":  "Multi-region content delivery",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  38,
+        "question":  "Which key performance metrics should be included in a solution design?\n(Choose two)",
+        "answers":  [
+                        "Content activation latency",
+                        "Server uptime percentage",
+                        "User interface color contrast",
+                        "Database replication time"
+                    ],
+        "correct":  [
+                        "Content activation latency",
+                        "Server uptime percentage"
+                    ],
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  39,
+        "question":  "A news portal AEM client is complaining of performance issues on their site. The site has a particular traffic access pattern where about 90% of the traffic is concentrated on a small fraction of the following content pages.\n- The Home Page\n- Campaign Landing Pages\n- Featured News Pages\nWhich approach should the Architect take to avoid any future performance issues?",
+        "answers":  [
+                        "Implement cache flushing from Publish",
+                        "Implement cache flushing from Author",
+                        "Add \".jpg\" and \".png\" to the auto-invalidation configuration in the Dispatcher",
+                        "Implement a Re-fetching Flush Agent"
+                    ],
+        "correct":  "Implement a Re-fetching Flush Agent",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  40,
+        "question":  "What are the benefits of defining content workflows during the discovery phase?\n(Choose two)",
+        "answers":  [
+                        "Enhanced personalization",
+                        "Streamlined publishing processes",
+                        "Improved content governance",
+                        "Faster page load times"
+                    ],
+        "correct":  [
+                        "Streamlined publishing processes",
+                        "Improved content governance"
+                    ],
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  41,
+        "question":  "Which business requirement is best supported by AEM\u0027s content fragment feature?",
+        "answers":  [
+                        "Automating marketing campaigns",
+                        "Delivering structured content across multiple channels",
+                        "Optimizing website performance",
+                        "Personalizing user experiences"
+                    ],
+        "correct":  "Delivering structured content across multiple channels",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  42,
+        "question":  "What should be prioritized during the implementation of a scalable architecture?",
+        "answers":  [
+                        "Minimizing the use of content fragments",
+                        "Optimizing resource-intensive workflows",
+                        "Reducing the number of publish instances",
+                        "Avoiding dispatcher rules for caching"
+                    ],
+        "correct":  "Optimizing resource-intensive workflows",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  43,
+        "question":  "A customer cyber security officer reports that the company\u0027s website was used in a phishing campaign. Website visitors were tricked into clicking malicious advertisements that suddenly appeared on their website. An Architect\u0027s preliminary investigation showed that no code injection happened in AEM backend or in the browser.\nWhat should the Architect do to protect the website?",
+        "answers":  [
+                        "Make sure the frame-src directive of the Content-Security-Policy header is configured",
+                        "Make sure the Strict-Transport-Security header is configured",
+                        "Make sure the X-Frame-Options header is configured",
+                        "Look for and remove any context=\u0027unsafe\u0027 statement in Sightly code"
+                    ],
+        "correct":  "Make sure the X-Frame-Options header is configured",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  44,
+        "question":  "What is the primary objective of planning for feature upgrades in AEM?",
+        "answers":  [
+                        "To minimize downtime during implementation",
+                        "To reduce the number of AEM instances",
+                        "To ensure compatibility with existing integrations",
+                        "To streamline deployment processes"
+                    ],
+        "correct":  "To ensure compatibility with existing integrations",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  45,
+        "question":  "What steps should be taken to resolve design issues during implementation?\n(Choose two)",
+        "answers":  [
+                        "Optimize dispatcher caching rules",
+                        "Update business requirements",
+                        "Add user training modules",
+                        "Expand content taxonomy",
+                        "Conduct performance profiling"
+                    ],
+        "correct":  [
+                        "Optimize dispatcher caching rules",
+                        "Conduct performance profiling"
+                    ],
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  46,
+        "question":  "A client wants to incorporate AEM into their technology stack. The client runs a third-party platform that owns the pages and their layouts. The client\u0027s marketing team needs to be able to use AEM to create content that can be consumed into that platform and displayed directly on pages as HTML.\nWhich AEM feature should an Architect use to support the client\u0027s request?",
+        "answers":  [
+                        "Content Fragments",
+                        "Experience Fragments",
+                        "Assets API",
+                        "Sling Models"
+                    ],
+        "correct":  "Experience Fragments",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  47,
+        "question":  "Which artifact provides essential insights for documenting functional requirements during the discovery phase?",
+        "answers":  [
+                        "Architecture diagram",
+                        "Requirements traceability matrix",
+                        "Project budget plan",
+                        "Content inventory"
+                    ],
+        "correct":  "Content inventory",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  48,
+        "question":  "Which tool is most effective for monitoring system health in an AEM production environment?",
+        "answers":  [
+                        "AEM Workflow Launcher",
+                        "Adobe Cloud Manager",
+                        "CRXDE Lite",
+                        "Dispatcher Configuration Tool"
+                    ],
+        "correct":  "Adobe Cloud Manager",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  49,
+        "question":  "What are the key benefits of using Adobe Cloud Manager for maintenance?\n(Choose two)",
+        "answers":  [
+                        "Proactive alerts for system anomalies",
+                        "Automated rollout of custom workflows",
+                        "Real-time performance monitoring",
+                        "Direct content repository management"
+                    ],
+        "correct":  [
+                        "Proactive alerts for system anomalies",
+                        "Real-time performance monitoring"
+                    ],
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  50,
+        "question":  "A client builds out a large set of Experience Fragments and wants to consume these fragments into another system. However, there are problems due to relative paths for the images in the HTML. How should an Architect resolve this issue?",
+        "answers":  [
+                        "Use the plain selector when requesting the experience fragment",
+                        "Modify the Experience Fragment component Sling Model",
+                        "Add a Context Aware configuration for the external domain",
+                        "Create a Sling Transformer that externalizes all image references"
+                    ],
+        "correct":  "Use the plain selector when requesting the experience fragment",
+        "reason":  "Importada desde el banco AD0-E117 regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  51,
+        "question":  "Which features should be considered to ensure a scalable AEM solution?\n(Choose three)",
+        "answers":  [
+                        "Auto-scaling of author instances",
+                        "Use of content fragments",
+                        "Horizontal scaling of publish instances",
+                        "Dispatcher caching configuration",
+                        "Synchronous data replication"
+                    ],
+        "correct":  [
+                        "Use of content fragments",
+                        "Horizontal scaling of publish instances",
+                        "Dispatcher caching configuration"
+                    ],
+        "reason":  "Importada desde el banco AD0-E117 mini regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  52,
+        "question":  "Which elements should be included when assessing a client\u0027s current architecture?\n(Choose two)",
+        "answers":  [
+                        "End-user training processes",
+                        "Current content taxonomy",
+                        "Network latency metrics",
+                        "Data flow between systems"
+                    ],
+        "correct":  [
+                        "Network latency metrics",
+                        "Data flow between systems"
+                    ],
+        "reason":  "Importada desde el banco AD0-E117 mini regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  53,
+        "question":  "What should the Architect do to make the design a future proof solution?",
+        "answers":  [
+                        "Save comments in JCR and leverage reverse replication to synchronize comments via author",
+                        "Use MongoDB as provided with AEM as a Cloud Service to store the comments",
+                        "Save comments in JCR and leverage Sling Distribution to synchronize comments between publishers",
+                        "Integrate a third-party solution to store comments externally"
+                    ],
+        "correct":  "Integrate a third-party solution to store comments externally",
+        "reason":  "Importada desde el banco AD0-E117 mini regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  54,
+        "question":  "A production environment faces periodic downtime due to high traffic spikes. What immediate steps should you take to resolve this?",
+        "answers":  [
+                        "Scale publish instances horizontally",
+                        "Redesign content workflows",
+                        "Increase dispatcher cache invalidation frequency",
+                        "Optimize API integrations"
+                    ],
+        "correct":  "Scale publish instances horizontally",
+        "reason":  "Importada desde el banco AD0-E117 mini regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  55,
+        "question":  "A retailer wants to introduce personalization on their website using AEM. During discovery, what is the first step you should take?",
+        "answers":  [
+                        "Define user personas",
+                        "Create a content taxonomy",
+                        "Set up analytics tracking",
+                        "Conduct a security audit"
+                    ],
+        "correct":  "Define user personas",
+        "reason":  "Importada desde el banco AD0-E117 mini regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  56,
+        "question":  "Which considerations are critical when recommending migration strategies?\n(Choose three)",
+        "answers":  [
+                        "Amount of content to be migrated",
+                        "Time required for migration",
+                        "Content taxonomy structure",
+                        "Analytics tracking setup",
+                        "Existing network latency issues"
+                    ],
+        "correct":  [
+                        "Amount of content to be migrated",
+                        "Time required for migration",
+                        "Content taxonomy structure"
+                    ],
+        "reason":  "Importada desde el banco AD0-E117 mini regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  57,
+        "question":  "Which additional test should the Architect perform to meet this requirement?",
+        "answers":  [
+                        "Execute an accessibility test to show if the platform has a high enough level capacity to perform correctly.",
+                        "Run a scalability test to determine if the performance is adequate.",
+                        "Run an additional stress test to highlight where the systems boundaries are to re-evaluate sizing of the instances.",
+                        "Run a performance and availability test through the standard cloud manager testing suite to identify performance gaps."
+                    ],
+        "correct":  "Run an additional stress test to highlight where the systems boundaries are to re-evaluate sizing of the instances.",
+        "reason":  "Importada desde el banco AD0-E117 mini regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  58,
+        "question":  "Which integration approach should an Architect take to meet these requirements and maintain the existing uptime?",
+        "answers":  [
+                        "Implement a fallback in case the recommendation service is unavailable",
+                        "Add retries with exponential backoff and fail after 1 minute",
+                        "Retrieve and store potential recommendations in JCR nightly and use this data",
+                        "Improve the AEM production setup to comply with 99.9% uptime"
+                    ],
+        "correct":  "Implement a fallback in case the recommendation service is unavailable",
+        "reason":  "Importada desde el banco AD0-E117 mini regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  59,
+        "question":  "Which factors are critical for resolving integration issues during implementation?\n(Choose two)",
+        "answers":  [
+                        "Verify API documentation",
+                        "Optimize server configurations",
+                        "Conduct end-user testing",
+                        "Check authentication methods"
+                    ],
+        "correct":  [
+                        "Verify API documentation",
+                        "Check authentication methods"
+                    ],
+        "reason":  "Importada desde el banco AD0-E117 mini regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  60,
+        "question":  "What is the first step in diagnosing a performance issue in a production AEM environment?",
+        "answers":  [
+                        "Analyze server logs for errors",
+                        "Restart the AEM instance",
+                        "Reconfigure the dispatcher",
+                        "Roll back recent updates"
+                    ],
+        "correct":  "Analyze server logs for errors",
+        "reason":  "Importada desde el banco AD0-E117 mini regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  61,
+        "question":  "What is a primary consideration when designing an AEM solution for an e-commerce client?",
+        "answers":  [
+                        "Content caching and invalidation",
+                        "UI responsiveness",
+                        "Multilingual SEO optimization",
+                        "Dispatcher configuration"
+                    ],
+        "correct":  "Content caching and invalidation",
+        "reason":  "Importada desde el banco AD0-E117 mini regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  62,
+        "question":  "A client approaches an Architect with multiple design layouts for a new page. The client wants to run A/B testing on the layouts before making a final choice. What should the Architect do to meet this requirement?",
+        "answers":  [
+                        "Create a new template and generate a test page for each layout",
+                        "Create a new page with a version for each layout",
+                        "Create a new experience fragment with a variation for each layout",
+                        "Create a content fragment model and generate a new content fragment for each layout"
+                    ],
+        "correct":  "Create a new experience fragment with a variation for each layout",
+        "reason":  "Importada desde el banco AD0-E117 mini regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  63,
+        "question":  "What is the key benefit of including content fragments in a solution design?",
+        "answers":  [
+                        "Enhances UI performance",
+                        "Enables reuse of structured content",
+                        "Optimizes personalization algorithms",
+                        "Improves search indexing"
+                    ],
+        "correct":  "Enables reuse of structured content",
+        "reason":  "Importada desde el banco AD0-E117 mini regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  64,
+        "question":  "Which method is recommended for managing AEM upgrades to minimize production disruptions?",
+        "answers":  [
+                        "Perform direct upgrades in the production environment",
+                        "Test upgrades in a staging environment first",
+                        "Deploy upgrades during peak traffic hours",
+                        "Implement upgrades manually across all instances"
+                    ],
+        "correct":  "Test upgrades in a staging environment first",
+        "reason":  "Importada desde el banco AD0-E117 mini regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  65,
+        "question":  "What factors should be considered when resolving implementation issues?\n(Choose three)",
+        "answers":  [
+                        "Business continuity",
+                        "Security requirements",
+                        "End-user adoption metrics",
+                        "Time to resolution",
+                        "User interface color schemes"
+                    ],
+        "correct":  [
+                        "Business continuity",
+                        "Security requirements",
+                        "Time to resolution"
+                    ],
+        "reason":  "Importada desde el banco AD0-E117 mini regenerado v2 y pendiente de explicación detallada."
+    },
+    {
+        "id":  66,
+        "question":  "What are best practices for diagnosing issues in a production environment?\n(Choose three)",
+        "answers":  [
+                        "Enable detailed logging for troubleshooting",
+                        "Test the issue in staging environments",
+                        "Rebuild the content repository",
+                        "Monitor system health metrics",
+                        "Notify all end-users immediately"
+                    ],
+        "correct":  [
+                        "Enable detailed logging for troubleshooting",
+                        "Test the issue in staging environments",
+                        "Monitor system health metrics"
+                    ],
+        "reason":  "Importada desde el banco AD0-E117 mini regenerado v2 y pendiente de explicación detallada."
+    }
+]
