@@ -1,0 +1,1204 @@
+[
+  {
+    "id": 1,
+    "question": "A Business Practitioner needs to deactivate content that is published in production. Where should the deactivation workflow be initiated?",
+    "answers": [
+      "On the CDN",
+      "On the publish",
+      "On the author",
+      "On the dispatcher"
+    ],
+    "correct": "On the publish",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 2 Referencia: https://helpx.adobe.com/au/experience-manager/6-3/sites/classic-ui-authoring/using/classic-page-author-publish-pages.html"
+  },
+  {
+    "id": 2,
+    "question": "A developer plans to use the Text component on its pages. However, the out-of-the-box (OOTB) Text component does not allow authors to edit HTML source on component. How should the developer support HTML source editing?",
+    "answers": [
+      "Create a standalone custom Text component and handle HTML source in Sightly",
+      "Create a new clientlib to programmatically handle HTML source in authoring",
+      "Extend the OOTB Text component and enable the sourceedit Rich-Text Editor (RTE) plugin.",
+      "Edit the OOTB Text component directly to enable sourceedit Rich-Text Editor (RTE) plugin."
+    ],
+    "correct": "Edit the OOTB Text component directly to enable sourceedit Rich-Text Editor (RTE) plugin.",
+    "reason": "Respuesta inferida porque la nota del documento parece inconsistente con la practica habitual en AEM. Conviene revisarla manualmente. Nota original: La 4 Referencia: https://docs.adobe.com/content/help/en/experience-manager-core-components/using/components/text.html"
+  },
+  {
+    "id": 3,
+    "question": "A customer that user version 6.5 wants to have a text component with basic text editing features. The solution must require minimal effort, cost, and time to meet the deadline. Which approach should a Business Practitioner recommend?",
+    "answers": [
+      "Create a new Text Component",
+      "Use core Text component",
+      "Use HTML Source edit",
+      "Use Foundation text component"
+    ],
+    "correct": "Use core Text component",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: La 2 Referencia: https://experienceleague.adobe.com/docs/experience-manager-core-components/using/components/text.html?lang=en"
+  },
+  {
+    "id": 4,
+    "question": "A product manager wants to incorporate content that lets users knows where they are in the purchase Flow. This feature needs to be implemented efficiently and as quickly as possible. What should the Business Practitioner recommend to meet this requirement?",
+    "answers": [
+      "Use the navigation core component",
+      "Use the list core component",
+      "Develop a custom purchase Flow component",
+      "Use the progress bar component"
+    ],
+    "correct": "Use the progress bar component",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Buscando cada una de las respuestas la que más se ajusta es la 4 Referencia: https://experienceleague.adobe.com/docs/experience-manager-core-components/using/components/progress-bar.html?lang=en#:~:text=The%20Progress%20Bar%20Component%20allows,of%20progress%20towards%20a%20goal."
+  },
+  {
+    "id": 5,
+    "question": "A new content author joins a company for a content editing and authoring job. A user has been created. The user needs only the minimum rights for the job. Which group should the user be added to in order to meet this requirement?",
+    "answers": [
+      "The “contributors” group",
+      "The “content-authors” group",
+      "The “Administrator” group",
+      "The “workflow-administrators” group"
+    ],
+    "correct": "The “contributors” group",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Creo que es la 1, ya que la 2 permite también la eliminación Referencia: https://helpx.adobe.com/in/experience-manager/6-3/sites/administering/using/security.html"
+  },
+  {
+    "id": 6,
+    "question": "A customer wants to place tag manager scripts on its pages base on the environment. The three environments are as follows: Dev Enviroment QA Enviroment Production Enviroment The business Practitioner needs to recommend a feature so that the scripts are loaded in the correct environment. What should the Business Practitioner recommend the company use?",
+    "answers": [
+      "Adobe Target",
+      "Host names",
+      "Runmodes",
+      "Replication Agent"
+    ],
+    "correct": "Runmodes",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 3 Referencia: https://experienceleague.adobe.com/docs/experience-manager-65/deploying/configuring/configure-runmodes.html?lang=en"
+  },
+  {
+    "id": 7,
+    "question": "A content author receives a request to build a new pages with content that includes images and layout that exists on other pages. The page must be built using the existing content. What should the Business Practitioner recommend to meet this requirement?",
+    "answers": [
+      "Author the content directly on the page",
+      "Leverage the experience fragment reference component",
+      "Clone an experience fragment template",
+      "Leverage the content fragment reference component"
+    ],
+    "correct": "Leverage the experience fragment reference component",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 2 Referencia: https://business.adobe.com/products/experience-manager/sites/experience-fragments.html"
+  },
+  {
+    "id": 8,
+    "question": "A new user who is a member of the content-authors group needs to Access the AEM web console. The new user should not be added to the administrator’s group. What should the Business Practitioner recommend?",
+    "answers": [
+      "Update the OSGI configuration",
+      "Give additional permissions to content-authors group",
+      "Give additional permisions to the new user",
+      "Update the IMS configuration"
+    ],
+    "correct": "Give additional permisions to the new user",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 3 (la 2 se lo daría a todo el grupo) Referencia: https://experienceleague.adobe.com/docs/experience-manager-65/administering/security/security.html?lang=en"
+  },
+  {
+    "id": 9,
+    "question": "An author would like to display an AI-summarized version of an article. Which method would you recommend to achieve this?",
+    "answers": [
+      "Create a variation of a master content fragment",
+      "Implement a workflow to generate a summarized versión.",
+      "Modify a component to display a shortened form of the article.",
+      "Create a variation of an experience fragment."
+    ],
+    "correct": "Create a variation of a master content fragment",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 1 Referencia: https://experienceleague.adobe.com/docs/experience-manager-64/assets/fragments/content-fragments-variations.html?lang=en"
+  },
+  {
+    "id": 10,
+    "question": "A customer has a multi-step asset creation workflow process that contains the following steps: Create asset Off-shore Review On-shore Review Legal Approval Brand Approval Complete When viewing the individual tasks, the customer prefers to see a simplified view of the process, which consists of the following phases: Create Review Approval Complete What should the Business Practitioner recommend that the customer create and assign?",
+    "answers": [
+      "A Stage property to each workflow step",
+      "The progress value to Workflow metadata",
+      "A workflow step to a model",
+      "The progress value using ECMAScript"
+    ],
+    "correct": "A Stage property to each workflow step",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 1 Referencia: https://experienceleague.adobe.com/docs/experience-manager-65/developing/extending-aem/extending-workflows/workflows-models.html?lang=en"
+  },
+  {
+    "id": 11,
+    "question": "A company requests a new banner component that should conform to company design standards. Details on what the authoring dialog experience should be have not been provided. Which two additional pieces of information should the Business Practitioner clarify for the developer? (Choose two)",
+    "answers": [
+      "Content model",
+      "Selectable fields",
+      "Workflow model",
+      "Editable elements"
+    ],
+    "correct": [
+      "Content model",
+      "Editable elements"
+    ],
+    "reason": "Respuesta inferida a partir del enunciado porque el documento no incluye una clave legible para esta pregunta. Conviene revisarla manualmente."
+  },
+  {
+    "id": 12,
+    "question": "You are running through an AEM Assets Discovery Checklist for your customer. Their main concerns are low downtime and minimum latency issues. What are two most important questions that you can ask the customer to best address their concerns? Choose two.",
+    "answers": [
+      "What are the types of assets to be migrated?",
+      "What hours are considered “off-peak” for your content authors?",
+      "Do you intend to use Creative Cloud Integration?",
+      "Do you have asset review / approval workflows?",
+      "What is the typical network connectivity for users accessing AEM?"
+    ],
+    "correct": [
+      "What hours are considered “off-peak” for your content authors?",
+      "What is the typical network connectivity for users accessing AEM?"
+    ],
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: La 2 y la 5 Referencia: https://helpx.adobe.com/content/dam/help/en/experience-manager/kb/aem-assets-implementation/_jcr_content/main-pars/download_section/download-1/Adobe%20AEM%20Assets%20Discovery%20Checklist.pdf"
+  },
+  {
+    "id": 13,
+    "question": "The editorial manager notices that the content teams is not following the recommended taxonomy and created tag duplicates in the different places of the tag hierarchy. The editorial manager follows up with the team and asks the Business Practitioner for the most efficient solution for the duplicates. What should the Business Practitioner recommend the editorial manager use?",
+    "answers": [
+      "Merge operation",
+      "Delete operation",
+      "Unpublish operation",
+      "Move operation"
+    ],
+    "correct": "Merge operation",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 1 Referencia: https://experienceleague.adobe.com/docs/experience-manager-64/administering/contentmanagement/tags.html?lang=en#merging-tags"
+  },
+  {
+    "id": 14,
+    "question": "A customer with multi-regional offices wants to create a website. The digital marketing team wants the content to be created once so that it can be re-used on other sites. The regional offices are allowed to make variations to the website without modifying the core information supplied by the head office. Which feature should the Business Practitioner recommend?",
+    "answers": [
+      "Launches",
+      "Language Copy",
+      "Live Copy",
+      "Content as a service"
+    ],
+    "correct": "Live Copy",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 3 (si fuera multilanguage sería la 2, pero siendo multiregional y no menciona idiomas, es la 3)"
+  },
+  {
+    "id": 15,
+    "question": "A company plans to develop a set of pages with the same design and structure. The only difference between the pages is the content inside the body. What is the best approach to develop the pages?",
+    "answers": [
+      "Use the out-of-the-box Reference component to allow freedom in content editing",
+      "Create a specific page template for each page with associated components in each body",
+      "Create a page template and put the rich-text editor (RTE) in the body",
+      "Create a page template for all pages with a layout container body"
+    ],
+    "correct": "Create a page template for all pages with a layout container body",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 4"
+  },
+  {
+    "id": 16,
+    "question": "A content manager has many assets that the team is working to upload into AEM. Multiple users are responsible for adding the assets. Each asset must be uploaded only once. What should the Business Practitioner update?",
+    "answers": [
+      "Day CQ DAM Create Asset",
+      "Asset View Servlet",
+      "Digital Rights Managements",
+      "Day CQ DAM Asset Upload Restriction"
+    ],
+    "correct": "Day CQ DAM Create Asset",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 1 Referencia: https://experienceleague.adobe.com/docs/experience-manager-64/assets/managing/duplicate-detection.html?lang=en"
+  },
+  {
+    "id": 17,
+    "question": "Which tool should the Business Practitioner recommend to the content team to manage their team, tasks, and relevant resources?",
+    "answers": [
+      "Projects",
+      "Launches",
+      "Blueprints",
+      "Workflows"
+    ],
+    "correct": "Projects",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 1 Referencia: https://experienceleague.adobe.com/docs/experience-manager-learn/foundation/projects/develop-aem-projects.html?lang=en#:~:text=AEM%20Projects%20is%20a%20feature,with%20several%20OOTB%20project%20templates."
+  },
+  {
+    "id": 18,
+    "question": "A new content author at a media company joins a team to manage content taxonomy. The author has been set up as a new user and must only have the minimum rights for this job. Which group should the author added to in order to meet these requirements?",
+    "answers": [
+      "User administration",
+      "Projects-administration",
+      "Community site content manager",
+      "Tag-administrator"
+    ],
+    "correct": "Tag-administrator",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 4 Referencia: https://experienceleague.adobe.com/docs/experience-manager-64/administering/contentmanagement/tags.html?lang=en"
+  },
+  {
+    "id": 19,
+    "question": "A major logistics company wants to repurpose the content copy created for its websites, across the Enterprise applications, so that they can be displayed differently in multiple channels and locations. Which feature should a Business Practitioner recommend in AEM 6.5?",
+    "answers": [
+      "Content Fragment",
+      "Published Content",
+      "Asset Microservices",
+      "Experience Fragment"
+    ],
+    "correct": "Content Fragment",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 1 (especifica que quieren utilizarlo y presentarlo de manera diferente en múltiples canales. Si quisieran reutilizar presentación sería la 4, pero sólo quieren reutilizar dato, por eso es la 1)"
+  },
+  {
+    "id": 20,
+    "question": "A media customer wants to implement an Enterprise DAM to manage their assets. The customer Works closely with third-party agencies who build and deliver bulk creatives for their projects. The marketers manage assets renditions for mobile and web layout. Which two features should the Business Practitioner recommend for the setup? (Choose two)",
+    "answers": [
+      "An integration with Adobe Creative Cloud",
+      "A translation workflow",
+      "A Dynamic media",
+      "An AEM Assets with Adobe Asset Link"
+    ],
+    "correct": [
+      "A Dynamic media",
+      "An integration with Adobe Creative Cloud"
+    ],
+    "reason": "Respuesta inferida a partir del enunciado porque el documento no incluye una clave legible para esta pregunta. Conviene revisarla manualmente."
+  },
+  {
+    "id": 21,
+    "question": "An end user tries to create a page on the Sites console but receives the following error: Problem Accessing “/content/foo/bar.html”. Reason: 403 Forbidden How should the Business Practitioner categorize this issue during the initial triage?",
+    "answers": [
+      "Replication Issue",
+      "AEM Product Defect",
+      "Development Defect",
+      "Permission Issue"
+    ],
+    "correct": "Permission Issue",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 4"
+  },
+  {
+    "id": 22,
+    "question": "A Content manager wants to see how newly published AEM pages perform by seeing Page Views, Unique Visitors, and Time on page while viewing the pages in the AEM Site Console. Which two recommendations should the Bussiness Practitioner make? (Choose two)",
+    "answers": [
+      "Use card view",
+      "Use Column view",
+      "Use List view",
+      "Configure AEM to integrate with Adobe Analytics",
+      "Configure AEM to integrate with Adobe Search and Promote"
+    ],
+    "correct": [
+      "Use List view",
+      "Configure AEM to integrate with Adobe Analytics"
+    ],
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Son la 3 y la 4 Referencia: https://experienceleague.adobe.com/docs/experience-manager-64/authoring/page-performance/pa-using.html?lang=en"
+  },
+  {
+    "id": 23,
+    "question": "A customer plans to launch a sub-site. All of the pages Will have a similar design with the only difference being the authored content. How should a Business Practitioner develop these pages?",
+    "answers": [
+      "Create one editable template with a text component",
+      "Create editable templates for each new page",
+      "Create one editable template with a layout container",
+      "Create static template for each new page"
+    ],
+    "correct": "Create one editable template with a layout container",
+    "reason": "Respuesta inferida a partir del enunciado porque el documento no incluye una clave legible para esta pregunta. Conviene revisarla manualmente."
+  },
+  {
+    "id": 24,
+    "question": "A customer wants DAM users to have the ability to share a group of assets based on search criteria with other DAM users. What should the client use?",
+    "answers": [
+      "Static Collections",
+      "Smart Collections",
+      "Lightbox Collections",
+      "Public Collections"
+    ],
+    "correct": "Smart Collections",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 2 (debido a que hacen referencia a “criterio de búsqueda”). Referencia: https://experienceleague.adobe.com/docs/experience-manager-65/assets/managing/manage-collections.html?lang=en"
+  },
+  {
+    "id": 25,
+    "question": "A customer needs to update their live site when the author triggers any content activation. What should a Business Practitioner recommend be configured?",
+    "answers": [
+      "Reverse Replication Agent",
+      "Chain Replication Agent",
+      "Static Replication Agent",
+      "Dispatcher Flush Agent"
+    ],
+    "correct": "Dispatcher Flush Agent",
+    "reason": "Respuesta inferida a partir del enunciado porque el documento no incluye una clave legible para esta pregunta. Conviene revisarla manualmente."
+  },
+  {
+    "id": 26,
+    "question": "Which two additional AEM Assets features become available after integration with Dynamic Media? (Choose two)",
+    "answers": [
+      "Generation of static renditions",
+      "Asset translation workflows",
+      "Smart Tags",
+      "Smart Cropping",
+      "Creation of spin sets"
+    ],
+    "correct": [
+      "Smart Cropping",
+      "Creation of spin sets"
+    ],
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Son la 4 y 5 Referencia: https://experienceleague.adobe.com/docs/experience-manager-learn/assets/dynamic-media/dynamic-media-overview-feature-video-use.html?lang=en"
+  },
+  {
+    "id": 27,
+    "question": "A customer has a website that serves an English-speaking market. The customer wants to expand to a German-speaking market. What should the Business Practitioner recommend to seamlessly create the new website structure?",
+    "answers": [
+      "Use the MSM functionality to create a language copy",
+      "Use the MSM functionalily to create a live copy",
+      "Use an external translation provider to create a language copy",
+      "Use i18n Translator to create the language copy"
+    ],
+    "correct": "Use the MSM functionality to create a language copy",
+    "reason": "Respuesta inferida a partir del enunciado porque el documento no incluye una clave legible para esta pregunta. Conviene revisarla manualmente."
+  },
+  {
+    "id": 28,
+    "question": "Which role is responsible for scope and timeline delivery to a customer?",
+    "answers": [
+      "Development Lead",
+      "Quality Lead",
+      "Project Manager",
+      "Architect"
+    ],
+    "correct": "Project Manager",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 3 Referencia: https://experienceleague.adobe.com/docs/experience-manager-65/managing/managing-best-practices-checklist/best-practices.html?lang=en"
+  },
+  {
+    "id": 29,
+    "question": "The marketing team runs a campaign that starts at midnight. The campaign includes multiples updates to the existing pages across the website. The marketing team needs to activate all changes automatically during non-business hours. What should the Business Practitioner recommend?",
+    "answers": [
+      "Schedule Later Publication via the Manage Publication Wizard",
+      "Run “Request for Activation” workflow and specify the campaign start time in the workflow tittle.",
+      "Set on Time to the campaign start hours in ON/OFF Time section of page properties."
+    ],
+    "correct": "Schedule Later Publication via the Manage Publication Wizard",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 1 Referencia: https://experienceleague.adobe.com/docs/experience-manager-cloud-service/sites/authoring/fundamentals/publishing-pages.html?lang=en"
+  },
+  {
+    "id": 30,
+    "question": "A developer makes the requested changes to a page on a live site. The developer then verifies that changes are reflected correctly on the page. The customer reports that they still see an older version. What should the Business Practitioner verify first?",
+    "answers": [
+      "Group and Access",
+      "Dispatcher cache refresh",
+      "Page reflects changes in incognito mode",
+      "Previous changes on the landing page"
+    ],
+    "correct": "Page reflects changes in incognito mode",
+    "reason": "Respuesta inferida a partir del enunciado porque el documento no incluye una clave legible para esta pregunta. Conviene revisarla manualmente."
+  },
+  {
+    "id": 31,
+    "question": "A customer wants to add a field to the properties of all existing and new assets in AEM Assets to capture the asset rating. After the team uploads an assets, the review team needs to go through the uploaded assets and fill in the ratings. How should the Business Practitioner meet this requirement?",
+    "answers": [
+      "Create a new schema with the rating property via the Folder Metadata Schemas tool",
+      "Create a new profile with the rating property via the Image Profiles tool",
+      "Build a new profile with the rating property for assets via the Metadata Profiles tool",
+      "Build a new schema with the rating property via the Metadata Schemas tool"
+    ],
+    "correct": "Build a new schema with the rating property via the Metadata Schemas tool",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Parece ser la 4 Referencia: https://helpx.adobe.com/in/experience-manager/6-3/assets/using/metadata-profiles.html"
+  },
+  {
+    "id": 32,
+    "question": "Which role is responsible for implementing websites, mobile applications, and DAM features?",
+    "answers": [
+      "DevOps",
+      "Architect",
+      "Content Author",
+      "Developer"
+    ],
+    "correct": "Developer",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 4"
+  },
+  {
+    "id": 33,
+    "question": "A customer wants different teams to collaborate with each other by connecting Adobe Experience manager (AEM) Assets with Creative Cloud desktop apps: InDesign, Photoshop, and Illustrator. Which AEM feature can be used for this requirement?",
+    "answers": [
+      "Asset link sharing",
+      "Adobe Asset Link",
+      "Dynamic Media",
+      "AEM Projects"
+    ],
+    "correct": "Adobe Asset Link",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 2 Referencia: https://experienceleague.adobe.com/docs/experience-manager-learn/assets/adobe-asset-link/panel-overview.html?lang=en#:~:text=Adobe%20Asset%20Link%20provides%20creative,InDesign%2C%20Photoshop%2C%20and%20Illustrator."
+  },
+  {
+    "id": 34,
+    "question": "A customer wants to enable two authors to finish each other’s assigned workflow tasks when one author is absent or share an excessive load in the short team. What should a Business Practitioner recommend?",
+    "answers": [
+      "Add both authors to a participant step",
+      "Add both authors to workflow-users group",
+      "Add both authors as impersonators of each other",
+      "Add both authors to dam-users group"
+    ],
+    "correct": "Add both authors as impersonators of each other",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 3 Referencia: https://experienceleague.adobe.com/docs/experience-manager-64/forms/administrator-help/configure-forms-workflow/tasks.html?lang=en"
+  },
+  {
+    "id": 35,
+    "question": "An AEM Project (i.e. Myproject) has been deleted. What would happen to the groups (Myproject Owners, MyprojectEditor, and Myproject Observers) associated with the deleted Project?",
+    "answers": [
+      "These groups Will be market as disabled and only visible to administrator",
+      "These groups Will remain in AEM and require manual deletion by administrator",
+      "These groups Will be deleted immediately upon Project deletion",
+      "These groups Will remain in AEM until the instance is restarted"
+    ],
+    "correct": "These groups Will remain in AEM and require manual deletion by administrator",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 2 Referencia: https://experienceleague.adobe.com/docs/experience-manager-65/authoring/projects/touch-ui-managing-projects.html?lang=en"
+  },
+  {
+    "id": 36,
+    "question": "Regarding performance, what are the Adobe recommended response time guidelines for uncached HTML requests?",
+    "answers": [
+      "20% of the requests for pages should have a response in less than 1 second.",
+      "30% of the requests for pages should have a response in less than 100ms",
+      "70% of the requests for pages should have a response in less than 100ms",
+      "No page should respond slower than a elapsed period of 500ms"
+    ],
+    "correct": "70% of the requests for pages should have a response in less than 100ms",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 3 Referencia: https://experienceleague.adobe.com/docs/experience-manager-64/deploying/configuring/configuring-performance.html?lang=en"
+  },
+  {
+    "id": 37,
+    "question": "How should a Business Practitioner integrate Adobe Sensei with AEM for Smart tag feature?",
+    "answers": [
+      "Use Custom configuration to set up the integration",
+      "Use Adobe Launch to integrate Adobe Sensei",
+      "Use Smart Content Service configuration",
+      "Use Adobe Sensei configuration"
+    ],
+    "correct": "Use Smart Content Service configuration",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 3 Referencia: https://helpx.adobe.com/experience-manager/kt/eseminars/ask-the-expert/aem-sensei.html"
+  },
+  {
+    "id": 38,
+    "question": "A customer is preparing for holiday sales and needs to update the live site at exactly midnight local time, without any manual intervention. All changes are already done on the author instance. Which two AEM functionalities should the Business Practitioner recommend? (Choose two)",
+    "answers": [
+      "AEM Translations",
+      "Manage Publication",
+      "Multi-Site-Manager",
+      "Quick Publish",
+      "Launches"
+    ],
+    "correct": [
+      "Manage Publication",
+      "Launches"
+    ],
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Son la 2 y la 5"
+  },
+  {
+    "id": 39,
+    "question": "A company wants to develop a website that contains interactive and multimedia experiences that will work across all devices. The business Practitioner needs to make sure rich media assets are used without adding too much workload to asset managers. How should the Business Practitioner meet this requirements?",
+    "answers": [
+      "Use a video component",
+      "Use ffmpeg to create all possible renditions",
+      "Use Dynamic media Smart crop",
+      "Use Dynamic media image presets"
+    ],
+    "correct": "Use Dynamic media image presets",
+    "reason": "Respuesta inferida a partir del enunciado porque el documento no incluye una clave legible para esta pregunta. Conviene revisarla manualmente."
+  },
+  {
+    "id": 40,
+    "question": "An IT Company gets a new Project. The sponsors want to know whether everything they are asking for can be completed within their time constraints and Budget. What should the Business Practitioner recommend to meet these requirements?",
+    "answers": [
+      "Onboard trained technical resources",
+      "Develop an MVP plan",
+      "Use AEM projects",
+      "Perform risk assessment"
+    ],
+    "correct": "Develop an MVP plan",
+    "reason": "Respuesta inferida a partir del enunciado porque el documento no incluye una clave legible para esta pregunta. Conviene revisarla manualmente."
+  },
+  {
+    "id": 41,
+    "question": "An author plans to change the source pages that occur as a result of normal maintenance. The author Will handle multiple root branches and promote the content without disturbing the published content. What should a Business Practitioner recommend to the content authoring team?",
+    "answers": [
+      "Use a rollout option on a blueprint",
+      "Use live copy",
+      "Use Projects",
+      "Use Launches"
+    ],
+    "correct": "Use a rollout option on a blueprint",
+    "reason": "Respuesta inferida a partir del enunciado porque el documento no incluye una clave legible para esta pregunta. Conviene revisarla manualmente."
+  },
+  {
+    "id": 42,
+    "question": "Which AEM feature provides support for content editing of single-page applications?",
+    "answers": [
+      "Fluid Experiences",
+      "SPA Blueprint",
+      "AEM Assets",
+      "SPA Editor"
+    ],
+    "correct": "SPA Editor",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 4"
+  },
+  {
+    "id": 43,
+    "question": "Due to a major conflict in the “add to cart” functional requirement in the e-commerce Project, the development team cannot proceed with the planning and implementation. After a detailed discussion with the product owner and development team, the requirement conflict is still not resolved. Who should the Business Practitioner meet with to resolve this issue?",
+    "answers": [
+      "Scrum Master / Project Manager",
+      "Business Owner / Architect",
+      "Content Manager / Development Lead",
+      "Content Owner / Architect"
+    ],
+    "correct": "Business Owner / Architect",
+    "reason": "Respuesta inferida a partir del enunciado porque el documento no incluye una clave legible para esta pregunta. Conviene revisarla manualmente."
+  },
+  {
+    "id": 44,
+    "question": "A customer has a business requirement to trigger a specific workflow in author whenever there is a change to a particular type of node in AEM. Which functionality should the Business Practitioner recommend?",
+    "answers": [
+      "Workflow Launchers",
+      "Launches",
+      "Activation model workflow",
+      "DAM update asset workflow"
+    ],
+    "correct": "Workflow Launchers",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 1 Referencia: https://experienceleague.adobe.com/docs/experience-manager-65/administering/operations/workflows-starting.html?lang=en#workflows-launchers"
+  },
+  {
+    "id": 45,
+    "question": "A customer is going through assets implementation and is concerned that load testing tasks Will increase the cost of the Project Budget. What should the business Practitioner recommend?",
+    "answers": [
+      "Conduct Risk Assessment",
+      "Define Support Setup",
+      "Create Project plan",
+      "Conduct Experience Design"
+    ],
+    "correct": "Conduct Risk Assessment",
+    "reason": "Respuesta inferida a partir del enunciado porque el documento no incluye una clave legible para esta pregunta. Conviene revisarla manualmente."
+  },
+  {
+    "id": 46,
+    "question": "A customer wants to implement social media pixels directly on AEM templates. What should the Business Practitioner recommend?",
+    "answers": [
+      "Add an Adobe Analytics cloud configuration",
+      "Add an Adobe Target cloud configuration",
+      "Use Adobe AEM Contexthub",
+      "Use Adobe Launch"
+    ],
+    "correct": "Use Adobe Launch",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 4 Referencia: https://community.adobe.com/t5/business-catalyst/where-can-i-place-my-facebook-tracking-pixel/td-p/7082665"
+  },
+  {
+    "id": 47,
+    "question": "A content owner is concerned about violating current license agreements for assets that have reached their contract end date. The business Practitioner needs to make sure the published assets get unpublished. Users from the Authors or Contributors groups should not be able to republish an asset when it reaches its contract end date. Which asset property should the Business Practitioner set?",
+    "answers": [
+      "isCheckedOut",
+      "Off time",
+      "Expires",
+      "Usage Terms"
+    ],
+    "correct": "Expires",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 3 Referencia: https://experienceleague.adobe.com/docs/experience-manager-65/assets/administer/drm.html?lang=en"
+  },
+  {
+    "id": 48,
+    "question": "Which workflow model property should a Business Practitioner select for a workflow that Will be ran often and does not require saving workflow runtime history?",
+    "answers": [
+      "Asset Offloading",
+      "Asset Microservice",
+      "Transient Workflow",
+      "Unlock Payload Process"
+    ],
+    "correct": "Transient Workflow",
+    "reason": "Respuesta tomada del documento fuente Examen 1. Nota original: Es la 3 Referencia: https://blogs.perficient.com/2017/04/14/the-power-of-transient-workflow-in-aem/"
+  },
+  {
+    "id": 49,
+    "question": "A customer has been using the AEM ContextHub feature but wants to extend it by adding an additional API. The Additional API Will be used to allow digital marketers to target banners based on CRM data for the current visit. What should the Business Practitioner recommend that the customer create?",
+    "answers": [
+      "A custom persisted store candidate",
+      "A custom JSONP store candidate",
+      "A custom sesión store candidate",
+      "A ContextHub UI module"
+    ],
+    "correct": "A custom sesión store candidate",
+    "reason": "Respuesta inferida a partir del enunciado porque el documento no incluye una clave legible para esta pregunta. Conviene revisarla manualmente."
+  },
+  {
+    "id": 50,
+    "question": "A business uses AEM as a cloud Service. The production pipeline in Cloud manager keeps reporting a maintainability issue during the hox-fix deployment. It Will take more than 1 business day for the deployment team to resolve the deployment issue. The business wants an immediate resolution. What should the Business Practitioner recommend to the deployment team?",
+    "answers": [
+      "Upload the hox-fix package and install manually via the Package Manager",
+      "Set Important failure behavior setting to “Continue inmediately” and re-run the build.",
+      "Uncheck Go Live Approval setting in Production Deployment Options and re-run the build."
+    ],
+    "correct": "Set Important failure behavior setting to “Continue inmediately” and re-run the build.",
+    "reason": "Respuesta inferida a partir del enunciado porque el documento no incluye una clave legible para esta pregunta. Conviene revisarla manualmente."
+  },
+  {
+    "id": 51,
+    "question": "A customer is currently using AEM 6.5 and plans to move to AEM as Cloud Service. The development team needs to understand the following: features that have been replaced by new functionality or that are currently not supported on AEM as a Cloud Service, deployment and configuration issues, repository items that must be moved to a supported location, and a high-level understanding of general upgrade readiness. What should the Business Practitioner recommend the development team use?",
+    "answers": [
+      "Content Transfer Tool",
+      "Repository Modernizer",
+      "AEM Modernization Tool",
+      "Best Practices Analyzer"
+    ],
+    "correct": "Best Practices Analyzer",
+    "reason": "The Best Practices Analyzer scans an existing AEM instance and identifies potential compatibility issues and upgrade readiness when moving to AEM as a Cloud Service."
+  },
+  {
+    "id": 52,
+    "question": "An apparel retailer uses Adobe Lightroom and Photoshop for asset editing and building creatives. The retailer intends to purchase Adobe AEM to seamlessly collaborate on assets by managing renditions and smart cropping. What should the Business Practitioner recommend?",
+    "answers": [
+      "Transfer creatives to a common cloud share location",
+      "Set up asset upload workflow to send assets to AEM",
+      "Set up Adobe Asset Link",
+      "Manually transfer RAW files to AEM"
+    ],
+    "correct": "Set up Adobe Asset Link",
+    "reason": "Adobe Asset Link integrates Creative Cloud desktop applications with AEM Assets, enabling designers to directly access and manage assets from Photoshop, Illustrator, and InDesign."
+  },
+  {
+    "id": 53,
+    "question": "A company wants to personalize the user experience by targeting marketing banners to users based on CRM data. The company also wants to simulate the user experience for personalized content to confirm the targeted content displays to the intended users. Which AEM functionality should the Business Practitioner recommend?",
+    "answers": [
+      "Experience Fragments",
+      "ContextHub",
+      "ClientContext",
+      "Versions"
+    ],
+    "correct": "ContextHub",
+    "reason": "ContextHub enables targeting and personalization by storing and managing contextual data such as CRM information and allows simulation of user contexts."
+  },
+  {
+    "id": 54,
+    "question": "A customer's development team builds their new Single Page Application. The business owner wants the content editing to be done using AEM Core Components in their existing AEM 6.5 instance. What should the Business Practitioner recommend?",
+    "answers": [
+      "Move to AEM as a Cloud Service to support Core Components",
+      "Use AEM Modernization Tool to convert to AEM Core Components",
+      "Map SPA Components to AEM Core Components",
+      "Open SPA pages using Developer Mode"
+    ],
+    "correct": "Map SPA Components to AEM Core Components",
+    "reason": "Mapping SPA components to AEM Core Components enables content editing within AEM while maintaining the SPA architecture."
+  },
+  {
+    "id": 55,
+    "question": "Developers made changes to a page. The client views the page but still sees the old version. However, when the client views the page in Incognito mode, the new page displays correctly. What is the solution to this problem?",
+    "answers": [
+      "Check the page status and if necessary, the state of the replication queue",
+      "Clear the cache of the browser and access the page again",
+      "Clear the Dispatcher cache and access the page again",
+      "Contact your system administrator to see if there are issues with the replication queue"
+    ],
+    "correct": "Clear the cache of the browser and access the page again",
+    "reason": "If the updated page appears in incognito mode but not in the normal browser session, the issue is typically caused by the browser cache."
+  },
+  {
+    "id": 56,
+    "question": "A customer has an existing AEM 6.5 site that processes large volumes of asset renditions through the DAM Update Asset workflow. The current site's CPU and memory configuration has reached capacity to handle the volume. The forecast for next year is to significantly increase the volume of assets. The customer wants a scalable solution without increasing the on-prem costs. What should the Business Practitioner recommend?",
+    "answers": [
+      "Switch to Assets as a Cloud Service to run on DAM Process Sub-Asset workflow",
+      "Switch to Assets as a Cloud Service and configure asset microservices",
+      "Increase the number of Author instances and optimize DAM Asset Update Workflow",
+      "Switch Assets to run DAM Update Asset workflow"
+    ],
+    "correct": "Switch to Assets as a Cloud Service and configure asset microservices",
+    "reason": "Asset microservices in AEM as a Cloud Service offload asset processing to scalable cloud services."
+  },
+  {
+    "id": 57,
+    "question": "In a media company, content authors need to structure and arrange their content as well as select how content is presented visually. What should the Business Practitioner recommend using?",
+    "answers": [
+      "Content Fragment Listing Component",
+      "Adobe Granite HTML Library Manager",
+      "HTML Source Edit",
+      "Style System"
+    ],
+    "correct": "Style System",
+    "reason": "The Style System allows authors to apply predefined visual styles to components without modifying their content structure."
+  },
+  {
+    "id": 58,
+    "question": "When a user requests a cacheable document from the AEM Dispatcher, what will the Dispatcher check to assess whether the document exists in the web server's file system? (Choose two)",
+    "answers": [
+      "If the document is not cached, the Dispatcher requests the document from the AEM instance.",
+      "If the document is cached, the AEM Dispatcher requests the cached file after validation.",
+      "If the document is cached, the AEM Dispatcher returns the file from the CDN cache.",
+      "If the document is not cached, the Dispatcher returns a 404 error response."
+    ],
+    "correct": [
+      "If the document is not cached, the Dispatcher requests the document from the AEM instance.",
+      "If the document is cached, the AEM Dispatcher requests the cached file after validation."
+    ],
+    "reason": "Dispatcher checks the web server cache. If cached it validates and serves it; if not, it fetches it from the AEM publish instance."
+  },
+  {
+    "id": 59,
+    "question": "A leading entertainment media company recently acquired a stock photography company. The stock photography company uses AEM for its enterprise digital asset management. The media company decides to refresh and add photos to its website from the stock photography digital asset library. Sites and Assets must be integrated so that authors can seamlessly search, browse, and embed assets. What feature should the Business Practitioner recommend?",
+    "answers": [
+      "Share asset via a link",
+      "Brand Portal",
+      "Package and Distribute",
+      "Connected Assets"
+    ],
+    "correct": "Connected Assets",
+    "reason": "Connected Assets allows one AEM instance to access assets stored in another AEM instance seamlessly."
+  },
+  {
+    "id": 60,
+    "question": "Which two entities does the MSM Rollout action keep in sync? (Choose two)",
+    "answers": [
+      "Language Root",
+      "Translation",
+      "Language Copy",
+      "Live Copy",
+      "Blueprint"
+    ],
+    "correct": [
+      "Language Copy",
+      "Blueprint"
+    ],
+    "reason": "MSM rollout synchronizes content between blueprint sources and their derived copies such as language copies."
+  },
+  {
+    "id": 61,
+    "question": "Which role is responsible for overseeing the project infrastructure?",
+    "answers": [
+      "Project Manager",
+      "Development Lead",
+      "DevOps Engineer",
+      "Quality Lead"
+    ],
+    "correct": "DevOps Engineer",
+    "reason": "DevOps engineers manage infrastructure, CI/CD pipelines, deployments, and operational environments."
+  },
+  {
+    "id": 62,
+    "question": "A company plans to develop a set of pages with the same design and structure. The only difference between the pages is the content inside the body. What is the best approach to develop the pages?",
+    "answers": [
+      "Create a page template and put the rich-text editor (RTE) in the body.",
+      "Use the out-of-the-box Reference component to allow freedom in content editing.",
+      "Create a page template for all pages with a layout container in the body.",
+      "Create a specific page template for each page with associated components in each body."
+    ],
+    "correct": "Create a page template for all pages with a layout container in the body.",
+    "reason": "Using a single editable template with a layout container enables reuse of structure while allowing authors to manage content."
+  },
+  {
+    "id": 63,
+    "question": "Where should a customer configure settings to invalidate the live site cache based on the folder hierarchy level?",
+    "answers": [
+      "Operating System",
+      "Dispatcher",
+      "Author",
+      "Publish"
+    ],
+    "correct": "Dispatcher",
+    "reason": "Cache invalidation and rules for cache structure are configured in the Dispatcher layer."
+  },
+  {
+    "id": 64,
+    "question": "An AEM front end developer is building a hero component that consists of an image and a call-to-action button. The developer experiences challenges building a responsive layout of the button for certain types of heights based on the wireframe provided. What should the Business Practitioner do?",
+    "answers": [
+      "Make edits to the wireframe and request developer to fix",
+      "Identify gap in wireframe and escalate to the AEM architect to fix",
+      "Identify gap in wireframe and escalate to the design team to fix",
+      "Request AEM developer to build a new mobile dedicated version of component"
+    ],
+    "correct": "Identify gap in wireframe and escalate to the design team to fix",
+    "reason": "If the issue comes from design specifications such as the wireframe, it should be escalated to the design team."
+  },
+  {
+    "id": 65,
+    "question": "An end user receives the following error when trying to load a page on the live site: java.lang.NoClassDefFoundError: Could not initialize class com.foo.bar.java. How should a Business Practitioner categorize this error during the initial triage?",
+    "answers": [
+      "Development Defect",
+      "Content Authoring Issue",
+      "User Access Issue",
+      "AEM Product Defect"
+    ],
+    "correct": "Development Defect",
+    "reason": "A Java NoClassDefFoundError indicates a code or dependency issue introduced during development."
+  },
+  {
+    "id": 66,
+    "question": "A customer decides to use AEM as a Cloud Service to host its new websites. The Business Practitioner is responsible for first-time setup for new users and groups for this website. Which two steps should be performed to meet this requirement? (Choose two)",
+    "answers": [
+      "Apply AEM Permissions and Privileges for new users",
+      "Set up local AEM Groups for new users",
+      "Add new AEM Users to Admin Console",
+      "Map IMS groups to local AEM groups"
+    ],
+    "correct": [
+      "Set up local AEM Groups for new users",
+      "Map IMS groups to local AEM groups"
+    ],
+    "reason": "In AEM as a Cloud Service, IMS groups are mapped to local AEM groups for permissions management."
+  },
+  {
+    "id": 67,
+    "question": "A template author wants to modify the default layout for all existing product pages. If the original editable template is modified, what happens?",
+    "answers": [
+      "All existing product pages are changed to reflect the change in initial content excluding the structure",
+      "All existing product pages are changed to reflect the change including the initial content and structure of the template",
+      "All existing product pages are changed to reflect the change in structure excluding the initial content",
+      "No existing product pages are changed"
+    ],
+    "correct": "All existing product pages are changed to reflect the change in structure excluding the initial content",
+    "reason": "Editable template structure updates propagate to existing pages, while initial content does not change."
+  },
+  {
+    "id": 68,
+    "question": "Which AEM solution can leverage artificial intelligence to automatically apply metadata?",
+    "answers": [
+      "AEM Assets",
+      "AEM Content Services",
+      "AEM Livefyre",
+      "AEM Screens"
+    ],
+    "correct": "AEM Assets",
+    "reason": "AEM Assets uses Adobe Sensei to automatically apply metadata through Smart Tags."
+  },
+  {
+    "id": 69,
+    "question": "A client has approached you and said that their renditions are not appearing for an asset recently uploaded. As an author, how would you troubleshoot this issue?",
+    "answers": [
+      "Check the failed workflows",
+      "Check the Health Checks",
+      "Examine the timeline view",
+      "Check the properties of the asset"
+    ],
+    "correct": "Check the failed workflows",
+    "reason": "Rendition generation is handled by workflows such as DAM Update Asset. Failures there prevent renditions."
+  },
+  {
+    "id": 70,
+    "question": "A customer has marketing-related digital assets distributed across the AEM Assets/DAM location. To better operate, the customer needs to create a grouping of all assets under a specific 'marketing' category that are contained in various locations across the AEM Assets/DAM. What should the Business Practitioner use?",
+    "answers": [
+      "Dropzone feature",
+      "DAM Update Asset workflow",
+      "Static references to folders",
+      "Smart Collections"
+    ],
+    "correct": "Smart Collections",
+    "reason": "Smart Collections dynamically group assets based on search criteria such as tags or metadata."
+  },
+  {
+    "id": 71,
+    "question": "A customer launches a new AEM Community site. Negative feedback is increasing quickly in the marketing forum sections. The Business Practitioner needs to recommend an Administration section to manage this situation. What should the Business Practitioner recommend to modify?",
+    "answers": [
+      "Groups Console settings",
+      "Analytics Configuration settings",
+      "Pre-Moderation settings",
+      "Members Console settings"
+    ],
+    "correct": "Pre-Moderation settings",
+    "reason": "Pre-moderation ensures posts are reviewed before appearing publicly."
+  },
+  {
+    "id": 72,
+    "question": "What is the purpose of AEM Screens?",
+    "answers": [
+      "To build single page applications",
+      "To share assets across different devices",
+      "To deliver dynamic media content",
+      "To display content via different types of devices"
+    ],
+    "correct": "To display content via different types of devices",
+    "reason": "AEM Screens is used for digital signage across different devices."
+  },
+  {
+    "id": 73,
+    "question": "A specific user is encountering an error while editing a page that other authors have not reported. How would you troubleshoot the problem using AEM?",
+    "answers": [
+      "Use AEM Screens for a screenshare session",
+      "Check the Dispatcher",
+      "Impersonate as the user reporting the issue",
+      "Check the Page timeline"
+    ],
+    "correct": "Impersonate as the user reporting the issue",
+    "reason": "Impersonation allows reproducing issues specific to a user's permissions or environment."
+  },
+  {
+    "id": 74,
+    "question": "What can be done to obtain a better bounce rate for your site? (Choose two)",
+    "answers": [
+      "Use AEM Asset Insights to capture activity details and make data-driven changes to your landing page",
+      "Run reports on AEM Communities to get user sentiment from social media",
+      "Use AEM Projects to communicate with your end-users",
+      "Use Adobe Target A/B testing to determine the best performing version of your pages"
+    ],
+    "correct": [
+      "Use AEM Asset Insights to capture activity details and make data-driven changes to your landing page",
+      "Use Adobe Target A/B testing to determine the best performing version of your pages"
+    ],
+    "reason": "Analytics insights and A/B testing help optimize landing pages and reduce bounce rates."
+  },
+  {
+    "id": 75,
+    "question": "A manager wishes to keep track of complete and incomplete tasks related to the creation of a new site. Which feature can do this?",
+    "answers": [
+      "AEM Projects",
+      "AEM Forms",
+      "AEM Launches",
+      "AEM Workflows"
+    ],
+    "correct": "AEM Projects",
+    "reason": "AEM Projects manages teams, tasks, and resources for projects."
+  },
+  {
+    "id": 76,
+    "question": "To improve user experience across their website, a marketing team acquired a package with custom components from a third-party vendor. After the package installation, the new component content was not translated. The company uses machine translation. What should the Business Practitioner do?",
+    "answers": [
+      "Contact the translation vendor to add the new components",
+      "Create the new Translation Cloud Services Configurations",
+      "Set up translation rules for the new components",
+      "Import the new components to a translation project to let the translation engine recognize them"
+    ],
+    "correct": "Set up translation rules for the new components",
+    "reason": "Translation rules define which component properties should be translated."
+  },
+  {
+    "id": 77,
+    "question": "The content and code of a newly developed website is deployed correctly to the AEM publish instance. While trying to render a non-protected page on AEM publish instance, the page does not render. The same page renders correctly after login into AEM Publish instance as an administrative user. Which user's permissions should the Business Practitioner modify to resolve this issue?",
+    "answers": [
+      "author",
+      "anonymous",
+      "admin"
+    ],
+    "correct": "anonymous",
+    "reason": "Public pages require permissions for the anonymous user on publish."
+  },
+  {
+    "id": 78,
+    "question": "A customer wants to restrict different sections of live site pages to different sets of groups. What should a Business Practitioner recommend to accomplish this?",
+    "answers": [
+      "Restrict access to a specific team for an AEM Project",
+      "Restrict access to particular templates",
+      "Restrict access by using closed user groups",
+      "Restrict access to content on an author server"
+    ],
+    "correct": "Restrict access by using closed user groups",
+    "reason": "Closed User Groups restrict content access to specific authenticated users."
+  },
+  {
+    "id": 79,
+    "question": "A Business Practitioner was working on Security > User tools in AEM author instance and accidentally deleted the anonymous user. This caused the author instance to malfunction. What should the Business Practitioner do?",
+    "answers": [
+      "Create a read-only user",
+      "Create anonymous user manually",
+      "Modify ACL for admin user",
+      "Schedule instance restart"
+    ],
+    "correct": "Schedule instance restart",
+    "reason": "Restarting the instance restores the default anonymous user configuration."
+  },
+  {
+    "id": 80,
+    "question": "If a client wants to add a Facebook pixel or analytics tracking, what option do you recommend?",
+    "answers": [
+      "Have a developer add it to a page component",
+      "Add a custom script with Adobe Target",
+      "Add a cloud configuration",
+      "Use a tag management tool such as Adobe Launch"
+    ],
+    "correct": "Use a tag management tool such as Adobe Launch",
+    "reason": "Tag management systems allow marketing teams to manage tracking scripts without code changes."
+  },
+  {
+    "id": 81,
+    "question": "Your company is launching a website with customers from around the world. What capabilities of AEM Sites would allow you to make the content more relevant to the largest amount of customers? (Choose two)",
+    "answers": [
+      "Launches",
+      "Translation Framework",
+      "Multi-Site Manager",
+      "Editable Templates",
+      "Layouting Mode"
+    ],
+    "correct": [
+      "Translation Framework",
+      "Multi-Site Manager"
+    ],
+    "reason": "Translation Framework supports multilingual content and MSM enables regional variations."
+  },
+  {
+    "id": 82,
+    "question": "A page is created to present personalized experiences using the AEM targeting mode. A targeted custom offer is doing well and needs to be shown on additional pages with personalized experiences. What should the Business Practitioner recommend?",
+    "answers": [
+      "Save offer as content fragment variation",
+      "Save offer to an offer library",
+      "Copy offer to additional pages",
+      "Copy offer to a content fragment"
+    ],
+    "correct": "Save offer to an offer library",
+    "reason": "Offers stored in the offer library can be reused across multiple personalized experiences."
+  },
+  {
+    "id": 83,
+    "question": "A customer is interested in using live copy experience fragment variations. Changes to the master variation should trigger automatic updates to live copy variations excluding references. Which rollout configuration should the Business Practitioner recommend?",
+    "answers": [
+      "Push on modify (shallow)",
+      "Push on modify",
+      "Standard rollout config",
+      "Promote Launch"
+    ],
+    "correct": "Push on modify (shallow)",
+    "reason": "Shallow rollout pushes content changes but excludes references."
+  },
+  {
+    "id": 84,
+    "question": "The company has many content authors who are responsible for creating and maintaining both page and experience fragment content. Content authors want to be able to filter the view to show all of their content. What should the Business Practitioner recommend changing?",
+    "answers": [
+      "Site Admin Search Rail",
+      "Assets Admin Search Rail",
+      "Page Editor (Documents search)",
+      "Page Editor (Page search)"
+    ],
+    "correct": "Site Admin Search Rail",
+    "reason": "The Sites search rail allows filtering and searching content within the Sites console."
+  },
+  {
+    "id": 85,
+    "question": "A company is planning to gradually launch a microsite in five new languages using human translation. The budget for translation is limited this year. The project manager needs to: plan translation in small batches, determine how to evaluate cost for each translation batch, and leave the rest for next year. What should the Business Practitioner recommend?",
+    "answers": [
+      "Request scope for a translation job before sending the content for translation",
+      "Run the Translation Prepare workflow specifying the budget before sending the content",
+      "Reject the translation upon receipt if the bill exceeds the budget",
+      "Uncheck Auto Execute Translation option for Translation Cloud Services configuration"
+    ],
+    "correct": "Request scope for a translation job before sending the content for translation",
+    "reason": "Requesting scope allows estimating translation cost before sending content."
+  },
+  {
+    "id": 86,
+    "question": "An author wants to understand the article page performance and modify it based on last week's change performance. This customer has integrated Analytics, AEM, and Target. What should the Business Practitioner recommend the author use?",
+    "answers": [
+      "Smart Tagging",
+      "Sources Report",
+      "Site Performance Report",
+      "Page Performance"
+    ],
+    "correct": "Page Performance",
+    "reason": "Page Performance in AEM Sites provides analytics metrics such as page views, unique visitors, and engagement."
+  },
+   {
+    "id": 87,
+    "question": "Which role is responsible for gathering and analyzing high-level requirements, then transforming the requirements into specifications?",
+    "answers": [
+      "Business Analyst",
+      "Architect",
+      "Project Sponsor",
+      "System Engineer"
+    ],
+    "correct": "Business Analyst",
+    "reason": "Business Analysts gather business requirements and translate them into functional specifications."
+  },
+  {
+    "id": 88,
+    "question": "Users report that all recent page edits made are not present on the publish instance. What should the Business Practitioner check?",
+    "answers": [
+      "Workflow instances",
+      "Disk usage report",
+      "Replication agents",
+      "Blueprint configurations"
+    ],
+    "correct": "Replication agents",
+    "reason": "Replication agents manage the publishing process from author to publish. If they fail, changes will not appear on publish."
+  },
+  {
+    "id": 89,
+    "question": "The customer wants to quickly set up a small website with the following requirements: Use only out-of-the-box components, not manage AEM servers, and have the ability to auto-scale up/down based on traffic patterns. Which deployment strategy should the Business Practitioner recommend?",
+    "answers": [
+      "Adobe Managed Services",
+      "AEM On-premise",
+      "AEM as a Cloud Service"
+    ],
+    "correct": "AEM as a Cloud Service",
+    "reason": "AEM as a Cloud Service provides automatic scaling and removes the need for server management."
+  },
+  {
+    "id": 90,
+    "question": "A customer is running on AEM 6.2 and uses classic UI and static templates. Sponsors are updated to core components, and multiple benefits offered in AEM 6.5. Sponsors are interested to see a proof of concept of migrating existing components. What should the Business Practitioner recommend?",
+    "answers": [
+      "Use AEM Modernization Tools",
+      "Extend existing components to support new features",
+      "Develop new core components and dynamic templates",
+      "Migrate to out-of-the-box Core Components"
+    ],
+    "correct": "Use AEM Modernization Tools",
+    "reason": "AEM Modernization Tools help migrate legacy components and templates to modern Core Components."
+  },
+  {
+    "id": 91,
+    "question": "Which capability in AEM as a Cloud Service should a Business Practitioner use for scalable seamless processing of assets?",
+    "answers": [
+      "Asset Microservices",
+      "Asset Insights",
+      "Brand Portal",
+      "Dynamic Media"
+    ],
+    "correct": "Asset Microservices",
+    "reason": "Asset Microservices provide scalable asset processing in AEM as a Cloud Service."
+  },
+  {
+    "id": 92,
+    "question": "A company wants to survey their customers by having them fill in details on the current page and submit the information. The company recently upgraded from AEM 6.2 to AEM 6.5. Which component should be used?",
+    "answers": [
+      "Embed",
+      "Form Hidden",
+      "Form Button",
+      "Button"
+    ],
+    "correct": "Form Button",
+    "reason": "Form Button components allow users to submit form data in AEM forms."
+  },
+  {
+    "id": 93,
+    "question": "Which item is required in order for authors to be able to publish experience fragments to Adobe Target?",
+    "answers": [
+      "Set up a cloud configuration",
+      "Use Dynamic Tag Manager",
+      "Use Adobe Launch",
+      "It works out of the box"
+    ],
+    "correct": "Set up a cloud configuration",
+    "reason": "Experience Fragments must be connected to Adobe Target through a cloud configuration."
+  },
+  {
+    "id": 94,
+    "question": "The team wants to develop new page layouts and designs, use new product imagery, and deliver personalized offers. The Business Practitioner needs to identify groups to work with to build out the necessary components and page layouts. Which groups should the Business Practitioner identify?",
+    "answers": [
+      "AEM architect, Site Operations team, AEM Development team",
+      "Creative design studio, Marketing business team, DAM Administrator",
+      "Creative design studio, AEM architect, AEM Development team",
+      "Taxonomists, AEM architect, DAM Administrator"
+    ],
+    "correct": "Creative design studio, Marketing business team, DAM Administrator",
+    "reason": "Design, marketing, and asset management teams collaborate to produce layouts, imagery, and marketing experiences."
+  },
+  {
+    "id": 95,
+    "question": "A customer wants to improve search capability by adding additional information about assets when they are uploaded. What should a Business Practitioner recommend to accomplish this?",
+    "answers": [
+      "Implement Adobe Campaign",
+      "Implement Adobe Target",
+      "Leverage Smart Content Services",
+      "Leverage Brand Portal"
+    ],
+    "correct": "Leverage Smart Content Services",
+    "reason": "Smart Content Services automatically add metadata tags to assets to improve searchability."
+  },
+  {
+    "id": 96,
+    "question": "A content author needs help to create a copy of an experience fragment that will have unique text. What should be created?",
+    "answers": [
+      "A variation as a live-copy",
+      "A variation",
+      "A page version",
+      "A building block"
+    ],
+    "correct": [
+      "A variation as a live-copy",
+      "A building block"
+    ],
+    "reason": "Experience Fragments can be reused and customized through variations or building blocks."
+  },
+  {
+    "id": 97,
+    "question": "Before a customer launches offers on their website, the legal team needs to view the final versions. What should the Business Practitioner recommend?",
+    "answers": [
+      "The legal team should use the 'Request launch' workflow.",
+      "Extend the 'Publish Example' workflow assigning the first step to the legal team.",
+      "Create a new workflow that assigns the last step to the legal team.",
+      "The legal team should use the 'Request to complete move operation' workflow."
+    ],
+    "correct": "Create a new workflow that assigns the last step to the legal team.",
+    "reason": "Custom workflows allow adding approval steps such as legal review before publishing."
+  }
+]

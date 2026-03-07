@@ -1,18 +1,25 @@
 ---
-const { title = "AEM Quiz" } = Astro.props;
+import "../styles/global.css";
+
+const {
+  title = "AEM Certification Trainer",
+  description = "Study AEM certification exams with study and exam modes.",
+} = Astro.props;
 ---
 
-<html lang="en" class="h-full bg-slate-900">
+<html lang="es" class="h-full bg-slate-950">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
-    <!-- Si usas Tailwind con npx astro add tailwind, normalmente no hace falta este link.
-         Si ya lo tienes funcionando así, puedes dejarlo. -->
-    <link rel="stylesheet" href="/src/styles/global.css" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
-  <body class="min-h-full text-slate-100">
-    <main class="max-w-4xl mx-auto px-4 py-8">
-      <slot />
-    </main>
+  <body class="min-h-full bg-slate-950 text-slate-100 antialiased">
+    <div class="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(34,197,94,0.14),_transparent_32%),radial-gradient(circle_at_right,_rgba(56,189,248,0.12),_transparent_28%),linear-gradient(180deg,_rgba(15,23,42,0.98),_rgba(2,6,23,1))]">
+      <main class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+        <slot />
+      </main>
+    </div>
   </body>
 </html>

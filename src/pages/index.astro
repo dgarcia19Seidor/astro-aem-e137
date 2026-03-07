@@ -1,157 +1,85 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import questionsRaw from "../data/questions.json";
+import { exams } from "../data/exams";
 
-type Question = {
-  id: number;
-  question: string;
-  answers: string[];
-  correct: string | string[];
-  reason: string;
-};
-
-const questions = (questionsRaw as Question[]).map((q) => ({
-  ...q,
-  isMulti: Array.isArray(q.correct),
-}));
+const availableExams = exams.filter((exam) => exam.questionCount > 0).length;
 ---
 
-<BaseLayout title="AEM Certification Quiz">
-  <h1 class="text-3xl font-bold mb-6 text-center">
-    AEM Quiz – Preguntas
-  </h1>
+<BaseLayout
+  title="AEM Certification Trainer"
+  description="Landing para elegir que examen AEM quieres estudiar o practicar."
+>
+  <section class="mb-10 rounded-3xl border border-white/10 bg-slate-900/70 p-6 shadow-2xl shadow-slate-950/30 sm:p-8">
+    <p class="mb-3 text-sm uppercase tracking-[0.24em] text-emerald-300/80">
+      AEM certification trainer
+    </p>
+    <div class="grid gap-6 lg:grid-cols-[1.5fr_0.8fr] lg:items-end">
+      <div>
+        <h1 class="max-w-3xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+          Elige el examen y entra en modo estudio o modo test.
+        </h1>
+        <p class="mt-4 max-w-2xl text-base leading-7 text-slate-300">
+          La plataforma queda preparada para trabajar varios examenes AEM desde una
+          sola landing.
+        </p>
+      </div>
 
-  <p class="mb-6 text-sm text-slate-300 text-center">
-    Marca la(s) respuesta(s) y pulsa <span class="font-semibold">Check</span>.
-    Las preguntas que sean de “(Choose two)” permiten marcar varias opciones.  
-    Puedes usar <span class="font-semibold">Show reason</span> para ver la explicación.
-  </p>
+      <div class="rounded-2xl border border-emerald-400/20 bg-emerald-500/10 p-5">
+        <p class="text-sm text-emerald-100/80">Examenes disponibles ahora</p>
+        <p class="mt-2 text-4xl font-semibold text-white">{availableExams}</p>
+        <p class="mt-2 text-sm text-slate-300">
+          {exams.length} certificados configurados en total.
+        </p>
+      </div>
+    </div>
+  </section>
 
-  <section class="space-y-6">
-    {questions.map((q, idx) => (
+  <section class="grid gap-5 md:grid-cols-2">
+    {exams.map((exam) => (
       <article
-        class="bg-slate-800/70 border border-slate-700 rounded-xl p-4 md:p-5 shadow-sm"
-        data-question-index={idx}
+        class={`rounded-3xl border bg-gradient-to-br ${exam.accentClass} bg-slate-900/65 p-6 shadow-xl shadow-slate-950/20`}
       >
-        <header class="flex items-start gap-2 mb-3">
-          <span class="text-sm font-mono px-2 py-0.5 rounded bg-slate-700">
-            #{q.id}
-          </span>
-          <h2 class="font-semibold leading-snug">{q.question}</h2>
-        </header>
-
-        <ul class="space-y-2 mb-4">
-          {q.answers.map((answer) => (
-            <li>
-              <label class="flex items-center gap-3 cursor-pointer group">
-                <input
-                  class="peer h-4 w-4 text-emerald-500 focus:ring-emerald-500"
-                  type={q.isMulti ? "checkbox" : "radio"}
-                  name={`q-${idx}`}
-                  value={answer}
-                />
-                <span
-                  class="flex-1 text-sm group-hover:text-emerald-200 peer-checked:font-semibold"
-                >
-                  {answer}
-                </span>
-              </label>
-            </li>
-          ))}
-        </ul>
-
-        <div class="flex flex-wrap items-center justify-between gap-3">
-          <div class="flex gap-2">
-            <button
-              class="check-btn inline-flex items-center justify-center px-3 py-1.5 text-sm font-medium rounded-lg bg-emerald-600 hover:bg-emerald-500 transition-colors"
-              data-correct={JSON.stringify(q.correct)}
-            >
-              Check
-            </button>
-
-            <button
-              type="button"
-              class="reason-btn inline-flex items-center justify-center px-3 py-1.5 text-sm font-medium rounded-lg border border-slate-600 hover:border-emerald-400 hover:text-emerald-200 transition-colors"
-            >
-              Show reason
-            </button>
+        <div class="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <p class="text-sm font-medium uppercase tracking-[0.2em] text-slate-300">
+              {exam.code}
+            </p>
+            <h2 class="mt-2 text-2xl font-semibold text-white">
+              {exam.title}
+            </h2>
           </div>
 
-          <span class="result text-sm font-medium hidden"></span>
+          <span class="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.18em] text-slate-200">
+            {exam.level}
+          </span>
         </div>
 
-        <p class="reason mt-3 text-xs text-slate-300 hidden">
-          {q.reason}
+        <p class="mt-4 text-sm leading-6 text-slate-300">
+          {exam.description}
         </p>
+
+        <p class="mt-4 text-xs uppercase tracking-[0.18em] text-slate-400">
+          {exam.audience}
+        </p>
+
+        <div class="mt-6 flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3">
+          <div>
+            <p class="text-xs uppercase tracking-[0.18em] text-slate-400">
+              Banco cargado
+            </p>
+            <p class="mt-1 text-lg font-semibold text-white">
+              {exam.questionCount} preguntas
+            </p>
+          </div>
+
+          <a
+            class="inline-flex items-center justify-center rounded-xl bg-white px-4 py-2 text-sm font-medium text-slate-950 transition hover:bg-emerald-200"
+            href={`/exams/${exam.slug}`}
+          >
+            Abrir examen
+          </a>
+        </div>
       </article>
     ))}
   </section>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const cards = document.querySelectorAll("[data-question-index]");
-
-      cards.forEach((card) => {
-        const button = card.querySelector(".check-btn");
-        const result = card.querySelector(".result");
-        const reasonBtn = card.querySelector(".reason-btn");
-        const reasonEl = card.querySelector(".reason");
-
-        if (!button || !result) return;
-
-        // 👉 Lógica del botón Check (corregir respuesta)
-        button.addEventListener("click", () => {
-          const correctRaw = button.dataset.correct || "null";
-          let correct;
-          try {
-            correct = JSON.parse(correctRaw);
-          } catch {
-            correct = correctRaw;
-          }
-
-          const inputs = card.querySelectorAll("input");
-          const checked = Array.from(inputs).filter((i) => i.checked);
-          const selectedValues = checked.map((i) => i.value);
-
-          let isCorrect = false;
-
-          if (Array.isArray(correct)) {
-            isCorrect =
-              selectedValues.length === correct.length &&
-              correct.every((v) => selectedValues.includes(v));
-          } else {
-            isCorrect =
-              selectedValues.length === 1 && selectedValues[0] === correct;
-          }
-
-          result.classList.remove("hidden");
-          result.classList.remove("text-emerald-400", "text-rose-400");
-
-          if (isCorrect) {
-            result.textContent = "✅ Correct!";
-            result.classList.add("text-emerald-400");
-          } else {
-            result.textContent = Array.isArray(correct)
-              ? "❌ Incorrect. Correct answers: " + correct.join(", ")
-              : "❌ Incorrect. Correct answer: " + correct;
-            result.classList.add("text-rose-400");
-          }
-        });
-
-        // 👉 Botón Show reason (mostrar/ocultar explicación)
-        if (reasonBtn && reasonEl) {
-          reasonBtn.addEventListener("click", () => {
-            const isHidden = reasonEl.classList.contains("hidden");
-            if (isHidden) {
-              reasonEl.classList.remove("hidden");
-              reasonBtn.textContent = "Hide reason";
-            } else {
-              reasonEl.classList.add("hidden");
-              reasonBtn.textContent = "Show reason";
-            }
-          });
-        }
-      });
-    });
-  </script>
 </BaseLayout>

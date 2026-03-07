@@ -1,0 +1,732 @@
+[
+    {
+        "id": 1,
+        "question": "A marketing team needs to create text-based content that can be repurposed across multiple AEM pages while keeping consistency. Which feature should they use?",
+        "answers": [
+            "Metadata Profiles",
+            "Smart Tags",
+            "Asset Renditions",
+            "Content Fragments"
+        ],
+        "correct": [
+            "Content Fragments"
+        ],
+        "reason": "Content Fragments allow structured, reusable text-based content that can be shared across multiple pages and channels while maintaining consistency."
+    },
+    {
+        "id": 2,
+        "question": "A client wants to analyze and improve the performance and popularity of the images used in their websites. Which functionality of AEM will help the client to track user ratings and usage statistics of images that are used in third-party websites, marketing campaigns, and Adobe’s creative solutions?",
+        "answers": [
+            "Advanced Image Recognition",
+            "Multi-Format Asset Transformation",
+            "Auto-Tagging and Metadata Enrichment",
+            "Asset Insights Dashboard"
+        ],
+        "correct": [
+            "Asset Insights Dashboard"
+        ],
+        "reason": "Asset Insights provides analytics about asset usage, performance, and engagement across channels."
+    },
+    {
+        "id": 3,
+        "question": "Which best practices should be followed when customizing AEM workflows? (Choose three)",
+        "answers": [
+            "Modify workflows directly in /libs",
+            "Avoid long-running workflows by implementing subprocesses",
+            "Use JCR queries in every workflow step",
+            "Use OOTB workflow steps whenever possible",
+            "Store workflow models in /conf/global/workflows/models"
+        ],
+        "correct": [
+            "Avoid long-running workflows by implementing subprocesses",
+            "Use OOTB workflow steps whenever possible",
+            "Store workflow models in /conf/global/workflows/models"
+        ],
+        "reason": "Best practices include avoiding modifications in /libs, reusing OOTB workflow steps, using subprocesses for long processes, and storing custom models under /conf."
+    },
+    {
+        "id": 4,
+        "question": "A client has a requirement to define custom metadata schema for a specific type of asset in AEM. Which out-of-the-box tool allows users to create and manage custom metadata schemas?",
+        "answers": [
+            "Tagging Console",
+            "Metadata Schema Editor",
+            "DAM Metadata Editor",
+            "Asset Insights"
+        ],
+        "correct": [
+            "Metadata Schema Editor"
+        ],
+        "reason": "The Metadata Schema Editor is used to create and manage custom metadata schemas for assets."
+    },
+    {
+        "id": 5,
+        "question": "Which metadata feature helps automate asset categorization based on AI analysis?",
+        "answers": [
+            "Cascading Metadata",
+            "Smart Tags",
+            "Custom Asset Reports",
+            "Metadata Profiles"
+        ],
+        "correct": [
+            "Smart Tags"
+        ],
+        "reason": "Smart Tags automatically analyze images using Adobe Sensei to generate metadata tags."
+    },
+    {
+        "id": 6,
+        "question": "Which feature ensures that an image asset in AEM is available in multiple resolutions and formats?",
+        "answers": [
+            "Content Fragments",
+            "Renditions",
+            "Asset Metadata",
+            "Smart Tags"
+        ],
+        "correct": [
+            "Renditions"
+        ],
+        "reason": "Renditions generate multiple versions of an asset optimized for different sizes and formats."
+    },
+    {
+        "id": 7,
+        "question": "An administrator needs to limit access to specific asset folders for different user roles. What is the best approach?",
+        "answers": [
+            "Manually restrict user actions in CRXDE Lite",
+            "Modify /etc/security settings",
+            "Configure Folder Permissions",
+            "Use asset renditions"
+        ],
+        "correct": [
+            "Configure Folder Permissions"
+        ],
+        "reason": "Folder permissions allow administrators to control access rights for users and groups at the asset folder level."
+    },
+    {
+        "id": 8,
+        "question": "Which media types are supported by AEM Dynamic Media? (Choose three)",
+        "answers": [
+            "Static HTML templates",
+            "Interactive images",
+            "JavaScript-based UI components",
+            "360-degree product views",
+            "Adaptive videos"
+        ],
+        "correct": [
+            "Interactive images",
+            "360-degree product views",
+            "Adaptive videos"
+        ],
+        "reason": "Dynamic Media supports rich media such as interactive images, adaptive video streaming, and 360-degree product views."
+    },
+    {
+        "id": 9,
+        "question": "Which metadata-related actions can be performed in the AEM Assets Console? (Choose three)",
+        "answers": [
+            "Modify metadata directly on an asset",
+            "Apply Metadata Profiles",
+            "Assign XMP schemas to assets",
+            "Set metadata-based search filters",
+            "Configure metadata workflows"
+        ],
+        "correct": [
+            "Modify metadata directly on an asset",
+            "Apply Metadata Profiles",
+            "Set metadata-based search filters"
+        ],
+        "reason": "The Assets Console allows users to edit metadata, apply metadata profiles, and filter searches using metadata."
+    },
+    {
+        "id": 10,
+        "question": "Which actions can be performed using the AEM Workflow Console? (Choose three)",
+        "answers": [
+            "Enabling SAML authentication",
+            "Managing workflow instances",
+            "Configuring JCR garbage collection",
+            "Assigning workflows to specific users",
+            "Monitoring running workflows"
+        ],
+        "correct": [
+            "Managing workflow instances",
+            "Assigning workflows to specific users",
+            "Monitoring running workflows"
+        ],
+        "reason": "The Workflow Console allows administrators to manage workflow instances, assign tasks, and monitor workflow execution."
+    },
+    {
+        "id": 11,
+        "question": "Which steps are involved in effectively managing user permissions on asset folders to ensure proper access control and security?",
+        "answers": [
+            "Assigning the \"Admin\" role to all users to grant them full control over asset folders, simplifying access management.",
+            "Sharing the login credentials of a single \"superuser\" account to ensure seamless collaboration without the need for individual permissions.",
+            "Defining user groups, assigning appropriate roles and permissions, and setting up access controls at the folder level using AEM's built-in security features.",
+            "Configuring asset folders to be public, allowing any user to access and modify the content without restrictions."
+        ],
+        "correct": [
+            "Defining user groups, assigning appropriate roles and permissions, and setting up access controls at the folder level using AEM's built-in security features."
+        ],
+        "reason": "Access control in AEM should be managed using groups, roles, and folder-level permissions."
+    },
+    {
+        "id": 12,
+        "question": "A developer needs to display the list of assets that are referenced by a selected asset. Which component will be used in the Build Form tab?",
+        "answers": [
+            "Asset Reference Viewer",
+            "Asset Referenced By",
+            "Asset Referencing",
+            "List References"
+        ],
+        "correct": [
+            "Asset Referenced By"
+        ],
+        "reason": "The 'Asset Referenced By' component displays assets that reference the selected asset."
+    },
+    {
+        "id": 13,
+        "question": "Where are metadata schemas managed in AEM?",
+        "answers": [
+            "CRXDE Lite under /etc/assets/metadata",
+            "AEM Metadata Editor under /conf/global/settings/dam/adminui-extension/metadataschema",
+            "OSGi Configuration Manager",
+            "Dispatcher Configurations"
+        ],
+        "correct": [
+            "AEM Metadata Editor under /conf/global/settings/dam/adminui-extension/metadataschema"
+        ],
+        "reason": "Metadata schemas are managed through the Metadata Schema Editor under /conf."
+    },
+    {
+        "id": 14,
+        "question": "Which asset-related features are available in AEM Content Fragments? (Choose three)",
+        "answers": [
+            "Workflow automation",
+            "Rich text formatting",
+            "Direct video playback",
+            "Version control",
+            "JSON-based API export"
+        ],
+        "correct": [
+            "Rich text formatting",
+            "Version control",
+            "JSON-based API export"
+        ],
+        "reason": "Content Fragments support structured content editing, versioning, and headless delivery via JSON APIs."
+    },
+    {
+        "id": 15,
+        "question": "The developer working on a project has created a content fragment for a new product page. The developer wants to ensure that the content fragment is always up-to-date. How can the developer make sure that a content fragment is always up-to-date?",
+        "answers": [
+            "Use content fragment workflow to manage the lifecycle of the content fragment.",
+            "Use content fragment model to define the structure of your content fragments.",
+            "Use content fragment reference to reference the content fragment from other pages.",
+            "Use content fragment variation to create different versions of the content fragment."
+        ],
+        "correct": [
+            "Use content fragment workflow to manage the lifecycle of the content fragment."
+        ],
+        "reason": "Content fragment workflows help manage lifecycle stages such as review, approval, and publishing to keep content updated."
+    },
+    {
+        "id": 16,
+        "question": "Which benefits do Metadata Profiles provide in AEM? (Choose three)",
+        "answers": [
+            "Provide a way to modify workflow launchers",
+            "Automatically tag assets based on AI analysis",
+            "Improve asset search efficiency",
+            "Allow bulk metadata application",
+            "Enforce metadata consistency across assets"
+        ],
+        "correct": [
+            "Improve asset search efficiency",
+            "Allow bulk metadata application",
+            "Enforce metadata consistency across assets"
+        ],
+        "reason": "Metadata Profiles allow administrators to apply metadata in bulk to assets within folders, improving consistency and enabling better search capabilities."
+    },
+    {
+        "id": 17,
+        "question": "A company wants to ensure that every uploaded image has multiple resolution formats for different devices. What should they configure?",
+        "answers": [
+            "Workflow Models",
+            "Custom Asset Reports",
+            "Asset Renditions",
+            "Cascading Metadata"
+        ],
+        "correct": [
+            "Asset Renditions"
+        ],
+        "reason": "Renditions automatically generate different versions of assets optimized for different resolutions and formats."
+    },
+    {
+        "id": 18,
+        "question": "Which features help automate metadata management in AEM? (Choose three)",
+        "answers": [
+            "Workflow Replication",
+            "Metadata Profiles",
+            "XMP-based Metadata Extraction",
+            "User Role Assignment",
+            "Cascading Metadata"
+        ],
+        "correct": [
+            "Metadata Profiles",
+            "XMP-based Metadata Extraction",
+            "Cascading Metadata"
+        ],
+        "reason": "AEM automates metadata using XMP extraction from files, metadata profiles for bulk assignment, and cascading metadata for folder-based inheritance."
+    },
+    {
+        "id": 19,
+        "question": "What is a significant distinction between cloud-based workflows and on-premise workflows in AEM?",
+        "answers": [
+            "Cloud-based workflows are limited to a specific region, while on-premise workflows can be accessed globally through the internet.",
+            "Cloud-based workflows are typically faster in execution, while on-premise workflows tend to be slower due to local server limitations.",
+            "Cloud-based workflows are exclusively accessible through the AEM user interface, while on-premise workflows can be accessed through both the AEM interface and a separate cloud portal.",
+            "Cloud-based workflows are hosted and managed by a third-party cloud service provider, while on-premise workflows are operated on an organization's own servers."
+        ],
+        "correct": [
+            "Cloud-based workflows are hosted and managed by a third-party cloud service provider, while on-premise workflows are operated on an organization's own servers."
+        ],
+        "reason": "The key difference lies in hosting and infrastructure management between cloud-managed environments and on-premise deployments."
+    },
+    {
+        "id": 20,
+        "question": "An AEM administrator needs to review failed workflows for troubleshooting. Where should they check?",
+        "answers": [
+            "CRXDE Lite node permissions",
+            "OSGi Console Log Viewer",
+            "Workflow Console under Failed Workflows",
+            "Dispatcher flush rules"
+        ],
+        "correct": [
+            "Workflow Console under Failed Workflows"
+        ],
+        "reason": "The Workflow Console allows administrators to monitor workflow instances and view failed workflows."
+    },
+    {
+        "id": 21,
+        "question": "Which benefits does AEM Brand Portal offer? (Choose three)",
+        "answers": [
+            "Automated metadata assignment",
+            "Self-service asset distribution",
+            "Secure asset sharing with external users",
+            "Real-time content fragment editing",
+            "Role-based access control"
+        ],
+        "correct": [
+            "Self-service asset distribution",
+            "Secure asset sharing with external users",
+            "Role-based access control"
+        ],
+        "reason": "Brand Portal enables external collaboration, secure asset sharing, and distribution with role-based access."
+    },
+    {
+        "id": 22,
+        "question": "A new user added to the Brand Portal has been assigned with the Viewer role. Which action is allowed for users assigned with Brand Portal Viewer role?",
+        "answers": [
+            "Share assets as a link",
+            "Share folders",
+            "Download Assets",
+            "Access to Admin Tools"
+        ],
+        "correct": [
+            "Download Assets"
+        ],
+        "reason": "Viewer role users can view and download assets but cannot manage or share them."
+    },
+    {
+        "id": 23,
+        "question": "There is a requirement to automatically proceed to the next step in the workflow if no action is taken after 2 days. Which option would be selected in the process step by the AEM Assets developer?",
+        "answers": [
+            "Absolute Time Auto Advancer",
+            "Process Assembler",
+            "Auto Advancer",
+            "Time-Based Workflow Handler"
+        ],
+        "correct": [
+            "Time-Based Workflow Handler"
+        ],
+        "reason": "Time-based workflow handlers allow workflow steps to automatically advance after a defined time interval."
+    },
+    {
+        "id": 24,
+        "question": "Which feature in AEM enables real-time asset transformation and delivery for different devices and screen sizes?",
+        "answers": [
+            "Workflow Models",
+            "Content Fragments",
+            "Metadata Profiles",
+            "Dynamic Media"
+        ],
+        "correct": [
+            "Dynamic Media"
+        ],
+        "reason": "Dynamic Media provides real-time asset optimization and delivery across devices and screen sizes."
+    },
+    {
+        "id": 25,
+        "question": "A marketing team wants an automated workflow to publish assets only after they are approved by a manager. What should be implemented?",
+        "answers": [
+            "A manual metadata update process",
+            "A direct replication agent trigger",
+            "A JCR query to find approved assets",
+            "An approval workflow with a Participant Step"
+        ],
+        "correct": [
+            "An approval workflow with a Participant Step"
+        ],
+        "reason": "Participant Steps allow users such as managers to approve assets before publishing."
+    },
+    {
+        "id": 26,
+        "question": "A company wants to analyze how frequently specific assets are used across projects. Which AEM feature should they use?",
+        "answers": [
+            "Custom Metadata Schema",
+            "Live Copy Functionality",
+            "JCR Query Manager",
+            "Asset Usage Reports"
+        ],
+        "correct": [
+            "Asset Usage Reports"
+        ],
+        "reason": "Asset Usage Reports provide insights into how assets are used across projects and channels."
+    },
+    {
+        "id": 27,
+        "question": "Which Adobe solution integrates directly with AEM to allow designers to access assets from Adobe Creative Cloud applications?",
+        "answers": [
+            "AEM Workflow Manager",
+            "AEM Brand Portal",
+            "AEM Smart Tags",
+            "Adobe Asset Link"
+        ],
+        "correct": [
+            "Adobe Asset Link"
+        ],
+        "reason": "Adobe Asset Link connects AEM Assets with Creative Cloud apps like Photoshop and Illustrator."
+    },
+    {
+        "id": 28,
+        "question": "What is the purpose of managing user permissions on asset folders in Adobe Experience Manager?",
+        "answers": [
+            "To create duplicates of assets for backup purposes.",
+            "To compress and reduce the file size of assets to save storage space.",
+            "To restrict access to specific assets and folders for security and privacy reasons.",
+            "To change the physical location of assets within the AEM repository."
+        ],
+        "correct": [
+            "To restrict access to specific assets and folders for security and privacy reasons."
+        ],
+        "reason": "Permissions ensure only authorized users can view, edit, or manage specific assets."
+    },
+    {
+        "id": 29,
+        "question": "A customer needs to compare workflow performance between AEM on-premise and AEM Cloud Service. What is the main difference?",
+        "answers": [
+            "Cloud workflows use microservices for scalability",
+            "Cloud workflows require manual execution",
+            "On-premise workflows are stored in /var/workflows/cloud",
+            "On-premise workflows have built-in cloud connectors"
+        ],
+        "correct": [
+            "Cloud workflows use microservices for scalability"
+        ],
+        "reason": "AEM Cloud Service workflows rely on microservices architecture for scalable execution."
+    },
+    {
+        "id": 30,
+        "question": "An organization needs to securely share assets to an external agency without providing them access to the AEM author environment. The external agency needs to have the ability to upload and share their own version of the assets as well. Which solution would be used to achieve this requirement?",
+        "answers": [
+            "Asset Link sharing",
+            "Brand Portal",
+            "AEM Sites Integration",
+            "Dynamic Media"
+        ],
+        "correct": [
+            "Brand Portal"
+        ],
+        "reason": "Brand Portal enables secure asset sharing and collaboration with external partners."
+    },
+    {
+        "id": 31,
+        "question": "Which feature helps users track asset modifications and version history?",
+        "answers": [
+            "Renditions",
+            "Asset Audit Logs",
+            "Workflow Launchers",
+            "Metadata Profiles"
+        ],
+        "correct": [
+            "Asset Audit Logs"
+        ],
+        "reason": "Asset Audit Logs track modifications, user actions, and version history of assets."
+    },
+    {
+        "id": 32,
+        "question": "Which features are associated with AEM Content Fragments? (Choose three)",
+        "answers": [
+            "Structured content modeling",
+            "Automated asset metadata assignment",
+            "Support for multiple variations",
+            "Dynamic Media integration",
+            "JSON API integration"
+        ],
+        "correct": [
+            "Structured content modeling",
+            "Support for multiple variations",
+            "JSON API integration"
+        ],
+        "reason": "Content Fragments support structured content, variations, and headless delivery through JSON APIs."
+    },
+    {
+        "id": 33,
+        "question": "To implement a multi-step approval process for assets in AEM Assets, which out-of-the-box component can be extended and customized to meet this requirement?",
+        "answers": [
+            "Workflow Initiator",
+            "Payload Map",
+            "Process Step",
+            "DAM Update Asset"
+        ],
+        "correct": [
+            "Process Step"
+        ],
+        "reason": "Process Steps can be customized to implement additional logic within workflow steps."
+    },
+    {
+        "id": 34,
+        "question": "Which method is recommended to restrict user access to specific asset folders in AEM?",
+        "answers": [
+            "Editing /libs/dam/security files",
+            "Assigning Metadata Properties",
+            "Modifying JCR Nodes in CRXDE Lite",
+            "Configuring Folder Permissions"
+        ],
+        "correct": [
+            "Configuring Folder Permissions"
+        ],
+        "reason": "The recommended approach is configuring folder permissions using AEM's built-in access control mechanisms."
+    },
+    {
+        "id": 35,
+        "question": "A developer is working on a requirement to serve images optimized for different devices and screen sizes. Which out-of-the-box feature in Adobe Experience Manager (AEM) should be recommended to automatically generate different renditions of an image based on device and screen size?",
+        "answers": [
+            "Asset Versioning",
+            "Metadata Management",
+            "Smart Tags",
+            "Dynamic Media"
+        ],
+        "correct": [
+            "Dynamic Media"
+        ],
+        "reason": "Dynamic Media dynamically transforms and delivers images optimized for different devices and screen sizes."
+    },
+    {
+        "id": 36,
+        "question": "A digital marketing team wants to automatically tag assets with keywords based on their content. What should they enable?",
+        "answers": [
+            "Smart Tags",
+            "Custom Asset Reports",
+            "Metadata Editor",
+            "CRXDE Lite Queries"
+        ],
+        "correct": [
+            "Smart Tags"
+        ],
+        "reason": "Smart Tags use Adobe Sensei AI to automatically analyze assets and assign relevant metadata tags."
+    },
+    {
+        "id": 37,
+        "question": "A developer is working for ABC company on creating a new website and wants to use content fragment variations to serve different versions of content to users on different devices. What is the recommended way to create a new content fragment variation based on an existing fragment?",
+        "answers": [
+            "Go to the AEM console and click on the \"Pages\" tab. Then, click on the \"Create\" button and select \"Content Fragment Variation\".",
+            "Go to the AEM console and click on the \"Content Fragments\" tab. Then, click on the \"Create\" button and select \"Variation\".",
+            "Go to the AEM console and click on the \"Assets\" tab. Then, click on the \"Create\" button and select \"Content Fragment Variation\".",
+            "Go to the existing content fragment and click on the \"Variations\" tab. Then, click on the \"Create Variation\" button."
+        ],
+        "correct": [
+            "Go to the existing content fragment and click on the \"Variations\" tab. Then, click on the \"Create Variation\" button."
+        ],
+        "reason": "Content fragment variations are created directly inside the fragment using the Variations tab."
+    },
+    {
+        "id": 38,
+        "question": "Which workflow features are optimized in AEM Cloud Service? (Choose two)",
+        "answers": [
+            "Direct integration with Creative Cloud",
+            "Storing workflows in /etc/workflows",
+            "Real-time tracking of running workflows",
+            "Workflow execution through microservices"
+        ],
+        "correct": [
+            "Real-time tracking of running workflows",
+            "Workflow execution through microservices"
+        ],
+        "reason": "AEM Cloud Service workflows leverage microservices architecture and provide enhanced monitoring capabilities."
+    },
+    {
+        "id": 39,
+        "question": "An AEM developer is tasked with customizing content for different devices in the project. The client emphasizes the need for content that is optimized specifically for mobile devices to enhance the user experience. Which type of content fragment variation in AEM should the developer implement to meet this requirement?",
+        "answers": [
+            "Responsive variations",
+            "Component variations",
+            "Template variations",
+            "Target variations"
+        ],
+        "correct": [
+            "Responsive variations"
+        ],
+        "reason": "Responsive variations allow content fragments to adapt content for different devices and screen sizes."
+    },
+    {
+        "id": 40,
+        "question": "An AEM Assets Developer has modified an out-of-the-box assets workflow and has made the changes available at runtime. Where is the new workflow design stored?",
+        "answers": [
+            "/conf/global/settings/workflow/models/",
+            "/var/global/settings/workflow/models/",
+            "/apps/global/settings/workflow/models/",
+            "/etc/global/workflow/models/"
+        ],
+        "correct": [
+            "/conf/global/settings/workflow/models/"
+        ],
+        "reason": "Modified workflow models are stored under /conf in AEM Cloud Service and modern AEM architectures."
+    },
+    {
+        "id": 41,
+        "question": "A content manager needs to create a set of images for a marketing campaign without moving them from their original location. What should they use?",
+        "answers": [
+            "Asset Collections",
+            "Asset Tagging",
+            "Folder Replication",
+            "Rendition Generator"
+        ],
+        "correct": [
+            "Asset Collections"
+        ],
+        "reason": "Asset Collections allow grouping assets logically without moving them from their original folders."
+    },
+    {
+        "id": 42,
+        "question": "A marketing team needs to ensure that images and videos dynamically adjust to different devices without requiring multiple uploads. Which feature should they use?",
+        "answers": [
+            "Metadata Profiles",
+            "Dynamic Media",
+            "Folder Permissions",
+            "AEM Workflows"
+        ],
+        "correct": [
+            "Dynamic Media"
+        ],
+        "reason": "Dynamic Media dynamically transforms media assets to adapt to different screen sizes and devices."
+    },
+    {
+        "id": 43,
+        "question": "Which feature of AEM Assets will help to manage assets by delivering rich visual merchandising and marketing assets on demand, automatically scaled for consumption on web, mobile, and social sites?",
+        "answers": [
+            "Smart Crop",
+            "Media Templates",
+            "Dynamic Media",
+            "Adaptive Images"
+        ],
+        "correct": [
+            "Dynamic Media"
+        ],
+        "reason": "Dynamic Media provides real-time delivery and transformation of assets optimized for multiple channels."
+    },
+    {
+        "id": 44,
+        "question": "A company wants to ensure all uploaded assets automatically receive metadata based on their folder location. Which feature should they use?",
+        "answers": [
+            "Cascading Metadata",
+            "Custom Workflow Launcher",
+            "Metadata Profiles",
+            "Asset Rendition Generator"
+        ],
+        "correct": [
+            "Metadata Profiles"
+        ],
+        "reason": "Metadata Profiles can be applied at the folder level to automatically assign metadata to assets uploaded into that folder."
+    },
+    {
+        "id": 45,
+        "question": "Which functionalities are included in Adobe Asset Link? (Choose two)",
+        "answers": [
+            "Direct asset browsing within Creative Cloud applications",
+            "Automated workflow execution",
+            "Drag-and-drop placement of AEM assets into Creative Cloud files",
+            "Real-time metadata synchronization with AEM"
+        ],
+        "correct": [
+            "Direct asset browsing within Creative Cloud applications",
+            "Drag-and-drop placement of AEM assets into Creative Cloud files"
+        ],
+        "reason": "Adobe Asset Link allows designers to browse AEM assets and place them directly into Creative Cloud applications."
+    },
+    {
+        "id": 46,
+        "question": "Which console is used to manage and search for assets within Adobe Experience Manager?",
+        "answers": [
+            "AEM Replication Console",
+            "AEM Workflow Console",
+            "AEM Assets Console",
+            "AEM Sites Console"
+        ],
+        "correct": [
+            "AEM Assets Console"
+        ],
+        "reason": "The Assets Console is the main interface for managing and searching digital assets in AEM."
+    },
+    {
+        "id": 47,
+        "question": "Which asset reports can be generated in AEM? (Choose two)",
+        "answers": [
+            "System Log Reports",
+            "Asset Usage Reports",
+            "Expired Assets Reports",
+            "Workflow Configuration Reports"
+        ],
+        "correct": [
+            "Asset Usage Reports",
+            "Expired Assets Reports"
+        ],
+        "reason": "AEM provides asset usage and expiration reports to analyze asset lifecycle and usage."
+    },
+    {
+        "id": 48,
+        "question": "A client needs to keep track of the recently modified assets. They are constantly doing the same search in the assets' filters and would like to save the search for future use. How can this requirement be met?",
+        "answers": [
+            "Click Save in the Assets Console search filter.",
+            "Save the search using Search Forms.",
+            "Save the results in a new Smart Collection.",
+            "Create a workflow to auto-tag assets"
+        ],
+        "correct": [
+            "Save the results in a new Smart Collection."
+        ],
+        "reason": "Smart Collections allow users to save search queries and dynamically update results."
+    },
+    {
+        "id": 49,
+        "question": "Which AEM tool allows users to monitor workflow status and execution history?",
+        "answers": [
+            "Workflow Console",
+            "OSGi Configuration Manager",
+            "Tagging Console",
+            "CRX Package Manager"
+        ],
+        "correct": [
+            "Workflow Console"
+        ],
+        "reason": "The Workflow Console provides visibility into workflow instances, their status, and execution history."
+    },
+    {
+        "id": 50,
+        "question": "What is the primary purpose of the Workflow console in Adobe Experience Manager?",
+        "answers": [
+            "To view and manage the status and progress of running workflows.",
+            "To configure access control for user roles in AEM.",
+            "To create new workflow models and templates.",
+            "To design and implement custom workflow actions."
+        ],
+        "correct": [
+            "To view and manage the status and progress of running workflows."
+        ],
+        "reason": "The Workflow Console is primarily used to monitor workflow instances and manage their execution."
+    }
+]
