@@ -2,6 +2,7 @@ import e137Questions from "./exams/ad0-e137.json";
 import e117Questions from "./exams/ad0-e117.json";
 import e121Questions from "./exams/ad0-e121.json";
 import e129Questions from "./exams/ad0-e129.json";
+import e605Questions from "./exams/ad0-e605.json";
 
 export type RawQuestion = {
   id: number;
@@ -93,5 +94,20 @@ export const exams: Exam[] = [
       sampleSize: 50,
     },
     e121Questions as RawQuestion[],
+  ),
+  createExam(
+    {
+      slug: "ad0-605",
+      code: "AD0-605",
+      title: "Adobe Real-Time Customer Data Platform Developer Expert",
+      level: "Developer",
+      audience: "Developers responsible for implementing and managing Adobe Real-Time CDP solutions",
+      description:
+        "Pagina y modos listos para mantener una experiencia consistente entre certificados.",
+      accentClass:
+        "from-indigo-500/20 via-purple-400/10 to-violet-400/10 border-indigo-400/30",
+      sampleSize: 68,
+    },
+    e605Questions as RawQuestion[],
   ),
 ];
