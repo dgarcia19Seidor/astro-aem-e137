@@ -1,519 +1,983 @@
-[
+{
+  "questions": [
     {
-        "id": 1,
-        "question": "After going live with an Adobe Real-Time CDP implementation, a data architect notices that a field intended for field group A should actually be part of field group B. How can this issue be resolved?",
-        "answers": [
-            "Remove the field from field group A and create it inside of field group B after creating all datasets for the target XDM schema",
-            "Use the move schema endpoint in the schema registry API after deleting all datasets linked to the schema",
-            "Remove the field from field group A and create it inside of field group B after deleting all datasets linked to the XDM schema",
-            "Use the schema editor in the AEP UI to directly move the field to the new field group"
-        ],
-        "correct": "Remove the field from field group A and create it inside of field group B after deleting all datasets linked to the XDM schema",
-        "reason": "En Adobe Experience Platform no se pueden modificar estructuras de campos si el schema ya tiene datasets asociados. Para mover un campo entre field groups primero se deben eliminar los datasets vinculados al schema."
+      "id": 1,
+      "question": "After going live with an Adobe Real-Time CDP implementation, a data architect notices that a field defined in field group A should actually be part of field group B. How can this issue be resolved?",
+      "answers": [
+        "Remove the field from field group A and create it inside of field group B after creating all datasets for the target XDM schema",
+        "Use the move schema endpoint in the schema registry API after deleting all datasets linked to the schema",
+        "Remove the field from field group A and create it inside of field group B after deleting all datasets linked to the XDM schema",
+        "Use the schema editor in the AEP UI to directly move the field to the new field group"
+      ],
+      "correct": [
+        "Remove the field from field group A and create it inside of field group B after deleting all datasets linked to the XDM schema"
+      ],
+      "reason": "No se puede hacer ese cambio estructural con datasets vinculados; primero hay que eliminarlos y luego recrear el campo en el field group correcto."
     },
     {
-        "id": 2,
-        "question": "Given the following segment definition: Email address is not null and City = Chicago and State = Illinois. A profile meets the criteria for the segment. Given the following segment job runs: T1: segment job run, T2: segment job run (city changes to Oakbrook), T3: segment job run (email address value changes). What is the segment membership status at each time period?",
-        "answers": [
-            "Realized, Exited, Exited",
-            "Exited, Realized, Realized",
-            "Realized, Exited, Realized",
-            "Exited, Realized, Exited"
-        ],
-        "correct": "Realized, Exited, Exited",
-        "reason": "En T1 el perfil cumple las condiciones del segmento (Realized). En T2 cambia la ciudad y deja de cumplir la condición (Exited). En T3 el cambio de email no afecta a que la ciudad ya no sea Chicago, por lo que permanece fuera del segmento."
+      "id": 2,
+      "question": "Given the following segment definition: Email address is not null, City = Chicago, and State = Illinois. There is a profile that meets the criteria for the segment. Given the following segment job runs: T1: segment job run, T2: segment job run (city changes to Oakbrook), T3: segment job run (Email address value changes). What is the segment membership status at each time period?",
+      "answers": [
+        "Realized, Exited, Exited",
+        "Exited, Realized, Realized",
+        "Realized, Exited, Realized",
+        "Exited, Realized, Exited"
+      ],
+      "correct": [
+        "Realized, Exited, Exited"
+      ],
+      "reason": "En T1 cumple el segmento, en T2 deja de cumplirlo por el cambio de ciudad y en T3 sigue fuera."
     },
     {
-        "id": 3,
-        "question": "A data engineer is bringing in an external list of audience memberships into the Adobe Experience Platform (AEP). Which two Experience Data Model (XDM) schema classes would the data engineer use to create the schemas?",
-        "answers": [
-            "Profile Definition",
-            "Segment Definition",
-            "XDM ExperienceEvent",
-            "XDM Individual Profile"
-        ],
-        "correct": "Segment Definition, XDM Individual Profile",
-        "reason": "Las audiencias externas se modelan utilizando definiciones de segmentos y perfiles individuales. Segment Definition describe la audiencia y XDM Individual Profile almacena la información de los perfiles."
+      "id": 3,
+      "question": "A data engineer is bringing in an external list of audience memberships to the Adobe Experience Platform (AEP). Which two Experience Data Model (XDM) schema classes would the data engineer use to create the schemas?",
+      "answers": [
+        "Profile Definition",
+        "Segment Definition",
+        "XDM ExperienceEvent",
+        "XDM Individual Profile"
+      ],
+      "correct": [
+        "Segment Definition",
+        "XDM Individual Profile"
+      ],
+      "reason": "La importación de memberships de audiencia requiere la definición del segmento y el perfil individual asociado."
     },
     {
-        "id": 4,
-        "question": "What is a key difference between static and dynamic segments?",
-        "answers": [
-            "Static segments are used for batch processing, while dynamic segments cannot be activated.",
-            "Dynamic segments automatically update based on real-time data, while static segments remain fixed.",
-            "Static segments support real-time updates, while dynamic segments do not.",
-            "Dynamic segments only work with structured data."
-        ],
-        "correct": "Dynamic segments automatically update based on real-time data, while static segments remain fixed.",
-        "reason": "Los segmentos dinámicos se actualizan automáticamente cuando cambian los datos del perfil en tiempo real. Los segmentos estáticos permanecen fijos hasta que se recalculan manualmente."
+      "id": 4,
+      "question": "What is a key difference between static and dynamic segments?",
+      "answers": [
+        "Static segments are used for batch processing, while dynamic segments cannot be activated.",
+        "Dynamic segments automatically update based on real-time data, while static segments remain fixed.",
+        "Static segments support real-time updates, while dynamic segments do not.",
+        "Dynamic segments only work with structured data."
+      ],
+      "correct": [
+        "Dynamic segments automatically update based on real-time data, while static segments remain fixed."
+      ],
+      "reason": "Los segmentos dinámicos se recalculan con cambios en tiempo real; los estáticos no."
     },
     {
-        "id": 5,
-        "question": "A data architect is configuring an XDM data model to onboard customer data to the Real-Time Customer Profile. Which three items should the data architect keep in mind when defining identities for the data model?",
-        "answers": [
-            "Field(s) intended to be used for identity service must be of type string.",
-            "A schema must have a single primary identity in order for the schema to be enabled for use in the Real-Time Customer Profile.",
-            "A schema must have one primary identity and one other person identity.",
-            "A schema must use an identityMap for ingesting identities.",
-            "A schema's identity field(s) should have values unique to a single customer profile."
-        ],
-        "correct": "Field(s) intended to be used for identity service must be of type string., A schema must have a single primary identity in order for the schema to be enabled for use in the Real-Time Customer Profile., A schema's identity field(s) should have values unique to a single customer profile.",
-        "reason": "Las identidades en AEP deben ser de tipo string, cada schema habilitado para Profile necesita una identidad primaria y los valores de identidad deben ser únicos para identificar correctamente a cada perfil."
+      "id": 5,
+      "question": "A data architect is configuring an XDM data model to onboard customer data to the Real-Time Customer Profile. Which three items should the data architect keep in mind when defining identities for the data model?",
+      "answers": [
+        "Field(s) intended to be used for identity service must be of type string.",
+        "A schema must have a single primary identity in order for the schema to be enabled for use in the Real-Time Customer Profile.",
+        "A schema must have one primary identity and one other person identity.",
+        "A schema must use an identityMap for ingesting identities.",
+        "A schema's identity field(s) should have values unique to a single customer profile."
+      ],
+      "correct": [
+        "Field(s) intended to be used for identity service must be of type string.",
+        "A schema must have a single primary identity in order for the schema to be enabled for use in the Real-Time Customer Profile.",
+        "A schema's identity field(s) should have values unique to a single customer profile."
+      ],
+      "reason": "Las identidades usadas por Profile deben ser strings, tener una primaria y representar de forma única al perfil."
     },
     {
-        "id": 6,
-        "question": "A marketer has a requirement to enrich the audience which was already created with a few additional attributes from a specific dataset. Which should a marketer use to create the new enriched audience?",
-        "answers": [
-            "Create Audience with 'Compose audience' method",
-            "Use 'Analyze audience' to add attributes to existing audience definitions",
-            "Create Audience with 'Build rule' method",
-            "Create Audience with 'Enrich audience' method"
-        ],
-        "correct": "Create Audience with 'Compose audience' method",
-        "reason": "La opción Compose Audience permite combinar y enriquecer audiencias existentes utilizando atributos adicionales provenientes de datasets o audiencias previas."
+      "id": 6,
+      "question": "A marketer has a requirement to enrich the audience which was already created with a few additional attributes from a specific dataset. Which should a marketer use to create the new enriched audience?",
+      "answers": [
+        "Create Audience with \"Compose audience\" method",
+        "Use \"Analyze audience\" to add attributes to existing audience definitions",
+        "Create Audience with \"Build rule\" method",
+        "Create Audience with \"Enrich audience\" method"
+      ],
+      "correct": [
+        "Create Audience with \"Compose audience\" method"
+      ],
+      "reason": "Compose audience permite combinar y enriquecer audiencias existentes."
     },
     {
-        "id": 7,
-        "question": "A customer has noticed incorrect data was loaded into the Real-Time Customer Profile for only two profiles. The data came from a single XDM Individual Profile class-based dataset. What actions can the customer take to correct the problem?",
-        "answers": [
-            "Delete the batch that created the problem from the dataset in the data lake and let the profile roll-back to its previous state",
-            "Re-load all the affected profiles with the correct data and have the profile update and/or replace the existing records in the dataset",
-            "Delete the entire dataset containing the incorrect profiles",
-            "Look up each profile in the UI and update the incorrect attributes manually"
-        ],
-        "correct": "Re-load all the affected profiles with the correct data and have the profile update and/or replace the existing records in the dataset",
-        "reason": "La forma correcta es volver a ingerir los perfiles afectados con los datos correctos para que el perfil en Real-Time Customer Profile actualice o reemplace la información existente."
+      "id": 7,
+      "question": "A customer has noticed incorrect data was loaded into the Real-Time Customer Profile for only two profiles. The data came from a single XDM Individual Profile class-based dataset. What actions can the customer take to correct the problem?",
+      "answers": [
+        "Delete the batch that created the problem from the dataset in the data lake and let the profile roll-back to its previous state",
+        "Re-load all the affected profiles with the correct data and have the profile update and/or replace the existing records in the dataset",
+        "Delete the entire dataset containing the incorrect profiles",
+        "Look up each profile in the UI and update the incorrect attributes manually"
+      ],
+      "correct": [
+        "Re-load all the affected profiles with the correct data and have the profile update and/or replace the existing records in the dataset"
+      ],
+      "reason": "La solución es reingerir los perfiles afectados con los datos correctos."
     },
     {
-        "id": 8,
-        "question": "Multiple records within the same XDM Individual Profile class-based dataset are all related to each other through the identity graph. At the time of profile assembly, what would be expected in terms of how those records will be merged together?",
-        "answers": [
-            "Profile will keep only one fragment and ignore the other fragments completely.",
-            "Profile will randomly pick a fragment as truth and use the other fragments in timestamp order to fill in the gaps.",
-            "Profile will use the last processed fragment as truth and use the other fragments in timestamp order to fill in the gaps.",
-            "Profile will merge all fragments and overwrite previous data randomly."
-        ],
-        "correct": "Profile will use the last processed fragment as truth and use the other fragments in timestamp order to fill in the gaps.",
-        "reason": "Durante el profile assembly, AEP utiliza la política de merge basada en el último fragmento procesado como fuente principal y completa el resto de atributos con los otros fragmentos en orden temporal."
+      "id": 8,
+      "question": "Multiple records within the same XDM Individual Profile class-based dataset are all related to each other through the identity graph. At the time of profile assembly, what would be expected in terms of how those records will be merged together?",
+      "answers": [
+        "Profile will keep only one fragment and ignore the other fragments completely.",
+        "Profile will randomly pick a fragment as truth and use the other fragments in timestamp order to fill in the gaps.",
+        "Profile will use the last processed fragment as truth and use the other fragments in timestamp order to fill in the gaps.",
+        "Profile will merge all fragments and overwrite previous data randomly."
+      ],
+      "correct": [
+        "Profile will use the last processed fragment as truth and use the other fragments in timestamp order to fill in the gaps."
+      ],
+      "reason": "En el ensamblado del perfil prevalece el último fragmento procesado y los demás completan huecos."
     },
     {
-        "id": 9,
-        "question": "A data engineer is responsible for ingesting data from various batch sources into Real-Time CDP. After reviewing the profiles, the engineer observed missing data on a variety of profiles. What is a possible reason for the missing data from the Real-Time Customer Profile?",
-        "answers": [
-            "Some records exceeded 100KB in size.",
-            "Some records exceeded 10KB in size.",
-            "Records exceeding 50KB in size are automatically discarded.",
-            "Some records exceeded 1MB in size."
-        ],
-        "correct": "Some records exceeded 1MB in size.",
-        "reason": "En AEP los registros que superan 1MB pueden ser descartados durante la ingesta, lo que provoca que algunos perfiles aparezcan incompletos en Real-Time Customer Profile."
+      "id": 9,
+      "question": "What are characteristics of hub profiles?",
+      "answers": [
+        "Exclusive use of structured data.",
+        "Centralized data storage.",
+        "Support for large-scale batch processing.",
+        "Real-time updates from all data sources."
+      ],
+      "correct": [
+        "Centralized data storage.",
+        "Real-time updates from all data sources."
+      ],
+      "reason": "Los hub profiles viven de forma centralizada y se actualizan con los datos que entran en la plataforma."
     },
     {
-        "id": 10,
-        "question": "A large retailer is moving customer loyalty data from a data warehouse to the Adobe RTCDP. The source connectors of Adobe Experience Platform do not support this data warehouse. The data architect plans to use the API to push the data into the experience platform so that the data can be used in the segment in a few minutes to send campaigns. What is the efficient way to ingest this data in RTCDP?",
-        "answers": [
-            "Use Real-Time APIs to send multiple single-record requests in parallel",
-            "Use the Data Landing Zone API to ingest this data immediately",
-            "Use the single HTTP API request to send Multiple Messages",
-            "Use the Batch Ingestion API to ingest this data in bulk"
-        ],
-        "correct": "Use the single HTTP API request to send Multiple Messages",
-        "reason": "La API HTTP permite enviar múltiples mensajes en una única petición, lo que es más eficiente que enviar registros individuales cuando se necesita ingesta rápida para segmentación cercana al tiempo real."
+      "id": 10,
+      "question": "Which component plays a key role in identity stitching in Adobe RT-CDP?",
+      "answers": [
+        "Unified Profile Dashboard",
+        "Data Governance Service",
+        "Data Ingestion APIs",
+        "Identity Graph"
+      ],
+      "correct": [
+        "Identity Graph"
+      ],
+      "reason": "Identity Graph es el componente que vincula identidades de un mismo cliente."
     },
     {
-        "id": 11,
-        "question": "Given the following schema field: Schema Field: personEmail.address Core Labels Applied: I1 and I2 Custom Labels Applied: CUSTOM_1 and CUSTOM_2. Assuming the Default Access Policy is enabled, what is the fewest amount of label(s) added to a user's role in order to access the above schema field?",
-        "answers": [
-            "Add 'I1 or I2 or CUSTOM_1 or CUSTOM_2' to the access role",
-            "Add 'I1 and I2' and 'CUSTOM_1' to the access role",
-            "Add 'I1 and CUSTOM_2' to the access role",
-            "Add 'I1 and I2' to the access role"
-        ],
-        "correct": "Add 'I1 and I2' and 'CUSTOM_1' to the access role",
-        "reason": "Para acceder a un campo con etiquetas de gobernanza aplicadas, el rol debe incluir las etiquetas necesarias según la política de acceso por defecto. En este caso se requieren I1, I2 y una etiqueta personalizada."
+      "id": 11,
+      "question": "A marketer is loading both first and last name from two sources (Loyalty and CRM). At activation time, the marketer would like to use the first name from their Loyalty schema and a last name from their CRM schema. Can the marketer accomplish this?",
+      "answers": [
+        "No, this cannot be done because merge policies cannot merge record-based datasets together",
+        "No, this cannot be done because merge policies cannot pick and choose fields from various datasets",
+        "Yes, by configuring a merge policy to use field precedence setting first name from Loyalty and last name from CRM",
+        "Yes, by configuring a merge policy to use dataset precedence setting Loyalty first and CRM second"
+      ],
+      "correct": [
+        "No, this cannot be done because merge policies cannot pick and choose fields from various datasets"
+      ],
+      "reason": "Las merge policies no permiten elegir campos concretos de distintas fuentes al activar."
     },
     {
-        "id": 12,
-        "question": "A retail company needs to integrate data from its CRM and e-commerce platform to build a unified customer profile. The CRM uses email as the primary identifier, while the e-commerce platform uses customer IDs and phone numbers. What strategy should they use in Adobe RT-CDP?",
-        "answers": [
-            "Create separate schemas for each data source without linking identities.",
-            "Configure identity namespaces for email and phone and link them in the Identity Graph.",
-            "Use a single namespace and ignore secondary identifiers.",
-            "Enable only deterministic identity resolution with phone numbers as the primary field."
-        ],
-        "correct": "Configure identity namespaces for email and phone and link them in the Identity Graph.",
-        "reason": "RT-CDP utiliza Identity Graph para conectar diferentes identificadores (email, phone, IDs) y crear un perfil unificado del cliente."
+      "id": 12,
+      "question": "What is the role of the Identity Graph in profile composition?",
+      "answers": [
+        "Mapping predefined customer journeys.",
+        "Generating data schemas for ingestion.",
+        "Managing batch processing workflows.",
+        "Linking multiple identifiers to a single profile."
+      ],
+      "correct": [
+        "Linking multiple identifiers to a single profile."
+      ],
+      "reason": "Su función es unir identificadores para formar un perfil unificado."
     },
     {
-        "id": 13,
-        "question": "Which two features support data governance in Adobe RT-CDP?",
-        "answers": [
-            "Role-based access control (RBAC).",
-            "Probabilistic identity stitching.",
-            "Data retention policy management.",
-            "Identity Graph integration."
-        ],
-        "correct": "Role-based access control (RBAC)., Data retention policy management.",
-        "reason": "RBAC controla el acceso a los datos mientras que las políticas de retención gestionan cuánto tiempo se almacenan los datos, ambos elementos clave de la gobernanza de datos."
+      "id": 13,
+      "question": "A data engineer has loaded a single order event with a status of \"order_placed\" into the Real-Time Customer Profile. Later, the engineer sends an updated order event with the same _id but status \"order_shipped\". The new event is in the Data Lake but does not appear on the profile. Why did this happen?",
+      "answers": [
+        "The Real-Time Customer Profile only accepts one event per timestamp per primary identity.",
+        "The Real-Time Customer Profile skipped the record as the _id was already existing.",
+        "The Real-Time Customer Profile had a processing error during ingestion.",
+        "The Real-Time Customer Profile skipped the record as the timestamp was different."
+      ],
+      "correct": [
+        "The Real-Time Customer Profile skipped the record as the _id was already existing."
+      ],
+      "reason": "En ExperienceEvent, el _id debe ser único; si se reutiliza, Profile omite el evento duplicado."
     },
     {
-        "id": 14,
-        "question": "Which two XDM schema classes are the Real-Time Customer Profile's primary entity composed of?",
-        "answers": [
-            "XDM Experience Event classes",
-            "Custom XDM classes",
-            "B2B XDM classes",
-            "XDM Individual Profile classes"
-        ],
-        "correct": "XDM Experience Event classes, XDM Individual Profile classes",
-        "reason": "Real-Time Customer Profile combina datos de comportamiento (ExperienceEvent) con atributos del cliente (Individual Profile)."
+      "id": 14,
+      "question": "What is the primary purpose of data ingestion in Adobe RT-CDP?",
+      "answers": [
+        "Generating pre-defined customer segments.",
+        "Normalizing data exclusively for batch processing.",
+        "Feeding structured and unstructured data into the platform to build unified profiles.",
+        "Creating static reports for business analysis."
+      ],
+      "correct": [
+        "Feeding structured and unstructured data into the platform to build unified profiles."
+      ],
+      "reason": "La ingesta sirve para llevar datos a la plataforma y construir perfiles unificados."
     },
     {
-        "id": 15,
-        "question": "What is the maximum number of stitched identities in an Identity Graph for a Real-Time Customer Profile?",
-        "answers": [
-            "50",
-            "500",
-            "1000",
-            "150"
-        ],
-        "correct": "50",
-        "reason": "Adobe Experience Platform limita el número de identidades vinculadas en un grafo de identidad para mantener eficiencia y rendimiento en el ensamblado del perfil."
+      "id": 15,
+      "question": "What is the primary purpose of segmentation in Adobe RT-CDP?",
+      "answers": [
+        "To manage batch processing workflows.",
+        "To create datasets for data ingestion.",
+        "To enforce DULE policies.",
+        "To define audience groups for targeted activation."
+      ],
+      "correct": [
+        "To define audience groups for targeted activation."
+      ],
+      "reason": "La segmentación crea audiencias usables en activación y personalización."
     },
     {
-        "id": 16,
-        "question": "What are characteristics of static segments?",
-        "answers": [
-            "Requires real-time data streaming.",
-            "Ideal for historical analysis and reporting.",
-            "Fixed membership that does not change over time.",
-            "Updates automatically when customer behavior changes."
-        ],
-        "correct": "Ideal for historical analysis and reporting., Fixed membership that does not change over time.",
-        "reason": "Los segmentos estáticos se calculan en un momento específico y su membresía permanece fija, lo que los hace útiles para análisis históricos."
+      "id": 16,
+      "question": "Which two changes to a schema are considered breaking changes when data is already loaded within Adobe Experience Platform?",
+      "answers": [
+        "Enabling the schema to participate in Profile",
+        "Removing a previously defined field from the schema",
+        "Renaming an existing field in the schema",
+        "Adding new fields to the schema to capture additional data"
+      ],
+      "correct": [
+        "Removing a previously defined field from the schema",
+        "Renaming an existing field in the schema"
+      ],
+      "reason": "Eliminar o renombrar campos rompe la compatibilidad con datos ya cargados."
     },
     {
-        "id": 17,
-        "question": "Which use case is ideal for edge-based segmentation?",
-        "answers": [
-            "Generating large-scale audience reports.",
-            "Activating batch data for ad campaigns.",
-            "Personalizing web content in real-time."
-        ],
-        "correct": "Personalizing web content in real-time.",
-        "reason": "Edge segmentation permite evaluar audiencias en tiempo real en el edge para personalización inmediata."
+      "id": 17,
+      "question": "A segment has a total audience size of 12 million profiles. The segment is activated to an Amazon S3 destination. How many files would land in the Amazon S3 destination?",
+      "answers": [
+        "Two files (filename.csv, filename_1.csv): filename.csv (6 million profiles), filename_1.csv (6 million profiles)",
+        "Four files (filename.csv, filename_1.csv, filename_2.csv, filename_3.csv)",
+        "One file (filename.csv): filename.csv (12 million profiles)",
+        "Three files (filename.csv, filename_1.csv, filename_2.csv): filename.csv (5 million profiles), filename_1.csv (5 million profiles), filename_2.csv (2 million profiles)"
+      ],
+      "correct": [
+        "Three files (filename.csv, filename_1.csv, filename_2.csv): filename.csv (5 million profiles), filename_1.csv (5 million profiles), filename_2.csv (2 million profiles)"
+      ],
+      "reason": "La exportación se divide en archivos de hasta 5 millones de perfiles."
     },
     {
-        "id": 18,
-        "question": "A financial services firm uses Adobe RT-CDP to unify customer data from multiple sources. What combination of features is critical for accurate profile assembly?",
-        "answers": [
-            "Static schemas and batch ingestion workflows.",
-            "Probabilistic identity resolution and edge profiles.",
-            "Real-time activation without identity stitching.",
-            "Deterministic identity resolution and the Identity Graph."
-        ],
-        "correct": "Deterministic identity resolution and the Identity Graph.",
-        "reason": "La resolución determinística y el Identity Graph permiten conectar identidades de forma precisa para construir perfiles completos."
+      "id": 18,
+      "question": "An Adobe Real-Time CDP (RTCDP) administrator would like to better control how downstream marketers enable segments for activations. What next steps should the administrator take to better protect the dataset from being misused in activations?",
+      "answers": [
+        "Configure manual review of all activations",
+        "Lean on performance guardrails of the Adobe RTCDP",
+        "Establish data usage labels across the Adobe RTCDP",
+        "Set entity limits across Adobe RTCDP components"
+      ],
+      "correct": [
+        "Establish data usage labels across the Adobe RTCDP"
+      ],
+      "reason": "Las data usage labels permiten gobernar qué datos pueden activarse y cómo."
     },
     {
-        "id": 19,
-        "question": "What are key capabilities of Adobe RT-CDP’s data ingestion process?",
-        "answers": [
-            "Enabling probabilistic segmentation during ingestion.",
-            "Streaming real-time data for profile updates.",
-            "Restricting ingestion to static customer segments.",
-            "Batch ingestion for large datasets."
-        ],
-        "correct": "Streaming real-time data for profile updates., Batch ingestion for large datasets.",
-        "reason": "AEP soporta tanto ingesta en streaming para actualizaciones en tiempo real como ingesta batch para grandes volúmenes de datos."
+      "id": 19,
+      "question": "A data architect is tasked with enabling same-page and next-page personalization use cases via Adobe Target to ensure real-time targeting based on customer’s interaction on the website. Which two are prerequisites for activating the audiences to Adobe Target for onsite personalization?",
+      "answers": [
+        "Activate the Active-On-Edge merge policy to constantly evaluate audiences on the edge",
+        "Grant users access to the default workspace and the Approver role",
+        "Implement a custom merge policy to evaluate audiences in real-time",
+        "Create a separate workspace in Adobe Target for real-time and next-page personalization"
+      ],
+      "correct": [
+        "Activate the Active-On-Edge merge policy to constantly evaluate audiences on the edge",
+        "Grant users access to the default workspace and the Approver role"
+      ],
+      "reason": "La personalización on-site con Target requiere evaluación en edge y los permisos adecuados en Target."
     },
     {
-        "id": 20,
-        "question": "What is an example of on-site personalization using Adobe RT-CDP?",
-        "answers": [
-            "Displaying a personalized homepage banner based on recent browsing behavior.",
-            "Sending an email campaign to a segment of customers.",
-            "Running a batch activation workflow for ad platforms.",
-            "Exporting a customer profile report to an external system."
-        ],
-        "correct": "Displaying a personalized homepage banner based on recent browsing behavior.",
-        "reason": "La personalización on-site consiste en adaptar contenido web en tiempo real usando datos del perfil o comportamiento reciente."
+      "id": 20,
+      "question": "Which feature in Adobe RT-CDP is used to notify users about workflow errors or critical events?",
+      "answers": [
+        "Alerts and notifications.",
+        "Identity stitching monitor.",
+        "Audience segmentation dashboard.",
+        "Role-Based Access Control (RBAC)."
+      ],
+      "correct": [
+        "Alerts and notifications."
+      ],
+      "reason": "Las alertas notifican fallos y eventos operativos importantes."
     },
     {
-        "id": 21,
-        "question": "A data engineer is attempting to set up a destination for a pre-defined email marketing channel destination. What type of audience can be activated using the pre-defined email marketing channel destination?",
-        "answers": [
-            "Prospect Audiences",
-            "DataSet Audience",
-            "Segment Match Audiences",
-            "People Audiences"
-        ],
-        "correct": "People Audiences",
-        "reason": "Las destinaciones de email marketing en RT-CDP están diseñadas para activar audiencias de tipo People, ya que representan perfiles individuales que pueden recibir comunicaciones."
+      "id": 21,
+      "question": "A data engineer is responsible for ingesting data from various batch sources into Real-Time CDP. After reviewing the profiles, the engineer observed missing data on a variety of profiles. What is a possible reason for the missing data from the Real-Time Customer Profile?",
+      "answers": [
+        "Some records exceeded 100KB in size.",
+        "Some records exceeded 10KB in size.",
+        "Records exceeding 50KB in size are automatically discarded.",
+        "Some records exceeded 1MB in size."
+      ],
+      "correct": [
+        "Some records exceeded 1MB in size."
+      ],
+      "reason": "Los registros demasiado grandes pueden no procesarse para Profile."
     },
     {
-        "id": 22,
-        "question": "What metrics are tracked for license usage in Adobe RT-CDP?",
-        "answers": [
-            "Real-time personalization settings",
-            "Customer campaign performance",
-            "Data ingestion volume",
-            "Number of active profiles"
-        ],
-        "correct": "Data ingestion volume, Number of active profiles",
-        "reason": "Las métricas de licencia de RT-CDP se basan principalmente en el volumen de datos ingeridos y en el número de perfiles activos dentro de la plataforma."
+      "id": 22,
+      "question": "A large retailer is moving customer loyalty data from a data warehouse to the Adobe RTCDP. The source connectors do not support this data warehouse, and the architect plans to use the API so the data can be used in a segment within minutes. What is the efficient way to ingest this data in RTCDP?",
+      "answers": [
+        "Use Real-Time APIs to send multiple single-record requests in parallel",
+        "Use the Data Landing Zone API to ingest this data immediately",
+        "Use the single HTTP API request to send Multiple Messages",
+        "Use the Batch Ingestion API to ingest this data in bulk"
+      ],
+      "correct": [
+        "Use the single HTTP API request to send Multiple Messages"
+      ],
+      "reason": "Para carga rápida con varias filas y uso casi inmediato, la API HTTP con múltiples mensajes es la opción eficiente."
     },
     {
-        "id": 23,
-        "question": "A retail company wants to send product recommendations to customers who recently browsed their website within seconds of their interaction. Which activation pattern should they use?",
-        "answers": [
-            "Manual activation",
-            "Batch activation",
-            "Scheduled activation",
-            "Edge-based activation"
-        ],
-        "correct": "Edge-based activation",
-        "reason": "La activación en Edge permite responder en tiempo real a eventos del usuario, como navegación reciente, lo que permite recomendaciones inmediatas."
+      "id": 23,
+      "question": "Given the following schema field: Schema Field: personEmail.address. Core Labels Applied: I1 and I2. Custom Labels Applied: CUSTOM_1 and CUSTOM_2. Assuming the Default Access Policy is enabled, what is the fewest amount of label(s) added to a user's role in order to access the above schema field?",
+      "answers": [
+        "Add \"I1 or I2 or CUSTOM_1 or CUSTOM_2\" to the access role",
+        "Add \"I1 and I2\" and \"CUSTOM_1\" to the access role",
+        "Add \"I1 and CUSTOM_2\" to the access role",
+        "Add \"I1 and I2\" to the access role"
+      ],
+      "correct": [
+        "Add \"I1 and I2\" and \"CUSTOM_1\" to the access role"
+      ],
+      "reason": "Con la política por defecto, el rol necesita cubrir las etiquetas requeridas del campo."
     },
     {
-        "id": 24,
-        "question": "When sending data through the HTTP API source connector, how would a data engineer troubleshoot to make sure the payload being sent is formatted properly in real time?",
-        "answers": [
-            "Use asynchronous validation query parameter to validate payload matches schema",
-            "Use synchronous validation query parameter to validate payload matches schema",
-            "Use query services to validate payloads before sending them via API",
-            "All data is ingested and query services reporting identify any records that do not pass custom validation rules"
-        ],
-        "correct": "Use synchronous validation query parameter to validate payload matches schema",
-        "reason": "El parámetro de validación síncrona permite comprobar inmediatamente si el payload coincide con el schema antes de que se procese la ingesta."
+      "id": 24,
+      "question": "A retail company needs to integrate data from its CRM and e-commerce platform to build a unified customer profile. The CRM uses email as the primary identifier, while the e-commerce platform uses phone numbers. What strategy should they use in Adobe RT-CDP?",
+      "answers": [
+        "Create separate schemas for each data source without linking identities.",
+        "Configure identity namespaces for email and phone and link them in the Identity Graph.",
+        "Use a single namespace and ignore secondary identifiers.",
+        "Enable only deterministic identity resolution with phone numbers as the primary field."
+      ],
+      "correct": [
+        "Configure identity namespaces for email and phone and link them in the Identity Graph."
+      ],
+      "reason": "La unión de email y teléfono en Identity Graph permite construir el perfil unificado."
     },
     {
-        "id": 25,
-        "question": "A retail company uses Adobe RT-CDP to manage customer data across multiple regions. To comply with local regulations, they must restrict data activation based on geographic location. What governance feature should they implement?",
-        "answers": [
-            "Data Usage Labeling and Enforcement (DULE) policies tied to geographic data attributes",
-            "Static segmentation based on user preferences",
-            "Role-based access control to limit user access",
-            "Batch activation workflows for regional data"
-        ],
-        "correct": "Data Usage Labeling and Enforcement (DULE) policies tied to geographic data attributes",
-        "reason": "Las políticas DULE permiten restringir el uso o activación de datos según etiquetas de gobernanza, como restricciones geográficas o regulatorias."
+      "id": 25,
+      "question": "Which features optimize ingestion workflows in Adobe RT-CDP?",
+      "answers": [
+        "Automated batch processing configurations.",
+        "Real-time error tracking during ingestion.",
+        "Data governance policy enforcement.",
+        "Pre-defined campaign activation logic."
+      ],
+      "correct": [
+        "Real-time error tracking during ingestion.",
+        "Data governance policy enforcement."
+      ],
+      "reason": "El seguimiento de errores y los controles de gobernanza ayudan a gestionar mejor la ingesta."
     },
     {
-        "id": 26,
-        "question": "A data engineer uses the Identity Graph Viewer to review identities but finds missing dataset information. What monitoring capability can provide further dataset information?",
-        "answers": [
-            "Utilize Audit Logs and filter by Dataset; review the logs to obtain information on the Dataset ID",
-            "Utilize the Profile Dashboard to locate missing batch information",
-            "Utilize the Dataset Service API to look up the Dataset ID",
-            "Utilize Query Service to look up the ECID fragment and obtain the missing Batch ID"
-        ],
-        "correct": "Utilize Audit Logs and filter by Dataset; review the logs to obtain information on the Dataset ID",
-        "reason": "Los Audit Logs permiten rastrear operaciones relacionadas con datasets, incluyendo identificadores y eventos asociados."
+      "id": 26,
+      "question": "What features support data governance in Adobe RT-CDP?",
+      "answers": [
+        "Role-based access control (RBAC).",
+        "Probabilistic identity stitching.",
+        "Data retention policy management.",
+        "Identity Graph integration."
+      ],
+      "correct": [
+        "Role-based access control (RBAC).",
+        "Data retention policy management."
+      ],
+      "reason": "Gobernanza implica controlar acceso y ciclo de vida de los datos."
     },
     {
-        "id": 27,
-        "question": "A data engineer defines a data usage policy via automatic enforcement with labels C1 and C2 but policy violations still occur during activation. How can this be enforced successfully?",
-        "answers": [
-            "Include the labels C1 and C2 in the same audience upon activation",
-            "Include the labels C1 and C2 in separate audiences upon activation",
-            "Exclude the labels C1 and C2 from any audience upon activation",
-            "Assign labels C1 and C2 to the schema rather than the dataset during activation"
-        ],
-        "correct": "Include the labels C1 and C2 in the same audience upon activation",
-        "reason": "Para que la política de uso se aplique correctamente, los datos etiquetados con C1 y C2 deben activarse dentro de la misma audiencia para que el motor de gobernanza evalúe la política."
+      "id": 27,
+      "question": "Which two XDM schema classes are the Real-Time Customer Profile's primary entity composed of?",
+      "answers": [
+        "XDM Experience Event classes",
+        "Custom XDM classes",
+        "B2B XDM classes",
+        "XDM Individual Profile classes"
+      ],
+      "correct": [
+        "XDM Experience Event classes",
+        "XDM Individual Profile classes"
+      ],
+      "reason": "RT-CDP unifica atributos de perfil y eventos de experiencia."
     },
     {
-        "id": 28,
-        "question": "What is the primary goal of activation in Adobe RT-CDP?",
-        "answers": [
-            "Delivering personalized experiences across various destinations",
-            "Storing customer data for future analysis",
-            "Creating static customer profiles",
-            "Enforcing data governance policies"
-        ],
-        "correct": "Delivering personalized experiences across various destinations",
-        "reason": "La activación consiste en enviar audiencias y atributos a destinos externos para habilitar personalización y marketing en diferentes canales."
+      "id": 28,
+      "question": "What is the maximum number of stitched identities in an Identity Graph for a Real-Time Customer Profile?",
+      "answers": [
+        "50",
+        "500",
+        "1000",
+        "150"
+      ],
+      "correct": [
+        "50"
+      ],
+      "reason": "Existe un límite de guardrail para identidades unidas en el grafo."
     },
     {
-        "id": 29,
-        "question": "Which key distinction differentiates edge profiles from hub profiles?",
-        "answers": [
-            "Edge profiles only support structured data, while hub profiles support unstructured data",
-            "Edge profiles are exclusive to offline data sources, while hub profiles handle online data",
-            "Edge profiles store data locally for low-latency processing, while hub profiles store data centrally",
-            "Edge profiles are used for batch processing, while hub profiles are for real-time actions"
-        ],
-        "correct": "Edge profiles store data locally for low-latency processing, while hub profiles store data centrally",
-        "reason": "Los Edge profiles se almacenan cerca del punto de interacción para permitir personalización de baja latencia."
+      "id": 29,
+      "question": "A data engineer is tasked with creating a streaming segment, and the segment definition must include existing audiences and a page view web event. After selecting the evaluation method, an error occurs, allowing only batch evaluation to be used. What are two possible reasons for this?",
+      "answers": [
+        "The segment definition includes a combination of an audience, a page view event (any time), and a profile attribute.",
+        "The segment definition includes a combination of an audience in multiple page view events (last 24hrs).",
+        "The segment definition includes a combination of an audience and multiple page view events (last 30 days).",
+        "The segment definition includes a combination of an audience and a page view event (last 24hrs)."
+      ],
+      "correct": [
+        "The segment definition includes a combination of an audience, a page view event (any time), and a profile attribute.",
+        "The segment definition includes a combination of an audience and multiple page view events (last 30 days)."
+      ],
+      "reason": "Ciertas combinaciones de lógica y ventanas temporales fuerzan evaluación batch en lugar de streaming."
     },
     {
-        "id": 30,
-        "question": "A company wants to capture both customer_id and email_address as identities. What identity types should be used?",
-        "answers": [
-            "customer_id as Device ID and email_address as Cookie ID",
-            "customer_id as Person ID and email_address as Email",
-            "customer_id as Cross-Device ID and email_address as Email",
-            "customer_id as Cookie ID and email_address as Device ID"
-        ],
-        "correct": "customer_id as Cross-Device ID and email_address as Email",
-        "reason": "Customer ID suele representar una identidad cross-device mientras que el email corresponde a un namespace de tipo Email."
+      "id": 30,
+      "question": "What are characteristics of static segments?",
+      "answers": [
+        "Requires real-time data streaming.",
+        "Ideal for historical analysis and reporting.",
+        "Fixed membership that does not change over time.",
+        "Updates automatically when customer behavior changes."
+      ],
+      "correct": [
+        "Ideal for historical analysis and reporting.",
+        "Fixed membership that does not change over time."
+      ],
+      "reason": "Los segmentos estáticos son adecuados para análisis histórico y no cambian automáticamente."
     },
     {
-        "id": 31,
-        "question": "A marketer uses Edge segments to drive same page and next page personalization. What should be kept in mind?",
-        "answers": [
-            "Hub profile is a subset of Edge profile",
-            "Edge profile and Hub profile contain the same data",
-            "Edge profile is a subset of Hub profile and the destination must be configured for profile attributes or segments",
-            "Edge profile and Hub profile contain the same data and destinations must be configured"
-        ],
-        "correct": "Edge profile is a subset of Hub profile and the destination must be configured for profile attributes or segments",
-        "reason": "Edge profiles contienen un subconjunto de datos del Hub profile y requieren configuración de destino para atributos o segmentos."
+      "id": 31,
+      "question": "Which use case is ideal for edge-based segmentation?",
+      "answers": [
+        "Generating large-scale audience reports.",
+        "Activating batch data for ad campaigns.",
+        "Personalizing web content in real-time."
+      ],
+      "correct": [
+        "Personalizing web content in real-time."
+      ],
+      "reason": "La segmentación en edge está pensada para respuestas inmediatas."
     },
     {
-        "id": 32,
-        "question": "What are guardrails for activating customer data to destinations?",
-        "answers": [
-            "Ensuring all activation workflows are real-time",
-            "Requiring manual approval for all activations",
-            "Limiting activation to data with proper labels",
-            "Verifying compliance with data governance policies"
-        ],
-        "correct": "Limiting activation to data with proper labels, Verifying compliance with data governance policies",
-        "reason": "Las activaciones deben respetar etiquetas de gobernanza y políticas de cumplimiento definidas en la plataforma."
+      "id": 32,
+      "question": "A financial services firm uses Adobe RT-CDP to unify customer data from multiple sources, including credit card activity, email interactions, and website visits. What combination of features is critical for accurate profile assembly?",
+      "answers": [
+        "Static schemas and batch ingestion workflows.",
+        "Probabilistic identity resolution and edge profiles.",
+        "Real-time activation without identity stitching.",
+        "Deterministic identity resolution and the Identity Graph."
+      ],
+      "correct": [
+        "Deterministic identity resolution and the Identity Graph."
+      ],
+      "reason": "La composición fiable del perfil depende de identidades determinísticas y su unión en el grafo."
     },
     {
-        "id": 33,
-        "question": "What is a critical step in composing a unified customer profile?",
-        "answers": [
-            "Using static schemas for all data sources",
-            "Enabling datasets for profile use",
-            "Exporting profiles to an external identity graph",
-            "Disabling deterministic identity resolution"
-        ],
-        "correct": "Enabling datasets for profile use",
-        "reason": "Para que los datos formen parte del perfil unificado, los datasets deben estar habilitados para Real-Time Customer Profile."
+      "id": 33,
+      "question": "What are key capabilities of Adobe RT-CDP’s data ingestion process?",
+      "answers": [
+        "Enabling probabilistic segmentation during ingestion.",
+        "Streaming real-time data for profile updates.",
+        "Restricting ingestion to static customer segments.",
+        "Batch ingestion for large datasets."
+      ],
+      "correct": [
+        "Streaming real-time data for profile updates.",
+        "Batch ingestion for large datasets."
+      ],
+      "reason": "RT-CDP soporta tanto streaming como batch para distintos volúmenes y latencias."
     },
     {
-        "id": 34,
-        "question": "A data engineer must set up alerts for a Real-Time CDP project. Which two channels of Alerts are available?",
-        "answers": [
-            "Alerts API",
-            "Adobe IO Events",
-            "Data Collection UI Alerts",
-            "Platform UI"
-        ],
-        "correct": "Adobe IO Events, Platform UI",
-        "reason": "Adobe Experience Platform permite recibir alertas a través de la interfaz de la plataforma y mediante eventos de Adobe IO."
+      "id": 34,
+      "question": "An architect is tasked with onboarding e-commerce data into Adobe Experience Platform (AEP). What are the three correct mappings of source entities into AEP classes?",
+      "answers": [
+        "Embed Order Line Items as an object array in orders",
+        "Create Orders as Experience Event",
+        "Create Order Line Items as Experience Event",
+        "Create Product as a Custom Class",
+        "Create Product and Order Line Items as custom classes"
+      ],
+      "correct": [
+        "Embed Order Line Items as an object array in orders",
+        "Create Orders as Experience Event",
+        "Create Product as a Custom Class"
+      ],
+      "reason": "Los pedidos son eventos, los productos pueden modelarse como clase personalizada y las líneas de pedido pueden embederse en el pedido."
     },
     {
-        "id": 35,
-        "question": "A data architect creates two XDM schemas and wants to define a schema relationship for multi-entity segmentation. What are the requirements?",
-        "answers": [
-            "Both schemas enabled for Real-Time Customer Profile",
-            "Both schemas have a primary identity",
-            "Both schemas belong to the same schema class",
-            "Both schemas have a defined relationship"
-        ],
-        "correct": "Both schemas enabled for Real-Time Customer Profile, Both schemas have a primary identity, Both schemas have a defined relationship",
-        "reason": "Las relaciones entre schemas para segmentación multi-entidad requieren habilitación para profile, identidades primarias y una relación explícita entre ellos."
+      "id": 35,
+      "question": "A marketer sees average profile richness at 300KB and deletes a dataset that contributed ~150KB. Later that same day, the dashboard still shows the old value. Why?",
+      "answers": [
+        "The marketer needs to wait until the next streaming segmentation job runs.",
+        "The marketer needs to manually run the \"Update license usage\" job to refresh the metrics.",
+        "The marketer forgot the license usage dashboard only updates one time per day.",
+        "The marketer needs to re-enable the deleted dataset for the dashboard to reflect the changes."
+      ],
+      "correct": [
+        "The marketer forgot the license usage dashboard only updates one time per day."
+      ],
+      "reason": "El dashboard de license usage no se refresca continuamente."
     },
     {
-        "id": 36,
-        "question": "How can a marketer validate that ingested data processed to Profile successfully?",
-        "answers": [
-            "Query service",
-            "Monitoring > Batch",
-            "Sources > Data Flow",
-            "Dataset > Activity",
-            "Identities > Browse"
-        ],
-        "correct": "Monitoring > Batch, Dataset > Activity",
-        "reason": "Estas secciones permiten verificar el estado de ingestión de lotes y la actividad de datasets dentro de AEP."
+      "id": 36,
+      "question": "What is an example of on-site personalization using Adobe RT-CDP?",
+      "answers": [
+        "Displaying a personalized homepage banner based on recent browsing behavior.",
+        "Sending an email campaign to a segment of customers.",
+        "Running a batch activation workflow for ad platforms.",
+        "Exporting a customer profile report to an external system."
+      ],
+      "correct": [
+        "Displaying a personalized homepage banner based on recent browsing behavior."
+      ],
+      "reason": "Eso describe personalización web en tiempo real."
     },
     {
-        "id": 37,
-        "question": "What are characteristics of advanced data ingestion techniques in Adobe RT-CDP?",
-        "answers": [
-            "Using custom schemas for flexible data structures",
-            "Mapping data directly to campaign activation rules",
-            "Leveraging machine learning for data normalization",
-            "Configuring ingestion workflows for hybrid batch and streaming use cases"
-        ],
-        "correct": "Using custom schemas for flexible data structures, Configuring ingestion workflows for hybrid batch and streaming use cases",
-        "reason": "Las técnicas avanzadas de ingesta incluyen el uso de schemas personalizados y flujos híbridos batch/streaming."
+      "id": 37,
+      "question": "A data engineer is attempting to set up a destination for a pre-defined email marketing channel destination. What type of audience can be activated using the pre-defined email marketing channel destination?",
+      "answers": [
+        "Prospect Audiences",
+        "DataSet Audience",
+        "Segment Match Audiences",
+        "People Audiences"
+      ],
+      "correct": [
+        "People Audiences"
+      ],
+      "reason": "Los destinos de email marketing activan audiencias basadas en personas."
     },
     {
-        "id": 38,
-        "question": "A dataset ingest produced 100 profile fragments but only 75 succeeded. What is the reason?",
-        "answers": [
-            "75 fragments ingested successfully and 25 failed",
-            "Dataset schema incompatible with ingestion workflow",
-            "Identity graph collapsed 25 fragments",
-            "25 fragments had repeated Primary Identity values"
-        ],
-        "correct": "25 fragments had repeated Primary Identity values",
-        "reason": "Las identidades primarias duplicadas impiden que algunos fragmentos se ingesten correctamente."
+      "id": 38,
+      "question": "What metrics are tracked for license usage in Adobe RT-CDP?",
+      "answers": [
+        "Real-time personalization settings.",
+        "Customer campaign performance.",
+        "Data ingestion volume.",
+        "Number of active profiles."
+      ],
+      "correct": [
+        "Data ingestion volume.",
+        "Number of active profiles."
+      ],
+      "reason": "Esas son métricas usadas para consumo/licenciamiento en RT-CDP."
     },
     {
-        "id": 39,
-        "question": "What is the key guardrail when activating data to destinations?",
-        "answers": [
-            "Data must always be batch processed",
-            "Only static segments can be activated",
-            "Activation occurs during predefined slots",
-            "Data governance policies must be enforced during activation"
-        ],
-        "correct": "Data governance policies must be enforced during activation",
-        "reason": "Las activaciones deben cumplir las políticas de gobernanza definidas en la plataforma."
+      "id": 39,
+      "question": "A retail company wants to send product recommendations to customers who recently browsed their website, within seconds of their interaction. Which activation pattern should they use?",
+      "answers": [
+        "Manual activation.",
+        "Batch activation.",
+        "Scheduled activation.",
+        "Edge-based activation."
+      ],
+      "correct": [
+        "Edge-based activation."
+      ],
+      "reason": "Para actuar en segundos hay que usar activación en edge."
     },
     {
-        "id": 40,
-        "question": "How long will it take for an audience to be activated in Adobe Campaign and Facebook?",
-        "answers": [
-            "Audience must be manually activated",
-            "Immediately after creation",
-            "Within the next 24 hours",
-            "Within 48 hours after creation"
-        ],
-        "correct": "Within the next 24 hours",
-        "reason": "Las activaciones programadas hacia destinos como Campaign o Facebook suelen completarse dentro de un ciclo de 24 horas."
+      "id": 40,
+      "question": "When sending data through the HTTP API source connector, how would a data engineer troubleshoot to make sure the payload being sent is formatted properly in real time?",
+      "answers": [
+        "Use asynchronous validation query parameter to validate payload matches schema",
+        "Use synchronous validation query parameter to validate payload matches schema",
+        "Use query services to validate payloads before sending them via API",
+        "All data is ingested and query services reporting identify any records that do not pass custom validation rules"
+      ],
+      "correct": [
+        "Use synchronous validation query parameter to validate payload matches schema"
+      ],
+      "reason": "La validación síncrona permite comprobar el payload antes de procesarlo."
     },
     {
-        "id": 41,
-        "question": "What is the primary consideration when designing identity relationships in Adobe RT-CDP?",
-        "answers": [
-            "Ensure all identities are linked to a primary namespace",
-            "Disable deterministic identity resolution",
-            "Avoid secondary identity relationships",
-            "Use one-to-one relationships exclusively"
-        ],
-        "correct": "Ensure all identities are linked to a primary namespace",
-        "reason": "Todas las identidades deben conectarse a un namespace principal para asegurar el ensamblado correcto del perfil."
+      "id": 41,
+      "question": "A retail company uses Adobe RT-CDP to manage customer data across multiple regions. To comply with local regulations, they must restrict data activation based on geographic location. What governance feature should they implement?",
+      "answers": [
+        "Data Usage Labeling and Enforcement (DULE) policies tied to geographic data attributes.",
+        "Static segmentation based on user preferences.",
+        "Role-based access control to limit user access.",
+        "Batch activation workflows for regional data."
+      ],
+      "correct": [
+        "Data Usage Labeling and Enforcement (DULE) policies tied to geographic data attributes."
+      ],
+      "reason": "DULE permite imponer restricciones de uso/activación según reglas de gobernanza."
     },
     {
-        "id": 42,
-        "question": "What is the primary purpose of governance in Adobe RT-CDP?",
-        "answers": [
-            "Creating static and dynamic segments",
-            "Ensuring data compliance and proper usage across services",
-            "Optimizing data ingestion workflows",
-            "Performing deterministic identity resolution"
-        ],
-        "correct": "Ensuring data compliance and proper usage across services",
-        "reason": "La gobernanza se centra en garantizar el cumplimiento regulatorio y el uso correcto de los datos."
+      "id": 42,
+      "question": "A data engineer uses the Identity Graph Viewer to review relationships between different identities for a specific customer. For one node, the engineer sees [1] Dataset ID, [2] No Dataset Name, [3] No Batch ID. What monitoring capabilities can the data engineer use to gain further information about the dataset associated with this identity?",
+      "answers": [
+        "Utilize Audit Logs and filter by Dataset; review the logs to obtain information on the Dataset ID",
+        "Utilize the Profile Dashboard to locate missing batch information",
+        "Utilize the Dataset Service API to look up the Dataset ID",
+        "Utilize Query Service to look up the ECID fragment and obtain the missing Batch ID"
+      ],
+      "correct": [
+        "Utilize Audit Logs and filter by Dataset; review the logs to obtain information on the Dataset ID"
+      ],
+      "reason": "Audit Logs es la vía indicada para profundizar en eventos y referencias de datasets."
     },
     {
-        "id": 43,
-        "question": "Which profile should be leveraged for low-latency personalization?",
-        "answers": [
-            "Static batch profile",
-            "Cloud-based profile for probabilistic matching",
-            "Edge profile stored locally",
-            "Hub profile with central processing"
-        ],
-        "correct": "Edge profile stored locally",
-        "reason": "Los perfiles en Edge permiten personalización de baja latencia porque se almacenan cerca del punto de interacción."
+      "id": 43,
+      "question": "A data engineer is working on defining a data usage policy via automatic enforcement and has configured dataset labels C1 and C2 to enforce the restriction. The engineer has set up the marketing actions, enabled the policy, and while activating audiences to destinations realizes that the policy violations did not occur. How can the data engineer ensure that the data policy is enforced successfully?",
+      "answers": [
+        "Include the labels C1 and C2 in the same audience upon activation",
+        "Include the labels C1 and C2 in separate audiences upon activation",
+        "Exclude the labels C1 and C2 from any audience upon activation",
+        "Assign labels C1 and C2 to the schema rather than to the dataset during activation"
+      ],
+      "correct": [
+        "Include the labels C1 and C2 in the same audience upon activation"
+      ],
+      "reason": "La evaluación de la política requiere que ambas etiquetas estén presentes en la activación relevante."
+    },
+    {
+      "id": 44,
+      "question": "What is the primary goal of activation in Adobe RT-CDP?",
+      "answers": [
+        "Delivering personalized experiences across various destinations.",
+        "Storing customer data for future analysis.",
+        "Creating static customer profiles.",
+        "Enforcing data governance policies."
+      ],
+      "correct": [
+        "Delivering personalized experiences across various destinations."
+      ],
+      "reason": "Activation significa llevar audiencias/datos a destinos para uso operativo."
+    },
+    {
+      "id": 45,
+      "question": "Which key distinction differentiates edge profiles from hub profiles?",
+      "answers": [
+        "Edge profiles only support structured data, while hub profiles support unstructured data.",
+        "Edge profiles are exclusive to offline data sources, while hub profiles handle online data.",
+        "Edge profiles store data locally for low-latency processing, while hub profiles store data centrally.",
+        "Edge profiles are used for batch processing, while hub profiles are for real-time actions."
+      ],
+      "correct": [
+        "Edge profiles store data locally for low-latency processing, while hub profiles store data centrally."
+      ],
+      "reason": "Esa es la diferencia principal de arquitectura y latencia."
+    },
+    {
+      "id": 46,
+      "question": "A company wants to capture both customer_id and email_address as identities in their data feeds within the Real-Time Customer Profile. What is the recommended identity types that should be used for the identities listed above?",
+      "answers": [
+        "customer_id uses a type of Device ID; email_address uses a type of Cookie ID",
+        "customer_id uses a type of Person ID; email_address uses a type of Email",
+        "customer_id uses a type of Cross-Device ID; email_address uses a type of Email",
+        "customer_id uses a type of Cookie ID; email_address uses a type of Device ID"
+      ],
+      "correct": [
+        "customer_id uses a type of Cross-Device ID; email_address uses a type of Email"
+      ],
+      "reason": "customer_id suele mapearse como Cross-Device ID y el email como Email namespace."
+    },
+    {
+      "id": 47,
+      "question": "A marketer is setting up a web personalization campaign inside Adobe Experience Platform and will use Real-Time CDP segments to power personalization activities. The marketer plans to use Edge segments to drive same page and next page personalization in the campaign. Which should be kept in mind when configuring the segments used in the personalization campaign?",
+      "answers": [
+        "Hub profile is a subset of Edge profile and thus the destination does not need to be configured for profile attributes or segments needed for their personalization campaign.",
+        "Edge Profile and Hub Profile contain the same data and thus the destination does not need to be configured for profile attributes or segments for their personalization campaign.",
+        "Edge profile is a subset of Hub profile and thus the destination must be configured for profile attributes or segments needed for their personalization campaign.",
+        "Edge profile and Hub profile contain the same data and thus the destination must be configured for profile attributes or segments needed for their personalization campaign."
+      ],
+      "correct": [
+        "Edge profile is a subset of Hub profile and thus the destination must be configured for profile attributes or segments needed for their personalization campaign."
+      ],
+      "reason": "Edge no contiene automáticamente todo el hub profile; hay que configurar lo que se necesita enviar."
+    },
+    {
+      "id": 48,
+      "question": "What are guardrails for activating customer data to destinations?",
+      "answers": [
+        "Ensuring all activation workflows are real-time.",
+        "Requiring manual approval for all activations.",
+        "Limiting activation to data with proper labels.",
+        "Verifying compliance with data governance policies."
+      ],
+      "correct": [
+        "Limiting activation to data with proper labels.",
+        "Verifying compliance with data governance policies."
+      ],
+      "reason": "La activación debe respetar etiquetado y políticas de gobernanza."
+    },
+    {
+      "id": 49,
+      "question": "A financial institution is using Adobe RT-CDP to activate data to an ad platform. The dataset includes sensitive information such as account balances. What guardrails should they apply during activation?",
+      "answers": [
+        "Use DULE policies to restrict sensitive data from being exported.",
+        "Perform manual activation workflows.",
+        "Include all data fields in the activation for completeness.",
+        "Limit the activation to edge-based triggers."
+      ],
+      "correct": [
+        "Use DULE policies to restrict sensitive data from being exported."
+      ],
+      "reason": "DULE evita exportar datos sensibles a destinos no permitidos."
+    },
+    {
+      "id": 50,
+      "question": "What is a critical step in composing a unified customer profile?",
+      "answers": [
+        "Using static schemas for all data sources.",
+        "Enabling datasets for profile use.",
+        "Exporting profiles to an external identity graph.",
+        "Disabling deterministic identity resolution."
+      ],
+      "correct": [
+        "Enabling datasets for profile use."
+      ],
+      "reason": "Sin habilitar datasets para Profile, sus datos no entran en el perfil unificado."
+    },
+    {
+      "id": 51,
+      "question": "A data engineer must set up alerts for a Real-Time CDP project. Which two channels of Alerts are available to the engineer?",
+      "answers": [
+        "Alerts API",
+        "Adobe IO Events",
+        "Data Collection UI Alerts",
+        "Platform UI"
+      ],
+      "correct": [
+        "Adobe IO Events",
+        "Platform UI"
+      ],
+      "reason": "Las alertas pueden recibirse en la UI de plataforma y mediante Adobe IO Events."
+    },
+    {
+      "id": 52,
+      "question": "A data architect creates two XDM schemas: Schema A and Schema B. What are the three requirements for defining a schema relationship so that Schema A references Schema B for multi-entity segmentation?",
+      "answers": [
+        "Schema A and Schema B must each be enabled for Real-Time Customer Profile.",
+        "Schema A and Schema B must each have a primary identity.",
+        "Schema A must belong to the same schema class as Schema B.",
+        "Both schemas should have the same fields marked as identities.",
+        "Schema A and Schema B must have a relationship defined between them."
+      ],
+      "correct": [
+        "Schema A and Schema B must each be enabled for Real-Time Customer Profile.",
+        "Schema A and Schema B must each have a primary identity.",
+        "Schema A and Schema B must have a relationship defined between them."
+      ],
+      "reason": "Esas son las condiciones necesarias para usar relaciones entre entidades en segmentación."
+    },
+    {
+      "id": 53,
+      "question": "A marketer needs to quickly validate that data ingested into a dataset processed to Profile successfully. Using the AEP, in which two ways can the marketer perform this task?",
+      "answers": [
+        "Query service",
+        "Monitoring > Batch",
+        "Sources > Data Flow",
+        "Dataset > Activity",
+        "Identities > Browse"
+      ],
+      "correct": [
+        "Monitoring > Batch",
+        "Dataset > Activity"
+      ],
+      "reason": "Ambas vistas muestran el estado de ingesta y procesamiento hacia Profile."
+    },
+    {
+      "id": 54,
+      "question": "What are characteristics of advanced data ingestion techniques in Adobe RT-CDP?",
+      "answers": [
+        "Using custom schemas for flexible data structures.",
+        "Mapping data directly to campaign activation rules.",
+        "Leveraging machine learning for data normalization.",
+        "Configuring ingestion workflows for hybrid batch and streaming use cases."
+      ],
+      "correct": [
+        "Using custom schemas for flexible data structures.",
+        "Configuring ingestion workflows for hybrid batch and streaming use cases."
+      ],
+      "reason": "Las técnicas avanzadas combinan flexibilidad de modelado y flujos híbridos."
+    },
+    {
+      "id": 55,
+      "question": "A data engineer has configured a new dataset for Adobe Experience Platform which is enabled for Profile. The new source uses an individual profile-based schema with its primary identity as Email. The initial file that is loaded to create the profiles contains 100 profile fragments, but after ingestion, only 75 profile fragments are created. No errors were observed during the ingestion. What could be the reason for this?",
+      "answers": [
+        "75 profile fragments ingested successfully and 25 profile fragments failed to ingest",
+        "The dataset schema used was not compatible with the ingestion workflow",
+        "The identity graph collapsed 25 of the profile fragments into the existing 75 profile fragments",
+        "25 of the profile fragments had repeated Primary Identity values"
+      ],
+      "correct": [
+        "25 of the profile fragments had repeated Primary Identity values"
+      ],
+      "reason": "Si varias filas comparten la misma identidad primaria, no generan fragmentos nuevos independientes."
+    },
+    {
+      "id": 56,
+      "question": "A data architect has scheduled a couple of queries using Adobe Experience Platform query service UI and wants to configure an alert in AEP UI to alert when the scheduled query fails. The architect notices that the query run failure alert configuration is missing, but source flow run alerts are available. What is a possible reason for the query service alerts subscription not appearing in the UI?",
+      "answers": [
+        "The sandbox the data architect is using is not enabled for alert.",
+        "The data architect has not enabled the Query Service API in the AEP environment.",
+        "The data architect is trying to configure alert in the development sandbox.",
+        "The data architect is missing the manage alert permissions for query services."
+      ],
+      "correct": [
+        "The data architect is trying to configure alert in the development sandbox."
+      ],
+      "reason": "Ese tipo de alerta no aparece en ese contexto de sandbox."
+    },
+    {
+      "id": 57,
+      "question": "A marketer wants to create a segment to be used in Adobe Target. The personalization activity will qualify users who enter the site based on campaign codes from paid search. What kind of segment should the marketer use to ensure the dynamic experience is delivered?",
+      "answers": [
+        "Streaming Segmentation",
+        "Edge Segmentation",
+        "Batch Segmentation",
+        "Static Segmentation"
+      ],
+      "correct": [
+        "Edge Segmentation"
+      ],
+      "reason": "Target y experiencias dinámicas inmediatas requieren segmentación en edge."
+    },
+    {
+      "id": 58,
+      "question": "A marketer wants to create a segment based on profiles that have these seven attributes: LoyaltyId, LoyaltyLevel, Location, Age, MaritalStatus, Email, and Phone. The marketer wants the segment to qualify all profiles that have these attributes: LoyaltyLevel and Age, and disqualify profiles that have either of these attributes: MaritalStatus and Location. How can the audience rule-builder UI be used to build this segment?",
+      "answers": [
+        "Drag and drop the LoyaltyLevel and Age attributes into an \"Include any of\" container. Then, drag and drop the MaritalStatus and Location attributes into an \"Exclude all\" container.",
+        "Drag and drop the LoyaltyLevel and Age attributes into an \"Include all\" container. Then, drag and drop the MaritalStatus and Location attributes into an \"Exclude all\" container.",
+        "Drag and drop the LoyaltyLevel and Age attributes into an \"Include any of\" container. Then, drag and drop the MaritalStatus and Location attributes into an \"Exclude any of\" container.",
+        "Drag and drop the LoyaltyLevel and Age attributes into an \"Include all\" container. Then, drag and drop the MaritalStatus and Location attributes into an \"Exclude any of\" container."
+      ],
+      "correct": [
+        "Drag and drop the LoyaltyLevel and Age attributes into an \"Include all\" container. Then, drag and drop the MaritalStatus and Location attributes into an \"Exclude any of\" container."
+      ],
+      "reason": "Debe exigir ambos atributos positivos y excluir si aparece cualquiera de los negativos."
+    },
+    {
+      "id": 59,
+      "question": "What is a key guardrail when activating data to destinations?",
+      "answers": [
+        "Data must always be batch processed before activation.",
+        "Only static segments can be activated.",
+        "Activation can only occur during predefined time slots.",
+        "Data governance policies must be enforced during activation."
+      ],
+      "correct": [
+        "Data governance policies must be enforced during activation."
+      ],
+      "reason": "La activación siempre debe respetar la gobernanza del dato."
+    },
+    {
+      "id": 60,
+      "question": "A marketer has been tasked with a last-minute request to create an audience within Real-Time CDP for activation through Adobe Campaign and Facebook. The marketer uploads a file to create an audience for the Real-Time Customer Profile. How long will it take for the audience to be activated into Adobe Campaign and Facebook?",
+      "answers": [
+        "Audience must be manually activated",
+        "Immediately after creation",
+        "Within the next 24 hours",
+        "Within 48 hours after creation"
+      ],
+      "correct": [
+        "Within the next 24 hours"
+      ],
+      "reason": "La activación hacia esos destinos sigue su ventana de procesamiento estándar."
+    },
+    {
+      "id": 61,
+      "question": "What is the primary consideration when designing identity relationships for modeling in Adobe RT-CDP?",
+      "answers": [
+        "Ensure all identities are linked to a primary namespace.",
+        "Disable deterministic identity resolution.",
+        "Avoid using secondary identity relationships.",
+        "Use one-to-one relationships exclusively."
+      ],
+      "correct": [
+        "Ensure all identities are linked to a primary namespace."
+      ],
+      "reason": "La identidad primaria es la base del modelado y la unión correcta de perfiles."
+    },
+    {
+      "id": 62,
+      "question": "What is the primary purpose of governance in Adobe RT-CDP?",
+      "answers": [
+        "Creating static and dynamic segments.",
+        "Ensuring data compliance and proper usage across services.",
+        "Optimizing data ingestion workflows.",
+        "Performing deterministic identity resolution."
+      ],
+      "correct": [
+        "Ensuring data compliance and proper usage across services."
+      ],
+      "reason": "Gobernanza se centra en cumplimiento y uso correcto de los datos."
+    },
+    {
+      "id": 63,
+      "question": "A travel company uses Adobe RT-CDP to deliver personalized recommendations based on real-time browsing behavior. Which profile should they leverage for low-latency personalization?",
+      "answers": [
+        "Static batch profile.",
+        "Cloud-based profile for probabilistic matching.",
+        "Edge profile stored locally.",
+        "Hub profile with central processing."
+      ],
+      "correct": [
+        "Edge profile stored locally."
+      ],
+      "reason": "El edge profile permite respuesta de baja latencia cerca del punto de interacción."
+    },
+    {
+      "id": 64,
+      "question": "An engineer has been mandated with ingesting data via the Adobe Edge Network Server API for website data. The engineer notices that some data appears to be routed to a different Edge, likely because a customer turned a VPN on/off. How best would the engineer resolve this issue to ensure all data is always routed to the same Edge in the initiating session?",
+      "answers": [
+        "Use location hints in their calls",
+        "Use the Web SDK",
+        "Enable cross-edge synchronization to resolve discrepancies",
+        "Build a middleware service to catch and resolve these issues"
+      ],
+      "correct": [
+        "Use location hints in their calls"
+      ],
+      "reason": "Los location hints ayudan a mantener la afinidad con el mismo Edge durante la sesión."
+    },
+    {
+      "id": 65,
+      "question": "A healthcare organization using Adobe RT-CDP wants to restrict access to sensitive patient data based on geographic location. What governance feature should they implement?",
+      "answers": [
+        "Role-Based Access Control (RBAC).",
+        "Identity resolution guardrails.",
+        "Real-time segmentation rules.",
+        "Attribute-Based Access Control (ABAC)."
+      ],
+      "correct": [
+        "Attribute-Based Access Control (ABAC)."
+      ],
+      "reason": "ABAC permite restringir acceso según atributos como región o ubicación."
+    },
+    {
+      "id": 66,
+      "question": "What actions are critical for maintaining governance in Adobe RT-CDP?",
+      "answers": [
+        "Running data ingestion workflows without governance policies.",
+        "Automating segment updates based on governance rules.",
+        "Monitoring compliance through governance dashboards.",
+        "Assigning usage labels to all datasets."
+      ],
+      "correct": [
+        "Monitoring compliance through governance dashboards.",
+        "Assigning usage labels to all datasets."
+      ],
+      "reason": "Mantener gobernanza implica etiquetar correctamente y monitorizar cumplimiento."
+    },
+    {
+      "id": 67,
+      "question": "What are characteristics of Edge-based activation?",
+      "answers": [
+        "Requires manual activation triggers.",
+        "Enables real-time personalization.",
+        "Uses batch workflows for data updates.",
+        "Processes data locally to reduce latency."
+      ],
+      "correct": [
+        "Enables real-time personalization.",
+        "Processes data locally to reduce latency."
+      ],
+      "reason": "La activación en edge busca baja latencia y personalización inmediata."
+    },
+    {
+      "id": 68,
+      "question": "What components are critical for Profile Composition in Adobe RT-CDP?",
+      "answers": [
+        "Identity stitching from multiple sources.",
+        "Attribute mapping across schemas.",
+        "Audience segmentation at the edge.",
+        "Data governance enforcement."
+      ],
+      "correct": [
+        "Identity stitching from multiple sources.",
+        "Attribute mapping across schemas."
+      ],
+      "reason": "La composición del perfil depende de unir identidades y reconciliar atributos entre esquemas."
     }
-]
+  ]
+}
