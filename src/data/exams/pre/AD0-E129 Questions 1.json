@@ -1,0 +1,670 @@
+[
+    {
+        "id": 1,
+        "question": "Content authors have raised an issue that multiple uploaded images are not processed in DAM and stays in the 'Processing' status. What two steps can assist with analyzing this issue?",
+        "answers": [
+            "Select the asset, click Timeline from the GlobalNav list, and select Workflows to identify blocked/running workflow steps.",
+            "Click Tools > Assets > Workflow > Instances, select the impacted asset workflow, and click on Open History from the action bar to view blocked/running workflow steps.",
+            "Select the asset, click on Workflow from the action bar, and select Workflow status to view the blocked/running workflow steps.",
+            "Click Tools > Workflow > Instances, select the impacted asset workflow, and click on open History from the action bar to view blocked/running workflow steps."
+        ],
+        "correct": [
+            "Select the asset, click Timeline from the GlobalNav list, and select Workflows to identify blocked/running workflow steps.",
+            "Click Tools > Workflow > Instances, select the impacted asset workflow, and click on open History from the action bar to view blocked/running workflow steps."
+        ],
+        "reason": "Select the asset, click Timeline from the GlobalNav list, and select Workflows to identify blocked/running workflow steps., Click Tools > Workflow > Instances, select the impacted asset workflow, and click on open History from the action bar to view blocked/running workflow steps. is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 2,
+        "question": "The out-of-the-box DAM Assets Update workflow is running the Dynamic Media PTIFF generation step. This step is not required in the project and an AEM Assets Developer opens the workflow model and click edit to remove the step. How does AEM handle the me dification on the default workflow?",
+        "answers": [
+            "A safe copy is generated when clicking \"Sync\" after editing the workflow",
+            "A copy of the workflow is created and stored under /conf.",
+            "A runtime model is generated and stored under /etc."
+        ],
+        "correct": [
+            "A copy of the workflow is created and stored under /conf."
+        ],
+        "reason": "A copy of the workflow is created and stored under /conf. is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 3,
+        "question": "A customized Asset language translation workflow was triggered and approved accidentally. The manager of the creative team requests these details for the completed workflow: 1. Workflow initiator 2. Date and time of workflow initiation 3. Approver 4. Date of approval How can an AEM Assets Developer obtain all the requested information?",
+        "answers": [
+            "Hover over the Asset in DAM and click on the 'i' info icon to view details on the asset including the requested information.",
+            "Go to Tools > Assets > Reports, configure a Workflow report with filters COMPLETED, Payload, and click Create to generate a report with all required information.",
+            "Go to Tools > Workflow > Archive, select the Workflow Instance, and click on \"Open History\" to get the required information"
+        ],
+        "correct": [
+            "Go to Tools > Workflow > Archive, select the Workflow Instance, and click on \"Open History\" to get the required information"
+        ],
+        "reason": "Go to Tools > Workflow > Archive, select the Workflow Instance, and click on \"Open History\" to get the required information is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 4,
+        "question": "A customer plans to migrate from AEM Assets on-premise to AEM Assets Cloud Service. The customer uses a modified Update Asset workflow to store a watermark rendition with every uploaded image. How would the AEM Assets Developer migrate this feature to C loud Service?",
+        "answers": [
+            "Create a Processing Profile with Asset Compute.",
+            "Convert the workflow to Cloud Service with AEM Cloud Service SDK.",
+            "Setup an image Profile with Dynamic Media."
+        ],
+        "correct": [
+            "Create a Processing Profile with Asset Compute."
+        ],
+        "reason": "Create a Processing Profile with Asset Compute. is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 5,
+        "question": "A workflow is storing runtime information that is not needed in the AEM project. What would an AEM Assets Developer need to configure to prevent the creation of new runtime information?",
+        "answers": [
+            "Add a Transient workflow process step",
+            "Enable Transient mode in the workflow properties",
+            "Enable Transient workflow history in the OSGi configurations (com.adobe.dam.commons workflow)"
+        ],
+        "correct": [
+            "Enable Transient mode in the workflow properties"
+        ],
+        "reason": "Enable Transient mode in the workflow properties is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 6,
+        "question": "A default AEM workflow has been modified with a new process step. What would the AEM Assets Developer do to make this update available at runtime?",
+        "answers": [
+            "Sync the workflow changes",
+            "Replicate the workflow model",
+            "Publish the workflow page"
+        ],
+        "correct": [
+            "Sync the workflow changes"
+        ],
+        "reason": "Sync the workflow changes is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 7,
+        "question": "A custom workflow created for processing PDF files has failed. Upon investigation it has been identified that the Process Step has failed due to a code bug. After the code bug is resolved, how can the Process Step be re-run on the impacted PDF files without having to re-run all the completed steps of the workflow?",
+        "answers": [
+            "Click on Tools > Workflow > Failures, select the failed PDF payloads, and click on 'Retry Step' from the action bar.",
+            "Select the impacted PDF files in DAM, click Create > Workflow from the action bar, and click on 'Retry Step' when prompted.",
+            "Click on Tools > Workflow > Instances, select the failed PDF payloads, and click on 'Retry Step' from the action bar."
+        ],
+        "correct": [
+            "Click on Tools > Workflow > Failures, select the failed PDF payloads, and click on 'Retry Step' from the action bar."
+        ],
+        "reason": "Click on Tools > Workflow > Failures, select the failed PDF payloads, and click on 'Retry Step' from the action bar. is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 8,
+        "question": "A client wants to send an email notification to a specific group as soon as the title of an asset is changed. What two steps would an AEM Asset developer need to perform? (Choose two.)",
+        "answers": [
+            "Update DAM update asset workflow",
+            "Create a new custom workflow",
+            "Implement an Event Listener",
+            "Create a Workflow launcher"
+        ],
+        "correct": [
+            "Implement an Event Listener",
+            "Create a Workflow launcher"
+        ],
+        "reason": "Implement an Event Listener, Create a Workflow launcher is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 9,
+        "question": "A customer plans to use AEM Assets as a Cloud Service. The customer's marketing department frequently uploads a large number of images which require complex processing. Which two features of AEM Cloud Service address this use case? (Choose two.)",
+        "answers": [
+            "AEM instance auto scaling",
+            "Binary Cloud Storage",
+            "Asset Microservices",
+            "Transient workflows"
+        ],
+        "correct": [
+            "Binary Cloud Storage",
+            "Asset Microservices"
+        ],
+        "reason": "Binary Cloud Storage, Asset Microservices is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 10,
+        "question": "Which workflow is responsible for embedding the metadata to an asset's binary?",
+        "answers": [
+            "DAM Update Asset",
+            "DAM Metadata Writeback",
+            "DAM process sub asset"
+        ],
+        "correct": [
+            "DAM Metadata Writeback"
+        ],
+        "reason": "DAM Metadata Writeback is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 11,
+        "question": "There is a requirement to send a notification to an AEM group post replication of an asset in a workflow. Which step would be configured by the AEM Assets developer?",
+        "answers": [
+            "Send Email Step",
+            "Participant Step",
+            "Process Step"
+        ],
+        "correct": [
+            "Send Email Step"
+        ],
+        "reason": "Send Email Step is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 12,
+        "question": "A new workflow launcher is created using the Workflow launcher console. Which location will be modified in the repository?",
+        "answers": [
+            "/etc/workflow/launcher",
+            "/var/workflow/launcher",
+            "/conf/global/settings/workflow/launcher"
+        ],
+        "correct": [
+            "/conf/global/settings/workflow/launcher"
+        ],
+        "reason": "/conf/global/settings/workflow/launcher is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 13,
+        "question": "An AEM Assets Developer wants to restore an out-of-the-box set of AEM Assets filters. What must to be done to restore default search facets?",
+        "answers": [
+            "Navigate to Search Forms view and use Delete option on Assets Admin Search Rail item.",
+            "Navigate to Search Forms view and use Reset option on Assets Admin Search Rail item.",
+            "Navigate to Search Forms view and use Undo option on Assets Admin Search Rail item."
+        ],
+        "correct": [
+            "Navigate to Search Forms view and use Reset option on Assets Admin Search Rail item."
+        ],
+        "reason": "Navigate to Search Forms view and use Reset option on Assets Admin Search Rail item. is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 14,
+        "question": "Recently, content authors uploaded a large amount of images and videos into AEM Assets. It has become time-consuming for content authors to add tags for each asset manually. What would the AEM Asset developer recommend to the client?",
+        "answers": [
+            "Enable Adobe Sensei",
+            "Enable Smart Tags",
+            "Enable Smart Collections"
+        ],
+        "correct": [
+            "Enable Smart Tags"
+        ],
+        "reason": "Enable Smart Tags is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 15,
+        "question": "The head of the digital content teams has recently discovered that some authors have published assets that were not supposed to be live before a certain date. They seek help in generating a report of all assets published between certain dates. How will this report be generated using Asset Reports?",
+        "answers": [
+            "Select Publish' in the create report wizard, configure the required date range, and click create.",
+            "Select Files' in the create report wizard, configure the required date range, select the 'Published' option in Configure Columns page, and click create.",
+            "Select Activated in the create report wizard, configure the required date range, and click create."
+        ],
+        "correct": [
+            "Select Publish' in the create report wizard, configure the required date range, and click create."
+        ],
+        "reason": "Select Publish' in the create report wizard, configure the required date range, and click create. is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 16,
+        "question": "An AEM Assets Developer customizes AEM Assets filters with some additional fields, and would like to export results of this work using CRX package. Which path needs to be used in CRX package to include AEM Assets filters changes?",
+        "answers": [
+            "/conf/global/settings/dam/search/facets/assets",
+            "/etc/global/settings/dam/search/facets/assets",
+            "/apps/global/settings/dam/search/facets/assets"
+        ],
+        "correct": [
+            "/conf/global/settings/dam/search/facets/assets"
+        ],
+        "reason": "/conf/global/settings/dam/search/facets/assets is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 17,
+        "question": "A financial provider displays asset metadata as description for PDF documents on their website. Because of the legally sensitive nature of these descriptions, content authors may only edit document metadata after completing a special training course. H ow would the AEM Asset Developer address this requirement?",
+        "answers": [
+            "Assign modify permission to users with restriction \"trained = true\".",
+            "Assign modify permission to each of the trained users.",
+            "Assign modify permission to the group of trained users."
+        ],
+        "correct": [
+            "Assign modify permission to the group of trained users."
+        ],
+        "reason": "Assign modify permission to the group of trained users. is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 18,
+        "question": "A company's marketing department uploads PDF documents to AEM Assets. The documents must only be published once approved by users in the reviewer group. How would the AEM Asset Developer configure permissions to meet this requirement?",
+        "answers": [
+            "Allow crx:replicate for each user currently in reviewer group.",
+            "Allow crx:replicate for all approved documents.",
+            "Allow crx:replicate for the reviewer group."
+        ],
+        "correct": [
+            "Allow crx:replicate for the reviewer group."
+        ],
+        "reason": "Allow crx:replicate for the reviewer group. is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 19,
+        "question": "A developer will be working with several assets from diierent folders. They would like to reference them from a single location with the ability to remove and add new assets as needed. What feature would be used?",
+        "answers": [
+            "Lightbox Collection",
+            "Dynamic Collection",
+            "Smart Collection"
+        ],
+        "correct": [
+            "Dynamic Collection"
+        ],
+        "reason": "Dynamic Collection is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 20,
+        "question": "Two assets collections contain similar assets. A manager wants to reference one collection within the other one to keep them linked. What actions are needed to establish the relationship between both collections?",
+        "answers": [
+            "Go to the collection properties and click \"Add Reference\".",
+            "Click the \"To Collection\" action and select the other collection.",
+            "Go to the collection and click \"Add\" to include another collection."
+        ],
+        "correct": [
+            "Go to the collection properties and click \"Add Reference\"."
+        ],
+        "reason": "Go to the collection properties and click \"Add Reference\". is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 21,
+        "question": "A client has on-boarded a new brand with imagery and tags. After some time, they notice that the new brand assets are not being tagged appropriately by AEM Smart Tags. What action would be taken to address this issue?",
+        "answers": [
+            "Configure Smart Content Service with the brand tags.",
+            "Run the Smart Tags Training workflow on a brand folder with manually applied tags.",
+            "Modify the Workflow launcher to include the new brand folders for Smart Tag workflows."
+        ],
+        "correct": [
+            "Run the Smart Tags Training workflow on a brand folder with manually applied tags."
+        ],
+        "reason": "Run the Smart Tags Training workflow on a brand folder with manually applied tags. is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 22,
+        "question": "There is a new requirement to be able to generate reports on assets that are expired, on-demand. What are two steps required to enable Assets reporting for expired assets in AEM? (Choose two.)",
+        "answers": [
+            "Enable the Day CQ DAM Event Recorder service (PID com.day.cq.dam.core.impl.DamEventRecorderImpl) in OSGi config.",
+            "Select Asset expired (ASSET_EXPIRED) Event type in Day CQ DAM Event Recorder service configuration.",
+            "Enable the Day CQ DAM Assets Reporter Service (PID com.day.cq.dam.core.impl.DamAssets ReporterImpl) in OSGi config.",
+            "Add 'dc:expirationDate' metadata property to Tracked Properties in Day CQ DAM Asset Reporter Service configuration."
+        ],
+        "correct": [
+            "Enable the Day CQ DAM Event Recorder service (PID com.day.cq.dam.core.impl.DamEventRecorderImpl) in OSGi config.",
+            "Select Asset expired (ASSET_EXPIRED) Event type in Day CQ DAM Event Recorder service configuration."
+        ],
+        "reason": "Enable the Day CQ DAM Event Recorder service (PID com.day.cq.dam.core.impl.DamEventRecorderImpl) in OSGi config., Select Asset expired (ASSET_EXPIRED) Event type in Day CQ DAM Event Recorder service configuration. is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 23,
+        "question": "An AEM Assets customer has many assets making it diiicult for content authors to browse through them. The client has a requirement to improve asset search by using predefined keywords. How would this be achieved for this use case?",
+        "answers": [
+            "By using Search filters",
+            "By creating a new index for keywords",
+            "By using Tags"
+        ],
+        "correct": [
+            "By using Tags"
+        ],
+        "reason": "By using Tags is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 24,
+        "question": "A developer is required to create a new form for a specific asset type. Which Schema Form would be used to add custom forms for assets of MIME type application/postscript?",
+        "answers": [
+            "application/pdf",
+            "application/x Spin Set",
+            "application/x imageSer"
+        ],
+        "correct": [
+            "application/pdf"
+        ],
+        "reason": "application/pdf is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 25,
+        "question": "A customer is actively applying various metadata profiles on diierent folders and sub folders in AEM Assets. Recently, in one of the subfolders, any newly uploaded asset is not having the default metadata. The old assets in the subfolder still shows c orrect default metadata. What are two possible reasons for this to occur? (Choose two.)",
+        "answers": [
+            "The newly added asset type is not images or videos.",
+            "A diierent Metadata profile on the sub folder is applied.",
+            "The newly added asset type is more than 2GB.",
+            "The Metadata profile is removed."
+        ],
+        "correct": [
+            "A diierent Metadata profile on the sub folder is applied.",
+            "The Metadata profile is removed."
+        ],
+        "reason": "A diierent Metadata profile on the sub folder is applied., The Metadata profile is removed. is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 26,
+        "question": "A developer needs to create a Metadata Schema form and mark some of the metadata properties as mandatory on the properties page. Which Metadata Schema input would be configured as required?",
+        "answers": [
+            "Standard Tags",
+            "Hidden Field",
+            "Dropdown"
+        ],
+        "correct": [
+            "Dropdown"
+        ],
+        "reason": "Dropdown is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 27,
+        "question": "An AEM Assets on-premise customer wants to use a custom namespace to identify their customized properties in Asset metadata. What does an AEM developer need to configure before properties can be stored?",
+        "answers": [
+            "Add the namespace in the CRX Explorer (crx/explorer/nodetypes/index.jsp).",
+            "Configure the DAM Namespace service to allow the new namespace (pid=com.day.cq.dam.core.impl.NamespaceService).",
+            "Nothing, AEM Assets supports custom namespaces by default."
+        ],
+        "correct": [
+            "Nothing, AEM Assets supports custom namespaces by default."
+        ],
+        "reason": "Nothing, AEM Assets supports custom namespaces by default. is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 28,
+        "question": "A developer needs to create a new Metadata Schema form in the assets. Which schema form will be used as a basis to create a new Metadata Schema?",
+        "answers": [
+            "forms",
+            "default",
+            "contentfragment"
+        ],
+        "correct": [
+            "default"
+        ],
+        "reason": "default is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 29,
+        "question": "A customer requests that whenever a region is selected in Asset metadata, a drop-down with countries within that selected region is displayed for users to choose from. What feature can be used to meet this requirement?",
+        "answers": [
+            "A customized workflow to limit the country selection to a valid set.",
+            "Metadata Profiles to ensure the correct countries are shown during editing.",
+            "Cascading Metadata to show/hide options dynamically."
+        ],
+        "correct": [
+            "Cascading Metadata to show/hide options dynamically."
+        ],
+        "reason": "Cascading Metadata to show/hide options dynamically. is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 30,
+        "question": "An AEM Assets developer created a new Content Fragment model and enabled it. However, the newly created Content Fragment model is not visible on the list of available models that can be used to create a new Content Fragment. What needs to be done to make the Content Fragment model visible on the Content Fragment creation list?",
+        "answers": [
+            "Replicate Content Fragment model.",
+            "Configure policies for allowed Content Fragment models.",
+            "Set create permissions on Content Fragment model."
+        ],
+        "correct": [
+            "Configure policies for allowed Content Fragment models."
+        ],
+        "reason": "Configure policies for allowed Content Fragment models. is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 31,
+        "question": "A sports team recently started to publish high quality videos on their website. Soon after launch, users on mobile devices complain about frequent buiering. How would the AEM Assets Developer address this issue using Dynamic Media?",
+        "answers": [
+            "Configure the Dynamic Media CDN cache.",
+            "Enable high quality Progressive streaming.",
+            "Use the Adaptive Video Encoding profile."
+        ],
+        "correct": [
+            "Use the Adaptive Video Encoding profile."
+        ],
+        "reason": "Use the Adaptive Video Encoding profile. is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 32,
+        "question": "A marketing department often receives hundreds of images from photo shoots on a hard drive. The department then asks an AEM developer to import all images into AEM Assets.. This can cause delays if the AEM developer is occupied with other tasks. How wo uld the dependency on the AEM developer be removed?",
+        "answers": [
+            "Install the AEM desktop app.",
+            "Configure Asset Link.",
+            "Mount the hard drive in the AEM repository."
+        ],
+        "correct": [
+            "Install the AEM desktop app."
+        ],
+        "reason": "Install the AEM desktop app. is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 33,
+        "question": "What are two capabilities of Brand Portal? (Choose two.)",
+        "answers": [
+            "Asset Distribution",
+            "Asset Sourcing and Collaboration",
+            "Assets Oiloading",
+            "Asset Optimization"
+        ],
+        "correct": [
+            "Asset Distribution",
+            "Asset Sourcing and Collaboration"
+        ],
+        "reason": "Asset Distribution, Asset Sourcing and Collaboration is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 34,
+        "question": "A company's design department uses Creative Cloud to produce digital assets. Designers collaborate on work-in-progress assets using a network file share and send final assets via e-mail to the AEM content authoring team. The asset production process frequently suiers from versioning issues and delays. How would the AEM Assets Developer optimize the production process?",
+        "answers": [
+            "Enable Adobe Stock integration.",
+            "Train the designers to use AEM Assets.",
+            "Install Adobe Asset Link."
+        ],
+        "correct": [
+            "Install Adobe Asset Link."
+        ],
+        "reason": "Install Adobe Asset Link. is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 35,
+        "question": "A customer wants to upload their original pictures to AEM Assets once, then reuse them in all of their AEM component library. Most of the components have unique output size requirements. Which approach would the AEM Asset Developer recommend?",
+        "answers": [
+            "Apply client side resizing using JavaScript",
+            "Apply asset renditions using Asset Link",
+            "Apply image presets using Dynamic Media"
+        ],
+        "correct": [
+            "Apply image presets using Dynamic Media"
+        ],
+        "reason": "Apply image presets using Dynamic Media is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 36,
+        "question": "A client wants to publish all assets in the DAM to Brand Portal. Which two assets types can be published to Brand Portal? (Choose two.)",
+        "answers": [
+            "Videos",
+            "Images",
+            "SVG",
+            "Content Fragments"
+        ],
+        "correct": [
+            "Videos",
+            "Images"
+        ],
+        "reason": "Videos, Images is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 37,
+        "question": "A Developer is trying to upload a video asset of MIME type video/mp4. AEM Assets is not allowing this asset to be uploaded. What would be a reason?",
+        "answers": [
+            "Asset of MIME type video/mp4 is not allowed to be uploaded",
+            "Asset file size was over the default limit",
+            "MIME type video/mp4 is invalid"
+        ],
+        "correct": [
+            "Asset file size was over the default limit"
+        ],
+        "reason": "Asset file size was over the default limit is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 38,
+        "question": "A developer is uploading diierent types of documents into AEM DAM. After uploading a DOC format asset, they observed that thumbnail was not generated. What could be a reason?",
+        "answers": [
+            "Thumbnail generation feature is not supported for DOC format.",
+            "Thumbnail generation feature is only supported for images and videos.",
+            "Thumbnail generation feature is not supported for documents in general."
+        ],
+        "correct": [
+            "Thumbnail generation feature is only supported for images and videos."
+        ],
+        "reason": "Thumbnail generation feature is only supported for images and videos. is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 39,
+        "question": "A customer would like to share articles as a data structure, that could be easily used as an input for web pages and RSS feeds. Which AEM feature would allow this goal to be achieved?",
+        "answers": [
+            "Fragment Paragraphs",
+            "Experience Fragments",
+            "Content Fragments"
+        ],
+        "correct": [
+            "Content Fragments"
+        ],
+        "reason": "Content Fragments is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 40,
+        "question": "A developer has a requirement to create a new thumbnail specific for an existing asset named /content/dam/hike.jpg. How would this be achieved?",
+        "answers": [
+            "Navigate to the asset details page and tap the Add Rendition icon.",
+            "Modify the OOTB workflow and re run on asset folder.",
+            "New renditions cannot be added for already existing assets."
+        ],
+        "correct": [
+            "Navigate to the asset details page and tap the Add Rendition icon."
+        ],
+        "reason": "Navigate to the asset details page and tap the Add Rendition icon. is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 41,
+        "question": "A developer uploaded an asset test-asset.png under the path /content/dam. Renditions were created OOTB. Where would the renditions be stored in the repository?",
+        "answers": [
+            "/content/dam/test asset.png/jcr.content/renditions",
+            "/content/dam/test asset.png/jcr.content/original/renditions",
+            "/content/dam/test asset.png/renditions"
+        ],
+        "correct": [
+            "/content/dam/test asset.png/jcr.content/renditions"
+        ],
+        "reason": "/content/dam/test asset.png/jcr.content/renditions is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 42,
+        "question": "A customer has multiple articles built using a specific Content Fragment model. They would like to group them against diierent categories, without changing the original model, and have the ability to add or edit articles directly from category view. W hat field type would a developer use to build a nested Content Fragment structure using a new Content Fragment model?",
+        "answers": [
+            "Tree reference",
+            "Fragment references",
+            "Content references"
+        ],
+        "correct": [
+            "Tree reference"
+        ],
+        "reason": "Tree reference is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 43,
+        "question": "A developer has modified the .jpeg schema under default/image. Which assets will have their metadata layouts modified?",
+        "answers": [
+            "All types of assets",
+            "All image assets",
+            "Only for assets with MIME type IMAGE/JPEG"
+        ],
+        "correct": [
+            "Only for assets with MIME type IMAGE/JPEG"
+        ],
+        "reason": "Only for assets with MIME type IMAGE/JPEG is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 44,
+        "question": "An organization exposes their news on the web channel using Content Fragments. There is a new requirement to provide a teaser of each news article, which could be consumed by mobile application. Which Content Fragment feature addresses this use case?",
+        "answers": [
+            "Versions",
+            "Variations",
+            "Live Copy"
+        ],
+        "correct": [
+            "Variations"
+        ],
+        "reason": "Variations is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 45,
+        "question": "An AEM Assets developer attempts to delete a customized default Metadata Schema. What is the result?",
+        "answers": [
+            "Nothing, this action is not allowed.",
+            "The default metadata schema is deleted.",
+            "The default metadata schema is reverted to its default state."
+        ],
+        "correct": [
+            "The default metadata schema is reverted to its default state."
+        ],
+        "reason": "The default metadata schema is reverted to its default state. is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 46,
+        "question": "An Assets Developer wants to edit an existing metadata schema in AEM Assets. Where is the user interface to edit these settings located?",
+        "answers": [
+            "Tools > Metadata > Metadata Schemas",
+            "Tools> Assets > Metadata Schemas",
+            "Tools > General > Metadata Schemas"
+        ],
+        "correct": [
+            "Tools> Assets > Metadata Schemas"
+        ],
+        "reason": "Tools> Assets > Metadata Schemas is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 47,
+        "question": "Which two standard Metadata Schema are supported by AEM Assets out-of-the-box? (Choose two.)",
+        "answers": [
+            "DITA Darwin Information Typing Architecture",
+            "IPTC The International Press Telecommunications Council",
+            "ADMS Asset Description Metadata Schema",
+            "DC Dublin Core"
+        ],
+        "correct": [
+            "IPTC The International Press Telecommunications Council",
+            "DC Dublin Core"
+        ],
+        "reason": "IPTC The International Press Telecommunications Council, DC Dublin Core is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 48,
+        "question": "What are two ways to populate dropdown options for a property in the Metadata Schema Editor? (Choose two.)",
+        "answers": [
+            "Adding options manually in the Settings tab.",
+            "Adding an external URL configured in the Settings tab.",
+            "Referring to a JSON file containing the options.",
+            "Referring to a CSV file containing the options."
+        ],
+        "correct": [
+            "Adding options manually in the Settings tab.",
+            "Referring to a JSON file containing the options."
+        ],
+        "reason": "Adding options manually in the Settings tab., Referring to a JSON file containing the options. is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 49,
+        "question": "A customer wants the options that are available in a specific dropdown to be filtered based on the value of another field in the Asset Metadata form. How should an AEM Assets developer implement this requirement?",
+        "answers": [
+            "Add a \"Choices\" rule in the Settings field for the dropdown property.",
+            "Create a custom field type that filters the drop down values based on the default field type.",
+            "Configure the field to use a JSON file for options for that dropdown."
+        ],
+        "correct": [
+            "Create a custom field type that filters the drop down values based on the default field type."
+        ],
+        "reason": "Create a custom field type that filters the drop down values based on the default field type. is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 50,
+        "question": "An AEM assets developer applies a Metadata Profile to a folder and notices that the profile is only being applied to new assets. How would a developer apply a Metadata Profile to existing assets in a folder?",
+        "answers": [
+            "Run the DAM update asset workflow on the folder.",
+            "Reapply the Metadata Profile to the Assets folder.",
+            "Run the DAM Metadata Profile workflow on the folder."
+        ],
+        "correct": [
+            "Reapply the Metadata Profile to the Assets folder."
+        ],
+        "reason": "Reapply the Metadata Profile to the Assets folder. is the correct option for this AEM Assets scenario."
+    }
+]
