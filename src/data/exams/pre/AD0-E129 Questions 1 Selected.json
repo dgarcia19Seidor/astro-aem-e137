@@ -1,0 +1,134 @@
+[
+    {
+        "id": 12,
+        "question": "A new workflow launcher is created using the Workflow launcher console. Which location will be modified in the repository?",
+        "answers": [
+            "/etc/workflow/launcher",
+            "/var/workflow/launcher",
+            "/conf/global/settings/workflow/launcher"
+        ],
+        "correct": [
+            "/conf/global/settings/workflow/launcher"
+        ],
+        "reason": "/conf/global/settings/workflow/launcher is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 13,
+        "question": "An AEM Assets Developer wants to restore an out-of-the-box set of AEM Assets filters. What must to be done to restore default search facets?",
+        "answers": [
+            "Navigate to Search Forms view and use Delete option on Assets Admin Search Rail item.",
+            "Navigate to Search Forms view and use Reset option on Assets Admin Search Rail item.",
+            "Navigate to Search Forms view and use Undo option on Assets Admin Search Rail item."
+        ],
+        "correct": [
+            "Navigate to Search Forms view and use Reset option on Assets Admin Search Rail item."
+        ],
+        "reason": "Navigate to Search Forms view and use Reset option on Assets Admin Search Rail item. is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 14,
+        "question": "Recently, content authors uploaded a large amount of images and videos into AEM Assets. It has become time-consuming for content authors to add tags for each asset manually. What would the AEM Asset developer recommend to the client?",
+        "answers": [
+            "Enable Adobe Sensei",
+            "Enable Smart Tags",
+            "Enable Smart Collections"
+        ],
+        "correct": [
+            "Enable Smart Tags"
+        ],
+        "reason": "Enable Smart Tags is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 16,
+        "question": "An AEM Assets Developer customizes AEM Assets filters with some additional fields, and would like to export results of this work using CRX package. Which path needs to be used in CRX package to include AEM Assets filters changes?",
+        "answers": [
+            "/conf/global/settings/dam/search/facets/assets",
+            "/etc/global/settings/dam/search/facets/assets",
+            "/apps/global/settings/dam/search/facets/assets"
+        ],
+        "correct": [
+            "/conf/global/settings/dam/search/facets/assets"
+        ],
+        "reason": "/conf/global/settings/dam/search/facets/assets is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 39,
+        "question": "A customer would like to share articles as a data structure, that could be easily used as an input for web pages and RSS feeds. Which AEM feature would allow this goal to be achieved?",
+        "answers": [
+            "Fragment Paragraphs",
+            "Experience Fragments",
+            "Content Fragments"
+        ],
+        "correct": [
+            "Content Fragments"
+        ],
+        "reason": "Content Fragments is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 41,
+        "question": "A developer uploaded an asset test-asset.png under the path /content/dam. Renditions were created OOTB. Where would the renditions be stored in the repository?",
+        "answers": [
+            "/content/dam/test asset.png/jcr.content/renditions",
+            "/content/dam/test asset.png/jcr.content/original/renditions",
+            "/content/dam/test asset.png/renditions"
+        ],
+        "correct": [
+            "/content/dam/test asset.png/jcr.content/renditions"
+        ],
+        "reason": "/content/dam/test asset.png/jcr.content/renditions is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 43,
+        "question": "A developer has modified the .jpeg schema under default/image. Which assets will have their metadata layouts modified?",
+        "answers": [
+            "All types of assets",
+            "All image assets",
+            "Only for assets with MIME type IMAGE/JPEG"
+        ],
+        "correct": [
+            "Only for assets with MIME type IMAGE/JPEG"
+        ],
+        "reason": "Only for assets with MIME type IMAGE/JPEG is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 45,
+        "question": "An AEM Assets developer attempts to delete a customized default Metadata Schema. What is the result?",
+        "answers": [
+            "Nothing, this action is not allowed.",
+            "The default metadata schema is deleted.",
+            "The default metadata schema is reverted to its default state."
+        ],
+        "correct": [
+            "The default metadata schema is reverted to its default state."
+        ],
+        "reason": "The default metadata schema is reverted to its default state. is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 47,
+        "question": "Which two standard Metadata Schema are supported by AEM Assets out-of-the-box? (Choose two.)",
+        "answers": [
+            "DITA Darwin Information Typing Architecture",
+            "IPTC The International Press Telecommunications Council",
+            "ADMS Asset Description Metadata Schema",
+            "DC Dublin Core"
+        ],
+        "correct": [
+            "IPTC The International Press Telecommunications Council",
+            "DC Dublin Core"
+        ],
+        "reason": "IPTC The International Press Telecommunications Council, DC Dublin Core is the correct option for this AEM Assets scenario."
+    },
+    {
+        "id": 50,
+        "question": "An AEM assets developer applies a Metadata Profile to a folder and notices that the profile is only being applied to new assets. How would a developer apply a Metadata Profile to existing assets in a folder?",
+        "answers": [
+            "Run the DAM update asset workflow on the folder.",
+            "Reapply the Metadata Profile to the Assets folder.",
+            "Run the DAM Metadata Profile workflow on the folder."
+        ],
+        "correct": [
+            "Reapply the Metadata Profile to the Assets folder."
+        ],
+        "reason": "Reapply the Metadata Profile to the Assets folder. is the correct option for this AEM Assets scenario."
+    }
+]

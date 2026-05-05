@@ -10,6 +10,7 @@ export type RawQuestion = {
   answers: string[];
   correct: string | string[];
   reason: string;
+  featured?: boolean;
 };
 
 type RawQuestionBank = RawQuestion[] | { questions: RawQuestion[] };
