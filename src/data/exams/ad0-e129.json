@@ -338,7 +338,7 @@
       "Absolute Time Auto Advancer",
       "Process Assembler",
       "Auto Advancer",
-      "Time-Based Workflow Handler"
+      "Auto Advancer"
     ],
     "correct": [
       "Time-Based Workflow Handler"
@@ -697,9 +697,9 @@
       "Create a workflow to auto-tag assets"
     ],
     "correct": [
-      "Save the results in a new Smart Collection."
+      "Click Save in the Assets Console search filter."
     ],
-    "reason": "Smart Collections allow users to save search queries and dynamically update results."
+    "reason": "Click Save in the Assets Console search filter."
   },
   {
     "id": 49,
@@ -834,7 +834,7 @@
       "Create a Workflow launcher"
     ],
     "correct": [
-      "Implement an Event Listener",
+      "Create a new custom workflow",
       "Create a Workflow launcher"
     ],
     "reason": "Implement an Event Listener, Create a Workflow launcher is the correct option for this AEM Assets scenario."
@@ -984,9 +984,9 @@
       "Smart Collection"
     ],
     "correct": [
-      "Dynamic Collection"
+      "Lightbox Collection"
     ],
-    "reason": "Dynamic Collection is the correct option for this AEM Assets scenario."
+    "reason": "Lightbox Collection is the correct option for this AEM Assets scenario."
   },
   {
     "id": 70,
@@ -1297,9 +1297,9 @@
       "Content references"
     ],
     "correct": [
-      "Tree reference"
+      "Fragment references"
     ],
-    "reason": "Tree reference is the correct option for this AEM Assets scenario."
+    "reason": "Fragment references is the correct option for this AEM Assets scenario."
   },
   {
     "id": 93,
@@ -1409,7 +1409,7 @@
       "Run the DAM Metadata Profile workflow on the folder."
     ],
     "correct": [
-      "Reapply the Metadata Profile to the Assets folder."
+      "Run the DAM Metadata Profile workflow on the folder."
     ],
     "reason": "Reapply the Metadata Profile to the Assets folder. is the correct option for this AEM Assets scenario.",
     "featured": true
@@ -1760,9 +1760,9 @@
       "Asset workflows"
     ],
     "correct": [
-      "Asset optimization"
+      "Asset workflows"
     ],
-    "reason": "Asset optimization feature in Adobe Experience Manager Assets enables the creation of asset renditions for different resolutions and formats to ensure optimal display on various devices."
+    "reason": "Asset workflows feature in Adobe Experience Manager Assets enables the creation of asset renditions for different resolutions and formats to ensure optimal display on various devices."
   },
   {
     "id": 126,
