@@ -338,12 +338,12 @@
       "Absolute Time Auto Advancer",
       "Process Assembler",
       "Auto Advancer",
-      "Auto Advancer"
-    ],
-    "correct": [
       "Time-Based Workflow Handler"
     ],
-    "reason": "Time-based workflow handlers allow workflow steps to automatically advance after a defined time interval."
+    "correct": [
+      "Auto Advancer"
+    ],
+    "reason": "Auto Advancer allow workflow steps to automatically advance after a defined time interval."
   },
   {
     "id": 24,
