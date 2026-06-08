@@ -1578,9 +1578,9 @@
       "Content Fragment"
     ],
     "correct": [
-      "Collection"
+      "Content Fragment"
     ],
-    "reason": "Collection in AEM allows users to create c ustom t empla tes and components for managing the presentation of content."
+    "reason": "Content Fragment in AEM allows users to create custom templates and components for managing the presentation of content."
   },
   {
     "id": 113,
