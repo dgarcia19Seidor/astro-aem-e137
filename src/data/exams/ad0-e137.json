@@ -578,8 +578,8 @@
       "Repoinit",
       "OnDeploy Scripts"
     ],
-    "correct": "OnDeploy Scripts",
-    "reason": "Permiten definir namespaces, carpetas y ACLs en un solo archivo ejecutado al desplegar."
+    "correct": "Repoinit",
+    "reason": "Repoinit (Sling Repository Initializer) es la característica que registra namespaces ('register namespace'), crea estructuras de carpetas ('create path'), crea usuarios, grupos y service users ('create user', 'create group', 'create service user') y asigna ACLs ('set ACL'). Se ejecuta al arrancar y es idempotente; es el mecanismo recomendado por Adobe en AEM as a Cloud Service. 'Ensure Authorizable' (ACS Commons, obsoleto) solo gestiona usuarios/grupos y 'OnDeploy Scripts' (ACS Commons) ejecuta scripts Java una sola vez al desplegar, pero no es la feature declarativa para namespaces, carpetas y ACLs."
   },
   {
     "id": 50,
@@ -627,19 +627,19 @@
       "aem_group-aem-site-aem-package.zip",
       "aem-package-1.0.zip"
     ],
-    "correct": "aem-package-aem_group-1.0.zip",
-    "reason": "Formato: <name>-<group>-<version>.zip."
+    "correct": "aem-package-1.0.zip",
+    "reason": "En Package Manager el nombre del fichero ZIP se forma únicamente con <nombre>-<versión>.zip. El grupo no forma parte del nombre del fichero, sino de la carpeta donde se guarda el paquete: /etc/packages/<grupo>/<nombre>-<versión>.zip. La ruta de contenido (filter) nunca aparece en el nombre. Ocurre lo mismo con los paquetes construidos por Maven (filevault-package-maven-plugin): el artefacto es <artifactId>-<version>.zip y el groupId no aparece en el nombre."
   },
   {
     "id": 54,
     "question": "Which config denies XML/JSON for /path2 and /path3?",
     "answers": [
-      "/0001 {/type 'deny' extension '(XML|JSON)' /path '(/path2|JSON/*)' }",
-      "/0001 {/type 'deny' extension [XML|JSON] /path [/path2|/path3/*] }",
-      "/0001 {/type 'deny' extension '[XML|JSON]' /path'[/path2|/path3/*]' }"
+      "/0001 { /type \"deny\" /extension '(XML|JSON)' /path '(/path2|/path3/*)' }",
+      "/0001 { /type \"deny\" /extension [XML|JSON] /path [/path2|/path3/*] }",
+      "/0001 { /type \"deny\" /extension '[XML|JSON]' /path'[/path2|/path3/*]' }"
     ],
-    "correct": "/0001 {/type 'deny' extension [XML|JSON] /path [/path2|/path3/*] }",
-    "reason": "Es la sintaxis correcta del Dispatcher para múltiples extensiones y rutas."
+    "correct": "/0001 { /type \"deny\" /extension '(XML|JSON)' /path '(/path2|/path3/*)' }",
+    "reason": "En dispatcher.any los valores de las propiedades de un filtro se escriben entre comillas dobles cuando son patrones glob simples y entre comillas simples cuando son expresiones regulares (Dispatcher 4.2.0+), usando paréntesis y '|' para la alternancia: '(patrón1|patrón2)'. Los corchetes [XML|JSON] no sirven para este propósito: tanto en glob como en regex, [ ] define una clase de caracteres que coincide con UN solo carácter, no con la palabra 'XML' o 'JSON'; además en la opción 2 los valores van sin comillas y en la opción 3 falta el espacio entre /path y su valor."
   },
   {
     "id": 55,
@@ -740,8 +740,8 @@
       "Use the Query Debugger tool to check the query cost and the index used",
       "Update Lucene index with the missing property"
     ],
-    "correct": "Use the Query Debugger tool to check the query cost and the index used",
-    "reason": "Query Debugger permite analizar el coste de la query y el índice utilizado."
+    "correct": "Use the Explain Query Tool to check the query cost and index used",
+    "reason": "La herramienta Explain Query (Tools > Operations > Diagnosis > Query Performance > Explain Query, o pestaña Queries del Developer Console en AEMaaCS) muestra el plan de ejecución de Oak, el índice utilizado, el coste estimado, el tiempo de ejecución y avisa si la query hará traversal. El Query Builder Debugger (/libs/cq/search/content/querydebug.html) solo ejecuta queries de QueryBuilder y genera el XPath equivalente; no muestra ni el coste ni el índice."
   },
   {
     "id": 64,
@@ -800,8 +800,8 @@
       ".cmp-title--example .cmp-title.cmp-title__text { color: #EB212E; }",
       ".cmp-title--example .cmp-title__text { color: #EB212E; }"
     ],
-    "correct": ".cmp-title--example .cmp-title.cmp-title__text, .cmp-title--example .cmp-title__text",
-    "reason": "Se debe extender la clase base del componente usando modificadores del Style System."
+    "correct": ".cmp-title--example { display: block; background-color: #EB212E; }, .cmp-title--example .cmp-title__text { color: #EB212E; }",
+    "reason": "El Style System inserta la clase del estilo (cmp-title--example, modificador BEM) en el elemento decorador que envuelve al componente, así que el markup del Title de Core Components queda: <div class=\"title cmp-title--example\"> <div class=\"cmp-title\"> <h1 class=\"cmp-title__text\">…</h1> </div> </div>. Las buenas prácticas (BEM de Core Components) son estilar el propio wrapper del modificador (.cmp-title--example { … }) y estilar los elementos hijos usando sus clases BEM como descendientes del modificador (.cmp-title--example .cmp-title__text { … }). No es buena práctica usar selectores de etiqueta como h1, porque el Title puede renderizar h1–h6 según el tipo elegido por el autor. El selector .cmp-title--example .cmp-title.cmp-title__text es incorrecto: al encadenar .cmp-title y .cmp-title__text sin espacio exige que ambas clases estén en el MISMO elemento, pero .cmp-title está en el div contenedor y .cmp-title__text en el heading, por lo que nunca coincide con nada."
   },
   {
     "id": 69,
@@ -871,8 +871,8 @@
       "/apps/<Project Name>/osgiconfig/config.uat.author/<Persistent Identity>.cfg.json in ui.apps project",
       "/apps/<Project Name>/osgiconfig/config.author.author/<Persistent Identity>.json in ui.apps project"
     ],
-    "correct": "/apps/<Project Name>/osgiconfig/config.author.author/<Persistent Identity>.json in ui.apps project",
-    "reason": "La configuración debe coincidir con el runmode específico (author + entorno), ubicada correctamente en el proyecto."
+    "correct": "/apps/<Project Name>/osgiconfig/config.publish.uat/<Persistent Identity>.cfg.json in ui.config project",
+    "reason": "Las configuraciones OSGi por runmode se ubican en carpetas config.<runmode1>.<runmode2>, donde todos los runmodes indicados deben estar activos en la instancia, y desde el AEM Project Archetype (v24+) van en el módulo ui.config (obligatorio en AEM as a Cloud Service, donde ui.apps solo contiene código inmutable) con el nombre <PID>.cfg.json. 'config.author.author' repite el runmode author y no hace ninguna referencia al entorno UAT, y además un fichero .json a secas (sin .cfg) no es un formato de configuración OSGi reconocido por el JCR Installer; 'config.uat.author' en ui.apps coloca la configuración en el módulo equivocado."
   },
   {
     "id": 75,
@@ -953,8 +953,8 @@
       "Add an @Rule annotation before the AemContext declaration",
       "Add a ctx.load().json() method call to get the node data"
     ],
-    "correct": "Replace AemContext with SlingContext with ResourceResolverType of JCR_OAK",
-    "reason": "El test requiere un ResourceResolver adecuado (JCR_OAK) para que el Sling Model funcione correctamente."
+    "correct": "Add a ctx.load().json() method call to get the node data",
+    "reason": "Escenario calcado del BylineImplTest del tutorial WKND (Unit Testing): el test con JUnit 5 y @ExtendWith(AemContextExtension.class) nunca carga contenido en el repositorio mock, así que /content/byline no existe, currentResource() devuelve null, la adaptación al modelo devuelve null y el test falla con NullPointerException. La solución es cargar los datos del nodo con ctx.load().json(\"...\", \"/content\") desde un fichero JSON en src/test/resources. @Rule es una anotación de JUnit 4; con JUnit 5 el ciclo de vida lo gestiona AemContextExtension, así que no aplica. Y AemContext ya extiende SlingContext y funciona por defecto con RESOURCERESOLVER_MOCK, suficiente para probar Sling Models; cambiar a JCR_OAK no arreglaría la ausencia de contenido."
   },
   {
     "id": 82,
@@ -1157,8 +1157,8 @@
       "It makes reuse of client libraries easier.",
       "It allows for optimized load times."
     ],
-    "correct": "It allows a developer to leverage long cache expiration times for these resources., It makes reuse of client libraries easier.",
-    "reason": "El versionado estricto permite aplicar políticas de cache agresivas y facilita la reutilización y control de versiones de las client libraries."
+    "correct": "It allows a developer to leverage long cache expiration times for these resources., It allows for optimized load times.",
+    "reason": "El versionado estricto de client libraries añade un hash (MD5) del contenido a la URL de la clientlib y, en modo estricto, devuelve 404 si el hash no coincide. Como la URL cambia automáticamente cuando cambia el contenido, se puede (1) aplicar tiempos de expiración de caché muy largos en navegador, dispatcher y CDN sin riesgo de servir CSS/JS obsoletos, lo que (2) reduce las peticiones al servidor y optimiza los tiempos de carga de las páginas. El versionado no reduce el tiempo de desarrollo ni facilita la reutilización de client libraries; la reutilización se consigue con categories, dependencies y embed, no con el versionado."
   },
   {
     "id": 99,
