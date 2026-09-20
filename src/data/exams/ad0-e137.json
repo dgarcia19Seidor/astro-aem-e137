@@ -9,7 +9,7 @@
       "Backward slash"
     ],
     "correct": "Forward slash",
-    "reason": "En los ficheros de configuración del Dispatcher, todas las propiedades empiezan por '/', por eso el prefijo correcto es 'Forward slash'."
+    "reason": "En dispatcher.any todos los nombres de propiedad van prefijados con una barra '/' (p. ej. /name, /farms, /cache, /docroot). La documentación lo indica literalmente: \"Property names are prefixed with a forward slash /\"."
   },
   {
     "id": 2,
@@ -21,7 +21,7 @@
       "Using template policies"
     ],
     "correct": "Using editable templates",
-    "reason": "Las editable templates permiten cambiar estructura, componentes y estilos aplicados a muchas páginas sin redeploy, ideal cuando el diseño puede cambiar en cualquier momento."
+    "reason": "Las editable templates permiten al template author modificar la estructura, las políticas y los estilos disponibles desde el editor de plantillas. Las páginas vinculadas pueden beneficiarse de esos cambios sin redeplegar la plantilla. El Style System permite seleccionar clases CSS previamente implementadas: añadir estilos que requieran CSS o JavaScript nuevo sí exige desarrollar y desplegar esas clientlibs. Las template policies forman parte de este enfoque."
   },
   {
     "id": 3,
@@ -32,7 +32,7 @@
       "/apps/example/config.publish.dev"
     ],
     "correct": "/apps/example/config.publish.dev",
-    "reason": "En AEM as a Cloud Service se usan carpetas de configuración específicas por runmode; para previsualizar en el entorno de desarrollo se aplica la configuración en publish.dev."
+    "reason": "En AEM as a Cloud Service el Preview Service es una instancia del tier de publish y hereda su configuración OSGi. La documentación indica que NO se puede declarar una carpeta config.preview como sí se declara config.publish; las carpetas soportadas siguen el patrón /apps/<proyecto>/config.<author|publish>.<dev|stage|prod>. Por tanto, para que la configuración aplique al preview del entorno dev se coloca en config.publish.dev."
   },
   {
     "id": 4,
@@ -43,7 +43,7 @@
       "/hostname"
     ],
     "correct": "/name",
-    "reason": "/name es la propiedad estándar del Dispatcher para definir un nombre único de instancia."
+    "reason": "/name es la propiedad de nivel superior de dispatcher.any que identifica la instancia de Dispatcher. /hostname sí existe, pero dentro de la configuración de un render identifica el servidor AEM al que se envían las peticiones; no nombra la instancia de Dispatcher. /uniquename no es la propiedad prevista para esta función."
   },
   {
     "id": 5,
@@ -54,7 +54,7 @@
       "It selects the first render in the list for the requested category."
     ],
     "correct": "It selects the render with the lowest response score for the requested category.",
-    "reason": "Dispatcher elige el render con la puntuación de respuesta más baja (mejor rendimiento) cuando no hay renderid cookie."
+    "reason": "Sin cookie renderid no aplica sticky connection, así que Dispatcher usa las estadísticas de /statistics: determina la categoría de la petición y elige el render con la puntuación de respuesta MÁS BAJA para esa categoría. La puntuación crece con el tiempo de respuesta y con las penalizaciones por fallo (/unavailablePenalty), por lo que menor puntuación = render más rápido/disponible."
   },
   {
     "id": 6,
@@ -65,7 +65,7 @@
       "Enables integrating external databases for enhanced storage."
     ],
     "correct": "Supports isolation of content, configuration, and user management.",
-    "reason": "La multi-tenencia aísla contenido, configuraciones y usuarios evitando conflictos entre equipos y manteniendo branding consistente."
+    "reason": "La multi-tenencia permite compartir una plataforma AEM organizando por separado el contenido, las configuraciones y los usuarios/permisos de distintos equipos o sitios. Ese aislamiento debe diseñarse mediante rutas, permisos y configuraciones específicas; las configuraciones OSGi no quedan aisladas automáticamente por tenant. El escalado dinámico y la integración con bases de datos externas no son lo que define la multi-tenencia."
   },
   {
     "id": 7,
@@ -77,7 +77,7 @@
       "Identity Provider URL"
     ],
     "correct": "Identity Provider URL",
-    "reason": "Es obligatorio indicar la URL del Identity Provider, ya que AEM necesita saber contra qué IdP autenticar."
+    "reason": "Identity Provider URL indica adónde enviar la solicitud de autenticación SAML y es la respuesta marcada en este banco. Sin embargo, el enunciado es ambiguo: la documentación también indica que dejar vacíos Path o IDP Certificate Alias deshabilita el handler, al igual que IDP URL y Service Provider Entity ID. Por tanto, la URL del IdP no es el único requisito de configuración. Service Ranking únicamente establece la precedencia del servicio."
   },
   {
     "id": 8,
@@ -88,7 +88,7 @@
       "https://localhost:4503/default/receive"
     ],
     "correct": "https://localhost:4503/bin/receive",
-    "reason": "El servlet estándar para recibir replicaciones es /bin/receive sobre HTTPS."
+    "reason": "El endpoint estándar que recibe el contenido replicado en Publish es /bin/receive. Entre las opciones, solo https://localhost:4503/bin/receive tiene esa ruta; /default/bin/receive y /default/receive no son las rutas estándar. El protocolo y el puerto dependen de la configuración del servidor: la respuesta no implica que HTTPS sea obligatorio ni que esté habilitado por defecto en el puerto 4503."
   },
   {
     "id": 9,
@@ -100,7 +100,7 @@
       "Text Components"
     ],
     "correct": "Structure Components",
-    "reason": "Los Structure Components son la base de todas las páginas; bloquearlos garantiza coherencia entre páginas creadas."
+    "reason": "En el modo Structure de una editable template se mantienen bloqueados los componentes que deben ser comunes a sus páginas, como cabecera, pie o navegación. Así, el autor de página no puede modificarlos individualmente. Desbloquear un componente permite editar su contenido en las páginas. El bloqueo depende de su función en la plantilla, no de su tipo: un componente Text o Experience Fragment también puede formar parte de la estructura bloqueada."
   },
   {
     "id": 10,
@@ -115,7 +115,7 @@
       "External Login Module",
       "Sync Handler"
     ],
-    "reason": "El External Login Module autentica contra LDAP y el Sync Handler sincroniza usuarios/grupos."
+    "reason": "La integración LDAP en AEM utiliza LDAP Identity Provider para consultar el directorio, Default Sync Handler para sincronizar usuarios y grupos, y External Login Module para enlazar el proveedor y el sincronizador durante la autenticación. De las opciones ofrecidas, las dos configuraciones correspondientes son External Login Module y Sync Handler. El filtro CSRF y un Authentication Handler genérico no sustituyen esas configuraciones de Oak."
   },
   {
     "id": 11,
@@ -127,7 +127,7 @@
       "ReverseDistributionAgentFactory-reverse.json (name=\"target\", exporter=\"reverse\")"
     ],
     "correct": "ReverseDistributionAgentFactory-reverse.json (name=\"reverse\", exporter=\"reverse\")",
-    "reason": "Reverse distribution requiere un agente 'reverse' tanto en nombre como en exporter."
+    "reason": "La distribución inversa se configura en el destino, por ejemplo Author, con un ReverseDistributionAgentFactory cuyos packageExporter.endpoints apuntan al exporter del origen, por ejemplo Publish. En el origen se necesitan un agente de cola y un exporter asociado a esa cola. La opción marcada usa el nombre reverse, pero no es obligatorio que coincidan el sufijo del fichero, el nombre del agente destino y el del exporter: el ejemplo de Sling usa un agente publish-reverse que consulta el exporter reverse. Con el enunciado abreviado no se puede justificar la respuesta únicamente por la coincidencia de nombres."
   },
   {
     "id": 12,
@@ -143,7 +143,7 @@
       "Apply style system",
       "Assign policies"
     ],
-    "reason": "Las policies controlan qué componentes se permiten y el style system permite escoger estilos/temas."
+    "reason": "Las policies (Content Policies) asignadas en el editor de plantillas definen qué componentes están permitidos en el Layout Container, y el Style System se configura dentro de la policy del componente para definir los estilos/temas que el autor podrá seleccionar desde la barra de herramientas. Initial content, metadata schema y structured content no controlan qué componentes o estilos puede elegir el autor."
   },
   {
     "id": 13,
@@ -155,7 +155,7 @@
       "Use redirect and cookie sharing."
     ],
     "correct": "Use authorization code to generate token at third-party.",
-    "reason": "El authorization code flow es el único seguro para emitir tokens sin exponer datos sensibles."
+    "reason": "El flujo OAuth 2.0 Authorization Code permite que el usuario autorice el acceso y que el tercero intercambie el código por un access token en el endpoint de tokens del servidor de autorización. Después utiliza ese token para solicitar los datos permitidos. No necesita incluir el token ni los datos personales en la URL de redirección. Frente a las otras opciones, proporciona un flujo de autorización definido; compartir cookies o enviar token y datos por query parameters no lo sustituye."
   },
   {
     "id": 14,
@@ -167,7 +167,7 @@
       "@Services"
     ],
     "correct": "@Component",
-    "reason": "@Component registra el servicio en OSGi y permite definir propiedades."
+    "reason": "Con las anotaciones OSGi Declarative Services (org.osgi.service.component.annotations), @Component declara el componente y, mediante su atributo service (p. ej. @Component(service = MyService.class)), lo registra como servicio OSGi; también permite definir properties. @Reference inyecta una dependencia a otro servicio, @Configuration no es una anotación OSGi DS y @Services no existe (en las antiguas anotaciones Felix SCR existía @Service, en singular, y siempre acompañaba a @Component)."
   },
   {
     "id": 15,
@@ -179,7 +179,7 @@
       "Resource locked"
     ],
     "correct": "Resource locked",
-    "reason": "Los cambios no se pueden guardar si el nodo está bloqueado por otro usuario/proceso."
+    "reason": "Un recurso JCR bloqueado puede impedir guardar cambios si la sesión no posee el lock token necesario: el proveedor JCR puede propagar el fallo como PersistenceException al ejecutar ResourceResolver.commit(). Es una causa posible, no un diagnóstico exclusivo de ese mensaje; también pueden fallar los commits por permisos, conflictos, restricciones o problemas de almacenamiento. Dejar un ResourceResolver sin cerrar provoca fugas de recursos, pero por sí solo no identifica la causa de este error."
   },
   {
     "id": 16,
@@ -216,7 +216,7 @@
       "Using CRXDE"
     ],
     "correct": "Managing configs in /apps or /conf",
-    "reason": "En Cloud, las configs son 'config as code', no se tocan en consola web."
+    "reason": "En AEM as a Cloud Service, las configuraciones OSGi se gestionan como código, normalmente en ficheros .cfg.json del módulo ui.config bajo /apps/<proyecto>/osgiconfig/config.<runmode>, y se despliegan mediante Cloud Manager. No se administran editando configMgr en el entorno Cloud. La opción marcada es imprecisa: /conf almacena otras configuraciones de AEM, como políticas y configuraciones contextuales, pero no sustituye las carpetas de instalación de configuraciones OSGi bajo /apps."
   },
   {
     "id": 19,
@@ -227,7 +227,7 @@
       "Immediate application to pages"
     ],
     "correct": "Immediate application to pages",
-    "reason": "Cambios en la estructura de templates se aplican automáticamente a todas las páginas basadas."
+    "reason": "En editable templates, los cambios en la Structure se aplican inmediatamente a todas las páginas ya creadas con ese template (a diferencia del Initial Content, que solo afecta a páginas nuevas). Además, el template debe volver a publicarse para que los cambios se vean en Publish."
   },
   {
     "id": 20,
@@ -238,7 +238,7 @@
       "ClientLibs"
     ],
     "correct": "Design Dialog",
-    "reason": "El Design Dialog permite opciones de estilo configurables por autor."
+    "reason": "El Design Dialog (cq:design_dialog) define las opciones de diseño (design-time) del componente. En editable templates lo edita el template author como policy desde el Template Editor (ej. estilos del Style System, componentes permitidos), y el contenido resultante aplica a todas las páginas del template."
   },
   {
     "id": 21,
@@ -249,7 +249,7 @@
       "OSGi Component Context, Bundle Context"
     ],
     "correct": "OSGi Component Context, Bundle Context",
-    "reason": "AemContext simula el entorno OSGi necesario para tests realistas."
+    "reason": "Según la documentación de wcm.io AEM Mocks, AemContext da acceso a mocks de: OSGi Component Context, OSGi Bundle Context, Sling ResourceResolver, Sling Request/Response y SlingScriptHelper. Además permite registrar servicios OSGi, adapter factories y cargar contenido con el JSON importer."
   },
   {
     "id": 22,
@@ -260,7 +260,7 @@
       "Break complex queries into smaller ones"
     ],
     "correct": "Break complex queries into smaller ones",
-    "reason": "Queries más pequeñas permiten mejor uso de índices y menos carga."
+    "reason": "Dividir una consulta compleja en consultas más pequeñas y combinar sus resultados en código puede mejorar el rendimiento si cada consulta aprovecha índices y restricciones adecuados. No es una mejora garantizada: conviene comprobar el plan de ejecución y medir el coste total, incluida la combinación de resultados. Los logs DEBUG ayudan a diagnosticar qué índice se utiliza, pero activarlos no optimiza por sí mismo la consulta."
   },
   {
     "id": 23,
@@ -272,7 +272,7 @@
       "Authoring optional"
     ],
     "correct": "Rendering must be on author and publish",
-    "reason": "Los componentes deben existir en Publish para renderizar para usuarios."
+    "reason": "Los componentes necesarios para renderizar contenido deben estar desplegados en las instancias que muestran ese contenido, tanto Author como Publish. Publicar una página no despliega automáticamente el código de sus componentes. En AEM as a Cloud Service ese código se entrega mediante el despliegue de la aplicación; en AEM 6.5 también debe distribuirse mediante el mecanismo de despliegue correspondiente."
   },
   {
     "id": 24,
@@ -283,7 +283,7 @@
       "Affects workflow only"
     ],
     "correct": "Consistency across environments",
-    "reason": "Publish debe tener el mismo código que Author para evitar inconsistencias."
+    "reason": "Publish necesita el código y las dependencias de los componentes que renderizan las páginas publicadas. Mantener versiones compatibles en Author y Publish evita que el contenido funcione durante la autoría y falle al publicarse. La activación de una página no sustituye el despliegue de sus componentes; en AEM as a Cloud Service se gestionan mediante el despliegue de la aplicación con Cloud Manager."
   },
   {
     "id": 25,
@@ -294,7 +294,7 @@
       "Enable debug logs"
     ],
     "correct": "Break query",
-    "reason": "Fragmentar consultas complejas mejora la optimización del motor de búsqueda."
+    "reason": "Dividir una consulta compleja en consultas más pequeñas y combinar sus resultados en código puede mejorar el rendimiento cuando permite aprovechar mejor los índices. Debe comprobarse con el plan de ejecución y mediciones, porque ejecutar más consultas también tiene un coste. Activar logs DEBUG es una herramienta de diagnóstico, no una optimización en sí misma."
   },
   {
     "id": 26,
@@ -306,7 +306,7 @@
       "Only prod supported"
     ],
     "correct": "Sandbox environment",
-    "reason": "Los sandbox no siempre envían logs a Splunk configurado por Adobe."
+    "reason": "La documentación de Logging de AEMaaCS lo dice literalmente: \"Log forwarding for sandbox program environments is not supported.\" El reenvío de logs (Splunk, Datadog, Elasticsearch, etc.) solo está disponible en programas de producción, y dentro de ellos tanto en entornos prod como no-prod (dev/stage), por lo que 'Only prod supported' es falso. Un índice mal configurado o un endpoint HEC sin HTTPS serían errores de configuración concretos, pero la limitación documentada por Adobe es la de los programas sandbox."
   },
   {
     "id": 27,
@@ -321,7 +321,7 @@
       "webpack.common.js",
       "clientlib.config.js"
     ],
-    "reason": "webpack genera el bundle y clientlib.config.js lo publica como clientlib en AEM."
+    "reason": "En el flujo de ui.frontend basado en Webpack del AEM Project Archetype, webpack.common.js define los entry points y los bundles de salida. clientlib.config.js configura aem-clientlib-generator para convertir esos archivos en client libraries dentro de ui.apps, indicando sus nombres, categorías y assets. Para añadir una clientlib con un bundle propio se ajustan ambos archivos. Esta respuesta corresponde a ese flujo de construcción, no a cualquier forma de crear clientlibs en AEM."
   },
   {
     "id": 28,
@@ -332,7 +332,7 @@
       "${title}"
     ],
     "correct": "${model.title}",
-    "reason": "HTL expone el Sling Model como 'model'."
+    "reason": "En HTL el Sling Model se instancia con el bloque Use-API: <div data-sly-use.model=\"com.example.models.MyModel\">${model.title}</div>. El identificador 'model' NO lo expone HTL automáticamente: es el nombre que el desarrollador elige tras data-sly-use. y bajo el cual queda disponible el objeto para invocar sus getters (getTitle() -> ${model.title}). ${properties.title} lee directamente la propiedad JCR del recurso actual sin pasar por el Sling Model, y ${title} sería una variable no definida (HTL no expone los campos del modelo en el ámbito global)."
   },
   {
     "id": 29,
@@ -344,7 +344,7 @@
       "head"
     ],
     "correct": "script",
-    "reason": "El snippet crea dinámicamente un <script>."
+    "reason": "document.createElement('script') crea el elemento HTML apropiado para cargar JavaScript. Se puede asignar su src, configurar async y añadirlo al documento, por ejemplo mediante document.head.appendChild(s). Crear elementos meta, head o element no carga un archivo JavaScript de esa manera. La opción script es correcta si el fragmento omitido tiene como finalidad insertar un script."
   },
   {
     "id": 30,
@@ -356,7 +356,7 @@
       "imsOrg='<org>@AdobeOrg'"
     ],
     "correct": "imsOrg='<org>@AdobeOrg' repositoryId='<repo>.adobeaemcloud.com'",
-    "reason": "La configuración válida requiere @AdobeOrg y repositorio *.adobeaemcloud.com."
+    "reason": "La configuración de acceso a assets remotos debe identificar la organización IMS y el repositorio de Assets. Entre las opciones, la combinación imsOrg='<org>@AdobeOrg' y repositoryId='<repo>.adobeaemcloud.com' incluye ambos identificadores con el formato esperado. Indicar solo AdobeOrg, solo imsOrg o únicamente el indicador enabled no constituye una configuración completa. El repositoryId concreto debe corresponder al entorno remoto que se desea utilizar."
   },
   {
     "id": 31,
@@ -368,7 +368,7 @@
       "Check resourceResolver creation"
     ],
     "correct": "Check resourceResolver creation",
-    "reason": "El resourceResolver debe ser de un service user con permisos sobre la CUG."
+    "reason": "Debe revisarse cómo se obtiene el ResourceResolver, porque su identidad y permisos determinan qué contenido puede leer el Sling Model. Si usa el resolver de la petición, el acceso depende del usuario autenticado y de la política CUG aplicable. Para operaciones internas autorizadas puede utilizarse un service user con los permisos necesarios, pero no debe emplearse para exponer contenido protegido a usuarios que no tienen acceso. Revisar el mapeo del servicio también puede ser necesario si el resolver se obtiene con getServiceResourceResolver."
   },
   {
     "id": 32,
@@ -379,7 +379,7 @@
       "Scriptlets"
     ],
     "correct": "Sling Models",
-    "reason": "Los Sling Models desacoplan lógica y presentación."
+    "reason": "Los Sling Models permiten implementar la lógica Java del componente y exponer sus datos a HTL mediante data-sly-use. Así se separa la lógica de negocio de la presentación y se facilita su prueba. HTL admite expresiones y bloques de presentación, pero no scriptlets Java como JSP. La JavaScript Use-API existe; entre las opciones, Sling Models es la solución apropiada para encapsular la lógica de negocio."
   },
   {
     "id": 33,
@@ -390,7 +390,7 @@
       "Non-secret env-specific"
     ],
     "correct": "Secret env-specific",
-    "reason": "Los secretos nunca deben versionarse; deben vivir como variables seguras de entorno."
+    "reason": "En AEM as a Cloud Service, los valores secretos de configuraciones OSGi se referencian con $[secret:NOMBRE] y se proporcionan como variables de tipo secreto del entorno mediante Cloud Manager. El fichero .cfg.json puede versionar la referencia, pero no el valor de la contraseña o clave. $[env:NOMBRE] se utiliza para valores de entorno no secretos. El código de la aplicación también debe evitar registrar el valor resuelto en logs."
   },
   {
     "id": 34,
@@ -401,7 +401,7 @@
       "Specify default analyzer"
     ],
     "correct": "Specify default analyzer",
-    "reason": "El nodo 'default' define el analizador principal del índice."
+    "reason": "Según la documentación de Oak Lucene, en la definición de un índice (oak:QueryIndexDefinition) el nodo 'analyzers' contiene un hijo llamado 'default' que define el analizador usado por defecto tanto al indexar como al consultar (si no se define, Oak usa OakAnalyzer). Bajo 'default' se puede indicar directamente la clase (p. ej. class = org.apache.lucene.analysis.standard.StandardAnalyzer) o componerlo con los subnodos tokenizer, filters y charFilters. Los filtros personalizados son por tanto una parte opcional dentro de 'default', no su finalidad, y las propiedades del índice (includedPaths, evaluatePathRestrictions, indexRules, etc.) se configuran en la raíz de la definición, no bajo 'analyzers'."
   },
   {
     "id": 35,
@@ -413,7 +413,7 @@
       "Created as .xml"
     ],
     "correct": "Non-existing config added",
-    "reason": "Una propiedad inválida en runmode invalida la configuración completa."
+    "reason": "Si el código espera un atributo de configuración y el fichero contiene una clave distinta o mal escrita, ese atributo no recibe el valor previsto y puede conservar su valor por defecto. Una propiedad adicional desconocida no invalida por sí sola toda la configuración ni impide leer las demás. La respuesta marcada presupone ese error de nombre; el enunciado abreviado no permite descartar otras causas, como un PID incorrecto o una configuración no instalada para el runmode activo."
   },
   {
     "id": 36,
@@ -428,7 +428,7 @@
       "Not scalable",
       "Idle server"
     ],
-    "reason": "Cold Standby no escala y mantiene un servidor prácticamente inactivo."
+    "reason": "La documentación de Adobe (Recommended Deployments) lista para TarMK Cold Standby como ventajas: Simplicity, Maintainability, Performance y Failover; y como desventajas: \"Not scalable beyond the limits of the server capacity\", \"One server is idle most of the time\" y que el failover no es automático (hay que detectarlo externamente). Por tanto 'Not scalable' e 'Idle server' son las desventajas. 'Maintenance' (maintainability) y 'Failover capability' son ventajas de esta topología, no desventajas."
   },
   {
     "id": 37,
@@ -439,7 +439,7 @@
       "Cancel inheritance"
     ],
     "correct": "Detach",
-    "reason": "Detach rompe definitivamente el vínculo con el blueprint."
+    "reason": "Detach elimina de forma permanente la relación de live copy con su origen: el contenido deja de recibir sus sincronizaciones y no se puede restablecer ese vínculo mediante Re-enable inheritance. Cancel inheritance suspende la herencia de forma reversible, mientras que Rollout propaga cambios del origen a las live copies."
   },
   {
     "id": 38,
@@ -450,7 +450,7 @@
       "Sequential/parallel"
     ],
     "correct": "Programmatic/human-driven",
-    "reason": "Los workflows pueden ser automáticos o requerir intervención humana."
+    "reason": "La opción Programmatic/human-driven distingue el trabajo automatizado de la intervención humana: los Process steps ejecutan código y los Participant steps asignan trabajo a usuarios. Un mismo workflow puede combinar ambos. Standard/transient describe otra distinción válida, relacionada con la persistencia del historial, y sequential/parallel describe el flujo de ejecución. El enunciado resulta impreciso si no especifica que pregunta por el tipo de ejecución del trabajo."
   },
   {
     "id": 39,
@@ -465,7 +465,7 @@
       "includeDispatcherConfig='y'",
       "aemVersion='6.5.21'"
     ],
-    "reason": "Es recomendable incluir configuración de dispatcher y fijar la versión usada."
+    "reason": "includeDispatcherConfig='y' incluye la configuración de Dispatcher en el proyecto generado. aemVersion debe corresponder a la plataforma objetivo: si se pretende generar un proyecto para AEM 6.5.21, se indica ese valor explícitamente; cloud se utiliza para AEM as a Cloud Service. Las dos opciones marcadas son coherentes para un proyecto dirigido a 6.5.21, pero esa versión no es una recomendación universal y el enunciado abreviado omite la plataforma objetivo."
   },
   {
     "id": 40,
@@ -476,7 +476,7 @@
       "Separate file"
     ],
     "correct": "Use analyzer node in oak:index",
-    "reason": "Los analizadores se definen dentro del nodo del índice."
+    "reason": "En un índice Lucene de Oak, el analizador se define bajo /oak:index/<nombre>/analyzers/default. Se puede indicar la propiedad class de una implementación, como StandardAnalyzer, o componer el analizador con tokenizer y los filtros opcionales charFilters y filters. Si no se personaliza, se utiliza el analizador predeterminado de Oak. Los recursos auxiliares, como listas de palabras vacías, pueden almacenarse como nodos nt:file dentro de la configuración correspondiente."
   },
   {
     "id": 41,
@@ -487,7 +487,7 @@
       "Filter tasks"
     ],
     "correct": "Create tasks",
-    "reason": "El botón crea nuevas tareas manuales."
+    "reason": "El botón 'Create' de la barra del Inbox permite crear manualmente una tarea (Create > Task) indicando título, asignado, contenido asociado, descripción, prioridad y fecha límite; la tarea aparece en el Inbox del usuario asignado. Borrar tareas se hace desde las acciones de cada elemento y el filtrado se realiza con el rail/icono de filtro, no con 'Create'."
   },
   {
     "id": 42,
@@ -498,7 +498,7 @@
       "Contains sample content"
     ],
     "correct": "Contains main functionalities including OSGi services",
-    "reason": "El core contiene lógica de negocio: servlets, servicios, modelos."
+    "reason": "Según la documentación del AEM Project Archetype, el módulo core es el bundle Java que contiene toda la funcionalidad principal: servicios OSGi, listeners, schedulers, así como código Java relacionado con componentes (Sling Models, servlets, filtros). Las configuraciones OSGi por runmode viven en ui.config (carpetas config.<runmode>) y el contenido de ejemplo en ui.content."
   },
   {
     "id": 43,
@@ -1002,7 +1002,7 @@
       "Repoinit statements are atomic and explicit and are skipped if the state is already matching"
     ],
     "correct": "RepoInit allows for explicit control over actions, ensuring safety in content modification, Repoinit creates resources at startup, ensuring reliability in application logic",
-    "reason": "RepoInit ofrece control explícito y ejecución al arranque, garantizando consistencia y seguridad."
+    "reason": "Repoinit permite crear recursos al arrancar y controlar explícitamente las operaciones de inicialización; esos son los dos beneficios seleccionados en este banco. Adobe también documenta que sus instrucciones son atómicas e idempotentes y pueden validarse en un entorno local en tiempo de ejecución. Por tanto, esas otras opciones también son verdaderas y la pregunta es ambigua al exigir solo dos respuestas. La opción que atribuye las operaciones rápidas y atómicas a los paquetes de contenido mutable confunde el mecanismo al que se refiere esa ventaja."
   },
   {
     "id": 86,
@@ -1014,7 +1014,7 @@
       "Check if all OSGi bundles have their Import-Package declarations satisfied"
     ],
     "correct": "Check if the OSGi bundle specifies a version with an Export-Package declaration and a version range with an Import-Package declaration",
-    "reason": "Los paquetes exportados deben incluir versión para cumplir con las buenas prácticas OSGi."
+    "reason": "El analizador bundle-unversioned-packages comprueba que Export-Package declare versiones y que Import-Package use rangos de versiones. Un paquete exportado sin versión explícita tiene la versión OSGi predeterminada 0.0.0; no satisfará una importación cuyo rango la excluya, por ejemplo [1.0,2). Debe comprobarse la versión exportada y su compatibilidad con las importaciones. No toda importación con rango falla: depende de si incluye o no 0.0.0."
   },
   {
     "id": 87,
@@ -1026,7 +1026,7 @@
       "request.setParameterMap(ImmutableMap.<String,Object>builder().put(\"query\", \"jackets\").put(\"category\", \"womens\").build());"
     ],
     "correct": "request.setQueryString(\"query=jackets&category=womens\");, request.setParameterMap(ImmutableMap.<String,Object>builder().put(\"query\", \"jackets\").put(\"category\", \"womens\").build());",
-    "reason": "Para simular parámetros GET en MockSlingHttpServletRequest se deben establecer mediante la query string o el parameter map. Los selectores y requestPathInfo no representan parámetros GET."
+    "reason": "En MockSlingHttpServletRequest (Apache Sling Testing / AEM Mocks) los parámetros de la petición se simulan de dos formas: setQueryString(\"query=jackets&category=womens\") parsea la query string y rellena el mapa de parámetros (getParameter(\"query\") devuelve \"jackets\"), y setParameterMap(Map<String,Object>) establece directamente el mapa de parámetros. setSelectorString solo define los selectores de la URL (p. ej. /page.sel1.sel2.html), que se leen con getRequestPathInfo().getSelectors(), no con getParameter(). setRequestPathInfo(Map) no existe: la información de path (selectors, extension, suffix) se configura sobre el objeto devuelto por getRequestPathInfo() (MockRequestPathInfo) y tampoco representa parámetros GET."
   },
   {
     "id": 88,
@@ -1038,7 +1038,7 @@
       "versionmanager.removeBeforeVersion = 8"
     ],
     "correct": "versionmanager.maxNumberVersions = 8",
-    "reason": "La propiedad maxNumberVersions define el número máximo de versiones que se conservan por página. Al establecerla en 8, se eliminan automáticamente las versiones más antiguas."
+    "reason": "versionmanager.maxNumberVersions limita cuántas versiones recientes se conservan por nodo durante el purgado; las anteriores se eliminan según la política configurada. Establecerlo en 8 conserva hasta las ocho más recientes por este criterio, no elimina exactamente las ocho más antiguas. También influyen versionmanager.purgingEnabled y los límites de edad y retención mínima. La propiedad marcada es la pertinente, pero el enunciado confunde el número que se conserva con el que se desea eliminar."
   },
   {
     "id": 89,
@@ -1050,7 +1050,7 @@
       "Configure cache invalidation for replicated content"
     ],
     "correct": "Enable authentication for replication requests, Define the target publish instance URL",
-    "reason": "Un agente de replicación requiere autenticación y la definición de la URL del destino (publish). No es necesario deshabilitar el dispatcher ni configurar la invalidación de caché como parte obligatoria del agente."
+    "reason": "Al configurar un agente de replicación estándar (author → publish) en /etc/replication/agents.author, la pestaña Transport exige definir la URI del destino (p. ej. http://localhost:4503/bin/receive?sling:authRequestLogin=1) y las credenciales (User/Password) con las que el agente se autentica contra la instancia publish; sin ambos datos el agente no puede conectarse. Deshabilitar la caché del dispatcher durante la replicación no es un paso de configuración del agente, y la invalidación de caché la realiza un agente distinto (Dispatcher Flush agent, normalmente configurado en publish), por lo que no forma parte de la configuración de un agente de replicación hacia publish."
   },
   {
     "id": 90,
@@ -1062,7 +1062,7 @@
       "Modular, reusable, and configurable business logic"
     ],
     "correct": "Modular, reusable, and configurable business logic",
-    "reason": "OSGi permite desarrollar servicios modulares, reutilizables y configurables dinámicamente, facilitando una arquitectura desacoplada y mantenible."
+    "reason": "OSGi es el framework modular sobre el que se construye AEM: permite desarrollar la lógica de negocio como servicios (componentes Declarative Services con @Component/@Reference) empaquetados en bundles que se pueden instalar, actualizar y detener en caliente, reutilizar desde cualquier otro bundle, Sling Model o servlet, y configurar dinámicamente mediante OSGi configurations (.cfg.json) por run mode. La replicación, la caché de páginas (dispatcher) y la extracción de metadatos de assets son funcionalidades concretas de AEM que se implementan usando servicios OSGi, pero no son el beneficio clave del modelo OSGi en sí."
   },
   {
     "id": 91,
@@ -1074,7 +1074,7 @@
       "Adobe App Builder"
     ],
     "correct": "Asset Compute Services",
-    "reason": "En AEM as a Cloud Service, el procesamiento de assets se realiza mediante Asset Compute Services en lugar del workflow tradicional DAM Update Asset."
+    "reason": "En AEM as a Cloud Service, los asset microservices basados en Asset Compute realizan el procesamiento de assets, como la generación de renditions y la extracción de metadatos, que antes se ejecutaba mediante pasos de DAM Update Asset. Ese procesamiento se configura mediante Processing Profiles y puede ampliarse con workers personalizados. No implica trasladar cualquier paso del workflow a Asset Compute: las tareas adicionales pueden requerir workflows de posprocesamiento. De las opciones, Asset Compute Services es la correspondiente al procesamiento descrito."
   },
   {
     "id": 92,
@@ -1194,7 +1194,7 @@
       "The Splunk configured by Adobe Managed Service is only for the production environment."
     ],
     "correct": "The developer is using a sandbox environment.",
-    "reason": "En AEM as a Cloud Service, los logs reenviados a Splunk suelen estar disponibles en entornos específicos (como stage o prod), no necesariamente en sandbox."
+    "reason": "En AEM as a Cloud Service, el reenvío de logs a Splunk no está soportado para entornos de programas sandbox. Esta limitación explica la respuesta marcada; no significa que solo puedan reenviarse logs del entorno de producción, pues los entornos de desarrollo y stage de un programa de producción también pueden configurarse. En un caso real, la ausencia de logs también exige comprobar la configuración del destino y del índice."
   },
   {
     "id": 102,
@@ -1206,7 +1206,7 @@
       "JQL (JCR Query Language) query with node-specific indexing"
     ],
     "correct": "SQL2 query with WHERE clause",
-    "reason": "SQL2 permite filtrar nodos utilizando cláusulas WHERE basadas en propiedades, siendo el método estándar y recomendado en AEM."
+    "reason": "JCR-SQL2 permite recuperar nodos filtrando valores de propiedades mediante una cláusula WHERE y es la respuesta marcada. XPath con filtros de atributos también puede resolver ese caso en Oak, aunque JCR 2.0 lo depreca en favor de los lenguajes de consulta estandarizados. Por ello, el enunciado es ambiguo si solo pregunta qué lenguaje puede filtrar propiedades. Full-text se orienta a búsquedas de texto y JQL no es un lenguaje de consulta estándar de JCR."
   },
   {
     "id": 103,
