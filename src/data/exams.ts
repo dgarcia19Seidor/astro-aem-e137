@@ -1,6 +1,7 @@
 import e137Questions from "./exams/ad0-e137.json";
 import e117Questions from "./exams/ad0-e117.json";
 import e121Questions from "./exams/ad0-e121.json";
+import e124Questions from "./exams/ad0-e124.json";
 import e129Questions from "./exams/ad0-e129.json";
 import e605Questions from "./exams/ad0-e605.json";
 
@@ -54,6 +55,22 @@ export const exams: Exam[] = [
       sampleSize: 50,
     },
     e137Questions as RawQuestionBank,
+  ),
+  createExam(
+    {
+      slug: "ad0-e124",
+      code: "AD0-E124",
+      title: "Adobe Experience Manager DevOps Engineer Expert",
+      level: "DevOps",
+      tags: ["DevOps", "AEM", "Cloud Manager", "Cloud Service", "CI/CD"],
+      audience: "DevOps engineers managing AEM as a Cloud Service pipelines and environments",
+      description:
+        "Ruta preparada para estudiar el examen en cuanto se cargue su banco real.",
+      accentClass:
+        "from-teal-500/20 via-teal-400/10 to-lime-400/10 border-teal-400/30",
+      sampleSize: 50,
+    },
+    e124Questions as RawQuestionBank,
   ),
   createExam(
     {

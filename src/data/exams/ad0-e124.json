@@ -1,0 +1,899 @@
+[
+  {
+    "id": 1,
+    "question": "A DevOps engineer wants to automate routine Cloud Manager work from a build server. Which two tasks can be automated through the Cloud Manager API? (Choose two.)",
+    "answers": [
+      "Changing an OSGi configuration through the Web Console",
+      "Editing the Dispatcher cache rules on a running environment",
+      "Starting a pipeline execution for a program",
+      "Reading the current status of an environment"
+    ],
+    "correct": [
+      "Starting a pipeline execution for a program",
+      "Reading the current status of an environment"
+    ],
+    "reason": "La Cloud Manager API publica el estado de los entornos, por lo que un llamador externo puede consultarlo (polling) y actuar según el resultado, p. ej. esperar a que un entorno esté disponible; además permite iniciar la ejecución de un pipeline de un programa. Cambiar una configuración OSGi desde la Web Console o editar reglas de caché del Dispatcher en un entorno en ejecución no se hace vía API: en AEM as a Cloud Service esos cambios se versionan en el código y se despliegan mediante pipeline."
+  },
+  {
+    "id": 2,
+    "question": "A DevOps engineer needs to review the performance metrics that Cloud Manager produces for a deployment. Where are those metrics reported?",
+    "answers": [
+      "The Adobe Developer Console project, which reports the calls made by an integration",
+      "The performance testing gate, which reports metrics for each execution",
+      "The AEM Operations Dashboard on the author instance, which reports instance health",
+      "The replication agent queues on author, which report the pending activation backlog"
+    ],
+    "correct": "The performance testing gate, which reports metrics for each execution",
+    "reason": "Cloud Manager ejecuta los quality gates dentro del pipeline (code quality, security y performance testing). El paso de performance testing genera y muestra las métricas de rendimiento de cada ejecución del pipeline. La Developer Console solo gestiona proyectos/credenciales de integración, el Operations Dashboard es una herramienta de AEM para salud de la instancia y las colas de replicación no informan del rendimiento del despliegue."
+  },
+  {
+    "id": 3,
+    "question": "A project team is deciding how OSGi configuration should be managed for its AEM as a Cloud Service environments. Which two practices should be followed? (Choose two.)",
+    "answers": [
+      "Commit each environment's secret values so every tier resolves the same setting",
+      "Scope configurations with run-mode folders such as config.author",
+      "Keep configurations in the project under ui.config and deploy them by pipeline",
+      "Set environment-specific values in the Web Console on each author and publish instance"
+    ],
+    "correct": [
+      "Scope configurations with run-mode folders such as config.author",
+      "Keep configurations in the project under ui.config and deploy them by pipeline"
+    ],
+    "reason": "En AEM as a Cloud Service la configuración OSGi se versiona en el proyecto (módulo ui.config, carpetas /apps/.../osgiconfig) y se despliega mediante pipeline. Se acota por run mode con carpetas como config.author, config.publish, config.dev, etc. Los secretos no deben commitearse: se usan variables de entorno/secretos de Cloud Manager con $[secret:NAME] y $[env:NAME]. Cambiar valores en la Web Console no es persistente ni reproducible en Cloud Service, ya que las instancias son efímeras."
+  },
+  {
+    "id": 4,
+    "question": "A DevOps engineer runs AEM 6.5 on virtual machines in a private cloud. Triggers on the load balancer already detect when load crosses the agreed threshold, and an automated script must then add a publish instance to the architecture. Which sequence should the script perform?",
+    "answers": [
+      "Clone a running publish instance and its Dispatcher onto a new virtual machine\nAdd a reverse replication agent on the new publish instance\nFlush the Dispatcher cache\nConfirm the author instance is reachable\nAdd the pair to the load balancer",
+      "Install AEM 6.5 on a new virtual machine\nAdd a replication agent pointing at the new instance\nTree activate the site from author to the new instance\nAttach a Dispatcher\nAdd the pair to the load balancer",
+      "Take a publish instance out of the load balancer and stop its virtual machine\nClone the stopped machine, including its Dispatcher\nStart both publish instances and wait for a ready state\nAdd a replication agent pointing at the new instance\nReturn both pairs to the load balancer",
+      "Add a replication agent on author for the new instance\nClone a running publish instance and its Dispatcher onto a new virtual machine\nPoint the replication agent at the cloned instance\nCheck the health of the new instance and Dispatcher\nAdd the pair to the load balancer"
+    ],
+    "correct": "Add a replication agent on author for the new instance\nClone a running publish instance and its Dispatcher onto a new virtual machine\nPoint the replication agent at the cloned instance\nCheck the health of the new instance and Dispatcher\nAdd the pair to the load balancer",
+    "reason": "Clonar una pareja Publish+Dispatcher en ejecución trae consigo el contenido existente, así que solo los cambios posteriores tienen que replicarse: se añade en author el agente de replicación para la nueva instancia, se clona, se apunta el agente al clon, se comprueba la salud de la nueva instancia y del Dispatcher y solo entonces se añade la pareja al balanceador, evitando enviar tráfico a una instancia que no está lista. Retirar del balanceador una instancia que está sirviendo para clonarla reduce la capacidad justo cuando la carga ya ha superado el umbral, lo contrario de lo que pide el trigger; instalar desde cero obliga a un tree activation lento."
+  },
+  {
+    "id": 5,
+    "question": "Verbose logging must be enabled for one specific OSGi service on an AEM instance. What is the appropriate way to do this?",
+    "answers": [
+      "Edit the log4j.xml file in the AEM installation directory and restart the instance afterward",
+      "Add a debug property to the service's component node in CRXDE Lite",
+      "Raise the log level for the service's package in the Sling Log Support console",
+      "Raise the log level in the Dispatcher farm file dispatcher.any"
+    ],
+    "correct": "Raise the log level for the service's package in the Sling Log Support console",
+    "reason": "En AEM el logging se configura con Apache Sling Logging: en la consola OSGi (Sling Log Support / Apache Sling Logging Logger Configuration) se crea un logger para el paquete o clase del servicio con el nivel deseado (p. ej. DEBUG) y un fichero de log, sin reiniciar. AEM no usa un log4j.xml en el directorio de instalación, añadir propiedades 'debug' a un nodo de componente en CRXDE Lite no activa el logging, y dispatcher.any solo configura el Dispatcher, no servicios OSGi."
+  },
+  {
+    "id": 6,
+    "question": "An environment shows sustained memory growth after a deployment. What is the most appropriate first step?",
+    "answers": [
+      "Broaden the Dispatcher cache rules so fewer requests reach publish, then measure again",
+      "Restore the previous OSGi configuration through a config pipeline so the memory profile returns",
+      "Add publish instances so the memory demand is spread across a wider tier",
+      "Correlate the memory growth with the errors and queries recorded in aemerror after the deployment"
+    ],
+    "correct": "Correlate the memory growth with the errors and queries recorded in aemerror after the deployment",
+    "reason": "Antes de cambiar nada hay que diagnosticar la causa. El primer paso es correlacionar el crecimiento de memoria con lo que registran los logs (aemerror: errores, excepciones, consultas lentas o sin índice, etc.) tras el despliegue. Ampliar la caché del Dispatcher, revertir configuración o añadir instancias son acciones que tratan síntomas o suponen una causa sin evidencia; un leak o una consulta costosa seguiría presente en cada instancia adicional."
+  },
+  {
+    "id": 7,
+    "question": "A DevOps engineer is reviewing the OSGi configuration of an AEM instance as part of a performance tuning exercise. Which three configurations are relevant to that review? (Choose three.)",
+    "answers": [
+      "Replication agents used to flush the Dispatcher cache",
+      "Apache Jackrabbit Query Engine configuration",
+      "Apache Sling Resource Resolver Factory",
+      "Oak repository cache configuration"
+    ],
+    "correct": [
+      "Apache Jackrabbit Query Engine configuration",
+      "Apache Sling Resource Resolver Factory",
+      "Oak repository cache configuration"
+    ],
+    "reason": "En un ejercicio de tuning de rendimiento se revisan las configuraciones OSGi que afectan directamente al rendimiento de la instancia: Apache Jackrabbit Query Engine (límites y comportamiento de las consultas, p. ej. traversals), Apache Sling Resource Resolver Factory (mapeos y resolución de recursos, con impacto en cada petición) y la configuración de cachés de Oak (segment/document cache, etc.). Los agentes de replicación que hacen flush del Dispatcher no son una configuración OSGi de rendimiento de la instancia: son agentes de replicación que se guardan como contenido, y su función es invalidar caché, no ajustar el rendimiento."
+  },
+  {
+    "id": 8,
+    "question": "A user who holds administrator rights inside AEM is unable to submit a support request. What should be checked first?",
+    "answers": [
+      "Whether the case can instead be raised from the program in Cloud Manager",
+      "Whether the user's replication rights on the author instance were revoked",
+      "Whether the user holds the support administrator role in the Admin Console",
+      "Whether restarting the instance restores the user's administrative rights"
+    ],
+    "correct": "Whether the user holds the support administrator role in the Admin Console",
+    "reason": "Los permisos dentro de AEM (grupos administrators, ACLs, replicación) son independientes de los derechos para abrir casos de soporte con Adobe. Esa capacidad se concede en la Adobe Admin Console asignando al usuario el rol de administrador de soporte (Support Administrator) de la organización. Por eso lo primero es verificar ese rol; reiniciar la instancia o revisar permisos de replicación no afecta a la creación de casos, y Cloud Manager no es el canal para abrirlos."
+  },
+  {
+    "id": 9,
+    "question": "After a full-stack deployment, an OSGi bundle on the author tier repeatedly stops and starts, and the components it declares never reach an active state. What is the most likely cause?",
+    "answers": [
+      "A Dispatcher filter rule is rejecting the servlet paths that the bundle registers",
+      "A mandatory service reference the bundle declares is never satisfied",
+      "The all package installs ui.content ahead of the code in ui.apps",
+      "The component was given a single configuration where it expects a factory PID"
+    ],
+    "correct": "A mandatory service reference the bundle declares is never satisfied",
+    "reason": "Si los componentes declarativos (DS) de un bundle nunca llegan al estado active, lo más probable es que tengan una referencia de servicio obligatoria (cardinalidad 1..1 o 1..n) que nunca se satisface, por lo que quedan en estado 'unsatisfied' y se activan/desactivan sin llegar a arrancar. Un filtro del Dispatcher solo afecta a las peticiones HTTP que llegan a publish, no al ciclo de vida OSGi; el orden de instalación de ui.content y ui.apps no impide que se activen los componentes; y una configuración con PID equivocado deja el componente sin configurar (si la requiere), pero no provoca ese comportamiento cíclico de parada y arranque."
+  },
+  {
+    "id": 10,
+    "question": "A non-production deployment pipeline for an AEM as a Cloud Service program terminates prematurely. The DevOps engineer notes the following:\n\nThe pipeline status is ERROR.\nThe execution stopped at the image build.\nThe previous execution of the pipeline completed successfully.\nThe log file contains the following output:\n\nINFO [Apache Sling Repository Startup Thread #1] org.apache.sling.jcr.repoinit.impl.GroupMembershipVisitor Adding members '[corp-comm-authors]' to group 'contributor'\n\nERROR [Apache Sling Repository Startup Thread #1] com.adobe.granite.repository.impl.SlingRepositoryManager Exception in a SlingRepositoryInitializer, SlingRepository service registration aborted\n\njava.lang.RuntimeException: contributor is not a group\n\nSEVERE: /libs/cq/gui/components/workflow/editor/clientlibs/workflow.js:8033: ERROR - This language feature is only supported for ECMASCRIPT6 mode or better: const declaration.\n\nWARN [Apache Sling Repository Startup Thread #1] org.apache.jackrabbit.oak.query.ast.SelectorImpl The query read or traversed more than 100000 nodes. To avoid affecting other tasks, processing was stopped.\n\nWhich two steps should the DevOps engineer take next? (Choose two.)",
+    "answers": [
+      "Trigger the pipeline again and confirm whether it stops at the same step with the same log output",
+      "Inspect the most recent commits on the pipeline's branch for changes to the repoinit configuration",
+      "Add an oak:index definition for the sling:vanityPath property",
+      "Point the non-production pipeline at the stable branch and rebuild to restore the environment",
+      "File a ticket for the SEVERE ECMASCRIPT error and assign it to a front-end developer"
+    ],
+    "correct": [
+      "Trigger the pipeline again and confirm whether it stops at the same step with the same log output",
+      "Inspect the most recent commits on the pipeline's branch for changes to the repoinit configuration"
+    ],
+    "reason": "El error real es el ERROR de repoinit: 'contributor is not a group' hace que falle el SlingRepositoryInitializer y aborta el arranque durante la construcción de la imagen. Como la ejecución anterior fue correcta, lo probable es que un cambio reciente en el script repoinit (p. ej. añadir miembros a 'contributor' tratándolo como grupo cuando es un usuario o no existe) lo haya provocado. Los pasos lógicos son revisar los últimos commits de la rama en busca de cambios en repoinit y relanzar el pipeline para confirmar que el fallo es reproducible en el mismo paso y con el mismo log. El SEVERE de ECMASCRIPT y el WARN de más de 100000 nodos son ruido habitual que aparece también en ejecuciones correctas y no causan el fallo, por lo que crear un índice o abrir un ticket front-end no procede. Apuntar a otra rama solo esquiva el problema sin diagnosticarlo."
+  },
+  {
+    "id": 11,
+    "question": "A team wants to take the manual steps out of its release process by scripting against the Cloud Manager API. Which two tasks can be automated that way? (Choose two.)",
+    "answers": [
+      "Editing the Dispatcher cache rules that the deployed web tier serves from",
+      "Retrieving the status of an environment and of its recent executions",
+      "Starting a pipeline execution for a program from a script or a build job",
+      "Changing OSGi configuration values on the production environment at runtime"
+    ],
+    "correct": [
+      "Retrieving the status of an environment and of its recent executions",
+      "Starting a pipeline execution for a program from a script or a build job"
+    ],
+    "reason": "La Cloud Manager API permite automatizar la gestión de programas, entornos y pipelines: iniciar una ejecución de pipeline desde un script o job de build y consultar el estado de un entorno y de sus ejecuciones recientes. Las reglas de caché del Dispatcher y los valores OSGi no se cambian por API en runtime: en AEM as a Cloud Service forman parte del código (configuración del Dispatcher y módulo ui.config) y se despliegan mediante pipeline."
+  },
+  {
+    "id": 12,
+    "question": "An environment in Cloud Manager has been reporting an updating status for far longer than a deployment to it usually takes. What should be reviewed first?",
+    "answers": [
+      "The health check responses of the Dispatcher farm on the publish tier",
+      "The output of the last execution that deployed to the environment successfully",
+      "The logs of the pipeline execution currently running against that environment",
+      "The product profile assignments held by the users of the program"
+    ],
+    "correct": "The logs of the pipeline execution currently running against that environment",
+    "reason": "El estado 'updating' de un entorno lo provoca la ejecución de pipeline que se está desplegando en él. Si dura más de lo normal, lo primero es revisar los logs de esa ejecución en curso para ver en qué paso está atascada o fallando. La ejecución anterior exitosa no informa de lo que ocurre ahora, los health checks del Dispatcher son secundarios mientras el despliegue no termine, y los perfiles de producto de los usuarios no influyen en el estado del entorno."
+  },
+  {
+    "id": 13,
+    "question": "An OSGi configuration change has just been deployed and has to be confirmed as effective straight away. What is the most appropriate way to validate it?",
+    "answers": [
+      "Flush the Dispatcher cache and reload a page that uses the configured service",
+      "Set the value in the OSGi Web Console and save it there if it appears to be missing",
+      "Compare the committed ui.config file against its previous revision in Git",
+      "Read the configuration's effective values in the OSGi console and check the aemerror log"
+    ],
+    "correct": "Read the configuration's effective values in the OSGi console and check the aemerror log",
+    "reason": "Para confirmar que un cambio de configuración OSGi está activo hay que comprobar el estado real de la instancia: leer los valores efectivos de la configuración en la consola OSGi (Configuration Status / la config del componente) y revisar el log aemerror por errores o avisos del servicio afectado. Comparar el fichero en Git solo demuestra lo que se commiteó, no lo que está aplicado; vaciar la caché del Dispatcher y recargar una página es indirecto e impreciso; y modificar el valor a mano en la Web Console no es persistente en Cloud Service ni valida el despliegue."
+  },
+  {
+    "id": 14,
+    "question": "A DevOps engineer is migrating an AEM 6.2 instance with a large content repository to AEM as a Cloud Service, and must prepare the source instance so its content can be moved with the Content Transfer Tool. Which two actions are required? (Choose two.)",
+    "answers": [
+      "Restructure the application code into the mutable and immutable module layout",
+      "Review the total repository and index size before the extraction is started",
+      "Bring the source instance up to a release the Content Transfer Tool supports",
+      "Convert the Dispatcher configuration with Dispatcher Converter before extraction"
+    ],
+    "correct": [
+      "Review the total repository and index size before the extraction is started",
+      "Bring the source instance up to a release the Content Transfer Tool supports"
+    ],
+    "reason": "El Content Transfer Tool solo admite instancias de origen en versiones soportadas (AEM 6.3 o superior), por lo que una instancia 6.2 debe actualizarse primero a una versión compatible. Además, con un repositorio grande hay que revisar el tamaño total del repositorio y de los índices antes de iniciar la extracción, ya que condiciona el espacio en disco necesario y los límites de la transferencia. Reestructurar el código en módulos mutables/inmutables y convertir la configuración del Dispatcher con Dispatcher Converter son tareas de migración de código y configuración, independientes de la transferencia de contenido."
+  },
+  {
+    "id": 15,
+    "question": "A team wants to reduce the number of failed and unpredictable deployments to its AEM as a Cloud Service environments. Which two practices improve deployment reliability? (Choose two.)",
+    "answers": [
+      "Use a full-stack pipeline for every change, including front-end-only updates",
+      "Run automated integration tests in the pipeline before the change is promoted",
+      "Require review of a pull request before it merges into the branch the pipeline builds",
+      "Apply configuration changes directly through the OSGi Web Console on each environment as needed"
+    ],
+    "correct": [
+      "Run automated integration tests in the pipeline before the change is promoted",
+      "Require review of a pull request before it merges into the branch the pipeline builds"
+    ],
+    "reason": "La fiabilidad de los despliegues mejora detectando problemas antes de promover el cambio: ejecutar pruebas de integración automatizadas dentro del pipeline y exigir revisión de pull request antes de fusionar en la rama que construye el pipeline. Usar un full-stack pipeline para cada cambio, incluso los solo de front-end, es más lento y arriesgado (para eso existen los front-end pipelines). Cambiar configuración a mano en la Web Console de cada entorno no es reproducible ni persistente en Cloud Service y genera entornos impredecibles."
+  },
+  {
+    "id": 16,
+    "question": "A global organization needs centralized identity governance while allowing each business unit to administer its own users. What is the most appropriate configuration strategy?",
+    "answers": [
+      "Add users to the required groups directly on each AEM instance as access is requested",
+      "Create a separate identity organization for each business unit and synchronize users between them",
+      "Claim the directory for federated sign-on and scope product profiles to each unit's role",
+      "Grant each business unit administrator system administrator rights in the organization"
+    ],
+    "correct": "Claim the directory for federated sign-on and scope product profiles to each unit's role",
+    "reason": "La gobernanza centralizada se consigue en la Adobe Admin Console reclamando (claim) el dominio/directorio y usando inicio de sesión federado (SSO) con el IdP corporativo, y delegando la administración con perfiles de producto acotados al rol de cada unidad de negocio (con administradores de perfil de producto por unidad). Añadir usuarios a grupos en cada instancia AEM rompe el control centralizado; crear una organización por unidad y sincronizar usuarios duplica identidades y complica la gobernanza; y dar a cada administrador de unidad derechos de administrador de sistema concede más privilegios de los necesarios."
+  },
+  {
+    "id": 17,
+    "question": "A Cloud Manager pipeline execution fails at the build step because a dependency cannot be resolved. What is the best first action?",
+    "answers": [
+      "Install the missing bundle through the OSGi Web Console on each environment so the pipeline resolves it",
+      "Install the missing artifact into the Maven repository on the developer's machine and rerun the pipeline",
+      "Embed the missing JAR in the ui.apps package so it installs with the immutable component code",
+      "Update the module's pom.xml so the dependency is declared with a version the build can resolve"
+    ],
+    "correct": "Update the module's pom.xml so the dependency is declared with a version the build can resolve",
+    "reason": "Un fallo de resolución de dependencias en el paso de build de Cloud Manager es un problema del build Maven, así que lo primero es corregir el pom.xml del módulo para declarar la dependencia con un groupId/artifactId/versión que el build pueda resolver desde repositorios accesibles para Cloud Manager. Instalar el bundle en la Web Console de los entornos no afecta a la compilación; instalar el artefacto en el repositorio Maven local del desarrollador no lo hace disponible para el build de Cloud Manager, que se ejecuta en su propio entorno; y embeber el JAR en ui.apps no soluciona la resolución en tiempo de compilación."
+  },
+  {
+    "id": 18,
+    "question": "A company wants its employees to sign in to AEM with their existing corporate credentials. Which integration must be configured?",
+    "answers": [
+      "A Maven profile in the project that carries the corporate directory credentials",
+      "A SAML identity provider bound to a directory claimed in the Admin Console",
+      "A Dispatcher filter rule that forwards the authorization header through to publish",
+      "An OSGi factory configuration for an authentication handler on each instance"
+    ],
+    "correct": "A SAML identity provider bound to a directory claimed in the Admin Console",
+    "reason": "En AEM as a Cloud Service el acceso de los empleados se gestiona con Adobe IMS: se reclama el dominio/directorio en la Admin Console y se configura el inicio de sesión federado con el proveedor de identidad corporativo mediante SAML, de modo que se usan las credenciales corporativas existentes. Un perfil Maven con credenciales no es un mecanismo de autenticación de usuarios; una regla de filtro del Dispatcher no autentica; y una configuración OSGi de authentication handler por instancia no es el enfoque para el acceso de empleados en Cloud Service."
+  },
+  {
+    "id": 19,
+    "question": "A DevOps engineer needs to analyze response performance for AEM. Log files can be extracted from the environment. Which log file should be analyzed?",
+    "answers": [
+      "access.log",
+      "error.log",
+      "replication.log",
+      "request.log"
+    ],
+    "correct": "request.log",
+    "reason": "El fichero request.log registra cada petición junto con su respuesta y el tiempo que ha tardado en servirse (en ms), por lo que es el adecuado para analizar el rendimiento de las respuestas. access.log solo registra los accesos HTTP, error.log recoge errores y avisos de la aplicación, y replication.log trata la actividad de replicación."
+  },
+  {
+    "id": 20,
+    "question": "A team is preparing an existing AEM project so a full-stack pipeline can build and deploy it. Which two files does that work most commonly involve? (Choose two.)",
+    "answers": [
+      "The reactor pom.xml that assembles the all package",
+      "admin.config exported from the Admin Console",
+      "The crx-quickstart start script on the target instance",
+      "The Dispatcher configuration in the project's web-tier module"
+    ],
+    "correct": [
+      "The reactor pom.xml that assembles the all package",
+      "The Dispatcher configuration in the project's web-tier module"
+    ],
+    "reason": "Un full-stack pipeline lleva los bundles de back-end, el build de front-end y la configuración: el pom.xml reactor (raíz) ensambla el paquete 'all' con los módulos del proyecto, y la configuración del Dispatcher del módulo de la capa web es la parte del payload que da forma a esa capa. admin.config no es un artefacto que consuma el pipeline, y el script de arranque de crx-quickstart pertenece a instancias on-prem, no a Cloud Service."
+  },
+  {
+    "id": 21,
+    "question": "A team wants production deployments to fail early rather than degrade the environment after release. Which two pipeline configurations support that? (Choose two.)",
+    "answers": [
+      "Defining the performance testing criteria a production execution must meet",
+      "Removing the approval step so deployments are never held up",
+      "Lowering the code coverage requirement until every execution passes",
+      "Keeping security testing in the gate sequence for every production run"
+    ],
+    "correct": [
+      "Defining the performance testing criteria a production execution must meet",
+      "Keeping security testing in the gate sequence for every production run"
+    ],
+    "reason": "Para que un despliegue a producción falle pronto hay que reforzar los quality gates del pipeline: definir los criterios de performance testing que debe cumplir la ejecución y mantener el security testing en la secuencia de gates de cada ejecución. Eliminar el paso de aprobación quita un control, y bajar el requisito de cobertura de código hasta que todo pase debilita el gate en lugar de detectar problemas antes de la release."
+  },
+  {
+    "id": 22,
+    "question": "A form POST works correctly on the publish and dispatcher tiers but fails on the author instance. The form is a standard POST with no JavaScript dependency, and the developer reproduces the same behavior with the wcmmode=disabled parameter and in a browser incognito window. Which two items should the DevOps engineer research? (Choose two.)",
+    "answers": [
+      "Adobe Sling Request Parameter Handling",
+      "Adobe WCM Debug Filter",
+      "Adobe Granite HTML Library Manager",
+      "Adobe Granite CSRF Filter",
+      "Apache Sling Referrer Filter"
+    ],
+    "correct": [
+      "Adobe Granite CSRF Filter",
+      "Apache Sling Referrer Filter"
+    ],
+    "reason": "En la instancia author, los POST están protegidos por filtros de seguridad que pueden rechazar una petición de formulario estándar: el Adobe Granite CSRF Filter (exige un token CSRF en las peticiones que modifican datos, y un formulario sin JavaScript no lo envía) y el Apache Sling Referrer Filter (valida la cabecera Referer/Host permitidos en los POST). Que el fallo se reproduzca con wcmmode=disabled y en incógnito descarta problemas del modo de edición y de la caché o cookies del navegador. Request Parameter Handling, WCM Debug Filter y HTML Library Manager no bloquean peticiones POST."
+  },
+  {
+    "id": 23,
+    "question": "A project's OSGi configuration has to differ between the author and publish tiers. Which two configuration folders belong under ui.config for that? (Choose two.)",
+    "answers": [
+      "config.author for values scoped to the author tier",
+      "dispatcher.any placed inside the ui.config module",
+      "config.publish for values scoped to the publish tier",
+      "admin.config exported from the Admin Console"
+    ],
+    "correct": [
+      "config.author for values scoped to the author tier",
+      "config.publish for values scoped to the publish tier"
+    ],
+    "reason": "En el módulo ui.config las configuraciones OSGi se organizan por run mode en carpetas dentro de /apps/<proyecto>/osgiconfig: config.author para valores que solo aplican a la capa author y config.publish para los de la capa publish (config aplica a ambas). dispatcher.any pertenece a la configuración del Dispatcher, en el módulo dispatcher, no en ui.config, y admin.config no es un artefacto de configuración OSGi del proyecto."
+  },
+  {
+    "id": 24,
+    "question": "A P3 support case was closed a week ago. The case records the issue and the resolution that was applied. Today the same issue is occurring again, and the documented resolution is not working. What should the DevOps engineer do?",
+    "answers": [
+      "Log a new case at a higher priority to obtain a faster response",
+      "Open a new case at the same priority describing the issue as new",
+      "Reopen the closed case so its history and diagnosis stay attached",
+      "Reapply the documented resolution and monitor before contacting Adobe"
+    ],
+    "correct": "Reopen the closed case so its history and diagnosis stay attached",
+    "reason": "Si el mismo problema reaparece poco después de cerrar un caso y la solución documentada ya no funciona, lo adecuado es reabrir el caso cerrado para conservar su historial y el diagnóstico previo, de modo que soporte tenga el contexto completo. Abrir un caso nuevo (o con mayor prioridad de la real) pierde ese contexto y la prioridad debe reflejar el impacto real, no buscar rapidez; y reaplicar una solución que ya se sabe que no funciona solo retrasa la resolución."
+  },
+  {
+    "id": 25,
+    "question": "A developer changes an OSGi configuration directly in the Web Console of an AEM as a Cloud Service environment. The change takes effect immediately, but after the next deployment it is gone. Why did the change disappear?",
+    "answers": [
+      "The run mode of the environment changed during the deployment, so another file matched",
+      "The Dispatcher held the previous configuration in its cache and served it afterward",
+      "The deployment reapplied the configuration committed in the project's ui.config",
+      "The Web Console writes to /apps, which is immutable at runtime on Cloud Service"
+    ],
+    "correct": "The deployment reapplied the configuration committed in the project's ui.config",
+    "reason": "En AEM as a Cloud Service las instancias son efímeras y la configuración de referencia es la que se versiona en el proyecto (módulo ui.config). Un cambio hecho a mano en la Web Console se aplica en la instancia en ejecución, pero el siguiente despliegue crea instancias nuevas y aplica de nuevo la configuración commiteada, con lo que el cambio manual se pierde. Los run modes de un entorno no cambian entre despliegues y la caché del Dispatcher no almacena configuración OSGi."
+  },
+  {
+    "id": 26,
+    "question": "A team is deciding how changes should reach its AEM as a Cloud Service environments through Cloud Manager. Which three practices should be adopted? (Choose three.)",
+    "answers": [
+      "Install minor updates as content packages through Package Manager on each instance",
+      "Lower the severity of critical findings so a quality gate stops blocking executions",
+      "Deploy a change that alters only OSGi configuration through a config pipeline",
+      "Run code quality on a non-production pipeline before the production pipeline runs",
+      "Keep pipeline-deployed configuration in the project under ui.config in Git"
+    ],
+    "correct": [
+      "Deploy a change that alters only OSGi configuration through a config pipeline",
+      "Run code quality on a non-production pipeline before the production pipeline runs",
+      "Keep pipeline-deployed configuration in the project under ui.config in Git"
+    ],
+    "reason": "Los cambios llegan a Cloud Service a través de Cloud Manager: un cambio que solo afecta a configuración se puede desplegar con un config pipeline sin reconstruir todo el código, la calidad de código se valida primero en un pipeline de no producción antes de que se ejecute el de producción, y la configuración desplegada por pipeline se mantiene versionada en el proyecto (ui.config) en Git. Instalar paquetes con Package Manager en cada instancia no es persistente ni reproducible en Cloud Service, y bajar la severidad de hallazgos críticos para que el quality gate deje de bloquear anula el propósito del gate."
+  },
+  {
+    "id": 27,
+    "question": "A customer on AEM as a Cloud Service released a feature to production earlier than planned, and the decision is to return the production environment to the previous release. What should the DevOps engineer do?",
+    "answers": [
+      "Reinstall every package from the previous release in Package Manager and publish the content tree again",
+      "Restore the previous revision from the version history of the home page and publish the content tree again",
+      "Take the newest tag from git tag | sort -r | head -n 1, reset the pipeline branch to it, and run the pipeline",
+      "Identify the Git tag of the last successful production deployment, reset the pipeline branch to it, and run the pipeline"
+    ],
+    "correct": "Identify the Git tag of the last successful production deployment, reset the pipeline branch to it, and run the pipeline",
+    "reason": "En Cloud Service no hay un rollback automático: se vuelve a una versión anterior desplegando de nuevo el código de esa versión. Cloud Manager etiqueta en Git cada despliegue a producción, así que se identifica el tag del último despliegue correcto a producción, se resetea la rama del pipeline a ese tag y se ejecuta el pipeline. Reinstalar paquetes con Package Manager o restaurar versiones de una página no revierte el código desplegado, y el tag más reciente puede corresponder justo a la versión que se quiere deshacer, no a la anterior."
+  },
+  {
+    "id": 28,
+    "question": "An administrator is deciding which work belongs in the Adobe Admin Console. Which two tasks are managed there? (Choose two.)",
+    "answers": [
+      "Invalidating cached pages in the Dispatcher after an activation",
+      "Managing the organization's users and user groups",
+      "Resolving the Maven dependencies for a pipeline execution",
+      "Assigning product profiles that grant a role within a product"
+    ],
+    "correct": [
+      "Managing the organization's users and user groups",
+      "Assigning product profiles that grant a role within a product"
+    ],
+    "reason": "La Adobe Admin Console es donde se gestiona la identidad y el acceso de la organización: los usuarios y grupos de usuarios, y la asignación de perfiles de producto que conceden un rol dentro de un producto. Invalidar la caché del Dispatcher es una tarea de la capa web/replicación, y resolver dependencias Maven ocurre en el paso de build de un pipeline de Cloud Manager."
+  },
+  {
+    "id": 29,
+    "question": "An OSGi setting applied on an environment is lost every time the application is redeployed. How should the setting be configured so that it survives a deployment?",
+    "answers": [
+      "Commit a .cfg.json file in the project's ui.config module and deploy it with a pipeline",
+      "Apply the setting in the OSGi Web Console on each instance after every deployment",
+      "Export the configuration as a content package and install it with Package Manager after deploying",
+      "Store the configuration nodes under /var"
+    ],
+    "correct": "Commit a .cfg.json file in the project's ui.config module and deploy it with a pipeline",
+    "reason": "En AEM as a Cloud Service la configuración OSGi persistente se define como fichero .cfg.json en el módulo ui.config del proyecto (bajo /apps/<proyecto>/osgiconfig, con carpetas por run mode) y se despliega con un pipeline, de modo que cada despliegue la aplica de nuevo. Cambiarla a mano en la Web Console después de cada despliegue no es reproducible, instalar paquetes con Package Manager no es el mecanismo soportado en Cloud Service y /var es contenido mutable que no debe contener configuración de la aplicación."
+  },
+  {
+    "id": 30,
+    "question": "A request reaches publish through Dispatcher and is answered correctly, but the response is never stored, so every request is rendered again. What should be examined?",
+    "answers": [
+      "The flush agent's statfileslevel, which controls how broad an invalidation is",
+      "The /rules entries under the farm's /cache section, which decide what is stored",
+      "The managed CDN sitting in front of Dispatcher, which decides what edge nodes retain",
+      "The /filter section of the farm, which decides which requests are allowed through"
+    ],
+    "correct": "The /rules entries under the farm's /cache section, which decide what is stored",
+    "reason": "Si la petición llega a publish y se responde bien pero la respuesta nunca se guarda en la caché del Dispatcher, hay que revisar las reglas de la sección /cache de la granja, en concreto /rules, que decide qué respuestas se almacenan (y /ignoreUrlParams, cabeceras, etc.). statfileslevel solo afecta al alcance de la invalidación, el CDN gestiona lo que retienen los nodos de borde y /filter decide qué peticiones pueden pasar; como aquí la petición sí llega y se sirve, /filter no es el problema."
+  },
+  {
+    "id": 31,
+    "question": "A team is preparing to move an AEM 6.5 implementation to AEM as a Cloud Service. What is the correct first step?",
+    "answers": [
+      "Run Repository Modernizer over the project to split mutable content from immutable code",
+      "Move the repository content across with the Content Transfer Tool",
+      "Convert the existing farm files with the Dispatcher Converter",
+      "Assess the current implementation for readiness and record what has to change"
+    ],
+    "correct": "Assess the current implementation for readiness and record what has to change",
+    "reason": "El primer paso de una migración a Cloud Service es evaluar la implementación actual (por ejemplo con Best Practices Analyzer) para conocer su preparación y dejar constancia de qué hay que cambiar. Solo después tiene sentido ejecutar las herramientas de modernización: Repository Modernizer para separar código inmutable de contenido mutable, Dispatcher Converter para adaptar la configuración del Dispatcher y Content Transfer Tool para mover el contenido."
+  },
+  {
+    "id": 32,
+    "question": "Response times on production have worsened noticeably since the most recent code release. What is the most appropriate remediation strategy?",
+    "answers": [
+      "Compare the metrics with the previous baseline and review the code and query changes in the release",
+      "Raise the cache lifetime across the site so fewer requests are rendered by publish",
+      "Add publish instances until response times return to what they were before the release",
+      "Re-run the production pipeline from the same commit so the performance testing gate reports on the release again"
+    ],
+    "correct": "Compare the metrics with the previous baseline and review the code and query changes in the release",
+    "reason": "Si el rendimiento empeora justo después de una release, la estrategia adecuada es diagnosticar la causa: comparar las métricas con la línea base anterior y revisar los cambios de código y de consultas incluidos en la release. Subir el tiempo de caché, añadir instancias publish o volver a ejecutar el pipeline desde el mismo commit tratan el síntoma o repiten una medición sin identificar qué cambio provocó la degradación."
+  },
+  {
+    "id": 33,
+    "question": "A DevOps engineer must delete an SSL certificate that is currently installed in a Cloud Manager program. What should the engineer do?",
+    "answers": [
+      "Open a support case from the Admin Console and ask Adobe to remove the certificate",
+      "Remove every domain name that references the certificate, then delete it",
+      "Replace the certificate in the project's Dispatcher configuration, then redeploy",
+      "Leave the certificate in place and allow it to lapse at its expiry date"
+    ],
+    "correct": "Remove every domain name that references the certificate, then delete it",
+    "reason": "Los certificados SSL de un programa se gestionan desde Cloud Manager, y no se puede eliminar un certificado que esté en uso por algún nombre de dominio. Hay que quitar primero todos los dominios que lo referencian y después eliminar el certificado. No hace falta abrir un caso de soporte, los certificados no se configuran en el Dispatcher del proyecto y dejarlo caducar no lo elimina."
+  },
+  {
+    "id": 34,
+    "question": "An AEM publish instance is running slower than expected. Overall page load time is high and performance degrades over time. A DevOps engineer isolates the following long-running requests:\n\n54224ms 07/Aug/2018:10:37:56 -0400 200 GET /content/sites/global/en/search.html?q=London\n53663ms 07/Aug/2018:01:05:46 -0400 200 GET /content/sites/global/en/search.html?q=slat+power+drive\n46639ms 07/Aug/2018:10:38:03 -0400 200 GET /content/sites/global/en/search.html?q=Munich\n43913ms 07/Aug/2018:10:57:33 -0400 200 GET /content/sites/global/en/search.html?q=tip+system\n34979ms 07/Aug/2018:08:42:10 -0400 200 GET /content/sites/global/en/search.html?q=drive\n29376ms 07/Aug/2018:02:02:57 -0400 200 GET /content/sites/global/en/search.html?q=Filter\n26338ms 07/Aug/2018:07:41:12 -0400 200 GET /content/sites/global/en/search.html?q=Pump+Unit\n\nWhich step should be taken to resolve this issue?",
+    "answers": [
+      "Rebuild the search component on Core Components so it reuses the existing indexes",
+      "Integrate an external Solr search index and route the site's search through it",
+      "Create Lucene index definitions for the out-of-the-box and custom properties being filtered",
+      "Add the q request parameter to the Dispatcher /cache /rules so search result pages are stored"
+    ],
+    "correct": "Create Lucene index definitions for the out-of-the-box and custom properties being filtered",
+    "reason": "Todas las peticiones lentas son búsquedas con tiempos de decenas de segundos, lo que indica consultas que recorren el repositorio (traversal) porque no hay un índice adecuado para las propiedades por las que se filtra. La solución es crear definiciones de índice Lucene (oak:index) para las propiedades estándar y personalizadas usadas en la consulta. Reconstruir el componente no cambia los índices que usa, integrar Solr es una solución desproporcionada antes de indexar correctamente, y cachear en el Dispatcher páginas de búsqueda con el parámetro q no es viable ni ataca la causa: la consulta sin índice."
+  },
+  {
+    "id": 35,
+    "question": "A DevOps engineer is reviewing how a program's pipelines are set up before the first release. Which two characteristics identify a production pipeline? (Choose two.)",
+    "answers": [
+      "It deploys to a development environment and has no stage step",
+      "It applies OSGi settings through the Web Console instead of from the build",
+      "It runs the full gate sequence, where a critical finding blocks the deployment",
+      "It targets stage and production, which are promoted as a pair"
+    ],
+    "correct": [
+      "It runs the full gate sequence, where a critical finding blocks the deployment",
+      "It targets stage and production, which are promoted as a pair"
+    ],
+    "reason": "Un pipeline de producción de Cloud Manager despliega en los entornos de stage y producción, que se promueven como pareja (se despliega primero en stage y, tras la validación y aprobación, en producción), y ejecuta la secuencia completa de quality gates, donde un hallazgo crítico bloquea el despliegue. Desplegar solo en desarrollo sin paso de stage es propio de un pipeline de no producción, y aplicar la configuración OSGi desde la Web Console en lugar de desde el build no es una característica de ningún pipeline."
+  },
+  {
+    "id": 36,
+    "question": "A DevOps engineer is migrating custom index definitions in preparation for moving an on-premise instance to AEM as a Cloud Service. The on-premise instance holds index definitions in three locations:\n\n/apps/my-app/oak-index\n/content/my-site/oak-index\n/oak:index\n\nThe definitions must be consolidated before the Index Converter utility is used. Which two paths should the definitions be consolidated to? (Choose two.)",
+    "answers": [
+      "/content/my-site/oak-index",
+      "/oak:index",
+      "/conf/my-site/settings/oak-index",
+      "/apps/my-app/oak-index"
+    ],
+    "correct": [
+      "/oak:index",
+      "/apps/my-app/oak-index"
+    ],
+    "reason": "Antes de usar el Index Converter, las definiciones de índice personalizadas deben estar en ubicaciones que la herramienta reconoce: /oak:index (el nodo estándar de índices de Oak) y /apps/<app>/oak-index (definiciones versionadas en el proyecto). Las definiciones que estén en /content/my-site/oak-index deben moverse a esas ubicaciones, ya que /content es contenido mutable y no un lugar válido para índices. /conf/my-site/settings/oak-index no es una ubicación de definiciones de índice."
+  },
+  {
+    "id": 37,
+    "question": "The Agent User ID is used to collect and package content on the AEM author instance. What access does that account require on the author instance?",
+    "answers": [
+      "Write access to all paths to be replicated",
+      "Read access to all paths to be replicated",
+      "Replicate access to all paths to be replicated",
+      "Write access on both the author and publish instances"
+    ],
+    "correct": "Read access to all paths to be replicated",
+    "reason": "El Agent User Id de un agente de replicación es la cuenta con la que se recopila y empaqueta el contenido en author para replicarlo, por lo que solo necesita acceso de lectura a todas las rutas que se van a replicar. No necesita permisos de escritura ni de replicación: los permisos de escritura son los que necesita la cuenta de transporte en la instancia de destino (publish), no la cuenta del agente en author."
+  },
+  {
+    "id": 38,
+    "question": "A code change must reach a production AEM as a Cloud Service environment with as little disruption to the running site as possible. What should the DevOps engineer do?",
+    "answers": [
+      "Promote the change through the production pipeline, which deploys stage then production",
+      "Build a blue/green pair of environments, switching traffic between them by hand",
+      "Install the built package on each publish instance through Package Manager",
+      "Apply the change as an OSGi setting in the Web Console on the production tier"
+    ],
+    "correct": "Promote the change through the production pipeline, which deploys stage then production",
+    "reason": "En Cloud Service el cambio se promueve a través del pipeline de producción de Cloud Manager, que despliega primero en stage y luego en producción. El despliegue en producción es de tipo rolling: las instancias nuevas se levantan y se comprueban antes de sustituir a las anteriores, de modo que el sitio sigue sirviendo sin interrupción. Construir a mano un par blue/green, instalar paquetes con Package Manager en cada publish o cambiar valores en la Web Console no son mecanismos soportados ni reproducibles en Cloud Service."
+  },
+  {
+    "id": 39,
+    "question": "A new program has been provisioned and nothing has been deployed to it yet. Which three must be in place before a Cloud Manager pipeline can deploy the application to an environment? (Choose three.)",
+    "answers": [
+      "An environment provisioned within the program for the pipeline to target",
+      "A replication agent on author configured to push the built artifact to publish",
+      "A manual content synchronization between the author and publish tiers",
+      "A pipeline bound to a branch of the program's Adobe-hosted Git repository",
+      "A product profile granting the user the Cloud Manager role the action requires"
+    ],
+    "correct": [
+      "An environment provisioned within the program for the pipeline to target",
+      "A pipeline bound to a branch of the program's Adobe-hosted Git repository",
+      "A product profile granting the user the Cloud Manager role the action requires"
+    ],
+    "reason": "Para desplegar con Cloud Manager hacen falta: un entorno aprovisionado dentro del programa que sea el destino del pipeline, un pipeline asociado a una rama del repositorio Git del programa, y un perfil de producto que conceda al usuario el rol de Cloud Manager necesario para la acción (p. ej. Deployment Manager). Los agentes de replicación de author a publish y la sincronización manual de contenido entre capas no son requisitos: en Cloud Service el despliegue de código lo gestiona el pipeline."
+  },
+  {
+    "id": 40,
+    "question": "A DevOps engineer is configuring SAML authentication on an AEM author instance. Which items must the engineer obtain from the identity provider (IdP)?",
+    "answers": [
+      "The IdP private key, the service entity ID, and the IdP URL",
+      "The AEM keystore password, the service entity ID, and the IdP URL",
+      "The web server SSL certificate, the service entity ID, and the IdP URL",
+      "The IdP signing certificate, the service entity ID, and the IdP URL"
+    ],
+    "correct": "The IdP signing certificate, the service entity ID, and the IdP URL",
+    "reason": "Para configurar el SAML 2.0 Authentication Handler de AEM se necesitan del IdP su certificado de firma (público, que AEM importa al truststore para validar las aserciones), el entity ID del servicio y la URL del IdP (SSO). La clave privada del IdP nunca se comparte, la contraseña del keystore de AEM es un dato propio de AEM y el certificado SSL del servidor web no interviene en la validación de las aserciones SAML."
+  },
+  {
+    "id": 41,
+    "question": "A DevOps engineer is reviewing the cache rules a project ships for Dispatcher. Which three practices should that review confirm? (Choose three.)",
+    "answers": [
+      "HTML responses are cached, with invalidation broad enough to cover the pages a change affects",
+      "Deny rules keep the responses that should not be shared out of the cache",
+      "Invalidation is driven by the .stat file the flush agent touches on activation",
+      "Every request is cached, including the POST requests that carry form submissions",
+      "The cache directory is placed inside the AEM crx-quickstart folder"
+    ],
+    "correct": [
+      "HTML responses are cached, with invalidation broad enough to cover the pages a change affects",
+      "Deny rules keep the responses that should not be shared out of the cache",
+      "Invalidation is driven by the .stat file the flush agent touches on activation"
+    ],
+    "reason": "Una buena configuración de caché del Dispatcher cachea las respuestas HTML con una invalidación lo bastante amplia (statfileslevel) para cubrir las páginas afectadas por un cambio, usa reglas de denegación para excluir de la caché las respuestas que no deben compartirse (personalizadas, privadas) y basa la invalidación en el fichero .stat que el agente de flush toca en la activación. No se deben cachear todas las peticiones (los POST no se cachean) ni ubicar el docroot dentro de crx-quickstart, que es el directorio de AEM y no del servidor web."
+  },
+  {
+    "id": 42,
+    "question": "A request for /content/site/en/page.html returns a 404 through Dispatcher, while the same path returns the page when it is requested directly from the publish instance. What should be evaluated first?",
+    "answers": [
+      "The Dispatcher cache rules, since a path that is not stored cannot be served",
+      "The publish tier's run-mode OSGi configuration, since a mapping there would change the path",
+      "The Dispatcher filter rules, since a request no filter entry allows never reaches publish",
+      "The flush agent on author, since an invalidation that never fired leaves the path unserved"
+    ],
+    "correct": "The Dispatcher filter rules, since a request no filter entry allows never reaches publish",
+    "reason": "Si la ruta se sirve bien directamente desde publish pero devuelve 404 a través del Dispatcher, lo primero es revisar las reglas /filter de la granja: una petición que ninguna regla permita no llega a publish y el Dispatcher la rechaza. Las reglas de caché deciden qué se almacena, no si una petición se permite; la configuración OSGi de publish no es el problema porque publish responde correctamente; y un flush no lanzado dejaría contenido obsoleto, no un 404."
+  },
+  {
+    "id": 43,
+    "question": "A DevOps engineer must deploy a code change to an AEM as a Cloud Service production environment without taking the site offline. Which approach supports that requirement?",
+    "answers": [
+      "Take the production publish instances out of rotation for the deployment window",
+      "Run a production pipeline, which starts the new version before traffic moves to it",
+      "Configure the Dispatcher to serve stale cached content while the deployment runs",
+      "Split the change into a config pipeline execution so the bundles stay untouched"
+    ],
+    "correct": "Run a production pipeline, which starts the new version before traffic moves to it",
+    "reason": "El pipeline de producción de Cloud Manager realiza un despliegue rolling: arranca la nueva versión y la valida antes de que el tráfico pase a ella, por lo que el sitio no se queda sin servicio. Sacar las instancias de rotación provoca una ventana de indisponibilidad, servir contenido obsoleto desde el Dispatcher no despliega nada y un config pipeline no despliega los bundles de código, que es lo que hay que cambiar."
+  },
+  {
+    "id": 44,
+    "question": "An existing Maven project is being prepared so that a Cloud Manager pipeline can build it. Which two changes support that? (Choose two.)",
+    "answers": [
+      "Pinning explicit versions for every plugin in pom.xml",
+      "Restructuring the project to the Adobe-recommended archetype layout",
+      "Removing the dispatcher module from the project",
+      "Skipping the unit test phase so the build step completes sooner"
+    ],
+    "correct": [
+      "Pinning explicit versions for every plugin in pom.xml",
+      "Restructuring the project to the Adobe-recommended archetype layout"
+    ],
+    "reason": "Para que Cloud Manager construya un proyecto Maven existente conviene fijar versiones explícitas de los plugins en el pom.xml (builds reproducibles y sin resolución ambigua) y adaptar la estructura al layout recomendado por Adobe (AEM Project Archetype: reactor, core, ui.apps, ui.config, all, dispatcher...). Eliminar el módulo dispatcher quitaría la configuración de la capa web del despliegue y saltarse los tests unitarios va contra los quality gates de Cloud Manager, que exigen ejecutarlos."
+  },
+  {
+    "id": 45,
+    "question": "An intermittent error is reported on an AEM environment, and the engineer needs to establish what is failing before changing anything. Which two approaches are appropriate? (Choose two.)",
+    "answers": [
+      "Adjust the Dispatcher filter rules until the failing request returns a response",
+      "Download or forward the environment logs from Cloud Manager and analyze the failures",
+      "Read the aemerror log through the system console on a non-production instance",
+      "Edit the affected component under /apps in CRXDE Lite until the error stops appearing"
+    ],
+    "correct": [
+      "Download or forward the environment logs from Cloud Manager and analyze the failures",
+      "Read the aemerror log through the system console on a non-production instance"
+    ],
+    "reason": "Para diagnosticar sin modificar nada hay que observar: descargar o reenviar los logs del entorno desde Cloud Manager y analizar los fallos, y leer el log aemerror desde la consola del sistema en una instancia de no producción. Ajustar filtros del Dispatcher o editar componentes bajo /apps en CRXDE Lite son cambios hechos a ciegas que no identifican la causa (y /apps es inmutable en Cloud Service)."
+  },
+  {
+    "id": 46,
+    "question": "A team maintains its AEM as a Cloud Service application in the program's Git repository. Which two changes require a pipeline deployment before they take effect? (Choose two.)",
+    "answers": [
+      "A Dispatcher configuration change in the project's Dispatcher module",
+      "An editable template changed by an author in the template editor",
+      "A product profile membership change made in the Admin Console",
+      "A Java change in the core bundle of the project"
+    ],
+    "correct": [
+      "A Dispatcher configuration change in the project's Dispatcher module",
+      "A Java change in the core bundle of the project"
+    ],
+    "reason": "Los cambios que viven en el repositorio Git del proyecto necesitan un despliegue por pipeline para surtir efecto: la configuración del Dispatcher del módulo dispatcher y el código Java del bundle core. Una plantilla editable modificada por un autor en el editor de plantillas es contenido que se guarda directamente en el repositorio en ejecución, y los cambios de pertenencia a perfiles de producto se hacen en la Admin Console y se aplican sin desplegar."
+  },
+  {
+    "id": 47,
+    "question": "An organization wants identities that it administers itself rather than accounts owned by the individual users. Which two Adobe identity types meet that requirement? (Choose two.)",
+    "answers": [
+      "Enterprise ID, created by the organization in a claimed domain",
+      "Federated ID, authenticated through the organization's identity provider",
+      "A local AEM user created in the publish repository",
+      "Adobe ID, created and owned by the individual user"
+    ],
+    "correct": [
+      "Enterprise ID, created by the organization in a claimed domain",
+      "Federated ID, authenticated through the organization's identity provider"
+    ],
+    "reason": "Los tipos de identidad de Adobe administrados por la organización son Enterprise ID (creado por la organización en un dominio reclamado) y Federated ID (autenticado mediante el proveedor de identidad de la organización). Un Adobe ID lo crea y posee el propio usuario, y un usuario local de AEM en el repositorio de publish no es un tipo de identidad de Adobe."
+  },
+  {
+    "id": 48,
+    "question": "An operations team wants recurring visibility into how a site performs under load. Which two sources provide that information? (Choose two.)",
+    "answers": [
+      "New Relic and Splunk dashboards on an Adobe Managed Services deployment",
+      "The replication queue depth on the author flush agent",
+      "Performance testing results from a Cloud Manager pipeline execution",
+      "The node structure of the site browsed in CRXDE Lite"
+    ],
+    "correct": [
+      "New Relic and Splunk dashboards on an Adobe Managed Services deployment",
+      "Performance testing results from a Cloud Manager pipeline execution"
+    ],
+    "reason": "Para tener visibilidad recurrente del rendimiento bajo carga se usan los dashboards de monitorización de New Relic y Splunk en un despliegue de Adobe Managed Services y los resultados de performance testing de las ejecuciones del pipeline de Cloud Manager. La profundidad de la cola de replicación del agente de flush solo refleja el estado de la replicación y la estructura de nodos en CRXDE Lite no aporta métricas de rendimiento."
+  },
+  {
+    "id": 49,
+    "question": "A DevOps engineer needs a branch deployed to the stage environment so that UAT can begin, and starts a production pipeline with a manual trigger. The code scanning step returns:\n\nSecurity Rating: C\nReliability Rating: B\nMaintainability Rating: A\nCode Coverage: 10%\n\nWhich two actions should the DevOps engineer take? (Choose two.)",
+    "answers": [
+      "Have the development team raise unit test coverage before the pipeline is restarted",
+      "Rerun the change through a front-end pipeline so the Java code quality step is skipped",
+      "Approve the failing quality gate so the execution continues on to stage",
+      "Have the development team remediate the findings behind the security rating"
+    ],
+    "correct": [
+      "Have the development team raise unit test coverage before the pipeline is restarted",
+      "Have the development team remediate the findings behind the security rating"
+    ],
+    "reason": "El paso de code quality falla por dos motivos: la cobertura de código (10 %) está muy por debajo del umbral y el Security Rating (C) no alcanza el mínimo exigido. Lo correcto es que el equipo de desarrollo suba la cobertura de tests unitarios y corrija los hallazgos de seguridad antes de reiniciar el pipeline. Aprobar manualmente el quality gate para continuar ignora los problemas de seguridad, y un front-end pipeline no despliega el código Java del proyecto, por lo que no es una alternativa para saltarse el análisis."
+  },
+  {
+    "id": 50,
+    "question": "A customer wants AEM Assets to detect duplicate uploads regardless of the file name. How should the DevOps engineer deliver the configuration?",
+    "answers": [
+      "Add the <PID>.cfg.json to the ui.config module under the run-mode config folder, with \"enabled\": true and \"detectMetadataField\": \"dam:sha1\"",
+      "Set detect_duplicate to true in the OSGi Web Console on each author instance and record the change in the project",
+      "Add the <PID>.cfg.json to the ui.config module under /conf/global/settings/dam, with \"enabled\": true and \"detectMetadataField\": \"dam:sha1\"",
+      "Add the <PID>.cfg.json to the ui.apps module under /apps/<project>/config.author, with \"enabled\": true and \"detectMetadataField\": \"dam:sha1\""
+    ],
+    "correct": "Add the <PID>.cfg.json to the ui.config module under the run-mode config folder, with \"enabled\": true and \"detectMetadataField\": \"dam:sha1\"",
+    "reason": "La detección de duplicados de AEM Assets se activa con una configuración OSGi (enabled: true y detectMetadataField: dam:sha1, que compara el hash del contenido y no el nombre del fichero). En Cloud Service las configuraciones OSGi se entregan como <PID>.cfg.json en el módulo ui.config, dentro de la carpeta de run mode correspondiente, y se despliegan con el pipeline. Cambiarla en la Web Console no persiste, /conf/global/settings/dam no es una ubicación de configuración OSGi y las configs OSGi no van en ui.apps."
+  },
+  {
+    "id": 51,
+    "question": "A DevOps engineer is monitoring an AEM Sites environment running on Adobe Managed Services. During a performance test executed through Cloud Manager, CPU utilization on the environment is high. What should the DevOps engineer do?",
+    "answers": [
+      "Open a support case with the Adobe CSE and supply the AEM logs from the test window",
+      "Request additional hardware capacity for the production environment straight away",
+      "Connect to the production server over SSH and watch process usage as the test reruns",
+      "Attach a JVM profiler over JMX to the running instance for the duration of the test"
+    ],
+    "correct": "Open a support case with the Adobe CSE and supply the AEM logs from the test window",
+    "reason": "En Adobe Managed Services el acceso a la infraestructura lo gestiona Adobe, así que ante una CPU alta durante un test de rendimiento lo adecuado es abrir un caso de soporte con el CSE de Adobe aportando los logs de AEM de la ventana del test para que se analice la causa. Pedir más hardware sin diagnóstico es prematuro, y conectarse por SSH al servidor de producción o adjuntar un profiler JVM por JMX son acciones invasivas sobre un entorno cuya infraestructura no gestiona el cliente."
+  },
+  {
+    "id": 52,
+    "question": "A customer of AEM as a Cloud Service is planning a major site redesign and is concerned about the impact of the refactored code base on web quality metrics, including performance, accessibility, and search engine optimization. What should the DevOps engineer do?",
+    "answers": [
+      "Add the highest-value site pages to the production pipeline's Experience Audit page list",
+      "Review the code quality gate report from the most recent production pipeline execution",
+      "Run a front-end pipeline before launch so the client-side build is measured on its own",
+      "Ask Adobe to enable real-time content delivery network monitoring for the launch window"
+    ],
+    "correct": "Add the highest-value site pages to the production pipeline's Experience Audit page list",
+    "reason": "El Experience Audit de Cloud Manager (basado en Lighthouse) mide rendimiento, accesibilidad, SEO y buenas prácticas de las páginas configuradas en la lista de páginas del pipeline de producción, y se ejecuta en cada despliegue. Añadir las páginas de mayor valor a esa lista permite ver el impacto del rediseño en esas métricas. El informe del quality gate de código evalúa calidad del código (seguridad, fiabilidad, cobertura), no métricas web; un front-end pipeline solo construye y despliega el front-end; y la monitorización del CDN no mide accesibilidad ni SEO."
+  },
+  {
+    "id": 53,
+    "question": "Content is activated from an AEM author instance to publish, and a Dispatcher sits in front of the publish tier. How does the Dispatcher flush agent contribute to cache management?",
+    "answers": [
+      "It copies cached documents back into the AEM repository so publish can reuse them",
+      "It routes incoming requests across to a second publish instance while the cache is being rebuilt",
+      "It sends an invalidation on activation that touches the .stat file for the affected path",
+      "It deletes the whole Dispatcher cache directory on a fixed schedule"
+    ],
+    "correct": "It sends an invalidation on activation that touches the .stat file for the affected path",
+    "reason": "Cuando se activa contenido, el agente de flush envía una petición de invalidación al Dispatcher, que toca el fichero .stat de la ruta afectada (según statfileslevel); los documentos cacheados más antiguos que ese .stat se consideran obsoletos y se vuelven a solicitar a publish. El agente no devuelve documentos al repositorio, no balancea peticiones entre instancias publish y no borra la caché completa con una programación fija."
+  },
+  {
+    "id": 54,
+    "question": "A project generated from the AEM archetype builds several modules, one of which Cloud Manager deploys. What is the primary role of the all package?",
+    "answers": [
+      "It stores the Dispatcher farm rules that the web tier reads when serving traffic",
+      "It carries the ui.frontend build output, together with the client libraries generated from it",
+      "It embeds the other modules, core, ui.apps and ui.config, as one deployable artifact",
+      "It holds the run-mode scoped OSGi configuration maintained under ui.config"
+    ],
+    "correct": "It embeds the other modules, core, ui.apps and ui.config, as one deployable artifact",
+    "reason": "El paquete 'all' del arquetipo de proyecto AEM es el artefacto de despliegue único que embebe el resto de módulos (core, ui.apps, ui.config, etc.) para que Cloud Manager los despliegue juntos. La configuración del Dispatcher está en el módulo dispatcher, el build de ui.frontend se incluye a través de ui.apps y la configuración OSGi por run mode se mantiene en ui.config, que 'all' solo embebe."
+  },
+  {
+    "id": 55,
+    "question": "A production environment repeatedly approaches its resource limits during peak traffic, and page rendering slows for visitors while the peak lasts. What should be done?",
+    "answers": [
+      "Remove the performance testing step from the production pipeline before the next peak",
+      "Turn off Dispatcher caching so that publish always renders the current response",
+      "Raise the share of requests answered by the Dispatcher and the CDN in front of it",
+      "Scale the author tier so that it absorbs the visitor traffic during the peak"
+    ],
+    "correct": "Raise the share of requests answered by the Dispatcher and the CDN in front of it",
+    "reason": "Cuando publish se acerca a sus límites en los picos de tráfico, lo adecuado es reducir la carga que llega a él aumentando la proporción de peticiones servidas por el Dispatcher y el CDN (mejores reglas de caché, TTL, cacheo en el borde). Quitar el paso de performance testing elimina un control sin resolver nada, desactivar la caché del Dispatcher empeoraría la carga en publish y el tráfico de visitantes lo atiende la capa publish, no author."
+  },
+  {
+    "id": 56,
+    "question": "A problem is reproducible on a development AEM instance, and the team needs to trace it in the code that is actually running. How can the DevOps engineer let the developers step through that code?",
+    "answers": [
+      "Start AEM with the remote debugging JVM parameter and attach the IDE to that port",
+      "Open an SSH tunnel to the port the AEM Java process serves HTTP traffic on",
+      "Connect to the running JVM over JMX and inspect the exposed MBeans",
+      "Start AEM with the debug run mode so the debug-scoped configuration is applied at start-up"
+    ],
+    "correct": "Start AEM with the remote debugging JVM parameter and attach the IDE to that port",
+    "reason": "Para recorrer paso a paso el código en ejecución hay que habilitar la depuración remota de la JVM (parámetro -agentlib:jdwp / -debug con un puerto) al arrancar AEM y conectar el IDE a ese puerto. Un túnel SSH al puerto HTTP solo da acceso a las peticiones web, JMX permite inspeccionar y gestionar MBeans pero no depurar código y un run mode 'debug' solo aplica configuración, no habilita un depurador."
+  },
+  {
+    "id": 57,
+    "question": "A team is in the final stages of going live on AEM as a Cloud Service. An on-premise code quality check passed every requirement, but the code quality step of the Cloud Manager pipeline did not pass. The finding points at the following code:\n\n@Property(label = \"Service Password\", value = \"mysecretpassword\")\n\nprivate static final String PROP_SERVICE_PASSWORD = \"password\";\n\nWhat should the DevOps engineer do?",
+    "answers": [
+      "Ask Adobe support to bypass the code quality step for the remaining release candidates",
+      "Change the pipeline configuration so that hard-coded credentials are accepted by the gate",
+      "Have the development team remove the hard-coded password and supply it through an environment secret",
+      "Annotate the field with @SuppressWarnings(\"squid:S2068\") so the finding is not raised"
+    ],
+    "correct": "Have the development team remove the hard-coded password and supply it through an environment secret",
+    "reason": "Cloud Manager detecta credenciales hard-coded (regla de seguridad de SonarQube, p. ej. squid:S2068) y el hallazgo es crítico, por lo que bloquea el pipeline y no se puede aprobar ni saltar. La solución es que el equipo de desarrollo elimine la contraseña del código y la suministre mediante un secreto de entorno (variable secreta de Cloud Manager, referenciada como $[secret:NAME] en la configuración OSGi). Pedir a soporte que se salte el paso, cambiar el pipeline para aceptar credenciales o suprimir la regla con @SuppressWarnings no corrigen el riesgo (y la supresión no evita el análisis de Cloud Manager)."
+  },
+  {
+    "id": 58,
+    "question": "A Dispatcher continues to serve outdated pages even though deployments and content activations complete successfully. Which two areas should be evaluated? (Choose two.)",
+    "answers": [
+      "The statfileslevel setting that governs how far an invalidation reaches",
+      "The filters.any rules that decide which requests are allowed through to publish",
+      "The flush agent configuration that sends the invalidation on activation",
+      "The filter.xml scope of the ui.apps package in the deployed build"
+    ],
+    "correct": [
+      "The statfileslevel setting that governs how far an invalidation reaches",
+      "The flush agent configuration that sends the invalidation on activation"
+    ],
+    "reason": "Si el Dispatcher sirve páginas obsoletas aunque las activaciones terminen bien, el problema está en la invalidación de la caché: el valor de statfileslevel, que determina hasta qué nivel del árbol llega una invalidación, y la configuración del agente de flush que envía la invalidación al Dispatcher en cada activación. Las reglas de filters.any deciden qué peticiones pasan a publish, no la vigencia de lo cacheado, y el filter.xml de ui.apps define qué contenido instala el paquete, no cómo se invalida la caché."
+  },
+  {
+    "id": 59,
+    "question": "An HTML page is published and is served through Dispatcher. A client requests the page but does not receive the updated content. The following is known about the setup:\n\nA rule /type \"allow\" /glob \"*.html\" is present in the Dispatcher /cache /rules section.\nThe header Cache-Control: max-age=3600 is set on all responses with an .html extension.\nThe /invalidate section of the farm covers /content.\nA flush agent is configured on the publish instance and its queue is empty.\nA CDN serves all static content including HTML files and was flushed manually.\n\nWhy does the content fail to update for the client?",
+    "answers": [
+      "The farm's statfileslevel is set too deep for the .stat file to be touched.",
+      "The flush was delivered before the content finished replicating, because the queue is backed up.",
+      "Dispatcher still holds the previous rendering, because a CDN flush does not reach it.",
+      "The response is still being served from the browser cache on the client."
+    ],
+    "correct": "The response is still being served from the browser cache on the client.",
+    "reason": "La cabecera Cache-Control: max-age=3600 en todas las respuestas .html indica al navegador que puede reutilizar la respuesta durante una hora sin volver a pedirla, así que el cliente sigue viendo su copia local aunque el Dispatcher y el CDN ya estén actualizados. El resto de la configuración es correcta: /invalidate cubre /content, la cola del agente de flush está vacía (no hay retraso en la entrega) y el CDN se ha vaciado manualmente, por lo que ni statfileslevel, ni una cola atascada, ni un Dispatcher obsoleto explican el síntoma."
+  },
+  {
+    "id": 60,
+    "question": "A team has moved an AEM 6.x site to an AEM as a Cloud Service environment with the Content Transfer Tool and has deployed the converted project. Which two checks confirm that the migration landed? (Choose two.)",
+    "answers": [
+      "Check that the code was written directly to /apps on the target environment",
+      "Confirm the transferred content is present and the environment reports as healthy",
+      "Confirm that crx2oak reports no unmigrated nodes and no errors on the target",
+      "Verify that the Cloud Manager execution deploying the project completed successfully"
+    ],
+    "correct": [
+      "Confirm the transferred content is present and the environment reports as healthy",
+      "Verify that the Cloud Manager execution deploying the project completed successfully"
+    ],
+    "reason": "Para confirmar que la migración ha aterrizado hay que comprobar que el contenido transferido está presente y que el entorno informa de estado saludable, y que la ejecución de Cloud Manager que despliega el proyecto terminó correctamente. El código no se escribe directamente en /apps (es inmutable en Cloud Service y se despliega con pipeline) y crx2oak no forma parte del flujo con el Content Transfer Tool, por lo que su informe no es una verificación válida."
+  },
+  {
+    "id": 61,
+    "question": "Shortly after a new version of a site is deployed, visitors report slow page loads. What should be examined first?",
+    "answers": [
+      "Repository size and the index definitions shipped with the release",
+      "Dispatcher cache hit ratio and the breadth of invalidation",
+      "OSGi component logs on the author tier for bundle errors",
+      "The number of workflow instances running on the author tier"
+    ],
+    "correct": "Dispatcher cache hit ratio and the breadth of invalidation",
+    "reason": "Los visitantes acceden a través del Dispatcher y la capa publish, y tras un despliegue la caché suele estar fría o invalidada de forma demasiado amplia, con lo que muchas más peticiones llegan a publish y las páginas tardan más. Lo primero es revisar el ratio de aciertos de caché del Dispatcher y el alcance de la invalidación. Los logs OSGi y los workflows de author no afectan a lo que ven los visitantes, y el tamaño del repositorio y los índices serían una segunda comprobación si la caché estuviera bien."
+  },
+  {
+    "id": 62,
+    "question": "An enterprise customer of AEM as a Cloud Service has three independent development teams. Each team publishes a different website, with its own domain and certificate, to a single shared AEM program.\n\nEach team has set its own launch date within the next six months.\nEach team maintains its own upstream Git repository in the corporate subnet, initialized from the AEM project archetype.\nThe DevOps engineer is solely responsible for the configuration that enables automated deployment to the development, stage, and production environments.\n\nWhich two options should the DevOps engineer choose? (Choose two.)",
+    "answers": [
+      "Add an aggregating Git repository holding a root pom.xml and a script that pulls the three project repositories in as subfolders",
+      "Point each team's Cloud Manager pipeline directly at that team's upstream repository in the corporate subnet",
+      "Define a multi-module Maven project whose root pom.xml declares each team's project as a module",
+      "Provision a separate Cloud Service program for each team and assign each team lead a deployment role"
+    ],
+    "correct": [
+      "Add an aggregating Git repository holding a root pom.xml and a script that pulls the three project repositories in as subfolders",
+      "Define a multi-module Maven project whose root pom.xml declares each team's project as a module"
+    ],
+    "reason": "Un programa de Cloud Service construye desde un único repositorio Git de Cloud Manager, no desde repositorios externos. Como los tres equipos mantienen sus propios repositorios upstream, el DevOps engineer crea un repositorio agregador con un pom.xml raíz y un script que incorpora los tres proyectos como subcarpetas, y define en ese pom raíz un proyecto Maven multi-módulo que declara el proyecto de cada equipo como módulo, de forma que un solo pipeline pueda construir y desplegar los tres sitios en el programa compartido. Apuntar el pipeline directamente a los repositorios de la subred corporativa no es posible, y crear un programa por equipo contradice el requisito de un único programa compartido."
+  },
+  {
+    "id": 63,
+    "question": "A DevOps engineer is configuring a new Adobe Managed Services program in Cloud Manager. The customer expects steady traffic of about 10,000 page views per minute on the production CDN at a cache ratio of 95 percent.\n\nProduction will run four dispatcher and publish pairs, and stage will run one.\n\nHow should the DevOps engineer set the program's performance KPIs?",
+    "answers": [
+      "Enable the on-demand scaling policy for the non-production environments and allow one additional publish-dispatcher segment",
+      "Set the 95th percentile response time KPI to the recommended value and the page views per minute KPI to 2,500",
+      "Set the 95th percentile response time KPI to the recommended value and the page views per minute KPI to 9,500",
+      "Enable the on-demand scaling policy for the non-production environments and allow up to three additional publish-dispatcher segments"
+    ],
+    "correct": "Set the 95th percentile response time KPI to the recommended value and the page views per minute KPI to 2,500",
+    "reason": "Los tests de rendimiento de Cloud Manager se ejecutan en stage, que tiene un solo par dispatcher/publish frente a los cuatro de producción. El KPI de page views por minuto debe escalarse a la capacidad de stage: 10.000 / 4 = 2.500 page views por minuto, junto con el valor recomendado para el tiempo de respuesta del percentil 95. Usar 9.500 (el 95 % de 10.000) ignora que stage es una cuarta parte de producción, y las opciones de escalado bajo demanda en no producción no configuran los KPI del programa."
+  },
+  {
+    "id": 64,
+    "question": "A production pipeline execution stops at the security testing gate with a compliance failure. What should the DevOps engineer do first?",
+    "answers": [
+      "Read the failed execution's security testing results to see which rules were violated",
+      "Reset the pipeline branch to the last successful tag and redeploy the previous release",
+      "Re-run the pipeline from the start so the security scan is evaluated a second time",
+      "Turn off the security testing gate for the program so the execution can continue"
+    ],
+    "correct": "Read the failed execution's security testing results to see which rules were violated",
+    "reason": "Ante un fallo en el gate de security testing, lo primero es diagnosticar: leer los resultados de la ejecución fallida para ver qué reglas se han incumplido y poder corregirlas. Volver a una etiqueta anterior, relanzar el pipeline sin cambios (dará el mismo resultado) o desactivar el gate no resuelven la causa; el security testing no se puede desactivar y hacerlo eliminaría un control obligatorio."
+  },
+  {
+    "id": 65,
+    "question": "Response times on an AEM as a Cloud Service environment have degraded and the cause has not yet been attributed. Which two actions help identify where the bottleneck is? (Choose two.)",
+    "answers": [
+      "Review the aemerror log for warnings about long-running queries",
+      "Analyze request latency in the performance metrics Cloud Manager collects",
+      "Add publish instances until response times come back within the target",
+      "Raise statfileslevel in dispatcher.any so invalidation reaches more pages"
+    ],
+    "correct": [
+      "Review the aemerror log for warnings about long-running queries",
+      "Analyze request latency in the performance metrics Cloud Manager collects"
+    ],
+    "reason": "Para localizar el cuello de botella hay que observar y diagnosticar: revisar el log aemerror en busca de avisos de consultas lentas y analizar la latencia de las peticiones en las métricas de rendimiento que recopila Cloud Manager. Añadir instancias publish o cambiar statfileslevel son cambios que tratan de mitigar sin haber identificado la causa (y modificar statfileslevel afecta al alcance de la invalidación, no a la localización del problema)."
+  },
+  {
+    "id": 66,
+    "question": "An OSGi configuration property must reference a secret value that differs per environment and must not be committed to the repository. What should be used?",
+    "answers": [
+      "A run mode scoped folder such as config.publish.prod holding the production value",
+      "An environment-scoped secret variable that the configuration resolves at deployment",
+      "A literal value committed in the OSGi configuration file under ui.config",
+      "A Dispatcher rewrite rule that injects the value into the incoming request"
+    ],
+    "correct": "An environment-scoped secret variable that the configuration resolves at deployment",
+    "reason": "En AEM as a Cloud Service los valores que varían por entorno y no deben estar en Git se definen como variables de entorno secretas en Cloud Manager, y la configuración OSGi las referencia con $[secret:NAME], de modo que se resuelven en el despliegue. Una carpeta de run mode o un valor literal en ui.config guardarían el secreto en el repositorio, y una regla de reescritura del Dispatcher no inyecta valores en la configuración OSGi."
+  },
+  {
+    "id": 67,
+    "question": "A team wants deployments to an AEM as a Cloud Service program to be auditable, so that a running build can be traced back to what produced it. Which two practices support that? (Choose two.)",
+    "answers": [
+      "Granting every developer the system administrator role so anyone can retrieve deployment records",
+      "Tagging each release in the program's Git repository so a deployed build maps to a known commit",
+      "Keeping every pipeline execution's build and deployment record rather than deploying outside the pipeline",
+      "Applying environment-specific values in the OSGi Web Console after each deployment and noting them in the ticket"
+    ],
+    "correct": [
+      "Tagging each release in the program's Git repository so a deployed build maps to a known commit",
+      "Keeping every pipeline execution's build and deployment record rather than deploying outside the pipeline"
+    ],
+    "reason": "La trazabilidad de un despliegue se consigue etiquetando cada release en el repositorio Git del programa, de modo que un build desplegado se asocie a un commit concreto, y conservando el registro de build y despliegue de cada ejecución de pipeline, sin desplegar fuera de él. Dar a todos el rol de administrador de sistema amplía privilegios sin aportar trazabilidad, y aplicar valores a mano en la Web Console tras el despliegue crea cambios no versionados que un ticket no permite reproducir."
+  }
+]
