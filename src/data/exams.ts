@@ -5,6 +5,11 @@ import e124Questions from "./exams/ad0-e124.json";
 import e129Questions from "./exams/ad0-e129.json";
 import e605Questions from "./exams/ad0-e605.json";
 
+export type QuestionImage = {
+  src: string;
+  alt: string;
+};
+
 export type RawQuestion = {
   id: number;
   question: string;
@@ -12,6 +17,9 @@ export type RawQuestion = {
   correct: string | string[];
   reason: string;
   featured?: boolean;
+  images?: QuestionImage[];
+  answerImages?: Record<string, QuestionImage[]>;
+  sources?: { file: string; page: number; question: number }[];
 };
 
 type RawQuestionBank = RawQuestion[] | { questions: RawQuestion[] };
