@@ -9,7 +9,16 @@ type PreparedQuestion = RawQuestion & {
 };
 
 export function getStaticPaths() {
-  const choosePattern = /\(choose (two|three|four|five)\)/i;
+  const choosePattern = /\(choose (two|three|four|five)\.?\)/i;
+
+  // Only a comma-joined string whose every piece is a real answer may be split:
+  // several answers contain commas of their own and would be shredded otherwise.
+  const splitCorrect = (correct: string, answers: string[]) => {
+    const parts = correct.split(/\s*,\s*/).filter(Boolean);
+    return parts.length > 1 && parts.every((part) => answers.includes(part))
+      ? parts
+      : [correct];
+  };
 
   return exams.map((exam) => ({
     params: { slug: exam.slug },
@@ -17,15 +26,10 @@ export function getStaticPaths() {
       exam: {
         ...exam,
         questionBank: exam.questionBank.map((question) => {
-          const shouldSplit =
-            Array.isArray(question.correct) ||
-            (choosePattern.test(question.question) &&
-              typeof question.correct === "string");
-
           const correctValues = Array.isArray(question.correct)
             ? question.correct
-            : shouldSplit
-              ? question.correct.split(/\s*,\s*/).filter(Boolean)
+            : choosePattern.test(question.question)
+              ? splitCorrect(question.correct, question.answers)
               : [question.correct];
 
           return {
@@ -354,6 +358,35 @@ const examConfig = {
           .replaceAll('"', "&quot;")
           .replaceAll("'", "&#39;");
 
+      const linkifyReason = (element) => {
+        const text = element.textContent;
+        const fragment = document.createDocumentFragment();
+        let offset = 0;
+
+        for (const match of text.matchAll(/https?:\/\/[^\s<>"']+/g)) {
+          let url = match[0].replace(/[.,;:!?]+$/, "");
+          while (url.endsWith(")") &&
+            (url.match(/\)/g) || []).length > (url.match(/\(/g) || []).length) {
+            url = url.slice(0, -1);
+          }
+          fragment.append(text.slice(offset, match.index));
+          const link = document.createElement("a");
+          link.href = url;
+          link.textContent = url;
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+          link.className = "break-words text-sky-300 underline underline-offset-2 hover:text-sky-200";
+          fragment.append(link);
+          offset = match.index + url.length;
+        }
+
+        fragment.append(text.slice(offset));
+        element.replaceChildren(fragment);
+        element.classList.add("whitespace-pre-line", "break-words");
+      };
+
+      document.querySelectorAll(".reason").forEach(linkifyReason);
+
       const shuffle = (items) => {
         const cloned = [...items];
         for (let index = cloned.length - 1; index > 0; index -= 1) {
@@ -526,8 +559,9 @@ const examConfig = {
             <p class="mt-2"><span class="font-medium">Correct answer:</span> ${question.correctValues
               .map(escapeHtml)
               .join(", ")}</p>
-            <p class="mt-2 text-slate-200">${escapeHtml(question.reason)}</p>
+            <p class="exam-reason mt-2 text-slate-200">${escapeHtml(question.reason)}</p>
           `;
+          linkifyReason(resultElement.querySelector(".exam-reason"));
         });
 
         const percentage = Math.round((score / activeExam.length) * 100);

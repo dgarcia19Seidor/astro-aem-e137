@@ -490,15 +490,15 @@
   },
   {
     "id": 33,
-    "question": "A client enables SSO in the AEM Authoring instance using SAML for the content authors. The client plans to cross skill their marketing team to use AEM.\nHowever, the marketing team uses their personal Adobe ID to login to the Marketing cloud products such as Analytics and Target on Admin Console. The client wants to enable the usage of company credentials for all their solutions to enforce standardized security policies.\nWhat should the Architect propose to meet these requirements?",
+    "question": "A client wants to enable SSO in the AEM Authoring instance using SAML for the content authors. The client also wants to onboard their marketing team and design team to use AEM. However, these teams use their personal Adobe ID to login to the Creative and Marketing Cloud products such as Analytics and Target on Admin Console. The client wants to enable the usage of company credentials for all their solutions to enforce standardized security policies. What would the architect propose to meet these requirements?",
     "answers": [
-      "Create a new SAML profile in the client IDP to integrate to the Marketing Suite products",
-      "Configure Adobe IMS to forward sign in for Adobe ID to the client IDP",
       "Onboard all users to Adobe IMS using Enterprise ID",
-      "Onboard all users to Adobe IMS using Federated ID"
+      "Onboard all users to Adobe IMS using Federated ID",
+      "Create a new SAML profile in the client IDP to integrate to the Marketing and Creative cloud products",
+      "Configure Adobe IMS to forward sign-in for Adobe ID to the client IDP"
     ],
     "correct": "Onboard all users to Adobe IMS using Federated ID",
-    "reason": "Federated ID permite que la organización autentique a sus usuarios con su propio proveedor de identidad y sus políticas corporativas. Es apropiado cuando los empleados deben acceder con las cuentas de empresa. La federación establece la identidad; los permisos y la asignación de productos siguen necesitando configuración independiente."
+    "reason": "Federated ID es el tipo de identidad de Adobe que delega la autenticación en el IdP de la empresa por SAML (SSO), de modo que los usuarios entran con sus credenciales corporativas y se aplican las políticas de seguridad de la organización. Enterprise ID (A) usa autenticación de Adobe y no SSO. Así todos los usuarios, también marketing y diseño, dejan de usar Adobe ID personales.\n\nDocumentación oficial: https://helpx.adobe.com/business/enterprise/identity-sso/set-up-identity/identity-types.html"
   },
   {
     "id": 34,
@@ -3189,5 +3189,459 @@
         "question": 37
       }
     ]
+  },
+  {
+    "id": 173,
+    "question": "A client reports that the site is slow. No further detail has been given. Which two questions should the architect establish first?\n(Choose two.)",
+    "answers": [
+      "Whether the operations team has observed any alerts during the same period",
+      "When the slowness began and whether it is continuous or intermittent",
+      "Whether the client has observed the slowness on more than one network connection",
+      "Which browser and device the client was using when the slowness was observed",
+      "Which pages are affected and whether the rest of the site behaves normally"
+    ],
+    "correct": [
+      "When the slowness began and whether it is continuous or intermittent",
+      "Which pages are affected and whether the rest of the site behaves normally"
+    ],
+    "reason": "Antes de investigar hay que acotar el problema: cuándo empieza y si es constante o intermitente, y qué páginas afecta. El Performance Tree de Adobe parte justamente de que el problema se observa en una página concreta y se puede reproducir de forma consistente, y la metodología de rendimiento de AEM insiste en medir y acotar antes de optimizar. Navegador, red o alertas son comprobaciones posteriores.\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-65/content/implementing/deploying/practices/performance-tree  ·  https://experienceleague.adobe.com/en/docs/experience-manager-65/content/implementing/deploying/configuring/configuring-performance"
+  },
+  {
+    "id": 174,
+    "question": "A long-running customer-managed platform is approaching its storage allocation. Investigation shows a large accumulation of old page versions and of assets no longer referenced by any page. What should the maintenance plan address first?",
+    "answers": [
+      "An agreed retention position for versions and unreferenced assets, applied as routine maintenance",
+      "A restriction on how many versions authors may create for any single page",
+      "An increase in the storage allocation sufficient to accommodate the current growth rate",
+      "A review of which assets are still referenced, with the unreferenced ones archived externally and removed"
+    ],
+    "correct": "An agreed retention position for versions and unreferenced assets, applied as routine maintenance",
+    "reason": "Adobe indica que las versiones nunca se purgan solas y que el repositorio crece con el tiempo, por lo que debe gestionarse con mecanismos como el Version Manager o la tarea de purga de versiones dentro del mantenimiento. Lo primero es una política de retención acordada y aplicada de forma periódica. Ampliar el almacenamiento (C) o una limpieza puntual (D) no resuelven la causa, y limitar a los autores (B) no es la práctica que recomienda Adobe.\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-65/content/implementing/deploying/configuring/version-purging"
+  },
+  {
+    "id": 175,
+    "question": "A project ships several content packages, one of which must be installed only after the package that creates the folder structure it writes into. On one environment the packages installed in a different order and the deployment failed. What should the architect require?",
+    "answers": [
+      "That the dependent package create the folder structure itself if it is not already present",
+      "That the deployment pipeline install the packages in a fixed order recorded in its own configuration",
+      "That the two packages be merged into one, removing the ordering question from the deployment",
+      "That the dependent package declare its dependency, enforcing installation order wherever it is installed"
+    ],
+    "correct": "That the dependent package declare its dependency, enforcing installation order wherever it is installed",
+    "reason": "En el Package Manager de AEM, el campo «Depends on» lista otros paquetes necesarios para que el paquete actual funcione al instalarse. Declarar la dependencia en el propio paquete hace que el requisito viaje con él a cualquier entorno, en vez de depender del orden de un pipeline concreto (B) o de fusionar paquetes (C).\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-65/content/sites/administering/contentmanagement/package-manager"
+  },
+  {
+    "id": 176,
+    "question": "A vendor maintenance release is available for a customer-managed AEM 6.5 platform that carries several custom components and two integrations. Which two activities establish whether the release is safe to adopt on this platform?\n(Choose two.)",
+    "answers": [
+      "Confirm the integrations still function against the release before it reaches production",
+      "Establish a way to return the platform to its current state if the release causes a problem",
+      "Review the release notes to identify the defects the release is intended to correct",
+      "Validate the custom components against the release on a non-production environment",
+      "Schedule the adoption for a period when editorial activity is at its lowest"
+    ],
+    "correct": [
+      "Confirm the integrations still function against the release before it reaches production",
+      "Validate the custom components against the release on a non-production environment"
+    ],
+    "reason": "La guía de planificación de upgrades de AEM 6.5 pide crear un plan de pruebas con todas las personalizaciones, incluyendo componentes propios e integraciones con terceros, y probarlo antes de producción. Estas dos actividades son las que determinan si la versión es segura para esta plataforma. Tener un plan de vuelta atrás (B) también es recomendable (las release notes piden backup antes de instalar), pero sirve para mitigar riesgos, no para comprobar que la versión es segura.\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-65/content/implementing/deploying/upgrading/upgrade-planning  ·  https://experienceleague.adobe.com/en/docs/experience-manager-65/content/release-notes/release-notes"
+  },
+  {
+    "id": 177,
+    "question": "An AEM platform authenticates to two external services using credentials issued by those services. The security policy requires periodic rotation. Which two provisions should the maintenance plan contain?\n(Choose two.)",
+    "answers": [
+      "A record of which components in the application use each of the two credentials",
+      "An alert that fires when either external service begins rejecting the platform requests",
+      "A defined way to update the stored credential without redeploying the application",
+      "A schedule for rotation agreed with each service owner",
+      "A copy of each credential held securely so that it can be restored if rotation fails"
+    ],
+    "correct": [
+      "A defined way to update the stored credential without redeploying the application",
+      "A schedule for rotation agreed with each service owner"
+    ],
+    "reason": "Adobe recomienda guardar los secretos como variables de entorno secretas de Cloud Manager referenciadas desde OSGi ($[secret:...]), lo que permite rotarlos sin redesplegar la aplicación. Además, como las credenciales las emiten los servicios externos, la rotación tiene que coordinarse con un calendario acordado con cada proveedor. Guardar copias de credenciales (E) va en contra de la política de seguridad.\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/developing/advanced/secrets  ·  https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/deploying/configuring-osgi"
+  },
+  {
+    "id": 178,
+    "question": "An operations engineer has identified a configuration value that resolves a production fault and asks to apply it directly to the production environment on AEM as a Cloud Service. How should the architect respond?",
+    "answers": [
+      "The change should be raised as a defect and scheduled into the next planned release",
+      "The change may be applied to production first and added to the project configuration afterwards",
+      "The change should be applied to stage first and to production once it has been observed there",
+      "The change must be made in the project configuration so that it is deployed through the pipeline"
+    ],
+    "correct": "The change must be made in the project configuration so that it is deployed through the pipeline",
+    "reason": "En AEM as a Cloud Service los cambios de configuración OSGi solo pueden llegar desde Git a través del pipeline de CI/CD, y no se permiten cambios directos en el repositorio de publish. Adobe tampoco recomienda usar variables de entorno para hacer cambios de configuración en caliente en Stage o Producción. Por tanto, el cambio debe hacerse en la configuración del proyecto y desplegarse con Cloud Manager.\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/release-notes/aem-cloud-changes  ·  https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/deploying/configuring-osgi"
+  },
+  {
+    "id": 179,
+    "question": "An operations team performs a manual sequence after each release to verify the platform is healthy. The team proposes automating it. What should the architect confirm before the automation is built?",
+    "answers": [
+      "That the team has capacity to build and maintain the automation alongside its other work",
+      "That the manual sequence reliably detects the problems it is intended to catch",
+      "That the sequence is performed consistently by every member of the operations team",
+      "That the automation can run without access to production credentials held by the team"
+    ],
+    "correct": "That the manual sequence reliably detects the problems it is intended to catch",
+    "reason": "Automatizar una comprobación que no detecta bien los problemas solo hace más rápido un control poco fiable. Antes de construir la automatización hay que validar que la secuencia sirve de verdad para lo que se busca. Las demás opciones son cuestiones operativas secundarias.\n\nDocumentación oficial: no hay una página oficial de Adobe que trate directamente esta cuestión."
+  },
+  {
+    "id": 180,
+    "question": "During acceptance testing the client raises forty observations. Some are failures against the agreed criteria, and others are changes the testers would prefer but which the criteria do not require. The launch date is fixed. How should the architect direct the triage?",
+    "answers": [
+      "Classify each observation against the agreed acceptance criteria, and route the preferences to change control",
+      "Defer every observation to a release after launch, protecting the fixed date and the agreed scope",
+      "Fix the observations the testers rank most important, giving the client visible confidence in its own priorities",
+      "Fix every observation the client raised, since acceptance is the client's judgment of the platform"
+    ],
+    "correct": "Classify each observation against the agreed acceptance criteria, and route the preferences to change control",
+    "reason": "Con fecha fija, lo correcto es separar los fallos frente a los criterios acordados (que hay que corregir) de las preferencias nuevas, que pasan por control de cambios. Corregirlo todo (D), aplazarlo todo (B) o priorizar por gusto de los testers (C) rompe el alcance acordado o la fecha.\n\nDocumentación oficial: no hay una página oficial de Adobe que trate directamente esta cuestión."
+  },
+  {
+    "id": 181,
+    "question": "For the third time in two months, a content update has failed to appear for visitors, and the operations team has resolved it by clearing the Dispatcher cache by hand. Each incident is closed once visitors see the correct page. What should the architect require?",
+    "answers": [
+      "A shorter cache lifetime on the affected paths, limiting how long stale content can be served",
+      "A documented procedure for the manual cache clearance, allowing the operations team to apply it consistently and faster",
+      "An alert that fires when a published page is still serving its previous content to visitors",
+      "An investigation into why invalidation is not reaching the affected paths, and a fix"
+    ],
+    "correct": "An investigation into why invalidation is not reaching the affected paths, and a fix",
+    "reason": "Si el contenido publicado no aparece y se arregla borrando la caché a mano, el problema está en la invalidación del Dispatcher (la sección /invalidate o la invalidación tras la activación), y repetirse tres veces indica una causa de fondo. La documentación del Dispatcher explica que la auto-invalidación solo afecta a los documentos que cumplen las reglas de /invalidate. Acortar el TTL (A) o documentar el borrado manual (B) solo tapan el síntoma.\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration"
+  },
+  {
+    "id": 182,
+    "question": "Visitors intermittently receive an error page. The same request usually succeeds when retried, the error rate shows no relationship to how busy the site is, and the site runs several publish instances behind a load balancer. Which hypothesis does this pattern most support?",
+    "answers": [
+      "The application contains a defect that appears only under particular request conditions",
+      "A cached error response is being served to a proportion of visitors from the web tier",
+      "One publish instance is faulty and the load balancer continues to send it a share of requests",
+      "The publish tier is saturated and rejects requests once its capacity is exceeded"
+    ],
+    "correct": "One publish instance is faulty and the load balancer continues to send it a share of requests",
+    "reason": "Que el error sea intermitente, que se arregle al reintentar y que no dependa de la carga apunta a que una de las instancias de la granja está mal y sigue recibiendo parte del tráfico. Si fuera saturación (D) dependería de la carga, y un error cacheado (B) se repetiría al reintentar. La configuración del Dispatcher incluye /health_check, /unavailablePenalty y /failover precisamente para gestionar renders que fallan.\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration"
+  },
+  {
+    "id": 183,
+    "question": "A website hosted on AEM as a Cloud Service (AEMaaCS) uses a private key to decrypt data received from a secure web platform. The private key is stored as an encrypted OSGi configuration on the AEM publishers using the OOTB AEM Crypto Support bundle. The architect has received reports from developers stating that while the feature works on the AEMaaCS environments, they fail to decrypt the data on the local development environment. What two actions would the architect take to resolve the issue?\n(Choose two.)",
+    "answers": [
+      "Navigate to /crx-quickstart/launchpad/felix/bundle/<ID>/data in the file system and copy the hmac and master files from the source instance to the target instances",
+      "Start the local AEM environment with the -Dcom.adobe.granite.crypto.file.disable=true option",
+      "Use the cryptosupport API to decrypt the private key and re-encrypt the value using the /system/console /crypto console",
+      "Restart the com.adobe.granite.crypto OSGi bundle or restart the entire AEM instance",
+      "Export the CryptoKey from AEMaaCS environment by creating a content package of the /etc/key path"
+    ],
+    "correct": [
+      "Navigate to /crx-quickstart/launchpad/felix/bundle/<ID>/data in the file system and copy the hmac and master files from the source instance to the target instances",
+      "Restart the com.adobe.granite.crypto OSGi bundle or restart the entire AEM instance"
+    ],
+    "reason": "Los valores protegidos con Crypto Support solo se pueden descifrar en instancias que tengan la misma clave. Adobe indica que, desde AEM 6.3, la clave está en el sistema de ficheros, en la carpeta data del bundle com.adobe.granite.crypto.file (ficheros hmac y master): hay que copiarlos a la instancia destino y refrescar el bundle o reiniciar. En AEMaaCS no se tiene acceso al sistema de ficheros, y Adobe recomienda para Cloud guardar los secretos como variables de entorno secretas de Cloud Manager.\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-65/content/security/encapsulated-token  ·  https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/developing/advanced/secrets\n\nSalvedad de la clave del documento: A y D describen la sincronización de claves entre instalaciones con acceso al sistema de archivos. No son un procedimiento ejecutable por el cliente para extraer las claves de AEMaaCS. La respuesta se conserva como clave del material, pero el escenario Cloud requiere gestionar el secreto mediante los mecanismos admitidos de Cloud Manager."
+  },
+  {
+    "id": 184,
+    "question": "An organization is transitioning its digital platform to AEMaaCS. The lead architect is overseeing the transition and ensuring that the platform remains robust and offers a consistent user experience. The team has already performed general functionality tests. As the launch date approaches, the team is focusing on potential real-world challenges, such as the platform's behavior under high-user traffic and communicating with third-party services. Which two types of testing should the architect prioritize next to ensure a seamless transition to AEMaaCS?\n(Choose two.)",
+    "answers": [
+      "Unit Testing",
+      "Integration Testing",
+      "Load Testing",
+      "Usability Testing"
+    ],
+    "correct": [
+      "Integration Testing",
+      "Load Testing"
+    ],
+    "reason": "Los riesgos que se mencionan son el comportamiento con mucho tráfico (pruebas de carga) y la comunicación con servicios de terceros (pruebas de integración). La checklist de go-live de AEMaaCS pide ejecutar pruebas de rendimiento y seguridad en Stage, que tiene el mismo tamaño que producción. Las pruebas unitarias o de usabilidad no cubren esos riesgos.\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/onboarding/journey/go-live-checklist  ·  https://experienceleague.adobe.com/en/docs/experience-manager-65/content/implementing/deploying/configuring/configuring-performance"
+  },
+  {
+    "id": 185,
+    "question": "While developing a public website using AEMaaCS, a client introduces a new requirement on the ability for users to leave comments on the site's pages. How would the Solution Architect respond to ensure the design remains flexible and prepared for potential future modifications while adhering to GDPR regulations?",
+    "answers": [
+      "Collaborate with an external vendor to manage and store the comments separately",
+      "Store comments within the platform's native repository and use built-in distribution mechanisms to synchronize comments across multiple servers",
+      "Utilize a NoSQL database that comes with the platform to handle comment storage",
+      "Retain comments within the platform's primary database and synchronize them using a pull mechanism via the main content management instance"
+    ],
+    "correct": "Collaborate with an external vendor to manage and store the comments separately",
+    "reason": "En AEMaaCS no hay replicación inversa de publish a author, y Adobe indica que, si hace falta, hay que usar un almacenamiento externo compartido. Además, no se permiten cambios directos en el repositorio de publish. Guardar los comentarios fuera, en una solución especializada, mantiene la flexibilidad y facilita cumplir el RGPD. AEMaaCS no incluye ninguna base de datos NoSQL para esto (C).\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/development-guidelines  ·  https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/release-notes/aem-cloud-changes"
+  },
+  {
+    "id": 186,
+    "question": "A client wants their Active Directory (AD) users created into IMS automatically. These are AEMaaCS users where the user information is required to be aligned with user information from the company AD. Which step would be implemented?",
+    "answers": [
+      "Define an Access Control List (ACLs)",
+      "Generate a CSV file and upload to Adobe IMS",
+      "Use ACS Commons ACL Packager",
+      "Integrate with the User Sync Tool"
+    ],
+    "correct": "Integrate with the User Sync Tool",
+    "reason": "El User Sync Tool de Adobe es una herramienta de línea de comandos que lleva usuarios y grupos del directorio corporativo, como Active Directory o LDAP, al Adobe Admin Console (IMS). Se ejecuta de forma programada para mantenerlos sincronizados. Un CSV (B) es una carga manual y no automática.\n\nDocumentación oficial: https://helpx.adobe.com/enterprise/using/user-sync.html"
+  },
+  {
+    "id": 187,
+    "question": "A website hosted in AEM 6.5 is re-structured with new information architecture for site hierarchy including a new content root. The go-live release is planned to be divided into a few phases on a country basis. Those countries not involved will continue to be served with the existing content resources. Which configuration would be implemented for the website to continue serving without impacting existing website journeys?",
+    "answers": [
+      "Define a sling:internalRedirect for the new content resources and existing content resources",
+      "Define a sling:redirect to resolve the existing content resources",
+      "Define a sling:alias for the new content resources with the value of existing content resources",
+      "Define a vanity URL to resolve the existing content resources"
+    ],
+    "correct": "Define a sling:internalRedirect for the new content resources and existing content resources",
+    "reason": "sling:internalRedirect es una propiedad multivalor: Sling prueba las rutas en orden hasta encontrar una que resuelva a un recurso. Con la raíz nueva y la existente como valores, los países migrados se sirven desde la estructura nueva y los demás siguen resolviendo a la antigua sin redirecciones visibles. sling:redirect (B) y las vanity URLs (D) cambian o duplican URLs, y sling:alias (C) solo renombra segmentos.\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-65/content/implementing/deploying/configuring/resource-mapping  ·  https://sling.apache.org/documentation/the-sling-engine/mappings-for-resource-resolution.html (Apache Sling, base de AEM)"
+  },
+  {
+    "id": 188,
+    "question": "An architect plans to migrate the user and groups from an existing AEM instance to an AEM as a Cloud Service (AEMaaCS) instance. The migration requires the creation of a clean repository and a reset of all user permissions needs to be completed before running the ingestion process. For security purposes, the existing admin user's access token for the Content Transfer Tool also needs to be reset. What action should the architect perform before running the Content Transfer Tool?",
+    "answers": [
+      "Create an ACL package that includes user permissions with option = \"Merge\" in the filter.xml",
+      "Disable the Wipe existing content on Cloud instance before ingestion option in the Content Transfer Tool",
+      "Create an ACL package that includes user permissions with mode = \"replace\" in the filter.xml",
+      "Enable the Wipe existing content on Cloud instance before ingestion option in the Content Transfer Tool"
+    ],
+    "correct": "Enable the Wipe existing content on Cloud instance before ingestion option in the Content Transfer Tool",
+    "reason": "La documentación de ingesta del CTT explica que, con la opción Wipe activada, se resetea todo el repositorio destino a la versión de AEM indicada en Cloud Manager, incluidos los permisos de usuario. Esto afecta también al usuario admin añadido al grupo de administradores, que habría que volver a añadir. Es justo lo que pide el enunciado: repositorio limpio y reset de permisos.\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/migration-journey/cloud-migration/content-transfer-tool/ingesting-content"
+  },
+  {
+    "id": 189,
+    "question": "Content editors are uploading and editing thousands of PDFs daily, and notice a slow down of the AEM system over time while searching for assets in the DAM. The PDFs content does not need to be searchable. What would the AEM architect do to improve performance?",
+    "answers": [
+      "Disable Tika text extraction for the damAssetLucene index",
+      "Create a custom Lucene index",
+      "Increase the number of maximum parallel jobs for the DAM Update Asset workflows",
+      "Upsize the authoring instance to a larger tier"
+    ],
+    "correct": "Disable Tika text extraction for the damAssetLucene index",
+    "reason": "Adobe documenta que, si no se necesita buscar dentro del contenido de los ficheros, se puede mejorar el indexado desactivando Apache Tika por tipo MIME. El ejemplo oficial desactiva application/pdf en el índice OOTB damAssetLucene con un config.xml que usa EmptyParser, y así el índice es más pequeño y más rápido. Crear un índice nuevo (B) o escalar (C, D) no ataca la causa.\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-learn/foundation/development/understand-indexing-best-practices"
+  },
+  {
+    "id": 190,
+    "question": "An architect is in a discovery meeting with a client using Adobe Commerce and needs to be presented on eCommerce integration with AEM. What would the architect use to demonstrate a quick POC?",
+    "answers": [
+      "Venia Reference Store",
+      "Custom storefront implementation",
+      "The WKND Site for demo",
+      "Custom REST service implementation"
+    ],
+    "correct": "Venia Reference Store",
+    "reason": "Adobe presenta la AEM Venia reference storefront como el acelerador de CIF para integrar AEM con Adobe Commerce, junto con los Core Components y el Archetype. Viene ya configurada y solo hay que apuntarla al endpoint GraphQL de Commerce, por lo que es lo ideal para una POC rápida. WKND es un sitio de demo sin comercio.\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/content-and-commerce/cif-storefront/introduction  ·  https://experienceleague.adobe.com/en/docs/experience-manager-65/content/commerce/storefront/getting-started"
+  },
+  {
+    "id": 191,
+    "question": "An AEMaaCS customer processes thousands of assets on a daily basis. A major business requirement is to push assets being published to various legacy external systems based on tagged asset metadata. Which solution would an architect choose?",
+    "answers": [
+      "Use an external application server to offload AEM load and run batch processing using Assets HTTP API",
+      "Use a daily scheduler to distribute assets conditionally on top-up basis during least traffic hours",
+      "Use headless application on App Builder to extend asset export using Event and Runtime",
+      "Use custom workflow process to push assets conditionally via activation workflow for near real time transfer"
+    ],
+    "correct": "Use headless application on App Builder to extend asset export using Event and Runtime",
+    "reason": "AEM Events para AEMaaCS permite suscribirse a eventos de AEM y ejecutar lógica propia como funciones serverless en Adobe I/O Runtime con App Builder, sin meter código propio en AEM. Así se pueden enviar los assets a sistemas externos casi en tiempo real según sus metadatos y sin cargar AEM. Un scheduler diario (B) no es en tiempo real, y los workflows personalizados (D) cargan la instancia.\n\nDocumentación oficial: https://developer.adobe.com/experience-cloud/experience-manager-apis/guides/events/"
+  },
+  {
+    "id": 192,
+    "question": "On AEM 6.5, when an editor tries to edit pages on the author, some pages only show a blank screen. Upon inspection of the logs, the following exception is found: Which action would an architect try to restore functionality to the system without data loss?",
+    "answers": [
+      "Increase the tarmk.size value in the SegmentNodeStoreService config",
+      "Run the Data Store Garbage Collection maintenance task",
+      "Restore the most recent back-up of the author instance",
+      "Use the oak-run jar to revert the segment store to the last good revision"
+    ],
+    "correct": "Use the oak-run jar to revert the segment store to the last good revision",
+    "reason": "El documento original no incluye la excepción del log (faltaba la imagen). Si, como suele ser en esta pregunta, es una SegmentNotFoundException o corrupción del TarMK, Adobe indica que la instancia debe pararse y repararse con oak-run check, que vuelve a la última revisión buena sin restaurar un backup. Restaurar un backup (C) implicaría perder datos.\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-65/content/implementing/deploying/deploying/revision-cleanup\n\nSalvedad de la clave del documento: falta la excepción necesaria para confirmar el diagnóstico. oak-run check comprueba la consistencia; no repara automáticamente el repositorio. Volver a una revisión anterior puede perder cambios posteriores, por lo que no se puede garantizar la condición «sin pérdida de datos». Se conserva D como respuesta del documento, condicionada al diagnóstico."
+  },
+  {
+    "id": 193,
+    "question": "After building an AEMaaCS website, it was found that non-cached secured static content will put too much load on the servers. How can this secured static content be cached without creating a security concern?",
+    "answers": [
+      "Cache the secured content on the CDN using AuthChecker module",
+      "Cache the secured content on the CDN and return \"Cache-Control: private\" on the HTTP header",
+      "Cache the secured content on the dispatcher using AuthChecker module",
+      "Cache the secured content on the dispatcher and return \"Cache-Control: private\" on the HTTP header"
+    ],
+    "correct": "Cache the secured content on the dispatcher using AuthChecker module",
+    "reason": "El Dispatcher incluye el módulo AuthChecker para el caché sensible a permisos: antes de entregar una página cacheada consulta a un servlet de AEM si el usuario tiene acceso. Adobe advierte que, si hay un CDN delante, hay que enviar cabeceras como «Cache-Control: private» para que el CDN no cachee contenido privado. Por eso el contenido seguro se cachea en el Dispatcher y no en el CDN.\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/configuring/permissions-cache  ·  https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/caching"
+  },
+  {
+    "id": 194,
+    "question": "A customer with a large volume of assets and site pages needs to upgrade from AEM 6.4 with MongoMK installation to AEM 6.5 MongoMK. The architect recommends reindexing and the customer wants to keep downtime in the production environment minimal during the upgrade process. Which two options would the architect choose?\n(Choose two.)",
+    "answers": [
+      "Use oak-run jar with -doc-traversal command line parameter",
+      "Run the online indexing process on the MongoDB replica",
+      "Use crx2oak jar with -doc-traversal command line parameter",
+      "Run the offline indexing process on the MongoDB replica"
+    ],
+    "correct": [
+      "Use oak-run jar with -doc-traversal command line parameter",
+      "Run the offline indexing process on the MongoDB replica"
+    ],
+    "reason": "La guía de Adobe sobre reindexado offline para reducir la parada en un upgrade dice que, con MongoMK, una opción es ejecutar el indexado offline en la propia réplica de MongoDB para evitar la latencia de red. La otra es usar el modo doc traversal de oak-run (--doc-traversal), que vuelca el repositorio a un fichero local. crx2oak (C) no tiene ese parámetro.\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-65/content/implementing/deploying/upgrading/upgrade-offline-reindexing"
+  },
+  {
+    "id": 195,
+    "question": "A client is upgrading their live site hosted on AEM via AMS from version 6.3 to 6.5. The client prefers Blue Green deployment approach and hence not choosing an in-place upgrade. Which tool would the architect use to migrate the existing content to new servers?",
+    "answers": [
+      "Bulk Import Tool",
+      "Oak-Run Tool",
+      "CRX2OAK Tool",
+      "Content Transfer Tool"
+    ],
+    "correct": "CRX2OAK Tool",
+    "reason": "Adobe describe CRX2Oak como la herramienta para migrar datos entre repositorios, incluida la copia entre repositorios Oak. Por eso sirve para llevar el contenido a servidores nuevos en un enfoque Blue/Green (sidegrade). El Content Transfer Tool (D) solo migra a AEM as a Cloud Service, no a un 6.5 en AMS.\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-65/content/implementing/deploying/upgrading/using-crx2oak  ·  https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/migration-journey/cloud-migration/content-transfer-tool/overview-content-transfer-tool"
+  },
+  {
+    "id": 196,
+    "question": "A customer's DAM and Sites is growing exponentially while preparing for a go-live. The AEM architect has noticed that the online compaction on the author failed yesterday and finds this log entry: INFO [pool-23-thread-1] com.adobe.granite.maintenance.impl.MaintenanceJobsManagerImpl Name='RevisionCleanupTask', Status='ERROR', Result='Revision GC: Stopped by user.', Details='(\"created\":1668218400006,\"started\":1668218400006,\"finished\":1668229200598,\"duration\":10800592}' What step would the architect take to resolve this issue for the production environment with no downtime?",
+    "answers": [
+      "Configure the full compaction to run on weekdays",
+      "Increase the daily maintenance window",
+      "Manually run the online compaction",
+      "Perform an offline compaction"
+    ],
+    "correct": "Increase the daily maintenance window",
+    "reason": "El log muestra que el Revision GC se paró tras unas 3 horas («Stopped by user»), es decir, al acabar la ventana de mantenimiento. Las FAQ de Revision Cleanup dicen que, si la limpieza se detiene al final de la ventana, hay que asegurarse de que la ventana es suficientemente grande. Esto sigue siendo online, sin parada; la compactación offline (D) sí la requiere.\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-65/content/implementing/deploying/deploying/revision-cleanup"
+  },
+  {
+    "id": 197,
+    "question": "A renowned eCommerce company's flagship product page witnesses a dramatic surge in traffic during the holiday seasons. Over the past few sales events, users have highlighted slower load times and sporadic outages. Preliminary analysis suggests that the current setup might be straining under the increased traffic. The company has recently integrated a Content Delivery Network (CDN) and plans to fine-tune the dispatcher settings. The leadership emphasizes ensuring a seamless user experience for the forthcoming holiday season and wants to leverage the CDN and dispatcher optimally. Given the situation described, which two approaches should be prioritized to bolster the performance and resilience of the product page during peak traffic?\n(Choose two.)",
+    "answers": [
+      "Performing Integration Testing to validate third-party APIs",
+      "Performing Load Testing to mimic high traffic scenarios",
+      "Performing testing of cache efficiency of dispatcher and CDN",
+      "Performing Penetration Testing for securing the site"
+    ],
+    "correct": [
+      "Performing Load Testing to mimic high traffic scenarios",
+      "Performing testing of cache efficiency of dispatcher and CDN"
+    ],
+    "reason": "El problema es de rendimiento con picos de tráfico, y quieren sacar el máximo del CDN y del Dispatcher. Las pruebas de carga realistas (la metodología de Adobe pide «simular la realidad») y medir la eficiencia de la caché atacan directamente ese problema. La documentación de caché de AEMaaCS explica cómo mejorar el ratio de aciertos del CDN. Las pruebas de integración o de penetración no resuelven el rendimiento.\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-65/content/implementing/deploying/configuring/configuring-performance  ·  https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/caching"
+  },
+  {
+    "id": 198,
+    "question": "A client has a site that serves both authenticated and anonymous users. A subsection of the site, which is applicable for only logged-in users, is resource intensive. In order to have a scalable yet secured solution, using available features what would an architect choose for concerned hierarchy?",
+    "answers": [
+      "Cache the concerned hierarchy neither at CDN nor at Dispatcher",
+      "Cache the concerned hierarchy at CDN but not on Dispatcher",
+      "Cache the concerned hierarchy at CDN as well as Dispatcher level",
+      "Cache the concerned hierarchy at Dispatcher but not CDN"
+    ],
+    "correct": "Cache the concerned hierarchy at Dispatcher but not CDN",
+    "reason": "Para contenido que solo ven usuarios logados, Adobe ofrece el caché sensible a permisos en el Dispatcher (AuthChecker), que comprueba los permisos antes de servir la página cacheada. Al mismo tiempo, recomienda que el CDN no cachee contenido privado («Cache-Control: private»). Así se gana escalabilidad sin comprometer la seguridad.\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/configuring/permissions-cache"
+  },
+  {
+    "id": 199,
+    "question": "A client has set up branded error pages in AEM to be presented in case of HTTP 400 and HTTP 500 errors on an AEM hosted website. The website pages are under \"/content/xbrand/fr/fr/\" directory. The error pages are located under \"/content/xbrand/fr/fr/error-docs/\". The architect notices that the error pages are being invalidated too whenever any other site page is published. Which solution would prevent the error pages from invalidating when publishing any other site page?",
+    "answers": [
+      "Add error pages to the /invalidate property of dispatcher.any to prevent from invalidation",
+      "Add error pages to the /rule property of dispatcher.any to prevent from invalidation",
+      "Add error pages to the /filter property of dispatcher.any to prevent from invalidation"
+    ],
+    "correct": "Add error pages to the /invalidate property of dispatcher.any to prevent from invalidation",
+    "reason": "La propiedad /invalidate define qué documentos se auto-invalidan cuando se actualiza contenido, mediante reglas glob allow/deny. Añadiendo una regla deny para /content/xbrand/fr/fr/error-docs/* esas páginas dejan de invalidarse con cada publicación. /rules (B) controla qué se cachea, y /filter (C) qué peticiones se aceptan.\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration"
+  },
+  {
+    "id": 200,
+    "question": "On the release day, an AEM code deployment is done on AEM 6.5 on-prem. After the deployment was completed, the users were able to get into the Author instance with no issues. However, users are unable to access any of the sites on public domains. The users are seeing a \"502 Bad Gateway\" error. What would be the potential cause of this issue?",
+    "answers": [
+      "Because there was a deploy and cache was cleared, there is an increased load on the AEM Publish Instances.",
+      "The replication agents are stuck which is causing load on the publish instances.",
+      "The new dispatcher configurations are not pointing at the correct publish instances.",
+      "Not all the OSGi bundles restarted after the code deploy causing the publishing instances not to be responsive."
+    ],
+    "correct": "The new dispatcher configurations are not pointing at the correct publish instances.",
+    "reason": "Un 502 Bad Gateway en los dominios públicos, con Author funcionando, indica que el servidor web o Dispatcher no consigue respuesta del backend. Adobe explica que «Unable to connect to any backend in farm» aparece cuando la IP de la sección renders de la granja está mal o la instancia no responde. Tras un despliegue con configuración nueva, lo más probable es que los renders apunten mal. (La línea «C. Next» es un resto de la web de origen y no es una opción.)\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-learn/ams/dispatcher/common-logs  ·  https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration"
+  },
+  {
+    "id": 201,
+    "question": "A client was successfully moved from AEM 6.5 to AEM as a Cloud Service (AEMaaCS) environment. The Content Transfer Tool was used to transfer the content to the AEMaaCS environment. The developed components render different renditions based on the breakpoint of the pages. The users reported that newly uploaded assets are not rendering or missing. What is the cause of this issue and how can it be resolved?",
+    "answers": [
+      "The Asset Update workflow is not compatible with AEMaaCS. The solution is to rewrite the workflow to use the new APIs in the AEM SDK.",
+      "The Asset Update workflow was not migrated properly to the new AEMaaCS instance. The solution is to migrate the /var path and the workflow models using the Content Transfer Tool.",
+      "The Asset Update workflow was not migrated properly to the new AEMaaCS instance. The solution is to make sure that the workflow is present in the codebase.",
+      "The Asset Update workflow is not compatible with AEMaaCS. The solution is to use AEM Processing profiles to create the missing renditions."
+    ],
+    "correct": "The Asset Update workflow is not compatible with AEMaaCS. The solution is to use AEM Processing profiles to create the missing renditions.",
+    "reason": "En AEMaaCS ya no existe el workflow DAM Update Asset: los microservicios de assets generan las renditions, los metadatos y la extracción de texto, y se configuran con Processing Profiles. Por eso no hay que migrar ni reescribir el workflow, sino crear perfiles de procesado con las renditions que necesitan los componentes. (La línea «D. Next» es un resto de la web de origen.)\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/assets/assets-cloud-changes  ·  https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/assets/manage/asset-microservices-configure-and-use"
+  },
+  {
+    "id": 202,
+    "question": "A client with an existing AEM 6.5 AMS (Adobe Managed Services) implementation wants to start selling its products in Mainland China. The client owns a state-issued ICP (Internet Content Provider) license. The client does not accept high-latency calls for uncached content. The client does not accept content being potentially blocked by a Chinese firewall. The client wants to have an in-China hosting solution. What option would the AEM architect recommend to cover the scenario above?",
+    "answers": [
+      "Provision an on-premise AEM 6.5 near-China hosted environment that is accessed via an in-China CDN (Content Delivery Network).",
+      "Migrate the existing AMS AEM environment to AEMaaCS and create the environment with multiple Cloud Service Environment regions",
+      "Reach out to AMS to set up an Adobe Experience Manager Managed Services for China infrastructure",
+      "Use an in-China CDN (Content Delivery Network) that interfaces with the existing AMS AEM set-up"
+    ],
+    "correct": "Reach out to AMS to set up an Adobe Experience Manager Managed Services for China infrastructure",
+    "reason": "Adobe tiene una oferta específica, «Adobe Experience Manager: Managed Services - China», alojada dentro de China continental a través de proveedores locales (AWS Beijing Sinnet y Azure 21Vianet). Cumple los requisitos de hosting en China y evita la latencia y el bloqueo del firewall, que con un CDN delante de un AMS fuera de China (D) o con regiones de AEMaaCS (B) seguirían existiendo. (La línea «C. Next» es un resto de la web de origen.)\n\nDocumentación oficial: https://www.adobe.com/cc-shared/assets/pdf/legal/terms/enterprise/pdfs/pslt-aem-managedserviceschina-ww-2024v1.pdf"
+  },
+  {
+    "id": 203,
+    "question": "A client is currently using Assets on AEM as a Cloud Service (AEMaaCS). They are also using BrandPortal to share assets with external vendors. A new vendor was added to the Adobe Identity Management System (IMS) and was assigned the BrandPortal Profile. The client created a Contribution Folder in Assets but was unable to find the new user that was added in IMS to give them permission to the folder. Why is the user not listed in the list of users to share the folder with?",
+    "answers": [
+      "A list of BrandPortal users needs to be created as a CSV and uploaded manually on AEMaaCS including the new user.",
+      "The user needs to be given Support Administrator rights on BrandPortal to be able to get a Contribution Folder assigned to them.",
+      "The BrandPortal Cloud Configuration is not configured properly and needs to be reconfigured in order for BrandPortal to sync with AEMaaCS.",
+      "After the user is added in the Adobe Identity Management System (IMS), it takes some time for IMS to push the users to AEMaaCS."
+    ],
+    "correct": "A list of BrandPortal users needs to be created as a CSV and uploaded manually on AEMaaCS including the new user.",
+    "reason": "Según la documentación de Asset Sourcing de Brand Portal, una carpeta de contribución solo se puede compartir con los usuarios activos de Brand Portal que estén en la lista de usuarios (un .csv subido en Tools > Assets > Brand Portal Users). El buscador de usuarios de la carpeta se basa en esa lista. Si el nuevo proveedor no está en el CSV, no aparece aunque ya exista en IMS.\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-brand-portal/using/asset-sourcing-in-brand-portal/brand-portal-asset-sourcing  ·  https://experienceleague.adobe.com/en/docs/experience-manager-brand-portal/using/asset-sourcing-in-brand-portal/brand-portal-publish-contribution-folder-to-brand-portal"
+  },
+  {
+    "id": 204,
+    "question": "An AEMaaCS customer wants to have a sub section in site to accept data from an end user, which may be text as well as documents. The site is expected to have high data input which would need moderation and masking before making it live for public access. Due to a legal content policy, the data collected through the site cannot be shared outside the organization. What would an architect recommend?",
+    "answers": [
+      "Utilize Reverse Replication through publish servers",
+      "Utilize backward Sling Content Distribution from publish server",
+      "Utilize data storage/APIs outside of AEMaaCS",
+      "Utilize AEM communities with MSRP topology"
+    ],
+    "correct": "Utilize data storage/APIs outside of AEMaaCS",
+    "reason": "En AEMaaCS no hay replicación inversa (A) ni agentes de replicación personalizados, y Adobe recomienda usar un almacenamiento externo compartido cuando haga falta llevar datos desde publish. Además, no se permiten cambios directos en el repositorio de publish. Un almacenamiento o API propio de la organización fuera de AEMaaCS permite moderar y enmascarar los datos sin sacarlos de la organización.\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/development-guidelines  ·  https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/release-notes/aem-cloud-changes"
+  },
+  {
+    "id": 205,
+    "question": "Approximately 300 tags are migrated from /etc/tags to /content/cq:tags prior to AEM 6.5 migration. However, AEM did not recognize the tags under /content/cq:tags. What steps can be taken to resolve the tag migration?",
+    "answers": [
+      "Update the Day Communique 5 Tagging Configuration for the root path in AEM Web Console - Configuration Manager",
+      "Re-tagging all the affected content pages from Page Properties Editor",
+      "Restart Day Communique 5 Tagging in AEM Web Console - System Bundles"
+    ],
+    "correct": "Restart Day Communique 5 Tagging in AEM Web Console - System Bundles",
+    "reason": "La guía de reestructuración de repositorio de AEM 6.5 indica que hay que copiar las etiquetas a /content/cq:tags, borrarlas de /etc/tags y reiniciar el bundle «Day Communique 5 Tagging» (com.day.cq.cq-tagging) desde la Web Console. Así AEM reconoce la nueva ubicación como raíz de etiquetas, siempre que la antigua esté vacía.\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-65/content/implementing/deploying/restructuring/all-repository-restructuring-in-aem-6-5"
+  },
+  {
+    "id": 206,
+    "question": "An architect is leading a cross-functional team in a retail organization tasked with enhancing the online shopping experience. The goal is to render product pages and catalog pages using Adobe Experience Manager (AEM), while keeping the checkout process within the commerce engine. The team is considering different architecture options to achieve this. Given the complexity of the project and the need for seamless integration, which architecture would provide the most suitable solution?",
+    "answers": [
+      "Headless Architecture",
+      "Centralized Architecture",
+      "Monolithic Architecture"
+    ],
+    "correct": "Headless Architecture",
+    "reason": "Si AEM renderiza producto y catálogo y el checkout se queda en el motor de comercio, el comercio se usa como servicio vía API/GraphQL desde AEM. La documentación de comercio de AEM habla de integraciones headless de contenido y comercio. Una arquitectura monolítica o centralizada no separa así las responsabilidades.\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/content-and-commerce/cif-storefront/introduction  ·  https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/content-and-commerce/introduction"
+  },
+  {
+    "id": 207,
+    "question": "A client publishes content by a tree activation, which frequently invalidates the page cache in short succession. This causes the visitors to almost always hit an empty cache. The implementation uses a .stat file for invalidation. The client wants to delay the invalidation of cached pages while the publishing is in progress, so that the cached files are served until the invalidation completes. Which AEM dispatcher ' s feature can the architect propose to delay cache invalidation?",
+    "answers": [
+      "Set the Dispatcher to use /invalidate property of dispatcher.any for auto-invalidation",
+      "Use ServeStaleOnError dispatcher configuration to render the cache in case of error",
+      "Set the Dispatcher to use /gracePeriod property of dispatcher.any for auto-invalidation",
+      "Set the Dispatcher to adjust /statfileslevel property of dispatcher.any"
+    ],
+    "correct": "Set the Dispatcher to use /gracePeriod property of dispatcher.any for auto-invalidation",
+    "reason": "La documentación del Dispatcher dice que /gracePeriod define cuántos segundos se puede seguir sirviendo desde caché un recurso auto-invalidado después de la última activación. Está pensado para evitar que una tanda de activaciones invalide toda la caché una y otra vez (valor recomendado: 2 s). serveStaleOnError (B) solo actúa cuando el render da error.\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration"
+  },
+  {
+    "id": 208,
+    "question": "A website built on AEM as a Cloud Service (AEMaaCS) leverages browser caching of JavaScript and CSS files to optimize page load times. After the caching is enabled, QA testers notice that newly delivered components are lacking newly developed features and are missing styling, even hours after their deployment. Further analysis identifies outdated CSS and JavaScript files in the browser cache as the root cause. What steps would an AEM architect take first to fix this issue?",
+    "answers": [
+      "Check the Adobe Granite HTML Library Manager OSGi configuration to see if the timestamp appending option is enabled",
+      "Append a user-specific unique ID query parameter to each JavaScript and CSS call as a cache-bust mechanism",
+      "Add max-age=300 and must-revalidate Cache-Control headers to JavaScript and CSS files in the dispatcher configuration",
+      "Check whether the clientlib paths are included in the dispatcher invalidation section of the Cloud Manager Deployment pipeline"
+    ],
+    "correct": "Check the Adobe Granite HTML Library Manager OSGi configuration to see if the timestamp appending option is enabled",
+    "reason": "Adobe explica que las clientlibs evitan la caché antigua del navegador añadiendo a la URL un hash de versión (strict clientlib versioning / long-term cache key), que se configura en Adobe Granite HTML Library Manager y viene activado por defecto en AEMaaCS. Si el navegador sirve CSS/JS antiguos, lo primero es comprobar ese versionado. Invalidar el Dispatcher (D) no limpia la caché del navegador, y un parámetro por usuario (B) rompería la caché.\n\nDocumentación oficial: https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/caching\n\nPrecisión: la opción A habla de timestamp, pero el mecanismo descrito por Adobe utiliza una clave o hash de versión del contenido. Se conserva A como la opción prevista por el documento."
   }
 ]

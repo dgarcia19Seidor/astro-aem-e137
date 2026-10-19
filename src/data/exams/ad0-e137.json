@@ -705,7 +705,10 @@
       "Serenity",
       "Selenium"
     ],
-    "correct": "JUnit5, Mockito Test Framework",
+    "correct": [
+      "JUnit5",
+      "Mockito Test Framework"
+    ],
     "reason": "JUnit5 es el framework de testing y Mockito se usa para mockear dependencias en unit tests."
   },
   {
@@ -753,19 +756,29 @@
       "Configure dispatcher rules for dependencies",
       "Include dependency configurations in Oak index definitions"
     ],
-    "correct": "Use npm for front-end dependency management, Use Maven for back-end dependency management, Perform regular audits of outdated dependencies",
+    "correct": [
+      "Use npm for front-end dependency management",
+      "Use Maven for back-end dependency management",
+      "Perform regular audits of outdated dependencies"
+    ],
     "reason": "Buenas prácticas incluyen npm para frontend, Maven para backend y auditorías periódicas de dependencias."
   },
   {
     "id": 65,
-    "question": "A developer created a component with pagePath, additionalInfo, and label fields. What is the correct HTL code and resultant valid URL path generated?",
+    "question": "A developer created a component with the following fields (pagePath, additionalInfo, label). What is the correct HTL code and resultant valid URL path generated?",
     "answers": [
-      "Option A",
-      "Option B",
-      "Option C"
+      "HTL code: <a href=\"{properties.pagePath}.html/{properties.additionalInfo}\">{properties.label}</a> Page Path: /content/testsite/en/page1.html/product/test1",
+      "HTL code: <a href=\"{properties.pagePath}/{properties.additionalInfo}.html\">{properties.label}</a> Page Path: /content/testsite/en/page1/product/test1.html",
+      "HTL code: <a href=\"{properties.additionalInfo}.html/{properties.pagePath}\">{properties.label}</a> Page Path: /product/test1.html/content/testsite/en/page1"
     ],
-    "correct": "Option B",
-    "reason": "El sufijo debe agregarse antes de .html formando /pagePath/additionalInfo.html."
+    "correct": "HTL code: <a href=\"{properties.pagePath}/{properties.additionalInfo}.html\">{properties.label}</a> Page Path: /content/testsite/en/page1/product/test1.html",
+    "reason": "La tabla de campos indica que additionalInfo debe mostrarse como SUFFIX. En Sling el sufijo va siempre detras de la extension, de modo que la URL valida seria /content/testsite/en/page1.html/product/test1 (opcion A), que el servlet lee con request.getRequestPathInfo().getSuffix(). OJO: la clave de este dump marca la opcion B (/content/testsite/en/page1/product/test1.html), que apunta a un recurso inexistente. Se mantiene la clave del dump, pero tecnicamente la correcta es A.",
+    "images": [
+      {
+        "src": "/images/exams/ad0-e137/q65-exhibit.png",
+        "alt": "Tabla de campos del componente: pagePath, additionalInfo (display as suffix) y label."
+      }
+    ]
   },
   {
     "id": 66,
@@ -800,7 +813,10 @@
       ".cmp-title--example .cmp-title.cmp-title__text { color: #EB212E; }",
       ".cmp-title--example .cmp-title__text { color: #EB212E; }"
     ],
-    "correct": ".cmp-title--example { display: block; background-color: #EB212E; }, .cmp-title--example .cmp-title__text { color: #EB212E; }",
+    "correct": [
+      ".cmp-title--example { display: block; background-color: #EB212E; }",
+      ".cmp-title--example .cmp-title__text { color: #EB212E; }"
+    ],
     "reason": "El Style System inserta la clase del estilo (cmp-title--example, modificador BEM) en el elemento decorador que envuelve al componente, así que el markup del Title de Core Components queda: <div class=\"title cmp-title--example\"> <div class=\"cmp-title\"> <h1 class=\"cmp-title__text\">…</h1> </div> </div>. Las buenas prácticas (BEM de Core Components) son estilar el propio wrapper del modificador (.cmp-title--example { … }) y estilar los elementos hijos usando sus clases BEM como descendientes del modificador (.cmp-title--example .cmp-title__text { … }). No es buena práctica usar selectores de etiqueta como h1, porque el Title puede renderizar h1–h6 según el tipo elegido por el autor. El selector .cmp-title--example .cmp-title.cmp-title__text es incorrecto: al encadenar .cmp-title y .cmp-title__text sin espacio exige que ambas clases estén en el MISMO elemento, pero .cmp-title está en el div contenedor y .cmp-title__text en el heading, por lo que nunca coincide con nada."
   },
   {
@@ -848,7 +864,10 @@
       "Predefined project structure for consistency",
       "Supports multi-module project setups"
     ],
-    "correct": "Predefined project structure for consistency, Supports multi-module project setups",
+    "correct": [
+      "Predefined project structure for consistency",
+      "Supports multi-module project setups"
+    ],
     "reason": "El arquetipo de AEM genera una estructura estándar y soporta proyectos multi-módulo siguiendo buenas prácticas."
   },
   {
@@ -918,7 +937,11 @@
       "Test workflows in a staging environment",
       "Use dispatcher flush agents to trigger workflows"
     ],
-    "correct": "Create workflow models using the Workflow Console, Configure workflow launchers for automated execution, Test workflows in a staging environment",
+    "correct": [
+      "Create workflow models using the Workflow Console",
+      "Configure workflow launchers for automated execution",
+      "Test workflows in a staging environment"
+    ],
     "reason": "La configuración correcta incluye crear modelos, configurar launchers y validar en staging."
   },
   {
@@ -931,7 +954,11 @@
       "Configuring individual replication agents per tenant",
       "Using a shared content hierarchy for all tenants"
     ],
-    "correct": "Separate content hierarchies for each tenant under /content, Unique permissions for tenant-specific users and groups, Configuring individual replication agents per tenant",
+    "correct": [
+      "Separate content hierarchies for each tenant under /content",
+      "Unique permissions for tenant-specific users and groups",
+      "Configuring individual replication agents per tenant"
+    ],
     "reason": "Multi-tenancy requiere aislamiento de contenido, permisos diferenciados y, en muchos casos, replicación independiente."
   },
   {
@@ -954,19 +981,25 @@
       "Add a ctx.load().json() method call to get the node data"
     ],
     "correct": "Add a ctx.load().json() method call to get the node data",
-    "reason": "Escenario calcado del BylineImplTest del tutorial WKND (Unit Testing): el test con JUnit 5 y @ExtendWith(AemContextExtension.class) nunca carga contenido en el repositorio mock, así que /content/byline no existe, currentResource() devuelve null, la adaptación al modelo devuelve null y el test falla con NullPointerException. La solución es cargar los datos del nodo con ctx.load().json(\"...\", \"/content\") desde un fichero JSON en src/test/resources. @Rule es una anotación de JUnit 4; con JUnit 5 el ciclo de vida lo gestiona AemContextExtension, así que no aplica. Y AemContext ya extiende SlingContext y funciona por defecto con RESOURCERESOLVER_MOCK, suficiente para probar Sling Models; cambiar a JCR_OAK no arreglaría la ausencia de contenido."
+    "reason": "Escenario calcado del BylineImplTest del tutorial WKND (Unit Testing): el test con JUnit 5 y @ExtendWith(AemContextExtension.class) nunca carga contenido en el repositorio mock, así que /content/byline no existe, currentResource() devuelve null, la adaptación al modelo devuelve null y el test falla con NullPointerException. La solución es cargar los datos del nodo con ctx.load().json(\"...\", \"/content\") desde un fichero JSON en src/test/resources. @Rule es una anotación de JUnit 4; con JUnit 5 el ciclo de vida lo gestiona AemContextExtension, así que no aplica. Y AemContext ya extiende SlingContext y funciona por defecto con RESOURCERESOLVER_MOCK, suficiente para probar Sling Models; cambiar a JCR_OAK no arreglaría la ausencia de contenido. OJO: la clave de este dump marca la opcion que sustituye AemContext por SlingContext con JCR_OAK; el banco mantiene ctx.load().json(), que es la correccion real porque el test falla por no tener contenido cargado en el contexto.",
+    "images": [
+      {
+        "src": "/images/exams/ad0-e137/q81-exhibit.png",
+        "alt": "Codigo de la clase FlarpImplTest con AemContext."
+      }
+    ]
   },
   {
     "id": 82,
-    "question": "What is the correct way to implement the OSGi service class for the SimpleService interface?",
+    "question": "What is the correct way to implement the OSGi service class for this interface?\npublic interface SimpleService { String getMessage(); }",
     "answers": [
-      "Option A",
-      "Option B",
-      "Option C",
-      "Option D"
+      "@Component(service = SimpleService.class, immediate = true) public class SimpleServiceImpl extends SimpleService { @Override public String getMessage() { return \"Hello from SimpleService!\"; } }",
+      "@Component(service = MySimpleService.class, immediate = true) public class SimpleServiceImpl implements SimpleService { @Override public String getMessage() { } }",
+      "@Component(service = MySimpleService.class, immediate = true) public class SimpleServiceImpl implements SimpleService { @Override public String getMessage() { return \"Hello from SimpleService!\"; } }",
+      "@Component(service = SimpleService.class, immediate = true) public class SimpleServiceImpl implements SimpleService { @Override public String getMessage() { return \"Hello from SimpleService!\"; } }"
     ],
-    "correct": "Option D",
-    "reason": "La implementación correcta usa @Component(service = SimpleService.class) e implements SimpleService."
+    "correct": "@Component(service = SimpleService.class, immediate = true) public class SimpleServiceImpl implements SimpleService { @Override public String getMessage() { return \"Hello from SimpleService!\"; } }",
+    "reason": "La implementacion correcta anota la clase con @Component(service = SimpleService.class, immediate = true) e implementa la interfaz SimpleService devolviendo el valor esperado. Asi el servicio se publica bajo el tipo SimpleService y otros componentes pueden inyectarlo con @Reference private SimpleService. La opcion que hace 'extends SimpleService' no compila (es una interfaz), y las que registran service = MySimpleService.class publican el servicio bajo un tipo que nadie referencia."
   },
   {
     "id": 83,
@@ -1001,7 +1034,10 @@
       "Repoinit creates resources at startup, ensuring reliability in application logic",
       "Repoinit statements are atomic and explicit and are skipped if the state is already matching"
     ],
-    "correct": "RepoInit allows for explicit control over actions, ensuring safety in content modification, Repoinit creates resources at startup, ensuring reliability in application logic",
+    "correct": [
+      "RepoInit allows for explicit control over actions, ensuring safety in content modification",
+      "Repoinit creates resources at startup, ensuring reliability in application logic"
+    ],
     "reason": "Repoinit permite crear recursos al arrancar y controlar explícitamente las operaciones de inicialización; esos son los dos beneficios seleccionados en este banco. Adobe también documenta que sus instrucciones son atómicas e idempotentes y pueden validarse en un entorno local en tiempo de ejecución. Por tanto, esas otras opciones también son verdaderas y la pregunta es ambigua al exigir solo dos respuestas. La opción que atribuye las operaciones rápidas y atómicas a los paquetes de contenido mutable confunde el mecanismo al que se refiere esa ventaja."
   },
   {
@@ -1025,7 +1061,10 @@
       "request.setSelectorString(\"query=jackets&category=womens\");",
       "request.setParameterMap(ImmutableMap.<String,Object>builder().put(\"query\", \"jackets\").put(\"category\", \"womens\").build());"
     ],
-    "correct": "request.setQueryString(\"query=jackets&category=womens\");, request.setParameterMap(ImmutableMap.<String,Object>builder().put(\"query\", \"jackets\").put(\"category\", \"womens\").build());",
+    "correct": [
+      "request.setQueryString(\"query=jackets&category=womens\");",
+      "request.setParameterMap(ImmutableMap.<String,Object>builder().put(\"query\", \"jackets\").put(\"category\", \"womens\").build());"
+    ],
     "reason": "En MockSlingHttpServletRequest (Apache Sling Testing / AEM Mocks) los parámetros de la petición se simulan de dos formas: setQueryString(\"query=jackets&category=womens\") parsea la query string y rellena el mapa de parámetros (getParameter(\"query\") devuelve \"jackets\"), y setParameterMap(Map<String,Object>) establece directamente el mapa de parámetros. setSelectorString solo define los selectores de la URL (p. ej. /page.sel1.sel2.html), que se leen con getRequestPathInfo().getSelectors(), no con getParameter(). setRequestPathInfo(Map) no existe: la información de path (selectors, extension, suffix) se configura sobre el objeto devuelto por getRequestPathInfo() (MockRequestPathInfo) y tampoco representa parámetros GET."
   },
   {
@@ -1049,7 +1088,10 @@
       "Define the target publish instance URL",
       "Configure cache invalidation for replicated content"
     ],
-    "correct": "Enable authentication for replication requests, Define the target publish instance URL",
+    "correct": [
+      "Enable authentication for replication requests",
+      "Define the target publish instance URL"
+    ],
     "reason": "Al configurar un agente de replicación estándar (author → publish) en /etc/replication/agents.author, la pestaña Transport exige definir la URI del destino (p. ej. http://localhost:4503/bin/receive?sling:authRequestLogin=1) y las credenciales (User/Password) con las que el agente se autentica contra la instancia publish; sin ambos datos el agente no puede conectarse. Deshabilitar la caché del dispatcher durante la replicación no es un paso de configuración del agente, y la invalidación de caché la realiza un agente distinto (Dispatcher Flush agent, normalmente configurado en publish), por lo que no forma parte de la configuración de un agente de replicación hacia publish."
   },
   {
@@ -1157,7 +1199,10 @@
       "It makes reuse of client libraries easier.",
       "It allows for optimized load times."
     ],
-    "correct": "It allows a developer to leverage long cache expiration times for these resources., It allows for optimized load times.",
+    "correct": [
+      "It allows a developer to leverage long cache expiration times for these resources.",
+      "It allows for optimized load times."
+    ],
     "reason": "El versionado estricto de client libraries añade un hash (MD5) del contenido a la URL de la clientlib y, en modo estricto, devuelve 404 si el hash no coincide. Como la URL cambia automáticamente cuando cambia el contenido, se puede (1) aplicar tiempos de expiración de caché muy largos en navegador, dispatcher y CDN sin riesgo de servir CSS/JS obsoletos, lo que (2) reduce las peticiones al servidor y optimiza los tiempos de carga de las páginas. El versionado no reduce el tiempo de desarrollo ni facilita la reutilización de client libraries; la reutilización se consigue con categories, dependencies y embed, no con el versionado."
   },
   {
@@ -1230,7 +1275,11 @@
       "Define content policies for the component in editable templates",
       "Write Sling Models to fetch dynamic content"
     ],
-    "correct": "Develop HTL templates for front-end rendering, Define content policies for the component in editable templates, Write Sling Models to fetch dynamic content",
+    "correct": [
+      "Develop HTL templates for front-end rendering",
+      "Define content policies for the component in editable templates",
+      "Write Sling Models to fetch dynamic content"
+    ],
     "reason": "La creación de componentes personalizados implica desarrollar HTL para la vista, usar Sling Models para la lógica y definir políticas en plantillas editables."
   },
   {
@@ -1243,7 +1292,10 @@
       "Monitoring releases post-deployment for potential issues",
       "Scheduling releases during high-traffic hours"
     ],
-    "correct": "Testing new releases in staging environments, Monitoring releases post-deployment for potential issues",
+    "correct": [
+      "Testing new releases in staging environments",
+      "Monitoring releases post-deployment for potential issues"
+    ],
     "reason": "Una gestión eficaz de releases incluye validar en staging y monitorizar tras el despliegue para detectar problemas rápidamente."
   },
   {
@@ -1339,7 +1391,10 @@
       "IDP (Identity Provider) entity ID",
       "AEM’s internal content structure for storing SAML data"
     ],
-    "correct": "Encryption certificate for SAML assertions, IDP (Identity Provider) entity ID",
+    "correct": [
+      "Encryption certificate for SAML assertions",
+      "IDP (Identity Provider) entity ID"
+    ],
     "reason": "La configuración de SAML requiere el certificado para firmar/verificar assertions y el Entity ID del Identity Provider."
   },
   {
@@ -1363,7 +1418,10 @@
       "Allowing access to /libs/granite resources",
       "Denying access to /content/dam folders"
     ],
-    "correct": "Denying requests for .json content nodes, Blocking requests to /apps/*",
+    "correct": [
+      "Denying requests for .json content nodes",
+      "Blocking requests to /apps/*"
+    ],
     "reason": "Bloquear acceso a /apps y a nodos .json ayuda a proteger la lógica interna y evitar exposición no deseada de contenido estructurado."
   },
   {
@@ -1400,7 +1458,13 @@
       "Servlet by resource type"
     ],
     "correct": "Servlet by path",
-    "reason": "En Sling, los servlets registrados por path tienen prioridad sobre los registrados por resource type."
+    "reason": "En Sling, los servlets registrados por path tienen prioridad sobre los registrados por resource type.",
+    "images": [
+      {
+        "src": "/images/exams/ad0-e137/q118-exhibit.jpg",
+        "alt": "Servlet registrado con @SlingServletResourceTypes y @SlingServletPaths."
+      }
+    ]
   },
   {
     "id": 119,
@@ -1411,7 +1475,10 @@
       "Modify the Angular component to directly interact with the AEM repository using JCR SQL2 queries for dynamic content updates within the AEM environment",
       "Utilize the AEM SPA Editor JS SDK to create a 1:1 mapping between the Angular component and an AEM component, ensuring the JSON model API content is automatically injected as props"
     ],
-    "correct": "Implement the mapping approach by assigning the Angular component's sling:resourceType to match the AEM component's :type property as defined in the JSON model API, Utilize the AEM SPA Editor JS SDK to create a 1:1 mapping between the Angular component and an AEM component, ensuring the JSON model API content is automatically injected as props",
+    "correct": [
+      "Implement the mapping approach by assigning the Angular component's sling:resourceType to match the AEM component's :type property as defined in the JSON model API",
+      "Utilize the AEM SPA Editor JS SDK to create a 1:1 mapping between the Angular component and an AEM component, ensuring the JSON model API content is automatically injected as props"
+    ],
     "reason": "El mapeo correcto del resourceType y el uso del SPA Editor SDK permiten que el componente Angular reciba dinámicamente el contenido desde el JSON Model API."
   },
   {
@@ -1484,7 +1551,10 @@
       "Node.js queries",
       "JSON-based queries"
     ],
-    "correct": "SQL2 queries, XPath queries",
+    "correct": [
+      "SQL2 queries",
+      "XPath queries"
+    ],
     "reason": "AEM soporta consultas JCR mediante SQL2 y XPath como mecanismos estándar para buscar nodos en el repositorio."
   },
   {
@@ -1497,7 +1567,11 @@
       "Handles metadata extraction for assets",
       "Simplifies data access from the JCR"
     ],
-    "correct": "Provides JSON export capabilities for SPA integration, Supports dependency injection for AEM services, Simplifies data access from the JCR",
+    "correct": [
+      "Provides JSON export capabilities for SPA integration",
+      "Supports dependency injection for AEM services",
+      "Simplifies data access from the JCR"
+    ],
     "reason": "Sling Models permiten inyección de dependencias, simplifican el acceso al JCR y pueden exportarse como JSON para integración con SPA."
   },
   {
@@ -1546,7 +1620,1002 @@
       "Test the package in a staging environment before production deployment",
       "Automate syncing for every content change"
     ],
-    "correct": "Ensure version compatibility between source and target environments, Validate the synced package for missing dependencies, Test the package in a staging environment before production deployment",
+    "correct": [
+      "Ensure version compatibility between source and target environments",
+      "Validate the synced package for missing dependencies",
+      "Test the package in a staging environment before production deployment"
+    ],
     "reason": "Para una sincronización segura se debe garantizar compatibilidad de versiones, validar dependencias y probar previamente en staging."
+  },
+  {
+    "id": 131,
+    "question": "Which tasks are required to create and maintain Oak indexes? (Choose two)",
+    "answers": [
+      "Define the index definition under /oak:index",
+      "Configure the index in the dispatcher rules",
+      "Monitor index usage in the AEM Operations Dashboard",
+      "Use Node.js to manage the index structure",
+      "Perform regular reindexing as needed"
+    ],
+    "correct": [
+      "Define the index definition under /oak:index",
+      "Perform regular reindexing as needed"
+    ],
+    "reason": "Un indice Oak se crea anadiendo su definicion (oak:QueryIndexDefinition) bajo /oak:index y se mantiene reindexando cuando cambia la definicion o aparecen nuevas propiedades consultadas. El dispatcher no interviene en la indexacion y Node.js no tiene relacion con Oak. Monitorizar el uso del indice en el Operations Dashboard es buena practica de soporte, pero no es un paso de creacion/mantenimiento segun la clave de este dump."
+  },
+  {
+    "id": 132,
+    "question": "An AEM developer is using SELECT in SQL for writing search queries in AEM as a Cloud Service. The query could be vulnerable to the following security threat: SQL Injection attack. Because AEM as a Cloud Service does not offer configurable IP block lists out of the box, in what two ways would the developer be able to prevent the threat? (Choose two.)",
+    "answers": [
+      "SQL injections are harmless and would not cause any concerns to the front-end website, as it is only search queries",
+      "Encrypt the username and password of the database where the search query is performed",
+      "Use Apache mod_redirect or any other approved module on the dispatcher at the project level",
+      "Use SSO techniques, such as SAML, OAuth, or Okta, to secure the AEM Authoring Environment"
+    ],
+    "correct": [
+      "SQL injections are harmless and would not cause any concerns to the front-end website, as it is only search queries",
+      "Use Apache mod_redirect or any other approved module on the dispatcher at the project level"
+    ],
+    "reason": "Las dos defensas validas son filtrar la peticion en el dispatcher con un modulo aprobado (mod_rewrite/mod_redirect/mod_security) a nivel de proyecto y proteger el entorno de autor con SSO (SAML, OAuth, Okta). OJO: la clave de este dump marca A y C, pero la opcion A ('las inyecciones SQL son inofensivas') es tecnicamente falsa; la respuesta coherente seria C y D."
+  },
+  {
+    "id": 133,
+    "question": "A developer needs to integrate a third-party weather API into an AEM component to display weather data dynamically. What is the best approach?",
+    "answers": [
+      "Use an OSGi service to manage API connections and fetch data",
+      "Write API logic directly into the HTL template",
+      "Configure dispatcher caching for the API responses",
+      "Use the Content Fragment Model to integrate the API"
+    ],
+    "correct": "Use an OSGi service to manage API connections and fetch data",
+    "reason": "La integracion con una API de terceros se encapsula en un servicio OSGi que gestiona la conexion HTTP, las credenciales y la cache, y se expone al componente a traves de un Sling Model. Escribir la llamada en el HTL rompe la separacion logica/vista, el dispatcher solo cachea respuestas y un Content Fragment Model modela contenido, no consume APIs."
+  },
+  {
+    "id": 134,
+    "question": "Which tool is used to sync content and configurations across AEM environments?",
+    "answers": [
+      "Package Manager",
+      "Dispatcher Configuration Tool",
+      "Adobe I/O CLI",
+      "Workflow Launcher"
+    ],
+    "correct": "Package Manager",
+    "reason": "Package Manager (paquetes de contenido y de configuracion) es la herramienta estandar para mover contenido y configuraciones entre entornos de AEM."
+  },
+  {
+    "id": 135,
+    "question": "When developing an SPA structure in AEM, what is the first step?",
+    "answers": [
+      "Configure dispatcher caching rules",
+      "Export content models using Sling Model Exporter",
+      "Build a custom workflow to deliver SPA content",
+      "Enable metadata extraction for SPA templates"
+    ],
+    "correct": "Export content models using Sling Model Exporter",
+    "reason": "El primer paso al construir una SPA en AEM es exponer el modelo de contenido como JSON con el Sling Model Exporter: ese JSON Model API es lo que consume la aplicacion React o Angular."
+  },
+  {
+    "id": 136,
+    "question": "What is the purpose of creating custom packages in AEM Package Manager?",
+    "answers": [
+      "To automate dispatcher configurations",
+      "To transfer content and configurations between environments",
+      "To replicate workflows to publish environments",
+      "To manage metadata for assets"
+    ],
+    "correct": "To transfer content and configurations between environments",
+    "reason": "Los paquetes de Package Manager sirven para transportar contenido y configuraciones entre entornos (dev, stage, prod) de forma reproducible y versionable."
+  },
+  {
+    "id": 137,
+    "question": "What is the first step in configuring multi-tenancy in an AEM environment?",
+    "answers": [
+      "Create unique dispatcher configurations for each tenant",
+      "Set up individual content structures under /content for each tenant",
+      "Configure SAML integration for authentication",
+      "Modify OSGi configurations to enable tenant access"
+    ],
+    "correct": "Set up individual content structures under /content for each tenant",
+    "reason": "El primer paso de una arquitectura multi-tenant es definir la jerarquia de contenido independiente de cada tenant bajo /content; sobre esa separacion se apoyan despues las ACLs, el dispatcher y las configuraciones OSGi."
+  },
+  {
+    "id": 138,
+    "question": "What steps are required for syncing configurations across AEM environments using Package Manager? (Choose three)",
+    "answers": [
+      "Create a content or configuration package in the source environment",
+      "Upload the package to the target environment",
+      "Test the package in production before staging",
+      "Install and validate the package in the target environment",
+      "Recreate the package manually in the target environment"
+    ],
+    "correct": [
+      "Create a content or configuration package in the source environment",
+      "Upload the package to the target environment",
+      "Install and validate the package in the target environment"
+    ],
+    "reason": "El flujo con Package Manager es: crear el paquete en el entorno origen, subirlo al entorno destino e instalarlo y validarlo alli. Probar primero en produccion o recrear el paquete a mano rompen la trazabilidad."
+  },
+  {
+    "id": 139,
+    "question": "Which OSGi property file should be created within the config folder when configuring oauth2 for a mailing service?",
+    "answers": [
+      "com.day.cq.services.oauth.impl.OAuthCodeTokenAuthorization.cfg.json",
+      "com.day.cq.services.oauth.impl.OAuthAccessTokenAuthorization.cfg.json",
+      "com.day.cq.mailer.oauth.impl.OAuthConfigurationProviderImpl.cfg.json",
+      "com.day.cq.mailer.oauth.impl.OAuthCodeTokenGenerator.cfg.json"
+    ],
+    "correct": "com.day.cq.mailer.oauth.impl.OAuthConfigurationProviderImpl.cfg.json",
+    "reason": "La configuracion OAuth2 del servicio de correo se crea dentro de la carpeta config como com.day.cq.mailer.oauth.impl.OAuthConfigurationProviderImpl.cfg.json."
+  },
+  {
+    "id": 140,
+    "question": "An AEM developer wants to prevent auto termination of a scheduled publish workflow if the assets in the payload are manually published. How can this goal be achieved?",
+    "answers": [
+      "Uncheck \"Terminate on Published\" in the \"Day CQ WCM Workflow Service\" OSGi configuration",
+      "Add a new process step in the workflow process to prevent termination of workflow",
+      "Ensure assets from Dynamic Media are published only after the workflow process has ended",
+      "Make use of \"Asset Offloading\" workflow instead of publish workflow"
+    ],
+    "correct": "Uncheck \"Terminate on Published\" in the \"Day CQ WCM Workflow Service\" OSGi configuration",
+    "reason": "Un workflow de publicacion programada se auto-termina cuando el payload ya ha sido publicado manualmente. Desmarcar 'Terminate on Published' en la configuracion OSGi 'Day CQ WCM Workflow Service' evita esa terminacion automatica."
+  },
+  {
+    "id": 141,
+    "question": "Which dependency management tool is used for handling front-end dependencies in an AEM project?",
+    "answers": [
+      "Maven",
+      "Webpack",
+      "Node.js",
+      "npm"
+    ],
+    "correct": "npm",
+    "reason": "npm es el gestor de dependencias front-end de un proyecto AEM (package.json del modulo ui.frontend). Maven gestiona las dependencias Java y Webpack es el bundler, no el gestor de dependencias."
+  },
+  {
+    "id": 142,
+    "question": "Which method is most suitable for developing a third-party API integration in AEM?",
+    "answers": [
+      "Use OSGi services to manage API connections",
+      "Write API calls directly into the HTL templates",
+      "Use the Content Fragment Model for API integration",
+      "Rely on custom replication agents for API calls"
+    ],
+    "correct": "Use OSGi services to manage API connections",
+    "reason": "Las integraciones con APIs de terceros se implementan como servicios OSGi: permiten inyectar configuracion por entorno, reutilizar el cliente HTTP y testear la logica de forma aislada."
+  },
+  {
+    "id": 143,
+    "question": "An engineer has configured SAML 2.0 in AEM. During testing, the engineer notices that the 'Default Redirect' configuration does not work for a few requests. What should the engineer do to fix the issue?",
+    "answers": [
+      "The requests must not contain the 'request-path' cookie.",
+      "The requests must contain the 'request-path' cookie.",
+      "The requests must contain the 'location.href' cookie.",
+      "The requests must contain the 'session-id' cookie."
+    ],
+    "correct": "The requests must not contain the 'request-path' cookie.",
+    "reason": "El 'Default Redirect' del handler SAML solo se aplica cuando la peticion NO trae la cookie 'request-path'. Si esa cookie existe, AEM redirige a la ruta guardada en ella en lugar de al destino por defecto."
+  },
+  {
+    "id": 144,
+    "question": "Dialog listeners are not working in the SPA editor for React components. To debug the issue, the developer needs to identify the root cause. What is the root cause of this issue?",
+    "answers": [
+      "Listeners are supported only for Angular components.",
+      "Edit configs are not supported in the SPA editor.",
+      "Components need to extend the SPA base component.",
+      "Dialog listeners are only supported in static templates."
+    ],
+    "correct": "Edit configs are not supported in the SPA editor.",
+    "reason": "En el SPA Editor no se soportan los edit configs (cq:editConfig con listeners), por lo que los dialog listeners no llegan a ejecutarse para los componentes React."
+  },
+  {
+    "id": 145,
+    "question": "What steps are involved in configuring editable templates in AEM? (Choose three)",
+    "answers": [
+      "Create a template type in the Template Console",
+      "Assign a content policy to the template",
+      "Enable caching for the template",
+      "Define components and layout in the template editor",
+      "Disable the structure mode for all templates"
+    ],
+    "correct": [
+      "Create a template type in the Template Console",
+      "Assign a content policy to the template",
+      "Define components and layout in the template editor"
+    ],
+    "reason": "Configurar una editable template implica crear el template type en la consola de plantillas, asignarle una content policy y definir componentes y layout en el editor de plantillas. La cache no se configura por plantilla y el structure mode no se deshabilita."
+  },
+  {
+    "id": 146,
+    "question": "Which replication agent type should be used for publishing content from author to publish instances?",
+    "answers": [
+      "Reverse replication",
+      "Static agent",
+      "Default agent",
+      "Dispatcher flush agent"
+    ],
+    "correct": "Default agent",
+    "reason": "El Default Agent es el agente de replicacion que transporta contenido de author a publish. El reverse agent trae contenido de publish a author y el flush agent invalida la cache del dispatcher."
+  },
+  {
+    "id": 147,
+    "question": "What is the recommended practice for writing unit tests in AEM?",
+    "answers": [
+      "Use JCR queries to mock test data",
+      "Write tests directly in the production environment",
+      "Use JUnit and AEM Mocks to simulate repository and data structures",
+      "Rely on manual testing of components"
+    ],
+    "correct": "Use JUnit and AEM Mocks to simulate repository and data structures",
+    "reason": "La practica recomendada es JUnit junto a AEM Mocks (Apache Sling Testing / io.wcm), que simulan el repositorio, el ResourceResolver y los servicios de Sling sin necesitar una instancia real de AEM."
+  },
+  {
+    "id": 148,
+    "question": "What is a key consideration when configuring OOTB SAML integration in AEM?",
+    "answers": [
+      "Installing additional third-party authentication packages",
+      "Defining the IDP (Identity Provider) entity ID in the SAML configuration",
+      "Enabling dispatcher cache for login requests",
+      "Disabling SSL for testing purposes"
+    ],
+    "correct": "Defining the IDP (Identity Provider) entity ID in the SAML configuration",
+    "reason": "En la integracion SAML out-of-the-box hay que declarar el entity ID del IDP en la configuracion del SamlAuthenticationHandler; sin el, AEM no sabe contra que proveedor validar la asercion."
+  },
+  {
+    "id": 149,
+    "question": "A developer is using an AEM Project Archetype. What is the purpose of this step?",
+    "answers": [
+      "To facilitate Joomla website development",
+      "To provide a template for building React applications",
+      "To generate WordPress themes",
+      "To create a minimal, best-practices-based Adobe Experience Manager project"
+    ],
+    "correct": "To create a minimal, best-practices-based Adobe Experience Manager project",
+    "reason": "El AEM Project Archetype genera un proyecto Maven minimo y alineado con las mejores practicas de Adobe (core, ui.apps, ui.content, ui.frontend, dispatcher, it.tests)."
+  },
+  {
+    "id": 150,
+    "question": "A developer is discussing the situations in which AEM Headless would be more advantageous than the use of traditional AEM (non-headless) implementations. In which two situations would it be more advantageous? (Choose two.)",
+    "answers": [
+      "For projects where a separate team works on a mobile application and wants to reuse its content created in AEM",
+      "For projects where the front-end and back-end development teams work independently",
+      "For projects with minimal reliance on APIs and a predominant focus on server-generated HTML content",
+      "For projects where the primary goal is to leverage AEM's built-in templating system for seamless content presentation"
+    ],
+    "correct": [
+      "For projects where a separate team works on a mobile application and wants to reuse its content created in AEM",
+      "For projects where the front-end and back-end development teams work independently"
+    ],
+    "reason": "Headless aporta ventaja cuando el contenido creado en AEM debe reutilizarse en otros canales (por ejemplo una app movil que desarrolla otro equipo) y cuando front-end y back-end trabajan de forma independiente. Si el proyecto se apoya en HTML generado por el servidor y en el sistema de plantillas de AEM, headless no aporta nada."
+  },
+  {
+    "id": 151,
+    "question": "In Adobe Experience Manager (AEM) 6.5, when configuring a replication agent, which statements about the \"Agent User Id\" and its impact on replication is true?",
+    "answers": [
+      "Configuring the \"Agent User Id\" with a specific user account is optional for Default Agents, but mandatory for Reverse Replication agents to ensure that content is correctly transported from Publish to Author environments.",
+      "The \"Agent User Id\" if left empty, the system user account (admin by default) will be used, and this user must have read access on the Author environment and create/write access on the Publish environment.",
+      "The \"Agent User Id\" is only relevant for Dispatcher Flush agents and is not applicable for Default Agents or Reverse Replication agents.",
+      "The \"Agent User Id\" field is mandatory and must always be filled out with a specific user account that has read access for replication to function, regardless of the environment (Author or Publish)."
+    ],
+    "correct": "The \"Agent User Id\" if left empty, the system user account (admin by default) will be used, and this user must have read access on the Author environment and create/write access on the Publish environment.",
+    "reason": "Si el campo 'Agent User Id' se deja vacio, la replicacion usa la cuenta de sistema (admin por defecto). Ese usuario necesita permisos de lectura en author y de creacion/escritura en publish para que el contenido llegue correctamente."
+  },
+  {
+    "id": 152,
+    "question": "After deploying a release, the client identifies configuration inconsistencies between staging and production environments. What is the best course of action?",
+    "answers": [
+      "Create a new package in staging and deploy it to production to sync configurations",
+      "Manually edit the configurations in the production environment",
+      "Roll back the production environment to the previous state without addressing the issue",
+      "Use dispatcher rules to override the inconsistencies"
+    ],
+    "correct": "Create a new package in staging and deploy it to production to sync configurations",
+    "reason": "Ante inconsistencias de configuracion entre entornos, la via correcta es empaquetar la configuracion ya validada en staging y desplegarla a produccion, manteniendo trazabilidad y reproducibilidad. Editar a mano en produccion o tapar el problema con reglas de dispatcher no corrige la causa."
+  },
+  {
+    "id": 153,
+    "question": "What is the primary goal of managing AEM environment configurations?",
+    "answers": [
+      "To optimize dispatcher caching rules",
+      "To ensure consistency across development, staging, and production environments",
+      "To reduce the number of workflows in the system",
+      "To automate metadata extraction for assets"
+    ],
+    "correct": "To ensure consistency across development, staging, and production environments",
+    "reason": "El objetivo de gestionar las configuraciones de entorno es garantizar consistencia entre desarrollo, staging y produccion, de forma que lo probado sea lo que acaba desplegado."
+  },
+  {
+    "id": 154,
+    "question": "A client requests a custom component for listing products, which should support dynamic content retrieval and JSON export. What steps should be included?",
+    "answers": [
+      "Develop a custom HTL template and Sling Model for the component",
+      "Use a dispatcher flush agent to handle product caching",
+      "Enable replication workflows for the product catalog",
+      "Configure the Sling Model Exporter for JSON output"
+    ],
+    "correct": [
+      "Develop a custom HTL template and Sling Model for the component",
+      "Configure the Sling Model Exporter for JSON output"
+    ],
+    "reason": "Un componente de listado dinamico se construye con su plantilla HTL y su Sling Model, y para exponer el contenido como JSON se anota el modelo con el Sling Model Exporter (Jackson)."
+  },
+  {
+    "id": 155,
+    "question": "A project team is setting up an Adobe Cloud Manager CI/CD pipeline for their code releases. What are two pipeline steps when a release is triggered in Cloud Manager? (Choose two.)",
+    "answers": [
+      "Pre-deployment briefing",
+      "Post-deployment audit",
+      "Automatic deployment of artifact(s)",
+      "Release tag creation"
+    ],
+    "correct": [
+      "Automatic deployment of artifact(s)",
+      "Release tag creation"
+    ],
+    "reason": "Cuando se dispara un release, Cloud Manager crea el tag del release y despliega automaticamente los artefactos generados por el build."
+  },
+  {
+    "id": 156,
+    "question": "What are the key steps involved in setting up a custom run mode configuration? (Choose three)",
+    "answers": [
+      "Define environment-specific configurations in sling.properties",
+      "Add the run mode folder under /apps/<project>/config.<runmode>",
+      "Test configurations directly in the production environment",
+      "Validate run mode behavior in staging or development environments",
+      "Configure dispatcher rules specific to the run mode"
+    ],
+    "correct": [
+      "Add the run mode folder under /apps/<project>/config.<runmode>",
+      "Validate run mode behavior in staging or development environments",
+      "Configure dispatcher rules specific to the run mode"
+    ],
+    "reason": "Un run mode propio implica crear la carpeta /apps/<proyecto>/config.<runmode>, validar el comportamiento en un entorno de desarrollo o staging y ajustar las reglas de dispatcher especificas de ese modo. sling.properties no es el sitio para configuraciones de proyecto y probar directamente en produccion no es aceptable."
+  },
+  {
+    "id": 157,
+    "question": "What is the purpose of creating a custom run mode configuration in AEM?",
+    "answers": [
+      "To manage environment-specific settings for development, staging, or production",
+      "To automate the dispatcher cache invalidation process",
+      "To set up editable templates for the project",
+      "To enable metadata extraction for assets"
+    ],
+    "correct": "To manage environment-specific settings for development, staging, or production",
+    "reason": "Los run modes permiten mantener configuraciones especificas por entorno (dev, stage, prod) y por tipo de instancia (author/publish) dentro del mismo codigo."
+  },
+  {
+    "id": 158,
+    "question": "What are the benefits of using the AEM Operations Dashboard? (Choose two)",
+    "answers": [
+      "Real-time monitoring of repository performance",
+      "Configuring dispatcher caching rules",
+      "Identifying and resolving workflow bottlenecks",
+      "Managing third-party API integrations",
+      "Automating package deployment processes"
+    ],
+    "correct": [
+      "Real-time monitoring of repository performance",
+      "Identifying and resolving workflow bottlenecks"
+    ],
+    "reason": "El Operations Dashboard ofrece monitorizacion en tiempo real del rendimiento del repositorio mediante health checks, y ayuda a detectar y resolver cuellos de botella en los workflows."
+  },
+  {
+    "id": 159,
+    "question": "A developer notes the following issue: \"Lucene Index Binary is Corrupt\" What is the recommended resolution for this problem?",
+    "answers": [
+      "Reindex the erring index without any additional steps",
+      "Stop AEM, delete the local copy of the Lucene index, and restart AEM",
+      "Restore the last known good version of the repository",
+      "Increase the JVM memory allocation and restart AEM"
+    ],
+    "correct": "Stop AEM, delete the local copy of the Lucene index, and restart AEM",
+    "reason": "Ante 'Lucene Index Binary is Corrupt' la recomendacion de Adobe es parar AEM, borrar la copia local del indice Lucene y volver a arrancar, para que la copia local se reconstruya desde el repositorio."
+  },
+  {
+    "id": 160,
+    "question": "A developer needs to identify the directory where cached files are stored. Which dispatcher configuration property will identify the correct directory?",
+    "answers": [
+      "/cache",
+      "/docroot",
+      "/html",
+      "/var/cache"
+    ],
+    "correct": "/docroot",
+    "reason": "/docroot es la propiedad de la seccion /cache del dispatcher que indica el directorio del sistema de ficheros donde se almacenan los documentos cacheados."
+  },
+  {
+    "id": 161,
+    "question": "Which configuration is required when setting up LDAP integration in AEM?",
+    "answers": [
+      "Configuring SAML mappings in the OSGi console",
+      "Defining the LDAP server details in the Apache Jackrabbit User Manager configuration",
+      "Adding LDAP entries to the dispatcher rules",
+      "Installing a custom LDAP bundle"
+    ],
+    "correct": "Defining the LDAP server details in the Apache Jackrabbit User Manager configuration",
+    "reason": "La integracion LDAP se configura declarando los datos del servidor LDAP en la configuracion del Apache Jackrabbit Oak LDAP Identity Provider (External Login Module y Sync Handler), no con reglas de dispatcher ni bundles a medida."
+  },
+  {
+    "id": 162,
+    "question": "What is the first step in creating an AEM project using Maven archetype?",
+    "answers": [
+      "Configure the dispatcher rules for the project",
+      "Run the Maven archetype generation command with the desired parameters",
+      "Define editable templates for the project",
+      "Configure replication agents for deployment"
+    ],
+    "correct": "Run the Maven archetype generation command with the desired parameters",
+    "reason": "El primer paso es ejecutar el comando de generacion del arquetipo Maven con los parametros deseados (archetypeVersion, aemVersion, appTitle, appId, groupId...). Todo lo demas viene despues del proyecto generado."
+  },
+  {
+    "id": 163,
+    "question": "What is the first step when managing an AEM environment configuration?",
+    "answers": [
+      "Create a backup of the current configuration",
+      "Modify dispatcher caching rules",
+      "Optimize workflows for the environment",
+      "Automate metadata extraction processes"
+    ],
+    "correct": "Create a backup of the current configuration",
+    "reason": "Antes de tocar una configuracion de entorno hay que respaldar la configuracion actual, de forma que se pueda revertir si el cambio provoca una regresion."
+  },
+  {
+    "id": 164,
+    "question": "What is the primary purpose of the Sling Model Exporter in AEM?",
+    "answers": [
+      "To convert AEM components into JSON for use in SPA frameworks",
+      "To cache AEM pages in the dispatcher",
+      "To enable dynamic replication of content",
+      "To manage OSGi configurations for templates"
+    ],
+    "correct": "To convert AEM components into JSON for use in SPA frameworks",
+    "reason": "El Sling Model Exporter serializa un Sling Model a JSON mediante Jackson; ese JSON es lo que consumen las SPA y las integraciones headless."
+  },
+  {
+    "id": 165,
+    "question": "Which approach is recommended for creating custom components in AEM?",
+    "answers": [
+      "Use plain HTML and embed JavaScript directly",
+      "Develop components using HTL with Sling Models",
+      "Write JSP scripts for dynamic content rendering",
+      "Rely on XML to define component behavior"
+    ],
+    "correct": "Develop components using HTL with Sling Models",
+    "reason": "La forma recomendada de crear componentes es HTL para la vista y Sling Models para la logica de negocio. JSP esta desaconsejado y embeber JavaScript en HTML plano rompe las buenas practicas."
+  },
+  {
+    "id": 166,
+    "question": "Which steps should be taken to integrate a third-party API in AEM? (Choose two)",
+    "answers": [
+      "Create OSGi services for API management",
+      "Modify dispatcher rules to enable API access",
+      "Implement servlets for handling API requests and responses",
+      "Use JCR queries to fetch API configurations",
+      "Add API endpoints directly to HTL templates"
+    ],
+    "correct": [
+      "Create OSGi services for API management",
+      "Implement servlets for handling API requests and responses"
+    ],
+    "reason": "Se crean servicios OSGi que encapsulan la conexion con la API externa y servlets Sling que atienden las peticiones del front-end y devuelven la respuesta."
+  },
+  {
+    "id": 167,
+    "question": "An AEM developer is building custom templates by referring to sample template types in /libs/settings/wcm in AEM as a Cloud Service. The template works for a few days, and then it suddenly stops working and starts throwing exceptions. What could have caused this issue?",
+    "answers": [
+      "The ACLs or group permissions were altered.",
+      "The developer was removed from the template authors group.",
+      "The template was accidentally deleted by the developer.",
+      "The instance of AEM was upgraded."
+    ],
+    "correct": "The instance of AEM was upgraded.",
+    "reason": "Los contenidos bajo /libs se sobrescriben en cada actualizacion de AEM as a Cloud Service. Si una plantilla propia referencia o hereda de /libs/settings/wcm, dejara de funcionar en cuanto la instancia se actualice; hay que copiar lo necesario a /apps o /conf."
+  },
+  {
+    "id": 168,
+    "question": "You are tasked with optimizing query performance for a client’s AEM repository. Which steps should you take?",
+    "answers": [
+      "Create an Oak index for frequently queried properties under /oak:index",
+      "Write custom JCR queries to bypass indexing",
+      "Optimize dispatcher rules to reduce query frequency",
+      "Use the Workflow Console to monitor query performance"
+    ],
+    "correct": "Create an Oak index for frequently queried properties under /oak:index",
+    "reason": "Para optimizar el rendimiento de consultas se crea un indice Oak bajo /oak:index para las propiedades que se consultan con frecuencia, evitando asi el traversal del repositorio."
+  },
+  {
+    "id": 169,
+    "question": "A developer is working with the servlet that is supported by Last-Modified header. Which servlet is being used?",
+    "answers": [
+      "Adaptive Image Servlet",
+      "Sling Servlet",
+      "Adaptive Sling Servlet",
+      "Default Sling Servlet"
+    ],
+    "correct": "Adaptive Image Servlet",
+    "reason": "El Adaptive Image Servlet soporta la cabecera Last-Modified, lo que permite responder 304 Not Modified y aprovechar la cache del navegador y del dispatcher."
+  },
+  {
+    "id": 170,
+    "question": "Which maintenance tools can be used to optimize an AEM repository? (Choose two)",
+    "answers": [
+      "Oak Maintenance Tool",
+      "Adobe I/O CLI",
+      "AEM Query Debugger",
+      "Workflow Launcher",
+      "AEM Operations Dashboard"
+    ],
+    "correct": [
+      "Oak Maintenance Tool",
+      "AEM Operations Dashboard"
+    ],
+    "reason": "Las herramientas de mantenimiento para optimizar el repositorio son Oak Maintenance (revision cleanup, compaction, data store GC) y el Operations Dashboard, desde donde se programan y vigilan esas tareas."
+  },
+  {
+    "id": 171,
+    "question": "An AEM developer is debugging a server-side Java file. The following code snippet is causing compilation errors: public class MyServlet extends SlingAllMethodsServlet { @Reference private ResourceResolver resourceResolver; protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) { PrintWriter out = response.getWriter(); out.println(\"Hello, world!\"); } } What could be a possible cause of the compilation errors in this code?",
+    "answers": [
+      "Missing import statements",
+      "Usage of SlingAllMethodsServlet",
+      "Void return type for doGet method",
+      "Incorrect class constructor definition"
+    ],
+    "correct": "Missing import statements",
+    "reason": "El snippet no compila porque faltan las sentencias import (PrintWriter, IOException, las clases de Sling). Heredar de SlingAllMethodsServlet y declarar doGet como void es correcto."
+  },
+  {
+    "id": 172,
+    "question": "Which dispatcher rule is most appropriate to block requests to .git directories in AEM?",
+    "answers": [
+      "/rule { /glob \"*.json\" /type \"deny\" }",
+      "/rule { /glob \"*.git/*\" /type \"deny\" }",
+      "/rule { /glob \"*.config\" /type \"allow\" }",
+      "/rule { /glob \"*.jsp\" /type \"deny\" }"
+    ],
+    "correct": "/rule { /glob \"*.git/*\" /type \"deny\" }",
+    "reason": "La regla /rule { /glob \"*.git/*\" /type \"deny\" } en el filtro del dispatcher bloquea cualquier peticion dirigida a directorios .git."
+  },
+  {
+    "id": 173,
+    "question": "A developer needs to obtain the JSON rendition of the index configuration. Which URL should be used to achieve this goal?",
+    "answers": [
+      "https://serveraddress:port/oak:configuration.json",
+      "https://serveraddress:port/oak:index.tidy.-1.json",
+      "https://serveraddress:port/index:configuration.tidy.-1.json",
+      "https://serveraddress:port/oak:index.config.json"
+    ],
+    "correct": "https://serveraddress:port/oak:index.tidy.-1.json",
+    "reason": "La rendicion JSON de la configuracion de indices se obtiene pidiendo el nodo /oak:index con el selector tidy y profundidad infinita: /oak:index.tidy.-1.json."
+  },
+  {
+    "id": 174,
+    "question": "What are best practices for writing unit tests in AEM? (Choose two)",
+    "answers": [
+      "Use JUnit with AEM Mocks for testing Sling Models",
+      "Perform testing directly on the production environment",
+      "Mock JCR repositories and resources",
+      "Execute API calls from test cases in staging environments",
+      "Write tests for dispatcher configurations"
+    ],
+    "correct": [
+      "Use JUnit with AEM Mocks for testing Sling Models",
+      "Mock JCR repositories and resources"
+    ],
+    "reason": "Las buenas practicas son usar JUnit con AEM Mocks para probar los Sling Models y mockear el repositorio JCR y los recursos. Nunca se prueba contra produccion ni se lanzan llamadas reales a APIs desde los tests."
+  },
+  {
+    "id": 175,
+    "question": "A developer is creating a new tenant called noot in an AEM Cloud Service instance. The team is using independent repositories for the different tenants. The team is also using git submodules tool. What must the developer do to ensure the new noot tenant repository is deployed?",
+    "answers": [
+      "Push the changes of the noot repository to the Adobe git repository.",
+      "Add a reference to noot as a submodule of the main project in the team's git management tool.",
+      "Add a reference to the main project in the noot module in the Adobe git repository."
+    ],
+    "correct": "Add a reference to noot as a submodule of the main project in the team's git management tool.",
+    "reason": "Trabajando con submodulos de git, el nuevo repositorio del tenant debe anadirse como submodulo del proyecto principal para que el build de Cloud Manager lo incluya en el despliegue."
+  },
+  {
+    "id": 176,
+    "question": "What is the role of the \"Retry Delay\" setting in an AEM replication agent's configuration?",
+    "answers": [
+      "It defines how often replication failures will be retried.",
+      "It controls the delay between each replication trigger.",
+      "It specifies how long to wait before marking a replication job as failed.",
+      "It manages the interval at which the replication queue is processed."
+    ],
+    "correct": "It defines how often replication failures will be retried.",
+    "reason": "'Retry Delay' define cada cuanto se reintenta un envio de replicacion que ha fallado; no es el intervalo de disparo ni el tiempo de expiracion del job."
+  },
+  {
+    "id": 177,
+    "question": "A developer needs to define vanity URLs in the dispatcher configuration file. Under which property would this be defined?",
+    "answers": [
+      "/vanity_url",
+      "vanityUrls",
+      "/vanityUrls",
+      "/vanity_urls"
+    ],
+    "correct": "/vanity_urls",
+    "reason": "Las vanity URLs se declaran en la farm del dispatcher bajo la propiedad /vanity_urls."
+  },
+  {
+    "id": 178,
+    "question": "A developer needs to configure two style options (style-a and style-b) for a text component so authors can choose between different pre-defined styles for their content. What is the correct way to define the cq:editConfig node?",
+    "answers": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "answerImages": {
+      "Option A": [
+        {
+          "src": "/images/exams/ad0-e137/q178-a.png",
+          "alt": "Definicion con cq:styleClasses y cq:styleLabel."
+        }
+      ],
+      "Option B": [
+        {
+          "src": "/images/exams/ad0-e137/q178-b.png",
+          "alt": "Definicion con cssClasses y styleLabel."
+        }
+      ],
+      "Option C": [
+        {
+          "src": "/images/exams/ad0-e137/q178-c.png",
+          "alt": "Definicion con cssClasses y styleLabel (variante)."
+        }
+      ],
+      "Option D": [
+        {
+          "src": "/images/exams/ad0-e137/q178-d.png",
+          "alt": "Definicion con cssStyles y cssLabel."
+        }
+      ]
+    },
+    "correct": "Option A",
+    "reason": "La definicion correcta usa las propiedades con prefijo cq: dentro de cq:editConfig/cq:style: cq:styleClasses con el array de clases (style-a, style-b) y cq:styleLabel con la etiqueta que ve el autor. Las variantes con cssClasses, cssStyles o cssLabel no existen."
+  },
+  {
+    "id": 179,
+    "question": "A developer is tasked with designing a solution to accommodate multiple client projects within a single Adobe Experience Manager (AEM) instance, each requiring its own set of unique resources, code, and content. Given the need for true multi-tenancy, where each tenant operates independently with zero knowledge of other tenants and no shared code, content, or common authors, which approach should the developer recommend?",
+    "answers": [
+      "Implement separate author and publish instances for each tenant, ensuring complete isolation of resources, code, and content, thereby achieving true multi-tenancy.",
+      "Encourage the use of component groups and allowedPaths properties to logically separate tenant- specific components and templates within the same AEM instance.",
+      "Utilize AEM's out-of-the-box multi-tenancy capabilities to segregate tenants within the same author and publish instances, relying on access control lists (ACLs) and content path organization to ensure separation."
+    ],
+    "correct": "Implement separate author and publish instances for each tenant, ensuring complete isolation of resources, code, and content, thereby achieving true multi-tenancy.",
+    "reason": "Multi-tenancy real, con aislamiento total de recursos, codigo y contenido y sin autores comunes, exige instancias de author y publish separadas por tenant. Los grupos de componentes, allowedPaths y las ACLs solo dan separacion logica dentro de la misma instancia."
+  },
+  {
+    "id": 180,
+    "question": "While configuring SSO with SAML 2.0 compatible IDP on AEM, a developer notices an infinite loop between the IDP and AEM when trying to log in to AEM using SSO. Which dispatcher-specific configuration is required to prevent this scenario?",
+    "answers": [
+      "Config File: filters.any Config: /0100 {/type \"allow\" /method \"POST\" /url \"*/saml_login\"}",
+      "Config File: allowed_clients.any Config: /0100 {/type \"allow\" /method \"PUT\" /url \"*/samllogin\"}",
+      "Config File: vhosts.any Config: /0100 {/type \"allow\" /method \"POST\" /url \"*/samllogin\"}"
+    ],
+    "correct": "Config File: filters.any Config: /0100 {/type \"allow\" /method \"POST\" /url \"*/saml_login\"}",
+    "reason": "Hay que permitir explicitamente el POST a */saml_login en filters.any del dispatcher. Si el dispatcher bloquea ese POST, el navegador queda atrapado en un bucle infinito entre el IDP y AEM."
+  },
+  {
+    "id": 181,
+    "question": "A customer has the requirement to use SAML authentication on AEM using their SAML 2.0 compatible IDP. Example: AEM: www.wknd.com/content/siteB/index.html IDP: https://www.idpB.com How should an AEM Developer configure their SAML Authentication Handler?",
+    "answers": [
+      "com.adobe.granite.auth.saml.SamlAuthenticationHandler.userIntermediatePath: /content/siteB com.adobe.granite.auth.saml.SamlAuthenticationHandler.assertionConsumerServiceURL: https://www.idpB.com",
+      "com.adobe.granite.auth.saml.SamlAuthenticationHandler.path: /content/siteB com.adobe.granite.auth.saml.SamlAuthenticationHandler.idpUrl: https://www.idpB.com",
+      "com.adobe.granite.auth.saml.SamlAuthenticationHandler.userIntermediatePath: /content/siteB com.adobe.granite.auth.saml.SamlAuthenticationHandler.serviceProviderEntityId : https://www.idpB.com"
+    ],
+    "correct": "com.adobe.granite.auth.saml.SamlAuthenticationHandler.path: /content/siteB com.adobe.granite.auth.saml.SamlAuthenticationHandler.idpUrl: https://www.idpB.com",
+    "reason": "El SamlAuthenticationHandler se configura con 'path' (la ruta protegida, /content/siteB) e 'idpUrl' (la URL del proveedor de identidad). userIntermediatePath solo define donde se crean los usuarios sincronizados."
+  },
+  {
+    "id": 182,
+    "question": "A client wants to ensure that only specific components are available to content authors when using an editable template in AEM. Additionally, they require that certain fields within a content fragment model adhere to strict validation rules for data integrity. Which two steps would the developer take to meet both requirements? (Choose two.)",
+    "answers": [
+      "Use editable templates to directly configure field validation rules.",
+      "Configure field validation within the content fragment model.",
+      "Create and assign a new workflow to enforce component usage.",
+      "Enable dynamic templates for flexible content creation.",
+      "Define policies in the editable template to control allowed components."
+    ],
+    "correct": [
+      "Configure field validation within the content fragment model.",
+      "Define policies in the editable template to control allowed components."
+    ],
+    "reason": "Las politicas (policies) de la editable template controlan que componentes puede usar el autor, y las reglas de validacion de los campos se definen dentro del propio content fragment model."
+  },
+  {
+    "id": 183,
+    "question": "A developer wants to deliver personalized content on a webpage. Which rule should be applied in the dispatcher configuration to ensure cache efficiency?",
+    "answers": [
+      "Cache .html files but configure dispatcher to invalidate the cache when URL parameters (query strings) are present.",
+      "Enable caching for all POST requests to improve performance on forms and other dynamic interactions that modify content.",
+      "Block caching for all .html pages to ensure that every page load is served directly from the AEM publish instance."
+    ],
+    "correct": "Cache .html files but configure dispatcher to invalidate the cache when URL parameters (query strings) are present.",
+    "reason": "Para contenido personalizado se siguen cacheando los .html, pero se configura el dispatcher para invalidar/ignorar la cache cuando la peticion lleva parametros de query. Cachear POST o no cachear nada arruina el rendimiento."
+  },
+  {
+    "id": 184,
+    "question": "A developer created an editable template named home-template in AEM application 'wknd'. What is the internal structure created for this template in the CRX repository?",
+    "answers": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "answerImages": {
+      "Option A": [
+        {
+          "src": "/images/exams/ad0-e137/q184-a.png",
+          "alt": "Estructura bajo /conf con home-template de tipo cq:Page."
+        }
+      ],
+      "Option B": [
+        {
+          "src": "/images/exams/ad0-e137/q184-b.png",
+          "alt": "Estructura bajo /conf con home-template de tipo cq:Template."
+        }
+      ],
+      "Option C": [
+        {
+          "src": "/images/exams/ad0-e137/q184-c.png",
+          "alt": "Estructura bajo /apps con home-template de tipo cq:Template."
+        }
+      ],
+      "Option D": [
+        {
+          "src": "/images/exams/ad0-e137/q184-d.png",
+          "alt": "Estructura bajo /apps con home-template de tipo cq:Template (variante)."
+        }
+      ]
+    },
+    "correct": "Option B",
+    "reason": "Las editable templates viven en /conf/<app>/settings/wcm/templates/<nombre>, donde wknd y settings son sling:Folder, wcm y templates son cq:Page y el nodo de la plantilla es de tipo cq:Template. Las variantes bajo /apps o con la plantilla como cq:Page son incorrectas."
+  },
+  {
+    "id": 185,
+    "question": "Which action is typically performed by a replication agent in AEM?",
+    "answers": [
+      "Transferring content and digital assets from the author instance to the publish instance.",
+      "Synchronizing user permissions between the author and publish instances.",
+      "Transferring Core components for use in AEM Sites."
+    ],
+    "correct": "Transferring content and digital assets from the author instance to the publish instance.",
+    "reason": "Un agente de replicacion transporta contenido y assets digitales desde la instancia de author a la de publish. Los permisos de usuario no se sincronizan por replicacion y los Core Components se despliegan como codigo."
+  },
+  {
+    "id": 186,
+    "question": "A customer is required to fetch only \"jcr:title\" property for pages created using the homepage template. How would the developer write the query using Querybuilder API?",
+    "answers": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "answerImages": {
+      "Option A": [
+        {
+          "src": "/images/exams/ad0-e137/q186-a.png",
+          "alt": "Consulta con jcr:content/cq:template, p.hits=selective y p.properties=jcr:title."
+        }
+      ],
+      "Option B": [
+        {
+          "src": "/images/exams/ad0-e137/q186-b.png",
+          "alt": "Consulta con jcr:title/cq:template, p.value=full y p.properties=cq:title."
+        }
+      ],
+      "Option C": [
+        {
+          "src": "/images/exams/ad0-e137/q186-c.png",
+          "alt": "Variante de consulta QueryBuilder C."
+        }
+      ],
+      "Option D": [
+        {
+          "src": "/images/exams/ad0-e137/q186-d.png",
+          "alt": "Variante de consulta QueryBuilder D."
+        }
+      ]
+    },
+    "correct": "Option A",
+    "reason": "Con la QueryBuilder API hay que filtrar por la propiedad jcr:content/cq:template y pedir unicamente la propiedad deseada con p.hits=selective y p.properties=jcr:title."
+  },
+  {
+    "id": 187,
+    "question": "A developer is adding a reference script to a third-party analytics tool. The script needs to be editable since it is being modified on a schedule outside of the team's development cycle. How should the developer complete this task?",
+    "answers": [
+      "Add a new component with the script in the HTL.",
+      "Add the script to the page policy on the template.",
+      "Add a Generic Analytics Snippet."
+    ],
+    "correct": "Add a Generic Analytics Snippet.",
+    "reason": "El Generic Analytics Snippet permite anadir y editar el script de analitica desde la interfaz de AEM, sin necesidad de un despliegue de codigo cada vez que el proveedor lo modifica."
+  },
+  {
+    "id": 188,
+    "question": "The customer has a requirement to fetch images from a custom folder (folder1) which were modified on/after 1 January 2024. How would the Adobe Experience Manager Developer write the query to get the requested data?",
+    "answers": [
+      "select [jcr:path] from [nt:base] where isdescendantnode('/content/dam/folder1') AND [jcr:content/cq:lastModified] >= CAST(\"2024-01-01T00:00:00.000Z\")",
+      "select [jcr:path] from [dam:Asset] where isdescendantnode('/content/dam/folder1') AND [jcr:content/cq:lastModified] >= CAST(\"2024-01-01T00:00:00.000Z\")",
+      "select [jcr:path] from [cq:image] where isdescendantnode('/content/dam/folder1') AND jcr:content.[cq:lastModified] >= CAST(\"2024-01-01T00:00:00.000Z\")"
+    ],
+    "correct": "select [jcr:path] from [dam:Asset] where isdescendantnode('/content/dam/folder1') AND [jcr:content/cq:lastModified] >= CAST(\"2024-01-01T00:00:00.000Z\")",
+    "reason": "La consulta correcta usa el tipo [dam:Asset] bajo la carpeta del DAM y filtra por jcr:content/cq:lastModified con un CAST a fecha. [nt:base] recorreria nodos que no son assets y [cq:image] no es el tipo de los assets del DAM."
+  },
+  {
+    "id": 189,
+    "question": "A developer is asked to create an Adobe Experience Manager servlet MyServlet that listens for HTTP requests capable of handling the GET method. The servlet must be registered using Declarative Services (OSGi) and be bound to a specific resource type /my/resourcetype allowing it to serve requests for a particular component. What is the correct way to register a servlet?",
+    "answers": [
+      "@SlingServletResourceTypes(resourceTypes =\"/my/resourcetype\", methods = {\"get\"}) public class MyServlet extends SlingSafeMethodServlet { @Override protected void doGET(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException { // Handle get request } }",
+      "@SlingServletResourceTypes(resourceTypes=\"/my/resourcetype\", methods = { \"GET\" }) public class MyServlet extends SlingAllMethodsServlet { @Override protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException { // Handle get request } }",
+      "@SlingServletResourceTypes(resourceTypes =\"/my/resourcetype\", methods = { \"get\" }) public class MyServlet extends SlingSafeMethodServlet { @Override protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { // Handle get request } }"
+    ],
+    "correct": "@SlingServletResourceTypes(resourceTypes =\"/my/resourcetype\", methods = {\"get\"}) public class MyServlet extends SlingSafeMethodServlet { @Override protected void doGET(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException { // Handle get request } }",
+    "reason": "El registro declarativo de un servlet por resource type se hace con @SlingServletResourceTypes y el metodo que hay que sobrescribir es doGet (con SlingHttpServletRequest/Response). OJO: la clave de este dump marca la opcion A, pero A escribe doGET (no sobrescribe nada) y usa SlingSafeMethodServlet; la unica opcion con la firma correcta es la B."
+  },
+  {
+    "id": 190,
+    "question": "A developer is tasked with displaying the results from an external API call using Server Side Rendering in Adobe Experience Manager. Which actions would the developer take to complete this task?",
+    "answers": [
+      "Create an OSGi Component foo with an HTTP Client. Create a Sling Model that references foo. Create an AEM Component flarp that displays the data from the Sling Model.",
+      "Create an OSGi Component foo with a service declaration of Servlet. Create a Sling Model that references foo. Create an AEM Component flarp that utilizes JavaScript Use API to display data from the Sling Model.",
+      "Create an AEM Component foo with an HTTP Client. Create a Sling Model that references foo. Create an OSGi Component flarp that displays the data from the Sling Model."
+    ],
+    "correct": "Create an OSGi Component foo with an HTTP Client. Create a Sling Model that references foo. Create an AEM Component flarp that displays the data from the Sling Model.",
+    "reason": "Para Server Side Rendering: un componente OSGi con el HTTP Client encapsula la llamada externa, un Sling Model lo referencia y el componente AEM pinta los datos desde el modelo. Las otras opciones invierten los roles entre componente OSGi y componente AEM."
+  },
+  {
+    "id": 191,
+    "question": "A client has a requirement to get the location of stores based on the zip code authored in the component dialog. Location needs to be pulled from an external API using OSGi services. Which OSGi Service code snippet should be used to represent the requirement?",
+    "answers": [
+      "@OSGIService(component = Service.class) public class ServiceImpl implements Service { @Override public List<String> getStoresByZipCode(String zipCode) { List<String> storeLocations = new ArrayList<>(); // Create an HTTP client try (CloseableHttpClient httpClient = HttpClients.createDefault()) { // Processing logic to get all the locations from external api } catch (IOException e) { } return storeLocations; } }",
+      "@Component(service = Service.class) public class ServiceImpl implements Service { @Override public List<String> getStoresByZipCode(String zipCode) { List<String> storeLocations = new ArrayList<>(); // Create an HTTP client try (CloseableHttpClient httpClient = HttpClients.createDefault()) { // Processing logic to get all the locations from external api } catch (IOException e) { } return storeLocations; } }",
+      "@Service(service = Component.class) public class ServiceImpl implements Service { @Override public List<String> getStoresByZipCode(String zipCode) { List<String> storeLocations = new ArrayList<>(); // Create an HTTP client try (CloseableHttpClient httpClient = HttpClients.createDefault()) { // Processing logic to get all the locations from external api } catch (IOException e) { } return storeLocations; } }"
+    ],
+    "correct": "@Component(service = Service.class) public class ServiceImpl implements Service { @Override public List<String> getStoresByZipCode(String zipCode) { List<String> storeLocations = new ArrayList<>(); // Create an HTTP client try (CloseableHttpClient httpClient = HttpClients.createDefault()) { // Processing logic to get all the locations from external api } catch (IOException e) { } return storeLocations; } }",
+    "reason": "Un servicio OSGi se registra con @Component(service = Service.class) sobre la clase de implementacion, usando las anotaciones de Declarative Services. @OSGIService no existe y @Service(service = Component.class) invierte los roles."
+  },
+  {
+    "id": 192,
+    "question": "A developer is writing a unit test for a service that depends on a query of nodes inside the JCR. What is the correct approach to unit testing the service?",
+    "answers": [
+      "Use an @Mock annotation on the Query object with when and then methods.",
+      "Add the currentResource method call to include the nodes to be queried.",
+      "Use SlingContext with ResourceResolverType of JCR_OAK."
+    ],
+    "correct": "Use an @Mock annotation on the Query object with when and then methods.",
+    "reason": "Cuando el servicio depende de una Query del JCR se mockea el objeto Query con @Mock y se define su comportamiento con when(...).thenReturn(...), sin levantar un repositorio real."
+  },
+  {
+    "id": 193,
+    "question": "A website hosted on AEM as a Cloud Service features site page content search as part of their user experience. The search internally uses JCR Queries for content search based on tags. The content has been indexed adequately. Which approach is recommended to make the index available across all the environments?",
+    "answers": [
+      "Customize out-of-the-box index and deploy with Maven configurations and CI/CD Pipelines",
+      "Create Index Package from Package Manager and replicate over other environments",
+      "Create fully custom index and deploy with Maven configurations and CI/CD Pipelines"
+    ],
+    "correct": "Customize out-of-the-box index and deploy with Maven configurations and CI/CD Pipelines",
+    "reason": "En AEM as a Cloud Service lo recomendado es personalizar el indice out-of-the-box (p. ej. damAssetLucene-8-custom-1) y desplegarlo como configuracion del proyecto Maven a traves del pipeline de CI/CD, de forma que llegue identico a todos los entornos. Replicar paquetes de indices no es una via soportada."
+  },
+  {
+    "id": 194,
+    "question": "A developer needs to upgrade an existing custom component based on Core Components Version 1 (v1) to Core Components Version 2 (v2). How should the developer upgrade to this version?",
+    "answers": [
+      "Modify the sling:resourceType property on the custom component to point to the V2 Component",
+      "The Custom Component will be automatically upgraded to the V2 Core Component on AEM Restart",
+      "Modify the sling:resourceSuperType property on the custom component to point to the V2 Component"
+    ],
+    "correct": "Modify the sling:resourceSuperType property on the custom component to point to the V2 Component",
+    "reason": "Para subir un componente propio de Core Components v1 a v2 se apunta sling:resourceSuperType al componente v2; sling:resourceType identifica al propio componente y no se toca. La actualizacion nunca es automatica."
+  },
+  {
+    "id": 195,
+    "question": "A developer is debugging an issue where a Sling Model is not properly adapting to the resource. Upon investigation, the developer notices the following Sling Model code: @Model(adaptables = Resource.class) public class MyCustomModel { } What is causing the issue?",
+    "answers": [
+      "The adaptable type in the @Model annotation is incorrect.",
+      "The title field is not properly annotated with @Inject.",
+      "The resource path in the init() method is hard-coded and may not be adaptable.",
+      "The @PostConstruct method is not properly annotated."
+    ],
+    "correct": "The resource path in the init() method is hard-coded and may not be adaptable.",
+    "images": [
+      {
+        "src": "/images/exams/ad0-e137/q195-exhibit.png",
+        "alt": "Codigo del Sling Model con la ruta hardcodeada en init()."
+      }
+    ],
+    "reason": "El Sling Model falla porque el init() tiene la ruta del recurso hardcodeada: el modelo deja de adaptarse correctamente en cuanto se usa sobre otro recurso. La ruta debe obtenerse del recurso adaptado, no escribirse a mano."
+  },
+  {
+    "id": 196,
+    "question": "A developer is creating a dialog for a component, which has a checkbox field. After saving the component configuration, the developer noticed that the checkbox value is stored as a String type in JCR. What should be done to store the checkbox value as a Boolean type in JCR?",
+    "answers": [
+      "Implement JCR Event Listener to change field type afterwards",
+      "Add TypeHint field to the dialog",
+      "Use Switch instead of Checkbox"
+    ],
+    "correct": "Add TypeHint field to the dialog",
+    "reason": "Para que el valor de un checkbox se guarde como Boolean en el JCR hay que anadir al dialogo un campo oculto TypeHint (name='./propiedad@TypeHint', value='Boolean')."
+  },
+  {
+    "id": 197,
+    "question": "A university wants to roll out content updates to all the schools affiliated with it. The individual schools have configured their respective homepages with a space allocated to display updated university information. The rest of the homepage is dedicated to school-specific information. What is the recommended approach to roll out university updates on all the schools' homepages?",
+    "answers": [
+      "Roll out of Experience Fragment",
+      "Mark the \"Partial\" option on the roll out screen",
+      "Restore inheritance for certain components on the school homepage",
+      "Implement custom logic for page roll out action"
+    ],
+    "correct": "Mark the \"Partial\" option on the roll out screen",
+    "reason": "Se marca la opcion 'Partial' en la pantalla de rollout para propagar solo los componentes heredados (el bloque de informacion de la universidad) sin pisar el contenido propio de cada escuela."
+  },
+  {
+    "id": 198,
+    "question": "A developer is using the Oak query engine. Which query language is recommended?",
+    "answers": [
+      "JCR-SQL",
+      "SQL",
+      "XPath"
+    ],
+    "correct": "XPath",
+    "reason": "XPath es el lenguaje de consulta recomendado por Adobe para el motor de consultas de Oak; es para el que el motor esta mas optimizado."
+  },
+  {
+    "id": 199,
+    "question": "How would a developer create a new Adobe Experience Manager project version 2.0 for 6.5 using the Adobe Experience Manager Maven Archetype with package com.mysite?",
+    "answers": [
+      "mvn -B org.apache.maven.plugins:maven-archetype-plugin:3.2.1:generate \\ -D archetypeGroupld=com.mysite \\ -D archetypeArtifactld=aem-project-archetype \\ -D archetypeVersion=6.5 \\ -D appTitle=\"My Site\" \\ -D appld=\"com.adobe.aem\" \\ -D version=\"latest\" \\ -D aemVersion=\"2.0\"",
+      "mvn -B org.apache.maven.plugins:maven-archetype-plugin:3.2.1:generate \\ -D archetypeGroupld=com.adobe.aem \\ -D archetypeArtifactld=aem-project-archetype \\ -D archetypeVersion=50 \\ -D appTitle=\"My Site\" \\ -D appld=\"mysite\" \\ -D groupld=\"com.mysite\" \\ -D version=\"2.0\" \\ -D aemVersion=\"6.5\"",
+      "mvn -B org.apache.maven.plugins:maven-archetype-plugin:3.2.1:generate \\ -D archetypeGroupld=com.adobe.aem \\ -D archetypeArtifactld=aem-project-archetype \\ -D archetypeVersion=${jabebrrl_nmqjiwqo} \\ -D appTitle=\"My Site\" \\ -D appld=\"siteld\" \\ -D groupld=\"com.mysite\" \\ -D version=\"2.0\" \\ -D aemVersion=\"latest\""
+    ],
+    "correct": "mvn -B org.apache.maven.plugins:maven-archetype-plugin:3.2.1:generate \\ -D archetypeGroupld=com.adobe.aem \\ -D archetypeArtifactld=aem-project-archetype \\ -D archetypeVersion=50 \\ -D appTitle=\"My Site\" \\ -D appld=\"mysite\" \\ -D groupld=\"com.mysite\" \\ -D version=\"2.0\" \\ -D aemVersion=\"6.5\"",
+    "reason": "El comando correcto usa archetypeGroupId=com.adobe.aem, archetypeArtifactId=aem-project-archetype, una version concreta del arquetipo, groupId=com.mysite, version=2.0 y aemVersion=6.5. Las otras opciones intercambian groupId con aemVersion o dejan la version del arquetipo sin resolver."
+  },
+  {
+    "id": 200,
+    "question": "Which tool is commonly used to manage front-end dependencies and automate tasks like bundling, minification, and transpilation in an AEM project?",
+    "answers": [
+      "Webpack",
+      "Apache Sling",
+      "Maven",
+      "AEM Sites Console"
+    ],
+    "correct": "Webpack",
+    "reason": "Webpack es la herramienta que empaqueta, minifica y transpila el front-end dentro del modulo ui.frontend de un proyecto AEM."
+  },
+  {
+    "id": 201,
+    "question": "An Adobe Experience Manager team is using an additional DEV environment in Adobe Experience Manager as a Cloud Service as their UAT env. An Adobe Experience Manager architect is asked to configure a dedicated url endpoint to be used as preview service for the same environment. Which configuration will accomplish this task?",
+    "answers": [
+      "/apps/<Project Name>/osgiconfig/author.uat/<Persistent Identity>.cfg.json in ui.apps.structure project",
+      "/apps/<Project Name>/osgiconfig/config.publish.uat/<Persistent Identity>.cfg.json in ui.config project",
+      "/apps/<Project Name>/osgiconfig/config.uat.author/<Persistent Identity>.cfg.json in ui.config project"
+    ],
+    "correct": "/apps/<Project Name>/osgiconfig/config.publish.uat/<Persistent Identity>.cfg.json in ui.config project",
+    "reason": "El preview service se configura sobre el tier de publish y con el run mode del entorno: la configuracion OSGi va en el proyecto ui.config bajo /apps/<proyecto>/osgiconfig/config.publish.uat/<PID>.cfg.json."
+  },
+  {
+    "id": 202,
+    "question": "A customer created a workflow launcher to trigger the \"Custom Workflow\" based on \"Node Created\" under the folder /var/classes but the workflow is not triggered. What is the reason the workflow is not triggered?",
+    "answers": [
+      "\"Workflow Process Legacy Mode\" is disabled at the \"Adobe Granite Workflow Configuration Service\" OSGi configuration.",
+      "AEM does not allow new nodes to be created under /var/classes.",
+      "Changes under /var/classes do not trigger workflows."
+    ],
+    "correct": "Changes under /var/classes do not trigger workflows.",
+    "reason": "Los cambios bajo /var no disparan workflow launchers: esa rama esta excluida del procesamiento de launchers, por lo que el 'Custom Workflow' nunca se activa."
+  },
+  {
+    "id": 203,
+    "question": "A developer needs to customize the handling of assets in a complex workflow model where different paths process assets based on their metadata and trigger specific external services. Which approach is a best practice for implementing this solution?",
+    "answers": [
+      "Use out-of-the-box Adobe Experience Manager Workflow steps and configure them through the Workflow console to handle all metadata for asset processing, using conditions in the Workflow.",
+      "Write custom workflow process steps in Java to handle specific metadata conditions and integrate external services, using the Workflow API to manage dynamic branching logic.",
+      "Implement a content fragment model to pre-define asset metadata, using Workflows only for publishing the fragments after external service calls are completed."
+    ],
+    "correct": "Write custom workflow process steps in Java to handle specific metadata conditions and integrate external services, using the Workflow API to manage dynamic branching logic.",
+    "reason": "Para ramificacion dinamica segun metadatos y llamadas a servicios externos se escriben process steps propios en Java usando la Workflow API; los pasos out-of-the-box no cubren esa logica condicional."
   }
 ]
