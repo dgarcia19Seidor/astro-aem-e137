@@ -1001,7 +1001,7 @@
   },
   {
     "id": 68,
-    "question": "A customer wants to present a store front using AEM and Magento e-commerce platform. Refer to the following requirements: They use a third-party PIM System They want to use Adobe recommendations and utilize an OOTB solution in building this integration. While designing and documenting this solution, how should an Architect explain information relating to products and catalogs?",
+    "question": "A customer wants to present a store front using AEM and Magento e-commerce platform. Refer to the following requirements: \n-They use a third-party PIM System \n -They want to use Adobe recommendations and utilize an OOTB solution in building this integration. \n While designing and documenting this solution, how should an Architect explain information relating to products and catalogs?",
     "answers": [
       "Product and Catalog information is consumed and stored in AEM through a scheduled import process from the third-party PIM System that only updates the changes",
       "Product and Catalog information is consumed and stored into AEM through a scheduled import process from Magento that only updates the changes",
@@ -1065,7 +1065,7 @@
   },
   {
     "id": 70,
-    "question": "A popular News portal site wants to move from their custom CMS to AEM On Premise. The client is on a limited budget and is only able to purchase the 1 Author 2 Publish Production license. The client cannot afford a CDN until the site can generate enough revenue. The client also has the following requirements: Migrate about two billion content pages and assets A site that is available at all times (even if the content is slightly stale) An improved search function that can do relevance tuning and faceted search The website needs to behave like a desktop application News authors write content once; the content can then be reused multiple times in different channels Which approach should an Architect recommend to meet these requirements?",
+    "question": "A popular News portal site wants to move from their custom CMS to AEM On Premise. \n -The client is on a limited budget and is only able to purchase the 1 Author 2 Publish Production license. \n -The client cannot afford a CDN until the site can generate enough revenue.\n\n The client also has the following requirements: \n -Migrate about two billion content pages and assets A site that is available at all times (even if the content is slightly stale)\n -An improved search function that can do relevance tuning and faceted search\n -The website needs to behave like a desktop application News authors write content once; the content can then be reused multiple times in different channels \n\nWhich approach should an Architect recommend to meet these requirements?",
     "answers": [
       "Implement AEM with SPA support and set up an Oak JCR Property index",
       "Implement AEM with static and dynamic pages and set up an embedded Solr server",
@@ -1084,15 +1084,16 @@
   },
   {
     "id": 71,
-    "question": "A customer has the following setup of their digital platform: There are three types of business users: Marketers who use Adobe Target to drive personalization on the website Site editors working with AEM Asset editors who manage assets in an external DAM The marketers currently spend a lot of time uploading content and assets directly in Adobe Target. The customer wants to improve this process. What should the Architect recommend to the customer?",
+    "question": "A customer has the following setup of their digital platform: There are three types of business users: \n -Marketers who use Adobe Target to drive personalization on the website \n -Site editors working with AEM \n -Asset editors who manage assets in an external DAM.\n -The marketers currently spend a lot of time uploading content and assets directly in Adobe Target. \n -The customer wants to improve this process. ",
+    "questionAfterImage": "What should the Architect recommend to the customer?",
     "answers": [
       "Use Experience Fragments in AEM for targeted offers",
       "Use Content Fragments and export them as JSON using Content Services",
       "Configure the replication agent in AEM to replicate content to Target",
       "Let the marketers use ContextHub Personalization in AEM"
     ],
-    "correct": "Configure the replication agent in AEM to replicate content to Target",
-    "reason": "Revisión de la clave: el mecanismo adecuado es crear Experience Fragments en AEM y exportarlos como ofertas a Adobe Target mediante su integración. Así los editores mantienen las experiencias y los especialistas de marketing las utilizan en actividades. Un agente de replicación genérico no sustituye la integración de exportación a Target.",
+    "correct": "Use Experience Fragments in AEM for targeted offers",
+    "reason": "Los Experience Fragments se crean y gestionan en AEM y se exportan como ofertas a Adobe Target mediante su integración (Adobe Target Cloud Service). Así los editores mantienen las experiencias en AEM y los especialistas de marketing las utilizan en actividades, sin subir contenido manualmente. Los Content Fragments exportados como JSON, un agente de replicación genérico o ContextHub no cubren esa exportación de ofertas a Target.",
     "sources": [
       {
         "file": "Respuestas Examen Arquitecto Tipo 1 AD0-E117 (1).pdf",
@@ -1128,7 +1129,7 @@
   },
   {
     "id": 73,
-    "question": "An AEM customer has a website presence in different countries and in multiple languages. In their organization, a central editor team creates part of the content for all countries. Each country has a local editor team that manages the content of the specific country website. The customer has the following requirements: The centrally managed content needs to be pushed to the countries The local editors are responsible to translate the content in their local language The local editors need to be able to overwrite content that is pushed from the central team How should an Architect design the content hierarchy?",
+    "question": "An AEM customer has a website presence in different countries and in multiple languages. In their organization, a central editor team creates part of the content for all countries. Each country has a local editor team that manages the content of the specific country website. The customer has the following requirements: \n -The centrally managed content needs to be pushed to the countries \n -The local editors are responsible to translate the content in their local language \n -The local editors need to be able to overwrite content that is pushed from the central team \n\n How should an Architect design the content hierarchy?",
     "answers": [
       "Option A",
       "Option B",
@@ -1291,7 +1292,8 @@
   },
   {
     "id": 80,
-    "question": "Refer to the exhibit. A client acquired AEM recently and is working with an Architect to define the templates that need to be created in AEM to migrate their legacy site. The page layouts of the legacy are in the above exhibit. Which template strategy should the Architect use?",
+    "question": "Refer to the exhibit. A client acquired AEM recently and is working with an Architect to define the templates that need to be created in AEM to migrate their legacy site. The page layouts of the legacy are in the above exhibit.",
+    "questionAfterImage": "Which template strategy should the Architect use?",
     "answers": [
       "One static template with layout containers and components",
       "One editable template with layout containers and components",
@@ -1316,7 +1318,7 @@
   },
   {
     "id": 81,
-    "question": "An AEM customer has the following high-level business goals: Deliver content on single-page apps Deliver content on mobile apps Deliver content to third-party applications A content delivery mechanism that adds the least amount of code to the codebase but does not unnecessarily expose data is required. What should an Architect use to meet these requirements?",
+    "question": "An AEM customer has the following high-level business goals: \n -Deliver content on single-page apps \n -Deliver content on mobile apps \n -Deliver content to third-party applications \n\n A content delivery mechanism that adds the least amount of code to the codebase but does not unnecessarily expose data is required. What should an Architect use to meet these requirements?",
     "answers": [
       "Sling Default JSON Renderer",
       "Replication agents to deliver content",
@@ -1397,7 +1399,7 @@
   },
   {
     "id": 85,
-    "question": "A client is doing a complete systemic upgrade of their old AEM site and moving to AEM 6.5 On-Premise. The new site will have the same content but completely new code. The client also has the following requirements for the new AEM instance: They want all users, groups, and ACLs migrated They do not want the version storage migrated They want all orphaned versions to remain in the old AEM site What migration approach should the Architect recommend to meet their requirements?",
+    "question": "A client is doing a complete systemic upgrade of their old AEM site and moving to AEM 6.5 On-Premise. The new site will have the same content but completely new code. The client also has the following requirements for the new AEM instance: \n -They want all users, groups, and ACLs migrated \n -They do not want the version storage migrated \n -They want all orphaned versions to remain in the old AEM site \n\n What migration approach should the Architect recommend to meet their requirements?",
     "answers": [
       "Use the AEM User Admin and Package Manager",
       "Use the AEM Content Transfer Tool",
@@ -1534,7 +1536,7 @@
   },
   {
     "id": 92,
-    "question": "During development the AEM Publisher server keeps crashing randomly. The deployment included a new static FAQ component that was used in the websites Contact Us page. An Architect investigates to find the root cause for the random failures, and notices the following parameters: The server slows down when requests are sent to the Contact us page The number of requests to the page were very few Heap dump shows a large number of instances of the FAQ component What is likely causing this issue?",
+    "question": "During development the AEM Publisher server keeps crashing randomly. The deployment included a new static FAQ component that was used in the websites Contact Us page. An Architect investigates to find the root cause for the random failures, and notices the following parameters: \n -The server slows down when requests are sent to the Contact us page \n -The number of requests to the page were very few \n -Heap dump shows a large number of instances of the FAQ component \n\n What is likely causing this issue?",
     "answers": [
       "The JVM garbage collection is not running",
       "The page was not cached in the Dispatcher.",
@@ -1591,7 +1593,8 @@
   },
   {
     "id": 95,
-    "question": "A customer with a static website uses a agency to centrally manage its content. The website is targeted for a international audience as shown in following diagram: Which model should the Architect recommend to improve performance?",
+    "question": "A customer with a static website uses a agency to centrally manage its content. The website is targeted for a international audience as shown in following diagram:",
+    "questionAfterImage": "Which model should the Architect recommend to improve performance?",
     "answers": [
       "Publish to and cache content in the CDN",
       "Load balance three AEM publishers",
@@ -1616,14 +1619,14 @@
   },
   {
     "id": 96,
-    "question": "A client is moving from AEM 6.5 to AEM as a Cloud Service. Refer to the following client parameters and requirements: The client has five tenant projects that currently maintain separate git repositories The client has their own CI/CD pipeline that sends out notifications to their current team chat tool on success/failure and they want to keep this functionality The client expects to not reuse code across tenants The client wants to reuse assets across tenants Which solution should an Architect recommend?",
+    "question": "A client is moving from AEM 6.5 to AEM as a Cloud Service. Refer to the following client parameters and requirements: \n -The client has five tenant projects that currently maintain separate git repositories \n -The client has their own CI/CD pipeline that sends out notifications to their current team chat tool on success/failure and they want to keep this functionality \n -The client expects to not reuse code across tenants \n -The client wants to reuse assets across tenants \n\n Which solution should an Architect recommend?",
     "answers": [
-      "1. Create a Cloud Manager program for each of the tenant's git repositories 2. Use Adobe I/O Events to send notifications via webhooks",
-      "1. Set up a single git repository with a multi-module maven project inside the Adobe git with each tenant project being a module 2. Use Adobe I/O Events to send notifications via webhooks",
-      "1. Set up a single git repository with a multi-module maven project inside the Adobe git with each tenant project being a module 2. Customize pipeline to include push notifications via the Cloud Manager UI",
-      "1. Set up a git repository for each tenant in the Adobe git repository 2. Customize pipeline to include push notifications via the Cloud Manager UI"
+      "1. Create a Cloud Manager program for each of the tenant's git repositories \n 2. Use Adobe I/O Events to send notifications via webhooks",
+      "1. Set up a single git repository with a multi-module maven project inside the Adobe git with each tenant project being a module \n 2. Use Adobe I/O Events to send notifications via webhooks",
+      "1. Set up a single git repository with a multi-module maven project inside the Adobe git with each tenant project being a module \n 2. Customize pipeline to include push notifications via the Cloud Manager UI",
+      "1. Set up a git repository for each tenant in the Adobe git repository \n 2. Customize pipeline to include push notifications via the Cloud Manager UI"
     ],
-    "correct": "1. Set up a single git repository with a multi-module maven project inside the Adobe git with each tenant project being a module 2. Use Adobe I/O Events to send notifications via webhooks",
+    "correct": "1. Set up a single git repository with a multi-module maven project inside the Adobe git with each tenant project being a module \n 2. Use Adobe I/O Events to send notifications via webhooks",
     "reason": "Un proyecto Maven con un módulo por tenant permite compilar y desplegar los cinco proyectos en el entorno donde comparten assets, manteniendo separado su código. Adobe I/O Events puede notificar resultados de los pipelines mediante webhooks hacia la herramienta de chat. Esta organización no obliga a reutilizar código entre tenants; sí requiere coordinar el despliegue y las dependencias de cada módulo.",
     "sources": [
       {
@@ -1677,7 +1680,7 @@
   },
   {
     "id": 99,
-    "question": "A large corporation is in the process of setting up a new Intranet based on AEM with the following parameters and requirements: Approximately 100,000 employees will use the system Business divisions maintain their own content Groups for business divisions are synced using SAML Groups for business divisions often change during reorganizations; no code change must be necessary to support this The authors should be able to grant permissions for everybody or for employees of certain business divisions What should an Architect recommend to set up Closed User Groups correctly? (Choose two.)",
+    "question": "A large corporation is in the process of setting up a new Intranet based on AEM with the following parameters and requirements: \n -Approximately 100,000 employees will use the system \n -Business divisions maintain their own content \n -Groups for business divisions are synced using SAML \n -Groups for business divisions often change during reorganizations; no code change must be necessary to support this \n -The authors should be able to grant permissions for everybody or for employees of certain business divisions \n\n What should an Architect recommend to set up Closed User Groups correctly? (Choose two.)",
     "answers": [
       "Create a custom tab in page properties for authoring of permissions",
       "Use permission-sensitive caching in Dispatcher",
@@ -1723,7 +1726,7 @@
   },
   {
     "id": 101,
-    "question": "A large automotive customer wants to migrate their car configurator to the new AEM platform. Refer to the following customer requirements: The solution needs to integrate with an existing, already highly customized PIM There are approximately 20 base models with many configuration options for each There are over a million configuration combinations and there are rules on which configuration options can be applied together For each base model, there will be a content section with editable marketing content and an own section that shows the car configurator Content sections of base models are sometimes moved or copied by authors What two approaches should an Architect recommend for a maintainable solution? (Choose two.)",
+    "question": "A large automotive customer wants to migrate their car configurator to the new AEM platform. Refer to the following customer requirements: \n -The solution needs to integrate with an existing, already highly customized PIM \n -There are approximately 20 base models with many configuration options for each \n -There are over a million configuration combinations and there are rules on which configuration options can be applied together \n -For each base model, there will be a content section with editable marketing content and an own section that shows the car configurator \n -Content sections of base models are sometimes moved or copied by authors \n\n What two approaches should an Architect recommend for a maintainable solution? (Choose two.)",
     "answers": [
       "Connect page trees on AEM side with a base model in PIM saving the content path as property of a base model PIM side",
       "Connect page trees on AEM side with a base model in PIM using a model id property in JCR",
@@ -1829,15 +1832,16 @@
   },
   {
     "id": 105,
-    "question": "A customer wants to simplify and automate publishing press release pages and defines the following flow: What should the Architect recommend?",
+    "question": "A customer wants to simplify and automate publishing press release pages and defines the following flow:",
+    "questionAfterImage": "What should the Architect recommend?",
     "answers": [
       "Create a custom workflow",
       "Configure MSM with the \"Activate on Blueprint activation\" option",
       "Implement a Sling event listener that triggers on page creation",
       "Advise the customer to use Launches"
     ],
-    "correct": "Advise the customer to use Launches",
-    "reason": "Revisión de la clave: Launches permite preparar y promover contenido futuro, pero no implementa por sí solo una aprobación financiera con decisiones y participantes. Ese requisito necesita un workflow que controle aprobaciones, condiciones y acciones de rollout o publicación. Launches puede participar en la solución si también existe planificación temporal, pero no reemplaza el flujo de aprobación.",
+    "correct": "Create a custom workflow",
+    "reason": "El flujo incluye una aprobación de resultados financieros seguida de rollout a las live copies y publicación. Eso requiere un workflow personalizado que controle participantes, decisiones y las acciones de rollout y activación. Launches permite preparar y promover contenido futuro, pero no implementa por sí solo una aprobación con decisiones y participantes; MSM con \"Activate on Blueprint activation\" y un Sling event listener no ofrecen un paso de aprobación.",
     "sources": [
       {
         "file": "Respuestas Examen Arquitecto Tipo 1 AD0-E117 (1).pdf",
@@ -1959,7 +1963,7 @@
   },
   {
     "id": 111,
-    "question": "A client is modernizing some of their AEM sites to go from static to editable templates so they can use the latest features around styling and layouts. The client has the following parameters: The client currently has a dozen static templates that they want to move to editable templates. The existing pages use the parsys paragraph system for storing components. Each page based on one of the static templates has its own custom properties tab that is unique for that template type. The client wants template authors to be able to create the editable templates. Which approach should an Architect use to meet these requirements?",
+    "question": "A client is modernizing some of their AEM sites to go from static to editable templates so they can use the latest features around styling and layouts. The client has the following parameters: \n -The client currently has a dozen static templates that they want to move to editable templates. \n -The existing pages use the parsys paragraph system for storing components. \n -Each page based on one of the static templates has its own custom properties tab that is unique for that template type. \n -The client wants template authors to be able to create the editable templates. \n\n Which approach should an Architect use to meet these requirements?",
     "answers": [
       "1. Use a new page component for editable templates based on the core components page component\n2. Migrate page properties to respective components dialogues",
       "1. Use a new page component for editable templates based on the core components page component\n2. Convert page properties to policies",
@@ -2039,7 +2043,8 @@
   },
   {
     "id": 115,
-    "question": "Refer to the exhibit. A customer with an existing AEM implementation wants to enrich product pages with technical data coming from their PIM system. The PIM system sits behind an API Management solution that publicly exposes the PIM API's as RESTful web services with basic authentication as the security mechanism. Data consistency with the PIM and secure access to the APIs are key elements of the integration. How should the Architect set up the integration between AEM and the PIM?",
+    "question": "Refer to the exhibit. A customer with an existing AEM implementation wants to enrich product pages with technical data coming from their PIM system. The PIM system sits behind an API Management solution that publicly exposes the PIM API's as RESTful web services with basic authentication as the security mechanism. Data consistency with the PIM and secure access to the APIs are key elements of the integration.",
+    "questionAfterImage": "How should the Architect set up the integration between AEM and the PIM?",
     "answers": [
       "Import the technical data into the AEM Author and replicate to Publishers",
       "Convert the technical data to Content Fragments and expose using Content Services",
@@ -2301,7 +2306,7 @@
   },
   {
     "id": 127,
-    "question": "A client is using AEM and wants to make sure they are managing their configurations correctly. Refer to the following requirements: The client has multiple brands that they will be hosting on a single AEM implementation The client wants to reuse as much between brands as possible Each brand needs to be able to override the default values for items like contact us information The client plans to support multiple languages in multiple regions for each brand Each brand/language/region combination will have its own set of content approvers used as part of a custom workflow Which approach should an Architect recommend to manage the client's configurations for AEM?",
+    "question": "A client is using AEM and wants to make sure they are managing their configurations correctly. Refer to the following requirements: \n -The client has multiple brands that they will be hosting on a single AEM implementation \n -The client wants to reuse as much between brands as possible \n -Each brand needs to be able to override the default values for items like contact us information \n -The client plans to support multiple languages in multiple regions for each brand \n -Each brand/language/region combination will have its own set of content approvers used as part of a custom workflow \n\n Which approach should an Architect recommend to manage the client's configurations for AEM?",
     "answers": [
       "Use OSGi to manage approval group and provide default contact us information by runmode.",
       "Use Context-aware configurations to manage configuration overrides and approval group by brand/language/region combination.",
@@ -2339,7 +2344,7 @@
   },
   {
     "id": 129,
-    "question": "A client designs a new experience for one of their brand sites with the following parameters: The new experience should behave like a desktop application There is a lot of dynamic content in the app SEO and initial page load are a top concern for the client The client's marketing team needs to be able to author the content with a WYSIWYG editor Which approach should the Architect use to meet these requirements?",
+    "question": "A client designs a new experience for one of their brand sites with the following parameters: \n -The new experience should behave like a desktop application \n -There is a lot of dynamic content in the app \n -SEO and initial page load are a top concern for the client \n -The client's marketing team needs to be able to author the content with a WYSIWYG editor \n\n Which approach should the Architect use to meet these requirements?",
     "answers": [
       "Create a set of API-driven components",
       "Use the traditional server side components on the website",

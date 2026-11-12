@@ -13,6 +13,7 @@ export type QuestionImage = {
 export type RawQuestion = {
   id: number;
   question: string;
+  questionAfterImage?: string;
   answers: string[];
   correct: string | string[];
   reason: string;

@@ -147,6 +147,9 @@ const examConfig = {
                   <div class="min-w-0 flex-1">
                     <h3 class="whitespace-pre-line font-semibold leading-6 text-white">{question.question}</h3>
                     <QuestionImages images={question.images} />
+                    {question.questionAfterImage && (
+                      <p class="mt-3 whitespace-pre-line font-semibold leading-6 text-white">{question.questionAfterImage}</p>
+                    )}
                     <div class="mt-2 flex flex-wrap gap-2">
                       <p class="rounded-md border border-amber-300/30 bg-amber-300/10 px-2 py-1 text-xs uppercase tracking-[0.16em] text-amber-200">
                         Destacada
@@ -225,6 +228,9 @@ const examConfig = {
               <div class="min-w-0 flex-1">
                 <h2 class="whitespace-pre-line font-semibold leading-6 text-white">{question.question}</h2>
                 <QuestionImages images={question.images} />
+                {question.questionAfterImage && (
+                  <p class="mt-3 whitespace-pre-line font-semibold leading-6 text-white">{question.questionAfterImage}</p>
+                )}
                 {question.isMulti && (
                   <p class="mt-1 text-xs uppercase tracking-[0.18em] text-amber-300">
                     Multi-select
@@ -486,6 +492,7 @@ const examConfig = {
                   <div class="min-w-0 flex-1">
                     <h3 class="whitespace-pre-line font-semibold leading-6 text-white">${escapeHtml(question.question)}</h3>
                     ${renderImages(question.images)}
+                    ${question.questionAfterImage ? `<p class="mt-3 whitespace-pre-line font-semibold leading-6 text-white">${escapeHtml(question.questionAfterImage)}</p>` : ""}
                     ${question.isMulti ? '<p class="mt-1 text-xs uppercase tracking-[0.18em] text-amber-300">Multi-select</p>' : ""}
                   </div>
                 </header>
