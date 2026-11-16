@@ -48,11 +48,11 @@
       "Multi-cloud deployments"
     ],
     "correct": [
+      "Asynchronous replication",
       "Geo-targeted content configurations",
-      "Content delivery networks (CDN)",
-      "Multi-cloud deployments"
+      "Content delivery networks (CDN)"
     ],
-    "reason": "Revisión de la clave: una CDN acerca las respuestas cacheadas al usuario y es la medida más directa para reducir latencia entre regiones. Las configuraciones geográficas seleccionan contenido adecuado, pero no aceleran por sí mismas su entrega. Una implantación multicloud puede distribuir infraestructura, aunque no es una capacidad automática de AEM ni una recomendación universal; la selección de tres respuestas resulta ambigua."
+    "reason": "La replicaci?n as?ncrona permite distribuir contenido sin bloquear la operaci?n de origen. Las configuraciones geogr?ficas permiten servir contenido adecuado a cada regi?n y una CDN acerca las respuestas cacheadas a los usuarios, reduciendo la latencia de entrega."
   },
   {
     "id": 4,
@@ -281,8 +281,8 @@
       "Hybrid architecture with data stored on-premise and content delivered via CDN",
       "Single-region deployment with manual backups"
     ],
-    "correct": "AEM as a Cloud Service with multi-region deployment",
-    "reason": "Revisión de la clave: una arquitectura regional puede ayudar a servir contenido cerca de los usuarios, pero no demuestra por sí sola el cumplimiento de residencia de datos. Hay que verificar dónde se almacenan y procesan contenido, copias de seguridad y datos personales, y qué despliegues admite el servicio contratado. CDN, distribución multirregional y cumplimiento normativo son aspectos distintos."
+    "correct": "Hybrid architecture with data stored on-premise and content delivered via CDN",
+    "reason": "Una arquitectura h?brida permite mantener los datos sujetos a requisitos de localizaci?n en la infraestructura on-premise y distribuir el contenido p?blico mediante una CDN para reducir la latencia global. Debe configurarse qu? contenido puede almacenarse en la CDN para respetar las restricciones de residencia de datos."
   },
   {
     "id": 20,
@@ -1689,10 +1689,10 @@
       "Set ACLs for groups on author to hide non-relevant groups"
     ],
     "correct": [
-      "Use session management in Dispatcher",
+      "Use permission-sensitive caching in Dispatcher",
       "Define the content structure wisely to ensure regular ACLs and CUG entries do not interfere"
     ],
-    "reason": "La jerarquía debe permitir que los autores asignen CUG a grupos y que esas restricciones no entren en conflicto con las ACL normales. Matiz de versión: en el esquema clásico de CUG, session management desactiva la caché de la granja. Si se necesita reutilizar contenido protegido en caché, debe evaluarse permission-sensitive caching, que comprueba autorización antes de entregarlo; no basta con activar la gestión de sesiones.",
+    "reason": "Permission-sensitive caching permite comprobar la autorizaci?n antes de servir contenido protegido desde la cach? de Dispatcher. Adem?s, la estructura del contenido debe dise?arse para que las ACL habituales y las restricciones de Closed User Groups no interfieran entre s?.",
     "sources": [
       {
         "file": "Respuestas Examen Arquitecto Tipo 1 AD0-E117 (1).pdf",
@@ -2162,10 +2162,10 @@
       "Configure Apache Felix Http Service SSL Filter to use the correct SSL forward header"
     ],
     "correct": [
-      "Ensure the Sling Mapping exist at /etc/map/https/www.domain.com.80",
+      "Ensure the Sling Mapping exist at /etc/map/https/www.domain.com.443",
       "Configure Apache Felix Http Service SSL Filter to use the correct SSL forward header"
     ],
-    "reason": "Revisión de la clave: cuando TLS termina en el balanceador, AEM debe interpretar correctamente el esquema original mediante la información de proxy y el SSL Filter. Los mapas de Sling deben coincidir con el host y puerto efectivos de la solicitud. No puede asumirse que https.host.80 sea siempre correcto: hay que comprobar cabeceras, puerto externo y reglas de resolución para evitar enlaces o redirecciones erróneos.",
+    "reason": "Para el escenario descrito, el Sling Mapping debe corresponder al acceso p?blico HTTPS en el puerto 443: /etc/map/https/www.domain.com.443. Como TLS termina en el balanceador, el Apache Felix Http Service SSL Filter debe interpretar la cabecera X-Forwarded-Proto con valor https para que AEM reconozca el esquema original. La cabecera debe llegar a AEM a trav?s de Dispatcher.\n\nDocumentaci?n oficial: https://experienceleague.adobe.com/en/docs/experience-manager-65/content/implementing/deploying/configuring/resource-mapping ? https://experienceleague.adobe.com/en/docs/experience-cloud-kcs/kbarticles/ka-16936",
     "sources": [
       {
         "file": "Respuestas Examen Arquitecto Tipo 2 AD0-E117 (1).pdf",
@@ -3022,8 +3022,8 @@
       "The adaptive image servlet configuration is not set up properly.",
       "Images and videos are not being properly cached by the Dispatcher."
     ],
-    "correct": "Images and videos are not being properly cached by the Dispatcher.",
-    "reason": "Si cada petición vuelve a procesar o recuperar imágenes y vídeos, la falta de caché puede generar alto consumo de CPU, memoria y tiempos de entrega. Revisar cabeceras, reglas y aciertos de caché permite comprobar esa hipótesis. Los síntomas también requieren analizar las transformaciones y el tamaño de los recursos; no prueban por sí solos que Dispatcher sea la única causa.",
+    "correct": "The adaptive image servlet configuration is not set up properly.",
+    "reason": "La respuesta seleccionada es una configuraci?n incorrecta del Adaptive Image Servlet. El uso elevado de CPU y la gran cantidad de objetos de imagen en memoria apuntan a revisar el procesamiento y dimensionamiento de las im?genes. Deben comprobarse la configuraci?n del servlet y las variantes solicitadas; los s?ntomas por s? solos no descartan otros problemas de cach? o de entrega de v?deo.",
     "sources": [
       {
         "file": "Respuestas Examen Arquitecto Video AD0-E117 (1).pdf",
