@@ -2153,7 +2153,7 @@
   },
   {
     "id": 120,
-    "question": "A customer is about to go live with a new website on AEM on prem. The DNS (www.domain.com) already points to the load balancer of the AEM environment and final sanity checks are being performed. The website was tested in lower environments without SSL. On production, the website is served over https. During sanity testing, all requests result in a 404. While investigating this issue, an Architect determines the following: The requests land on port 443 on the load balancer where SSL is terminated and an HTTP header X-Forwarded-Proto is set The website Sling Mapping is created beneath /etc/map/http/www.domain.com.80 The URLs on the website are externalized with http in the absolute links Which two actions should the Architect take to resolve this problem? (Choose two.)",
+    "question": "A customer is about to go live with a new website on AEM on prem. The DNS (www.domain.com) already points to the load balancer of the AEM environment and final sanity checks are being performed. The website was tested in lower environments without SSL. On production, the website is served over https. During sanity testing, all requests result in a 404. While investigating this issue, an Architect determines the following:\n- The requests land on port 443 on the load balancer where SSL is terminated and an HTTP header X-Forwarded-Proto is set\n- The website Sling Mapping is created beneath /etc/map/http/www.domain.com.80\n- The URLs on the website are externalized with http in the absolute links\nWhich two actions should the Architect take to resolve this problem? (Choose two.)",
     "answers": [
       "Ensure the Sling Mapping exist at /etc/map/https/www.domain.com.80",
       "Ensure the Sling Mapping exist at /etc/map/http/www.domain.com.443",
@@ -2195,7 +2195,7 @@
   },
   {
     "id": 122,
-    "question": "A media company wants to use AEM as content hub for multiple customer touch points: Brand-specific marketing websites hosted on AEM Sites Single Page Applications using headless content Native mobile applications Content offers in Adobe Target The company wants to manage its content efficiently with its small editor staff. Text should be entered and reviewed only once, then reused for all touch points. How should an Architect incorporate these requirements into a solution that leverages AEM Sites features?",
+    "question": "A media company wants to use AEM as content hub for multiple customer touch points:\n- Brand-specific marketing websites hosted on AEM Sites\n- Single Page Applications using headless content\n- Native mobile applications\n- Content offers in Adobe Target\nThe company wants to manage its content efficiently with its small editor staff. Text should be entered and reviewed only once, then reused for all touch points. How should an Architect incorporate these requirements into a solution that leverages AEM Sites features?",
     "answers": [
       "Option A",
       "Option B"
